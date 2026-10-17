@@ -13,6 +13,7 @@ UA = "Mozilla/5.0 (compatible; DineroEnClaro/1.0; +https://dineroenclaro.com)"
 cfg = json.loads((pathlib.Path(__file__).parent / "feeds.json").read_text(encoding="utf-8"))
 claves = [k.lower() for k in cfg.get("keywords", [])]
 
+ok, fallan = [], []
 for feed in cfg["feeds"]:
     nombre = feed["name"]
     try:
@@ -20,11 +21,16 @@ for feed in cfg["feeds"]:
         d = feedparser.parse(r.content)
         entradas = d.entries
         if r.status_code != 200 or not entradas:
-            print(f"::warning title=FALLA {nombre}::HTTP {r.status_code}, {len(entradas)} entradas")
+            fallan.append(f"{nombre}: HTTP {r.status_code}, {len(entradas)} entradas")
             continue
         coinciden = sum(1 for e in entradas if any(k in (e.get("title", "") + " " + e.get("summary", "")).lower() for k in claves))
         primera = entradas[0]
         fecha = primera.get("published", primera.get("updated", "sin fecha"))
-        print(f"::notice title=OK {nombre}::{len(entradas)} entradas, {coinciden} con palabras clave. Última: {primera.get('title', '')[:90]} ({fecha})")
+        ok.append(f"{nombre}: {len(entradas)} entradas, {coinciden} con palabras clave. Última: {primera.get('title', '')[:70]} ({fecha})")
     except Exception as e:  # noqa: BLE001
-        print(f"::warning title=FALLA {nombre}::{type(e).__name__}: {str(e)[:150]}")
+        fallan.append(f"{nombre}: {type(e).__name__}: {str(e)[:120]}")
+
+# GitHub muestra como mucho 10 avisos por paso: todo en dos anotaciones
+print(f"::notice title=Funcionan ({len(ok)})::" + " %0A".join(ok))
+if fallan:
+    print(f"::warning title=Fallan ({len(fallan)})::" + " %0A".join(fallan))
