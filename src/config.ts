@@ -7,9 +7,9 @@ export const SITE = {
   locale: 'es_ES',
   email: 'contacto@dineroenclaro.com',
   author: {
-    name: 'Marcos Fernández León',
-    slug: 'marcos-fernandez',
-    bio: 'Fundador de Dinero en Claro. Explica cómo funcionan los productos de ahorro e inversión, sus costes y sus impuestos, siempre con datos y fuentes oficiales y sin recomendar productos concretos.',
+    name: 'Redacción Dinero en Claro',
+    slug: 'redaccion',
+    bio: 'El equipo de Dinero en Claro explica cómo funcionan los productos de ahorro e inversión, sus costes y sus impuestos, siempre con datos y fuentes oficiales y sin recomendar productos concretos.',
   },
   ownerName: 'Marcos Fernández León',
   ownerNif: '48158108H',

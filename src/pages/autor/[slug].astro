@@ -7,10 +7,10 @@ export function getStaticPaths() { return [{ params: { slug: SITE.author.slug } 
 const posts = (await getPublishedPosts()).slice(0, 12);
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'ProfilePage',
-  mainEntity: { '@type': 'Person', name: SITE.author.name, url: `${SITE.url}/autor/${SITE.author.slug}/`, description: SITE.author.bio, worksFor: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
+  mainEntity: { '@type': 'Organization', name: SITE.author.name, url: `${SITE.url}/autor/${SITE.author.slug}/`, description: SITE.author.bio },
 };
 ---
-<Base title={SITE.author.name} description={`${SITE.author.name}, autor de ${SITE.name}. ${SITE.author.bio}`.slice(0, 160)} jsonLd={jsonLd}>
+<Base title={SITE.author.name} description={`${SITE.author.bio}`.slice(0, 160)} jsonLd={jsonLd}>
   <nav class="breadcrumbs"><a href="/">Inicio</a> › Autor</nav>
   <header class="autor">
     <h1>{SITE.author.name}</h1>

@@ -38,7 +38,7 @@ const jsonLd = [
     inLanguage: 'es',
     mainEntityOfPage: url,
     image: imagenesSchema,
-    author: { '@type': 'Person', name: SITE.author.name, url: SITE.url + autorUrl },
+    author: { '@type': 'Organization', name: SITE.author.name, url: SITE.url + autorUrl },
     publisher: {
       '@type': 'Organization', name: SITE.name, url: SITE.url,
       logo: { '@type': 'ImageObject', url: `${SITE.url}/icon-512.png`, width: 512, height: 512 },
