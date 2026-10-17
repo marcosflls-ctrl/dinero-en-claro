@@ -41,7 +41,30 @@
     "impuesto sobre el patrimonio",
     "fondo de garantía de depósitos",
     "criptomonedas",
-    "bitcoin"
+    "bitcoin",
+    "neobanco",
+    "neobancos",
+    "bróker",
+    "broker",
+    "brókers",
+    "brokers",
+    "revolut",
+    "trade republic",
+    "myinvestor",
+    "n26",
+    "bunq",
+    "scalable capital",
+    "interactive brokers",
+    "degiro",
+    "indexa",
+    "roboadvisor",
+    "robo advisor",
+    "gestor automatizado",
+    "iban español",
+    "msci world",
+    "s&p 500",
+    "criptoactivos",
+    "banco de españa"
   ],
   "boe": {
     "_nota": "Sumario diario del BOE (datos abiertos). Solo se consideran las disposiciones de estos departamentos.",
@@ -89,10 +112,6 @@
       "url": "https://rss.elconfidencial.com/mercados/"
     },
     {
-      "name": "El Confidencial Economía",
-      "url": "https://rss.elconfidencial.com/economia/"
-    },
-    {
       "name": "RTVE Economía",
       "url": "https://api2.rtve.es/rss/temas_economia.xml"
     },
@@ -100,7 +119,24 @@
       "name": "BCE (notas de prensa)",
       "url": "https://www.ecb.europa.eu/rss/press.html",
       "oficial": true
+    },
+    {
+      "name": "Banco de España (noticias)",
+      "url": "https://www.bde.es/wbe/es/inicio/rss/rss-noticias/",
+      "oficial": true
+    },
+    {
+      "name": "HelpMyCash",
+      "url": "https://www.helpmycash.com/blog/feed/"
+    },
+    {
+      "name": "Finantres",
+      "url": "https://finantresnoticias.com/feed/"
+    },
+    {
+      "name": "Estrategias de Inversión",
+      "url": "https://www.estrategiasdeinversion.com/rss/rssnoticias.xml"
     }
   ],
-  "_nota_fuentes": "Adaptadas a ahorro e inversión el 17/10/2026. Las nuevas (Expansión Mercados y Ahorro, El Confidencial Mercados, BCE) hay que probarlas con el flujo «Probar fuentes» al subir el repositorio."
+  "_nota_fuentes": "Adaptadas a ahorro e inversión el 17/10/2026. El 18/10/2026 se añaden Banco de España, HelpMyCash, Finantres y Estrategias de Inversión (neobancos, brókeres y ETF) y se quita El Confidencial Economía (su feed solo devolvía una entrada de enero). Todas probadas con el flujo «Probar fuentes»."
 }
