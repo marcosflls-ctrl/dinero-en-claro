@@ -41,7 +41,30 @@
     "impuesto sobre el patrimonio",
     "fondo de garantía de depósitos",
     "criptomonedas",
-    "bitcoin"
+    "bitcoin",
+    "neobanco",
+    "neobancos",
+    "bróker",
+    "broker",
+    "brókers",
+    "brokers",
+    "revolut",
+    "trade republic",
+    "myinvestor",
+    "n26",
+    "bunq",
+    "scalable capital",
+    "interactive brokers",
+    "degiro",
+    "indexa",
+    "roboadvisor",
+    "robo advisor",
+    "gestor automatizado",
+    "iban español",
+    "msci world",
+    "s&p 500",
+    "criptoactivos",
+    "banco de españa"
   ],
   "boe": {
     "_nota": "Sumario diario del BOE (datos abiertos). Solo se consideran las disposiciones de estos departamentos.",
@@ -100,6 +123,31 @@
       "name": "BCE (notas de prensa)",
       "url": "https://www.ecb.europa.eu/rss/press.html",
       "oficial": true
+    },
+    {
+      "name": "Banco de España (noticias)",
+      "url": "https://www.bde.es/wbe/es/inicio/rss/rss-noticias/",
+      "oficial": true
+    },
+    {
+      "name": "HelpMyCash",
+      "url": "https://www.helpmycash.com/blog/feed/"
+    },
+    {
+      "name": "Finantres",
+      "url": "https://finantresnoticias.com/feed/"
+    },
+    {
+      "name": "elEconomista Mercados",
+      "url": "https://www.eleconomista.es/rss/rss-mercados.php"
+    },
+    {
+      "name": "Estrategias de Inversión",
+      "url": "https://www.estrategiasdeinversion.com/rss/rssnoticias.xml"
+    },
+    {
+      "name": "Rankia",
+      "url": "https://www.rankia.com/feed"
     }
   ],
   "_nota_fuentes": "Adaptadas a ahorro e inversión el 17/10/2026. Las nuevas (Expansión Mercados y Ahorro, El Confidencial Mercados, BCE) hay que probarlas con el flujo «Probar fuentes» al subir el repositorio."
