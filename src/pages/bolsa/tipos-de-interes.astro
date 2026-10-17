@@ -19,6 +19,23 @@ const svg = s ? lineas([
   { nombre: 'Letras a 1 año', color: '#c4881c', puntos: s.letra_1a.historico },
 ], { dec: 1, sufijo: ' %' }) : '';
 const cambiosBce = m ? [...m.bce.deposito.cambios].reverse().slice(0, 8) : [];
+// Euríbor (media de cada mes) y tipo de depósito del BCE ese mismo mes, últimos 3 años
+const mesesEb = eb ? Object.entries(eb.medias_mensuales).sort(([a], [b]) => a.localeCompare(b)) : [];
+const bceEnMes = (mes: string) => {
+  const fin = `${mes}-31`;
+  const previos = (m?.bce.deposito.cambios ?? []).filter((c) => c.fecha <= fin);
+  return previos.length ? previos[previos.length - 1].valor : null;
+};
+const ptsEb = mesesEb.map(([mes, v]) => [`${mes}-15`, v] as [string, number]);
+const ptsBce = mesesEb.map(([mes]) => [`${mes}-15`, bceEnMes(mes)] as [string, number | null]).filter((p): p is [string, number] => p[1] !== null);
+const svgEb = ptsEb.length > 6 ? lineas([
+  { nombre: 'Euríbor a 12 meses', color: 'var(--brand)', puntos: ptsEb },
+  { nombre: 'Tipo de depósito del BCE', color: '#c4881c', puntos: ptsBce },
+], { dec: 1, sufijo: ' %' }) : '';
+const ebMax = ptsEb.length ? ptsEb.reduce((a, b) => (b[1] > a[1] ? b : a)) : null;
+const ebMin = ptsEb.length ? ptsEb.reduce((a, b) => (b[1] < a[1] ? b : a)) : null;
+const MESES_L = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const mesLargo = (f: string) => `${MESES_L[+f.slice(5, 7) - 1]} de ${f.slice(0, 4)}`;
 const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
   { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
   { '@type': 'ListItem', position: 2, name: 'Bolsa y mercados', item: `${SITE.url}/bolsa/` },
@@ -46,6 +63,15 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', it
         <h2>La deuda española en el último año</h2>
         <p>Rentabilidad en el mercado del bono a 10 años (<span style="color:var(--brand)">azul</span>) y de las Letras a 1 año (<span style="color:#c4881c">naranja</span>).</p>
         <Fragment set:html={svg} />
+      </>
+    )}
+
+    {svgEb && ebMax && ebMin && (
+      <>
+        <h2>El euríbor y el BCE en los últimos tres años</h2>
+        <p>Media mensual del euríbor a 12 meses (<span style="color:var(--brand)">azul</span>) y tipo de depósito del BCE (<span style="color:#c4881c">naranja</span>). El euríbor suele adelantarse a lo que el mercado espera que haga el BCE.</p>
+        <Fragment set:html={svgEb} />
+        <p class="muted small">En este periodo, el euríbor marcó su media más alta en {mesLargo(ebMax[0])} ({pct(ebMax[1], 3)}) y la más baja en {mesLargo(ebMin[0])} ({pct(ebMin[1], 3)}). Si tienes una hipoteca variable, calcula cuánto cambia tu cuota en la <a href="https://alfinaldemes.com/vivienda/euribor-hoy/">calculadora de revisión de la hipoteca</a> de Al Final de Mes.</p>
       </>
     )}
 
