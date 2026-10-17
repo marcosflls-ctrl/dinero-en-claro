@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { datosMercados, fecha, num, signo } from '../../lib/mercados';
+import { lineas } from '../../lib/grafico';
+const m = datosMercados();
+const ib = m?.bolsa.ibex;
+const ig = m?.bolsa.igbm;
+const titulo = 'Ibex 35 hoy: cierre, evolución y rentabilidad del año';
+const descripcion = ib ? `El Ibex 35 cerró el ${fecha(ib.fecha)} en ${num(ib.cierre, 1)} puntos (${signo(ib.var_dia)} %). En lo que va de año acumula un ${signo(ib.var_anio ?? 0)} %. Evolución y datos oficiales.` : 'El Ibex 35 hoy: cierre, evolución y rentabilidad del año.';
+const url = `${SITE.url}/bolsa/ibex-35-hoy/`;
+const svg = ib ? lineas([{ nombre: 'Ibex 35', color: 'var(--brand)', puntos: ib.historico }], { dec: 0 }) : '';
+const clase = (n: number | null) => (n == null ? '' : n >= 0 ? 'bien' : 'mal');
+const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+  { '@type': 'ListItem', position: 2, name: 'Bolsa y mercados', item: `${SITE.url}/bolsa/` },
+  { '@type': 'ListItem', position: 3, name: 'Ibex 35 hoy', item: url } ] };
+---
+<Base title={titulo} description={descripcion.slice(0, 165)} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/bolsa/">Bolsa y mercados</a></nav>
+  <article class="pagina">
+    <h1>Ibex 35 hoy</h1>
+    {ib ? (
+      <>
+        <p class="lead">El Ibex 35 cerró el {fecha(ib.fecha)} en <strong>{num(ib.cierre, 1)} puntos</strong>, un {signo(ib.var_dia)} % respecto a la sesión anterior. En lo que va de año {ib.var_anio != null && ib.var_anio >= 0 ? 'sube' : 'baja'} un {num(Math.abs(ib.var_anio ?? 0))} %.</p>
+        <div class="cifras">
+          <div><span class="k">Cierre</span><span class="v">{num(ib.cierre, 1)}</span><span class={`d ${clase(ib.var_dia)}`}>{signo(ib.var_dia)} % en el día</span></div>
+          <div><span class="k">En el año</span><span class={`v ${clase(ib.var_anio)}`}>{signo(ib.var_anio ?? 0)} %</span><span class="d">desde el 31 de diciembre</span></div>
+          <div><span class="k">En 12 meses</span><span class={`v ${clase(ib.var_12m)}`}>{signo(ib.var_12m ?? 0)} %</span><span class="d">sin dividendos</span></div>
+          <div><span class="k">Máximo y mínimo</span><span class="v">{num(ib.max_12m, 0)}</span><span class="d">mínimo {num(ib.min_12m, 0)} en 12 meses</span></div>
+        </div>
+        {svg && (<><h2>El último año</h2><Fragment set:html={svg} /></>)}
+        {ig && <p>El <strong>Índice General de la Bolsa de Madrid</strong>, que incluye más empresas, cerró en {num(ig.cierre, 2)} puntos ({signo(ig.var_dia)} %) y acumula un {signo(ig.var_anio ?? 0)} % en el año.</p>}
+      </>
+    ) : <p class="lead">Los datos no están disponibles en este momento.</p>}
+    <p class="muted small">Cierre diario publicado por el <a href="https://www.bde.es/webbe/es/estadisticas/" rel="noopener" target="_blank">Banco de España</a> con datos de Bolsas y Mercados Españoles; puede tardar uno o dos días laborables. No es una cotización en tiempo real. Las rentabilidades pasadas no garantizan las futuras.</p>
+    <Compartir title={titulo} url={url} />
+    <section class="prose">
+      <h2>Qué es el Ibex 35</h2>
+      <p>Es el índice de referencia de la bolsa española: reúne a las 35 empresas con más negociación del mercado continuo, ponderadas por su capitalización. Se revisa dos veces al año. Es un índice de precios: no incluye los dividendos que reparten las empresas, que añaden en torno a un 3 % o 4 % anual a lo que gana quien invierte en ellas.</p>
+      <h2>Cómo invertir en el Ibex</h2>
+      <p>Además de comprar acciones sueltas, se puede invertir en todo el índice a la vez con un fondo indexado o un ETF que lo replique. Antes de hacerlo, compara sus comisiones: con la <a href="/fondos/comisiones/">calculadora de comisiones</a> verás cuánto se llevan con los años. Y recuerda que lo que ganes al vender tributa en la base del ahorro: <a href="/impuestos/calculadora-impuestos-inversiones/">calcula los impuestos</a>.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>

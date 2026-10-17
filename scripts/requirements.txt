@@ -1,0 +1,5 @@
+anthropic>=1.12
+feedparser>=6.0
+requests>=2.31
+trafilatura>=1.12
+pillow>=10.0

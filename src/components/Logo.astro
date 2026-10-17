@@ -1,0 +1,19 @@
+---
+// Marca: tres barras que suben (el ahorro que crece) y el nombre.
+interface Props { size?: number }
+const { size = 30 } = Astro.props;
+---
+<span class="marca">
+  <svg class="mark" viewBox="0 0 32 32" width={size} height={size} aria-hidden="true">
+    <rect width="32" height="32" rx="5" fill="#1f4e79"/>
+    <rect x="8" y="17" width="4" height="8" rx="1" fill="#fff"/>
+    <rect x="14" y="13" width="4" height="12" rx="1" fill="#fff"/>
+    <rect x="20" y="8" width="4" height="17" rx="1" fill="#fff"/>
+  </svg>
+  <span class="nombre">Dinero en Claro</span>
+</span>
+<style>
+  .marca { display: inline-flex; align-items: center; gap: 10px; }
+  .mark { display: block; flex: none; }
+  .nombre { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; color: var(--ink); white-space: nowrap; }
+</style>

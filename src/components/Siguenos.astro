@@ -1,0 +1,24 @@
+---
+import { SITE } from '../config';
+const s = SITE.social;
+---
+{(s.whatsapp || s.telegram || s.facebook) && (
+  <aside class="siguenos" data-pagefind-ignore>
+    <p class="t">Recibe los avisos gratis</p>
+    <p class="d">Subidas, fechas de cobro y plazos de Hacienda, el mismo día que se publican.</p>
+    <div class="cta">
+      {s.whatsapp && <a class="wa" href={s.whatsapp} target="_blank" rel="noopener">Canal de WhatsApp</a>}
+      {s.telegram && <a class="tg" href={`https://t.me/${s.telegram}`} target="_blank" rel="noopener">Canal de Telegram</a>}
+      {s.facebook && <a class="otro" href={`https://www.facebook.com/${s.facebook}`} target="_blank" rel="noopener">Facebook</a>}
+    </div>
+  </aside>
+)}
+<style>
+  .siguenos { margin: 40px 0; padding: 16px 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+  .t { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; margin: 0 0 2px; }
+  .d { margin: 0 0 14px; color: var(--muted); }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cta a { font-weight: 500; text-decoration: none; padding: 9px 16px; border-radius: 4px; background: var(--brand); color: #fff; }
+  .cta a:hover { background: var(--brand-dark); }
+  .cta a.otro { background: none; color: var(--ink); border: 1px solid var(--rule); }
+</style>

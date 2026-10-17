@@ -1,0 +1,9 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE } from '../config';
+---
+<Page title="Contacto" description={`Contacta con ${SITE.name}: errores, sugerencias y publicidad.`}>
+  <p>¿Has visto un error, tienes una duda sobre un artículo o quieres que expliquemos algún tema? Escríbenos:</p>
+  <p><a href={`mailto:${SITE.email}`}><strong>{SITE.email}</strong></a></p>
+  <p>Intentamos responder en 48 horas. No damos asesoramiento personalizado ni podemos decirte en qué invertir: para eso, acude a una entidad o un asesor registrado en la CNMV.</p>
+</Page>

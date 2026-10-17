@@ -1,0 +1,21 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE } from '../config';
+---
+<Page title="Quiénes somos" description={`Qué es ${SITE.name}, quién lo hace y cómo trabajamos.`}>
+  <p><strong>{SITE.name}</strong> explica cómo funcionan el ahorro y la inversión en España: depósitos, Letras del Tesoro, fondos, bolsa, planes de pensiones y los impuestos de todo ello. Con datos oficiales, sin jerga innecesaria y sin vender ningún producto.</p>
+  <h2>Quién lo hace</h2>
+  <p>La web la dirige y firma <a href={`/autor/${SITE.author.slug}/`}>{SITE.author.name}</a>. {SITE.author.bio}</p>
+  <h2>Cómo trabajamos</h2>
+  <ul>
+    <li><strong>Fuentes oficiales primero.</strong> Los datos salen del Banco de España, el Banco Central Europeo, el Tesoro Público, la CNMV, el BOE o la Agencia Tributaria, y se enlazan.</li>
+    <li><strong>Divulgación, no recomendaciones.</strong> Explicamos cómo funciona cada producto, cuánto cuesta y qué riesgos tiene. No decimos qué debes comprar o vender ni recomendamos entidades concretas.</li>
+    <li><strong>Tecnología con revisión humana.</strong> Usamos herramientas automáticas e inteligencia artificial para detectar novedades y preparar borradores, pero cada artículo lo revisa una persona antes de publicarse. Los datos de mercado (tipos de interés, Letras, Ibex) se actualizan automáticamente tal y como los publican los organismos oficiales.</li>
+    <li><strong>Corregimos a la vista.</strong> Si nos equivocamos, lo arreglamos y lo indicamos en el artículo y en la página de <a href="/correcciones/">correcciones</a>.</li>
+  </ul>
+  <p>Más detalles en nuestra <a href="/politica-editorial/">política editorial</a>.</p>
+  <h2>Independencia</h2>
+  <p>No tenemos relación con bancos, gestoras, brókeres ni plataformas de inversión, y no cobramos comisiones por que contrates nada. La web se financia con publicidad general, que nunca decide lo que publicamos.</p>
+  <h2>Esto no es asesoramiento financiero</h2>
+  <p>Todo lo que publicamos es información general. No tiene en cuenta tu situación, tus objetivos ni tu tolerancia al riesgo, y no sustituye al asesoramiento de un profesional. Si quieres una recomendación personalizada, acude a una entidad o un asesor registrado en la <a href="https://www.cnmv.es/" rel="noopener" target="_blank">CNMV</a>.</p>
+</Page>

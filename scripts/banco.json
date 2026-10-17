@@ -1,0 +1,569 @@
+{
+ "imagenes": [
+  {
+   "slug": "billetes-euro-01",
+   "tema": "billetes-euro",
+   "alt": "Billetes de euro",
+   "palabras": [
+    "ahorro",
+    "ahorradores",
+    "dinero",
+    "rentabilidad",
+    "intereses",
+    "depósito",
+    "cuenta remunerada"
+   ],
+   "secciones": [
+    "ahorro",
+    "fondos"
+   ],
+   "credito": "Friedrich Haag / Wikimedia Commons (CC BY-SA 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:One_stands_out_002_2025_01_01.jpg"
+  },
+  {
+   "slug": "billetes-euro-02",
+   "tema": "billetes-euro",
+   "alt": "Monedas y billetes de euro",
+   "palabras": [
+    "ahorro",
+    "ahorradores",
+    "dinero",
+    "rentabilidad",
+    "intereses",
+    "depósito",
+    "cuenta remunerada"
+   ],
+   "secciones": [
+    "ahorro",
+    "fondos"
+   ],
+   "credito": "Avij / Wikimedia Commons (Public domain)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Euro_coins_and_banknotes_(cropped).jpg"
+  },
+  {
+   "slug": "billetes-euro-07",
+   "tema": "billetes-euro",
+   "alt": "Billetes de 20 y 50 euros",
+   "palabras": [
+    "ahorro",
+    "ahorradores",
+    "dinero",
+    "rentabilidad",
+    "intereses",
+    "depósito",
+    "cuenta remunerada"
+   ],
+   "secciones": [
+    "ahorro",
+    "fondos"
+   ],
+   "credito": "Markus Spiske from Forchheim, Bavaria Upper Franconia / Wikimedia Commons (CC BY 2.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:EURO_Cash_Money_Banknote_(49643807026).jpg"
+  },
+  {
+   "slug": "monedas-euro-05",
+   "tema": "monedas-euro",
+   "alt": "Monedas de euro sobre la bandera de la Unión Europea",
+   "palabras": [
+    "inflación",
+    "ipc",
+    "precios",
+    "euro",
+    "ahorro",
+    "dividendo"
+   ],
+   "secciones": [
+    "bolsa",
+    "ahorro"
+   ],
+   "credito": "Lukasz Kobus - European Commission / Wikimedia Commons (CC BY 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Euro_coins_(07).jpg"
+  },
+  {
+   "slug": "monedas-euro-06",
+   "tema": "monedas-euro",
+   "alt": "Monedas de euro sobre la bandera de la Unión Europea",
+   "palabras": [
+    "inflación",
+    "ipc",
+    "precios",
+    "euro",
+    "ahorro",
+    "dividendo"
+   ],
+   "secciones": [
+    "bolsa",
+    "ahorro"
+   ],
+   "credito": "Lukasz Kobus - European Commission / Wikimedia Commons (CC BY 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Euro_coins_(02).jpg"
+  },
+  {
+   "slug": "calculadora-03",
+   "tema": "calculadora",
+   "alt": "Teclado de una calculadora",
+   "palabras": [
+    "impuesto",
+    "irpf",
+    "renta",
+    "declaración",
+    "tributa",
+    "fiscal",
+    "comisiones",
+    "plusvalía"
+   ],
+   "secciones": [
+    "impuestos",
+    "fondos"
+   ],
+   "credito": "Coyau / Wikimedia Commons (CC BY-SA 3.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Aurora_electronic_calculator_DT210_05.jpg"
+  },
+  {
+   "slug": "calculadora-06",
+   "tema": "calculadora",
+   "alt": "Calculadora de sobremesa",
+   "palabras": [
+    "impuesto",
+    "irpf",
+    "renta",
+    "declaración",
+    "tributa",
+    "fiscal",
+    "comisiones",
+    "plusvalía"
+   ],
+   "secciones": [
+    "impuestos",
+    "fondos"
+   ],
+   "credito": "Coyau / Wikimedia Commons (CC BY-SA 3.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Aurora_electronic_calculator_DT210_02.jpg"
+  },
+  {
+   "slug": "agencia-tributaria-01",
+   "tema": "agencia-tributaria",
+   "alt": "Edificio de la Agencia Tributaria en Logroño",
+   "palabras": [
+    "agencia tributaria",
+    "aeat",
+    "hacienda",
+    "renta"
+   ],
+   "secciones": [
+    "impuestos"
+   ],
+   "credito": "Zarateman / Wikimedia Commons (CC0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Logro%C3%B1o_-_Agencia_Tributaria_3.jpg"
+  },
+  {
+   "slug": "agencia-tributaria-02",
+   "tema": "agencia-tributaria",
+   "alt": "Edificio de la Agencia Tributaria en Mataró",
+   "palabras": [
+    "agencia tributaria",
+    "aeat",
+    "hacienda",
+    "renta"
+   ],
+   "secciones": [
+    "impuestos"
+   ],
+   "credito": "Zarateman / Wikimedia Commons (CC0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Matar%C3%B3_-_Agencia_Tributaria_1.jpg"
+  },
+  {
+   "slug": "agencia-tributaria-08",
+   "tema": "agencia-tributaria",
+   "alt": "Delegación de la Agencia Tributaria en Jerez de la Frontera",
+   "palabras": [
+    "agencia tributaria",
+    "aeat",
+    "hacienda",
+    "renta"
+   ],
+   "secciones": [
+    "impuestos"
+   ],
+   "credito": "Zarateman / Wikimedia Commons (CC0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Jerez_de_la_Frontera_-_Delegaci%C3%B3n_de_la_Agencia_Estatal_de_la_Administraci%C3%B3n_Tributaria_1.jpg"
+  },
+  {
+   "slug": "ministerio-hacienda-03",
+   "tema": "ministerio-hacienda",
+   "alt": "Sede del Ministerio de Hacienda en la calle de Alcalá de Madrid",
+   "palabras": [
+    "hacienda",
+    "ministerio",
+    "tesoro público",
+    "impuesto"
+   ],
+   "secciones": [
+    "impuestos",
+    "ahorro"
+   ],
+   "credito": "Heparina1985 / Wikimedia Commons (CC BY-SA 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Real_Casa_de_la_Aduana_(Madrid,_Spain).jpg"
+  },
+  {
+   "slug": "ministerio-hacienda-04",
+   "tema": "ministerio-hacienda",
+   "alt": "Sede del Ministerio de Hacienda en Madrid",
+   "palabras": [
+    "hacienda",
+    "ministerio",
+    "tesoro público",
+    "impuesto"
+   ],
+   "secciones": [
+    "impuestos",
+    "ahorro"
+   ],
+   "credito": "Luis García (Zaqarbal) / Wikimedia Commons (CC BY-SA 3.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Real_Casa_de_la_Aduana_(Madrid)_05.jpg"
+  },
+  {
+   "slug": "ministerio-hacienda-07",
+   "tema": "ministerio-hacienda",
+   "alt": "Fachada del Ministerio de Hacienda en Madrid",
+   "palabras": [
+    "hacienda",
+    "ministerio",
+    "tesoro público",
+    "impuesto"
+   ],
+   "secciones": [
+    "impuestos",
+    "ahorro"
+   ],
+   "credito": "Zarateman / Wikimedia Commons (CC0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Madrid_-_Real_Casa_de_la_Aduana_6.jpg"
+  },
+  {
+   "slug": "ministerio-hacienda-08",
+   "tema": "ministerio-hacienda",
+   "alt": "Entrada del Ministerio de Hacienda en Madrid",
+   "palabras": [
+    "hacienda",
+    "ministerio",
+    "tesoro público",
+    "impuesto"
+   ],
+   "secciones": [
+    "impuestos",
+    "ahorro"
+   ],
+   "credito": "Raystorm / Wikimedia Commons (CC BY-SA 3.0 es)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Antigua_real_Casa_de_la_Aduana_(Ministerio_de_Hacienda).jpg"
+  },
+  {
+   "slug": "congreso-02",
+   "tema": "congreso",
+   "alt": "El Congreso de los Diputados de noche",
+   "palabras": [
+    "congreso",
+    "ley",
+    "decreto",
+    "reforma",
+    "gobierno",
+    "presupuestos"
+   ],
+   "secciones": [
+    "impuestos",
+    "jubilacion",
+    "ahorro"
+   ],
+   "credito": "Roberto García from Spain / Wikimedia Commons (CC BY 2.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Congreso_de_los_Diputados_(Espa%C3%B1a)_10.jpg"
+  },
+  {
+   "slug": "congreso-03",
+   "tema": "congreso",
+   "alt": "Fachada del Congreso de los Diputados",
+   "palabras": [
+    "congreso",
+    "ley",
+    "decreto",
+    "reforma",
+    "gobierno",
+    "presupuestos"
+   ],
+   "secciones": [
+    "impuestos",
+    "jubilacion",
+    "ahorro"
+   ],
+   "credito": "Yann Droneaud from Paris (France). / Wikimedia Commons (CC BY-SA 2.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Congreso_de_los_Diputados_(Espa%C3%B1a)_05.jpg"
+  },
+  {
+   "slug": "congreso-04",
+   "tema": "congreso",
+   "alt": "Fachada del Congreso de los Diputados",
+   "palabras": [
+    "congreso",
+    "ley",
+    "decreto",
+    "reforma",
+    "gobierno",
+    "presupuestos"
+   ],
+   "secciones": [
+    "impuestos",
+    "jubilacion",
+    "ahorro"
+   ],
+   "credito": "Vickybol / Wikimedia Commons (CC BY-SA 3.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Congreso_de_los_Diputados,_enero_de_2015.JPG"
+  },
+  {
+   "slug": "congreso-05",
+   "tema": "congreso",
+   "alt": "Uno de los leones del Congreso de los Diputados",
+   "palabras": [
+    "congreso",
+    "ley",
+    "decreto",
+    "reforma",
+    "gobierno",
+    "presupuestos"
+   ],
+   "secciones": [
+    "impuestos",
+    "jubilacion",
+    "ahorro"
+   ],
+   "credito": "Yvonnefm / Wikimedia Commons (CC BY-SA 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Leon_del_Congreso_de_los_Diputados_en_Madrid.jpg"
+  },
+  {
+   "slug": "congreso-07",
+   "tema": "congreso",
+   "alt": "Fachada del Congreso de los Diputados",
+   "palabras": [
+    "congreso",
+    "ley",
+    "decreto",
+    "reforma",
+    "gobierno",
+    "presupuestos"
+   ],
+   "secciones": [
+    "impuestos",
+    "jubilacion",
+    "ahorro"
+   ],
+   "credito": "Antonio.velez / Wikimedia Commons (CC BY-SA 3.0 es)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Espa%C3%B1a_-_Madrid_-_Palacio_de_las_Cortes_-_Fachada.JPG"
+  },
+  {
+   "slug": "banco-de-espana-03",
+   "tema": "banco-de-espana",
+   "alt": "Sede del Banco de España en Madrid",
+   "palabras": [
+    "banco de españa",
+    "euríbor",
+    "tipos",
+    "hipoteca",
+    "deuda",
+    "bono",
+    "letras",
+    "tesoro"
+   ],
+   "secciones": [
+    "ahorro",
+    "bolsa"
+   ],
+   "credito": "Luis García / Wikimedia Commons (CC BY-SA 2.5)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Banco_de_Espa%C3%B1a_(Madrid)_02.jpg"
+  },
+  {
+   "slug": "banco-de-espana-04",
+   "tema": "banco-de-espana",
+   "alt": "Sede del Banco de España en Madrid",
+   "palabras": [
+    "banco de españa",
+    "euríbor",
+    "tipos",
+    "hipoteca",
+    "deuda",
+    "bono",
+    "letras",
+    "tesoro"
+   ],
+   "secciones": [
+    "ahorro",
+    "bolsa"
+   ],
+   "credito": "D.Rovchak / Wikimedia Commons (CC BY-SA 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Edificio_del_Banco_de_Espa%C3%B1a_en_Madrid_3.jpg"
+  },
+  {
+   "slug": "banco-de-espana-06",
+   "tema": "banco-de-espana",
+   "alt": "Sede del Banco de España en Madrid",
+   "palabras": [
+    "banco de españa",
+    "euríbor",
+    "tipos",
+    "hipoteca",
+    "deuda",
+    "bono",
+    "letras",
+    "tesoro"
+   ],
+   "secciones": [
+    "ahorro",
+    "bolsa"
+   ],
+   "credito": "Sanva1959 / Wikimedia Commons (CC BY-SA 3.0 es)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Edificio_del_Banco_de_Espa%C3%B1a_2_Madrid.jpg"
+  },
+  {
+   "slug": "banco-de-espana-07",
+   "tema": "banco-de-espana",
+   "alt": "Esquina de la sede del Banco de España en Madrid",
+   "palabras": [
+    "banco de españa",
+    "euríbor",
+    "tipos",
+    "hipoteca",
+    "deuda",
+    "bono",
+    "letras",
+    "tesoro"
+   ],
+   "secciones": [
+    "ahorro",
+    "bolsa"
+   ],
+   "credito": "Sanva1959 / Wikimedia Commons (CC BY-SA 3.0 es)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Edificio_del_Banco_de_Espa%C3%B1a_1_Madrid.jpg"
+  },
+  {
+   "slug": "seguridad-social-06",
+   "tema": "seguridad-social",
+   "alt": "Oficinas de la Seguridad Social en Vitoria",
+   "palabras": [
+    "pensión",
+    "pensiones",
+    "jubila",
+    "seguridad social"
+   ],
+   "secciones": [
+    "jubilacion"
+   ],
+   "credito": "Zarateman / Wikimedia Commons (CC0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Vitoria_-_Calle_Dato,_Oficinas_de_la_Seguridad_Social_1.jpg"
+  },
+  {
+   "slug": "seguridad-social-08",
+   "tema": "seguridad-social",
+   "alt": "Sede de la Seguridad Social en Málaga",
+   "palabras": [
+    "pensión",
+    "pensiones",
+    "jubila",
+    "seguridad social"
+   ],
+   "secciones": [
+    "jubilacion"
+   ],
+   "credito": "Tyk / Wikimedia Commons (CC BY-SA 3.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Sede_de_la_Seguridad_Social,_M%C3%A1laga.jpg"
+  },
+  {
+   "slug": "supermercado-01",
+   "tema": "supermercado",
+   "alt": "Pasillo de un supermercado",
+   "palabras": [
+    "inflación",
+    "ipc",
+    "precios"
+   ],
+   "secciones": [
+    "bolsa"
+   ],
+   "credito": "Wilfredor / Wikimedia Commons (CC BY-SA 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Aisle_in_L_Intermarche_supermarket_in_Quebec_City.jpg"
+  },
+  {
+   "slug": "supermercado-05",
+   "tema": "supermercado",
+   "alt": "Estantería de aceites en un supermercado",
+   "palabras": [
+    "inflación",
+    "ipc",
+    "precios"
+   ],
+   "secciones": [
+    "bolsa"
+   ],
+   "credito": "Wolfmann / Wikimedia Commons (CC BY-SA 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Vegetable_oils_etc._aisle_in_Meny_Supermarket_in_Bergen_Storsenter_Shopping_Mall,_Bergen,_Norway_2017-10-23_a.jpg"
+  },
+  {
+   "slug": "supermercado-06",
+   "tema": "supermercado",
+   "alt": "Estantería de aceites en un supermercado",
+   "palabras": [
+    "inflación",
+    "ipc",
+    "precios"
+   ],
+   "secciones": [
+    "bolsa"
+   ],
+   "credito": "Wolfmann / Wikimedia Commons (CC BY-SA 4.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Vegetable_oils_etc._aisle_in_Meny_Supermarket_in_Bergen_Storsenter_Shopping_Mall,_Bergen,_Norway_2017-10-23_b.jpg"
+  },
+  {
+   "slug": "carro-compra-01",
+   "tema": "carro-compra",
+   "alt": "Carro de la compra en un supermercado",
+   "palabras": [
+    "inflación",
+    "ipc",
+    "cesta"
+   ],
+   "secciones": [
+    "bolsa"
+   ],
+   "credito": "safaritravelplus / Wikimedia Commons (CC0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Shopping_Cart_Supermarket.jpg"
+  },
+  {
+   "slug": "carro-compra-02",
+   "tema": "carro-compra",
+   "alt": "Carro de la compra",
+   "palabras": [
+    "inflación",
+    "ipc",
+    "cesta"
+   ],
+   "secciones": [
+    "bolsa"
+   ],
+   "credito": "Dmitry G / Wikimedia Commons (Public domain)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Shopping_cart_of_Prisma_shop.JPG"
+  },
+  {
+   "slug": "calendario-02",
+   "tema": "calendario",
+   "alt": "Agenda de anillas abierta",
+   "palabras": [
+    "plazo",
+    "fecha",
+    "calendario",
+    "subasta",
+    "vencimiento"
+   ],
+   "secciones": [
+    "ahorro",
+    "impuestos"
+   ],
+   "credito": "Old Photo Profile / Wikimedia Commons (CC BY 2.0)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Personal_organizer_with_metallic_ring_binder.jpg"
+  }
+ ]
+}

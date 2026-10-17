@@ -1,0 +1,34 @@
+---
+// Módulo lateral de la portada: los datos de mercado del día.
+import { datosMercados, num, pct, signo, fecha } from '../lib/mercados';
+import { datosEuribor } from '../lib/euribor';
+const m = datosMercados();
+const eb = datosEuribor();
+const ibex = m?.bolsa.ibex;
+const l12 = m?.letras['12'];
+---
+<aside class="mercados-hoy" aria-labelledby="mercados-hoy-t">
+  <h2 id="mercados-hoy-t" class="titulo-bloque">Mercados hoy</h2>
+  {m ? (
+    <dl>
+      {ibex && <div><dt><a href="/bolsa/ibex-35-hoy/">Ibex 35</a></dt><dd>{num(ibex.cierre, 1)}<span class={ibex.var_dia >= 0 ? 'bien' : 'mal'}>{signo(ibex.var_dia)} % · cierre del {fecha(ibex.fecha, false)}</span></dd></div>}
+      {l12 && <div><dt><a href="/ahorro/letras-del-tesoro/">Letras a 12 meses</a></dt><dd>{pct(l12.tipo, 3)}<span>emisión del {fecha(l12.fecha, false)}</span></dd></div>}
+      <div><dt><a href="/bolsa/tipos-de-interes/">Tipo del BCE</a></dt><dd>{pct(m.bce.deposito.valor)}<span>facilidad de depósito</span></dd></div>
+      {eb && <div><dt><a href="/bolsa/tipos-de-interes/">Euríbor</a></dt><dd>{pct(eb.valor, 3)}<span>a 12 meses</span></dd></div>}
+      {m.secundario.bono_10a && <div><dt><a href="/bolsa/tipos-de-interes/">Bono a 10 años</a></dt><dd>{pct(m.secundario.bono_10a.valor, 3)}<span>rentabilidad en el mercado</span></dd></div>}
+    </dl>
+  ) : <p class="muted">Datos de mercado no disponibles en este momento.</p>}
+  <p class="muted fuente">Fuentes: Banco Central Europeo y Banco de España.</p>
+</aside>
+<style>
+  dl { margin: 0; }
+  dl div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  dt { font-size: .9375rem; white-space: nowrap; }
+  dt a { color: var(--ink); text-decoration: none; }
+  dt a:hover { text-decoration: underline; }
+  dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  dd span { display: block; font-weight: 400; font-size: .8125rem; color: var(--muted); }
+  dd span.bien { color: var(--good); }
+  dd span.mal { color: var(--bad); }
+  .fuente { font-size: .8125rem; margin: 12px 0 0; }
+</style>

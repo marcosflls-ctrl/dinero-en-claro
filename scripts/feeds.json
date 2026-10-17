@@ -1,0 +1,106 @@
+{
+  "_nota": "Fuentes que revisa el robot. El BOE se lee entero cada mañana y se filtra por palabras clave; los medios sirven de alerta de lo que preocupa hoy, pero el artículo se escribe con palabras propias y citando el dato oficial. Añade o quita las que quieras.",
+  "keywords": [
+    "letras del tesoro",
+    "letra del tesoro",
+    "bonos del estado",
+    "tesoro público",
+    "depósito",
+    "depósitos",
+    "cuenta remunerada",
+    "cuentas remuneradas",
+    "tipos de interés",
+    "tipo de interés",
+    "bce",
+    "banco central europeo",
+    "lagarde",
+    "reserva federal",
+    "euríbor",
+    "fondo de inversión",
+    "fondos de inversión",
+    "fondos indexados",
+    "etf",
+    "gestora",
+    "comisiones",
+    "cnmv",
+    "ibex",
+    "bolsa",
+    "plan de pensiones",
+    "planes de pensiones",
+    "ahorro",
+    "ahorradores",
+    "inversores",
+    "dividendo",
+    "dividendos",
+    "rentabilidad",
+    "inflación",
+    "ipc",
+    "irpf",
+    "plusvalía",
+    "ganancias patrimoniales",
+    "impuesto sobre el patrimonio",
+    "fondo de garantía de depósitos",
+    "criptomonedas",
+    "bitcoin"
+  ],
+  "boe": {
+    "_nota": "Sumario diario del BOE (datos abiertos). Solo se consideran las disposiciones de estos departamentos.",
+    "departamentos": [
+      "ECONOMÍA",
+      "HACIENDA",
+      "JEFATURA DEL ESTADO",
+      "INCLUSIÓN",
+      "SEGURIDAD SOCIAL",
+      "BANCO DE ESPAÑA",
+      "COMISIÓN NACIONAL DEL MERCADO DE VALORES"
+    ]
+  },
+  "feeds": [
+    {
+      "name": "Expansión Mercados",
+      "url": "https://e00-expansion.uecdn.es/rss/mercados.xml"
+    },
+    {
+      "name": "Expansión Ahorro",
+      "url": "https://e00-expansion.uecdn.es/rss/ahorro.xml"
+    },
+    {
+      "name": "Expansión Economía",
+      "url": "https://e00-expansion.uecdn.es/rss/economia.xml"
+    },
+    {
+      "name": "Cinco Días",
+      "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/cincodias.elpais.com/portada"
+    },
+    {
+      "name": "El País Economía",
+      "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/economia/portada"
+    },
+    {
+      "name": "Europa Press Economía",
+      "url": "https://www.europapress.es/rss/rss.aspx?ch=00136"
+    },
+    {
+      "name": "El Mundo Economía",
+      "url": "https://e00-elmundo.uecdn.es/elmundo/rss/economia.xml"
+    },
+    {
+      "name": "El Confidencial Mercados",
+      "url": "https://rss.elconfidencial.com/mercados/"
+    },
+    {
+      "name": "El Confidencial Economía",
+      "url": "https://rss.elconfidencial.com/economia/"
+    },
+    {
+      "name": "RTVE Economía",
+      "url": "https://api2.rtve.es/rss/temas_economia.xml"
+    },
+    {
+      "name": "BCE (notas de prensa)",
+      "url": "https://www.ecb.europa.eu/rss/press.html",
+      "oficial": true
+    }
+  ],
+  "_nota_fuentes": "Adaptadas a ahorro e inversión el 17/10/2026. Las nuevas (Expansión Mercados y Ahorro, El Confidencial Mercados, BCE) hay que probarlas con el flujo «Probar fuentes» al subir el repositorio."
+}

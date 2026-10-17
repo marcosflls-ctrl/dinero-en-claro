@@ -1,0 +1,23 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE } from '../config';
+---
+<Page title="Política editorial" description={`Las normas con las que escribimos y corregimos en ${SITE.name}.`}>
+  <p>Estas son las normas que sigue cada artículo de {SITE.name}.</p>
+  <h2>Rigor</h2>
+  <ul>
+    <li>Cada dato sale de una fuente oficial (Banco de España, BCE, Tesoro Público, CNMV, BOE, Agencia Tributaria, INE u organismos equivalentes) o de un medio identificado, y se enlaza.</li>
+    <li>Lo anunciado no es lo aprobado: si una norma es una propuesta o está en tramitación, lo decimos claramente.</li>
+    <li>Los textos son propios. Otras webs nos sirven de referencia, pero no copiamos su redacción.</li>
+  </ul>
+  <h2>Sin recomendaciones de inversión</h2>
+  <p>No recomendamos comprar, vender ni mantener ningún valor, fondo o producto concreto, ni damos precios objetivo. Cuando hablamos de un producto lo hacemos para explicar cómo funciona, sus costes y sus riesgos. Si mencionamos rentabilidades pasadas, recordamos que no garantizan las futuras.</p>
+  <h2>Sin conflictos de interés</h2>
+  <p>No cobramos de las entidades de las que hablamos ni usamos enlaces de afiliación. Si algún día lo hiciéramos, lo indicaríamos claramente en el propio artículo.</p>
+  <h2>Titulares</h2>
+  <p>El titular tiene que cumplirse en el primer párrafo. No usamos titulares que prometan rentabilidades, exageren riesgos o busquen el clic.</p>
+  <h2>Uso de inteligencia artificial</h2>
+  <p>Una herramienta automática vigila las fuentes y una inteligencia artificial prepara borradores. Ningún artículo se publica sin que una persona lo revise y lo apruebe. Los datos de mercado se publican automáticamente tal y como los dan el Banco de España y el BCE.</p>
+  <h2>Correcciones</h2>
+  <p>Si detectamos un error o nos lo comunicas en <a href={`mailto:${SITE.email}`}>{SITE.email}</a>, lo corregimos en el artículo con una nota fechada y lo anotamos en la página de <a href="/correcciones/">correcciones</a>.</p>
+</Page>

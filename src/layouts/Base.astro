@@ -1,0 +1,316 @@
+---
+import { SITE, CATEGORIES } from '../config';
+import '@fontsource/ibm-plex-sans/latin-400.css';
+import '@fontsource/ibm-plex-sans/latin-500.css';
+import '@fontsource/ibm-plex-sans/latin-600.css';
+import '@fontsource/ibm-plex-serif/latin-500.css';
+import '@fontsource/ibm-plex-serif/latin-600.css';
+import Logo from '../components/Logo.astro';
+import { HERRAMIENTAS } from '../data/herramientas';
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+  published?: Date;
+  modified?: Date;
+  section?: string;
+}
+const { title, description, image, type = 'website', jsonLd, noindex = false, published, modified, section } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// La marca solo se añade si cabe: Google corta los títulos a unos 60 caracteres
+const fullTitle = title === SITE.name ? `${SITE.name}: ahorro, inversión y mercados` : title.length > 44 ? title : `${title} | ${SITE.name}`;
+const ogImage = new URL(image ?? '/og-default.png', Astro.site).href;
+const ogSize = image ? (image.startsWith('/img/') ? [1600, 900] : null) : [1200, 630];
+const year = new Date().getFullYear();
+const path = Astro.url.pathname;
+const esHerramienta = HERRAMIENTAS.some((h) => path === h.href || path === h.href.slice(0, -1));
+const social = SITE.social;
+// Fecha de la cabecera, como en la portada de un periódico (la web se reconstruye cada día con los datos)
+const hoy = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Madrid' });
+---
+<!doctype html>
+<html lang={SITE.lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content={noindex ? 'noindex' : 'max-image-preview:large'} />
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:locale" content={SITE.locale} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  {ogSize && <meta property="og:image:width" content={String(ogSize[0])} />}
+  {ogSize && <meta property="og:image:height" content={String(ogSize[1])} />}
+  {published && <meta property="article:published_time" content={published.toISOString()} />}
+  {modified && <meta property="article:modified_time" content={modified.toISOString()} />}
+  {section && <meta property="article:section" content={section} />}
+  <meta name="twitter:card" content="summary_large_image" />
+  {social.x && <meta name="twitter:site" content={`@${social.x}`} />}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  {SITE.cfAnalyticsToken && (
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${SITE.cfAnalyticsToken}"}`}></script>
+  )}
+  {SITE.adsenseClient && (
+    <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsenseClient}`} crossorigin="anonymous"></script>
+  )}
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap header-top">
+      <a href="/" class="logo" aria-label={`${SITE.name}, inicio`}><Logo /></a>
+      <span class="fecha">{hoy.charAt(0).toUpperCase() + hoy.slice(1)}</span>
+      <a class="search-btn" href="/buscar/" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Secciones</button>
+    </div>
+    <nav id="menu" class="secciones" aria-label="Secciones">
+      <div class="wrap">
+        {Object.entries(CATEGORIES).map(([key, c]) => {
+          const menu = (c as any).menu as { href: string; label: string; rutas: string[] }[] | undefined;
+          if (!menu) return <a href={`/${key}/`} aria-current={path.startsWith(`/${key}/`) ? 'page' : undefined}>{c.label}</a>;
+          // la opción activa es la de la ruta más larga que coincide (así /luz/x/ no marca también /luz/)
+          const largo = (m: any) => Math.max(0, ...m.rutas.filter((r: string) => path.startsWith(r)).map((r: string) => r.length));
+          const actual = [...menu].sort((a, b) => largo(b) - largo(a)).find((m) => largo(m) > 0);
+          const activa = actual !== undefined;
+          return (
+            <div class:list={['desplegable', { activa }]}>
+              <button type="button" class="desplegable-btn" aria-expanded="false" aria-controls={`sub-${key}`}>{c.label}<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+              <ul id={`sub-${key}`} class="submenu" hidden>
+                {menu.map((m) => <li><a href={m.href} aria-current={actual === m ? 'page' : undefined}>{m.label}</a></li>)}
+              </ul>
+            </div>
+          );
+        })}
+        <div class:list={['desplegable', 'calc-menu', { activa: esHerramienta || path.startsWith('/calculadoras/') }]}>
+          <button type="button" class="desplegable-btn" aria-expanded="false" aria-controls="sub-calculadoras">Calculadoras<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          <ul id="sub-calculadoras" class="submenu" hidden>
+            {HERRAMIENTAS.map((h) => <li><a href={h.href} aria-current={path.startsWith(h.href) ? 'page' : undefined}>{h.titulo}</a></li>)}
+            <li class="sub-todas"><a href="/calculadoras/" aria-current={path.startsWith('/calculadoras/') ? 'page' : undefined}>Todas las calculadoras</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido" class="wrap">
+    <slot />
+    {esHerramienta && (
+      <aside class="otras-herramientas" aria-labelledby="otras-h">
+        <h2 id="otras-h" class="titulo-bloque">Otras calculadoras</h2>
+        <ul>{HERRAMIENTAS.filter((h) => !path.startsWith(h.href)).map((h) => <li><a href={h.href}><strong>{h.titulo}</strong><span>{h.texto}</span></a></li>)}</ul>
+      </aside>
+    )}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <Logo />
+        <p class="muted">{SITE.tagline}.</p>
+        <p class="muted small">La información de esta web es divulgativa y general. No es asesoramiento financiero ni una recomendación de compra o venta de ningún producto: antes de invertir, valora tu situación y, si lo necesitas, consulta a un asesor registrado en la CNMV. Invertir conlleva riesgos y rentabilidades pasadas no garantizan rentabilidades futuras.</p>
+        {SITE.hermanas.map((h) => <p class="muted small">También hacemos <a href={h.url}>{h.nombre}</a>: {h.texto}.</p>)}
+      </div>
+      <nav aria-label="Información" class="footer-links">
+        <a href="/calculadoras/">Calculadoras</a>
+        <a href="/quienes-somos/">Quiénes somos</a>
+        <a href="/politica-editorial/">Política editorial</a>
+        <a href="/correcciones/">Correcciones</a>
+        <a href="/contacto/">Contacto</a>
+        <a href="/aviso-legal/">Aviso legal</a>
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/cookies/">Cookies</a>
+        {SITE.adsenseClient && <a href="#" id="gestionar-cookies">Gestionar cookies</a>}
+        {social.whatsapp && <a href={social.whatsapp} rel="me noopener" target="_blank">WhatsApp</a>}
+        {social.telegram && <a href={`https://t.me/${social.telegram}`} rel="me noopener" target="_blank">Telegram</a>}
+        {social.facebook && <a href={`https://www.facebook.com/${social.facebook}`} rel="me noopener" target="_blank">Facebook</a>}
+        {social.x && <a href={`https://x.com/${social.x}`} rel="me noopener" target="_blank">X</a>}
+        <a href="/rss.xml">RSS</a>
+      </nav>
+    </div>
+    <p class="wrap muted small copy">© {year} {SITE.name}</p>
+  </footer>
+  <script is:inline>
+    // Reabre el aviso de consentimiento de Google (Privacidad y mensajes de AdSense)
+    (function () {
+      var a = document.getElementById('gestionar-cookies');
+      if (!a) return;
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.googlefc = window.googlefc || {};
+        window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+        window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+      });
+    })();
+    (function () {
+      // Desplegables del menú: se abren al pulsar y se cierran al pulsar fuera o con Escape
+      var botones = document.querySelectorAll('.desplegable-btn');
+      function cerrar(excepto) {
+        botones.forEach(function (b) {
+          if (b === excepto) return;
+          b.setAttribute('aria-expanded', 'false');
+          document.getElementById(b.getAttribute('aria-controls')).hidden = true;
+        });
+      }
+      botones.forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var abrir = b.getAttribute('aria-expanded') !== 'true';
+          cerrar(b);
+          b.setAttribute('aria-expanded', String(abrir));
+          document.getElementById(b.getAttribute('aria-controls')).hidden = !abrir;
+        });
+      });
+      document.addEventListener('click', function (e) { if (!e.target.closest('.desplegable')) cerrar(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        var abierto = document.querySelector('.desplegable-btn[aria-expanded="true"]');
+        cerrar(); if (abierto) abierto.focus();
+      });
+    })();
+    (function () {
+      var btn = document.querySelector('.menu-btn'), nav = document.getElementById('menu');
+      if (btn && nav) btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') !== 'true';
+        btn.setAttribute('aria-expanded', String(open));
+        nav.classList.toggle('open', open);
+      });
+    })();
+    (function () {
+      var now = Date.now();
+      document.querySelectorAll('time[data-rel]').forEach(function (t) {
+        var m = Math.round((now - new Date(t.getAttribute('datetime')).getTime()) / 6e4);
+        if (m < 0 || m >= 1440) return;
+        t.title = t.textContent;
+        t.textContent = m < 1 ? 'Hace un momento' : m < 60 ? 'Hace ' + m + ' min' : 'Hace ' + Math.round(m / 60) + (Math.round(m / 60) === 1 ? ' hora' : ' horas');
+      });
+    })();
+  </script>
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #ffffff;
+    --ink: #1c2024;
+    --muted: #5b636b;
+    --rule: #dfe3e6;
+    --surface: #f3f5f6;
+    --brand: #1f4e79;
+    --brand-dark: #163a5c;
+    --good: #2e7a4e;
+    --mid: #c4881c;
+    --bad: #b3432f;
+    --serif: 'IBM Plex Serif', Georgia, serif;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--sans); font-variant-numeric: lining-nums; }
+  a { color: var(--brand); text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  img { max-width: 100%; height: auto; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; color: var(--ink); }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+  .muted { color: var(--muted); }
+  .small { font-size: .875rem; }
+  .saltar { position: absolute; left: -9999px; }
+  .saltar:focus { left: 16px; top: 8px; background: var(--bg); padding: 8px 12px; z-index: 20; }
+
+  /* Cabecera */
+  .site-header { background: var(--bg); border-bottom: 1px solid var(--ink); }
+  .header-top { display: flex; align-items: center; gap: 20px; min-height: 68px; }
+  .logo { text-decoration: none; display: flex; }
+  .fecha { margin-left: auto; font-size: .875rem; color: var(--muted); }
+  .search-btn { display: grid; place-items: center; width: 40px; height: 40px; color: var(--ink); }
+  .search-btn:hover { color: var(--brand); }
+  .menu-btn { display: none; font: 500 .9375rem var(--sans); color: var(--ink); background: none; border: 1px solid var(--rule); border-radius: 4px; padding: 8px 12px; cursor: pointer; }
+  .secciones { border-top: 1px solid var(--rule); }
+  .secciones .wrap { display: flex; gap: 28px; }
+  .secciones a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .9375rem; padding: 11px 0 9px; border-bottom: 3px solid transparent; }
+  .secciones a:hover { color: var(--brand); }
+  .secciones a[aria-current] { border-bottom-color: var(--brand); }
+  .desplegable { position: relative; display: flex; }
+  .desplegable-btn { display: flex; align-items: center; gap: 5px; font: 500 .9375rem var(--sans); color: var(--ink); background: none; border: 0; border-bottom: 3px solid transparent; padding: 11px 0 9px; cursor: pointer; }
+  .desplegable-btn:hover { color: var(--brand); }
+  .desplegable.activa .desplegable-btn { border-bottom-color: var(--brand); }
+  .desplegable-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .submenu { position: absolute; top: 100%; left: -14px; z-index: 30; min-width: 220px; margin: 0; padding: 6px 0; list-style: none; background: var(--bg); border: 1px solid var(--rule); border-top: 2px solid var(--ink); box-shadow: 0 8px 20px rgba(28, 32, 36, .08); }
+  .submenu[hidden] { display: none; }
+  .secciones .submenu a { display: block; padding: 9px 14px; border-bottom: 0; }
+  .sub-todas { border-top: 1px solid var(--rule); margin-top: 4px; padding-top: 4px; }
+  .sub-todas a { font-weight: 600; }
+  .otras-herramientas { margin-top: 48px; }
+  .otras-herramientas ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0 28px; }
+  .otras-herramientas a { display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: var(--ink); }
+  .otras-herramientas a:hover strong { color: var(--brand); text-decoration: underline; }
+  .otras-herramientas strong { font-family: var(--serif); font-size: 1.0625rem; }
+  .otras-herramientas span { color: var(--muted); font-size: .875rem; line-height: 1.45; }
+  .secciones .submenu a[aria-current] { color: var(--brand); font-weight: 600; }
+  @media (max-width: 760px) {
+    .fecha { display: none; }
+    .search-btn { margin-left: auto; }
+    main.wrap { padding-top: 20px; }
+    .menu-btn { display: block; }
+    .secciones { display: none; }
+    .secciones.open { display: block; }
+    .secciones .wrap { flex-direction: column; gap: 0; }
+    .secciones a { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+    .secciones a:last-child { border-bottom: 0; }
+    .secciones a[aria-current] { color: var(--brand); border-bottom-color: var(--rule); }
+    .desplegable { flex-direction: column; border-bottom: 1px solid var(--rule); }
+    .desplegable-btn { justify-content: space-between; width: 100%; padding: 12px 0; border-bottom: 0; }
+    .desplegable.activa .desplegable-btn { color: var(--brand); }
+    .submenu { position: static; box-shadow: none; border: 0; padding: 0 0 6px 14px; min-width: 0; }
+    .secciones .submenu a { padding: 10px 0; }
+  }
+
+  main.wrap { min-height: 70vh; padding-top: 28px; padding-bottom: 56px; }
+
+  /* Pie */
+  .site-footer { border-top: 1px solid var(--ink); background: var(--surface); padding: 36px 0 18px; margin-top: 48px; }
+  .footer-inner { display: grid; gap: 32px; grid-template-columns: 2fr 1fr; }
+  .footer-inner p { max-width: 560px; }
+  .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; align-content: start; }
+  .footer-links a { color: var(--ink); text-decoration: none; font-size: .9375rem; }
+  .footer-links a:hover { text-decoration: underline; }
+  .copy { margin: 28px auto 0; padding-top: 14px; border-top: 1px solid var(--rule); }
+  @media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; gap: 16px; } }
+
+  /* Piezas comunes */
+  .seccion-link { font-size: .875rem; font-weight: 600; color: var(--brand); text-decoration: none; }
+  .seccion-link:hover { text-decoration: underline; }
+  .marca-estado { font-size: .875rem; font-weight: 500; color: #8a5a0a; }
+  .marca-estado::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--mid); margin-right: 6px; vertical-align: 1px; }
+  .titulo-bloque { font-size: 1.375rem; margin: 0 0 18px; padding-top: 12px; border-top: 2px solid var(--ink); }
+  .prose { max-width: 680px; }
+  .prose p, .prose li { font-size: 1.0625rem; }
+  .prose h2 { font-size: 1.5rem; margin-top: 1.8em; }
+  .prose h3 { font-size: 1.2rem; margin-top: 1.5em; }
+  .prose blockquote { border-left: 3px solid var(--brand); margin: 1.5em 0; padding: .1em 1em; color: var(--muted); }
+  .prose table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; font-variant-numeric: tabular-nums; }
+  .prose th, .prose td { border-bottom: 1px solid var(--rule); padding: 9px 28px 9px 0; text-align: left; vertical-align: top; }
+  .prose th { font-weight: 600; border-bottom: 1px solid var(--ink); }
+  @media (max-width: 640px) { .prose table { font-size: .9rem; } }
+  .prose code { background: var(--surface); padding: 2px 5px; border-radius: 3px; }
+  .breadcrumbs { font-size: .875rem; color: var(--muted); margin-bottom: 6px; }
+  .breadcrumbs a { color: var(--muted); }
+  .nota { border-left: 3px solid var(--rule); padding: 4px 0 4px 14px; }
+  .lista-noticias { display: grid; gap: 28px 32px; grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px) { .lista-noticias { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .lista-noticias { grid-template-columns: 1fr; gap: 0; } }
+</style>

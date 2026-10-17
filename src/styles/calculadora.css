@@ -1,0 +1,51 @@
+/* Estilos compartidos de las calculadoras (se importan en cada página de herramienta) */
+.pagina { max-width: 900px; }
+.pagina h1 { font-size: clamp(1.8rem, 4.4vw, 2.5rem); line-height: 1.15; margin: 4px 0 12px; }
+.pagina .lead { font-size: 1.125rem; line-height: 1.55; margin: 0 0 24px; max-width: 720px; }
+.calc { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; border-top: 2px solid var(--ink); padding-top: 24px; align-items: start; }
+.calc form { display: flex; flex-direction: column; gap: 16px; }
+.campo { display: flex; flex-direction: column; gap: 6px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.campo > span:first-child, .campo legend { font-weight: 600; font-size: .9375rem; padding: 0; }
+.campo small { font-size: .8125rem; }
+.u { position: relative; display: block; }
+.u i { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-style: normal; color: var(--muted); font-size: .875rem; pointer-events: none; }
+.u input, .calc select { font: 400 1.0625rem var(--sans); padding: 9px 12px; border: 1px solid #b9c0c6; border-radius: 4px; width: 100%; color: var(--ink); background: var(--bg); font-variant-numeric: tabular-nums; }
+.u input { padding-right: 80px; }
+.u input:focus, .calc select:focus { outline: 2px solid var(--brand); outline-offset: 0; }
+.segmentado { display: inline-flex; flex-wrap: wrap; border: 1px solid #b9c0c6; border-radius: 4px; overflow: hidden; width: fit-content; }
+.segmentado label { position: relative; }
+.segmentado input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.segmentado span { display: block; padding: 9px 16px; font-size: .9375rem; }
+.segmentado label + label span { border-left: 1px solid #b9c0c6; }
+.segmentado input:checked + span { background: var(--ink); color: #fff; }
+.segmentado input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: -2px; }
+.res { background: var(--surface); border-radius: 4px; padding: 24px; position: sticky; top: 16px; }
+.etq { font: 600 .875rem var(--sans); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0; }
+.cifra { font-family: var(--serif); font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 600; line-height: 1.15; margin: 6px 0 8px; color: var(--brand-dark); font-variant-numeric: tabular-nums; }
+.sub { margin: 0 0 16px; font-size: .9375rem; }
+.desglose { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.desglose th, .desglose td { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: .9375rem; }
+.desglose th { text-align: left; font-weight: 400; }
+.desglose td { text-align: right; padding-left: 12px; white-space: nowrap; }
+.desglose .total th, .desglose .total td { font-weight: 600; border-top: 1px solid var(--ink); border-bottom: 0; }
+.pagina .small { font-size: .8125rem; }
+.pagina .prose { margin-top: 36px; }
+.tabla-scroll { overflow-x: auto; margin: 0 0 12px; }
+.tabla { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.tabla th, .tabla td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); text-align: right; font-size: .9375rem; white-space: nowrap; }
+.tabla th:first-child { text-align: left; white-space: normal; }
+.tabla thead th { font-size: .8125rem; font-weight: 600; border-bottom: 1px solid var(--ink); white-space: normal; vertical-align: bottom; }
+.tabla tbody th { font-weight: 600; }
+.cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--rule); border-top: 2px solid var(--ink); margin: 0 0 24px; }
+.cifras > div { background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 3px; }
+.cifras .k { font: 600 .8125rem var(--sans); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.cifras .v { font-family: var(--serif); font-size: clamp(1.5rem, 3.6vw, 2rem); font-weight: 600; color: var(--brand-dark); font-variant-numeric: tabular-nums; line-height: 1.15; }
+.cifras .d { font-size: .8125rem; }
+.cifras .bien { color: var(--good); }
+.cifras .mal { color: var(--bad); }
+.grafico { width: 100%; height: auto; display: block; margin: 8px 0 4px; }
+.aviso-inv { margin: 18px 0 8px; padding: 10px 12px; border-left: 3px solid var(--mid); background: var(--surface); font-size: .875rem; max-width: 760px; }
+@media (max-width: 720px) {
+  .calc { grid-template-columns: 1fr; }
+  .res { position: static; padding: 20px 16px; }
+}

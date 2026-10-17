@@ -1,0 +1,19 @@
+name: Descargar documento
+# Descarga una URL y la sube a la rama «descargas» (para documentos oficiales que no se alcanzan desde otros entornos)
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        required: true
+permissions:
+  contents: write
+jobs:
+  descargar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir d && cd d && git init -q -b descargas
+          curl -sSfL -A "Mozilla/5.0" -o documento "${{ inputs.url }}" && ls -la documento
+          git config user.name "descargas-bot" && git config user.email "descargas-bot@users.noreply.github.com"
+          git add documento && git commit -qm "Descarga [CF-Pages-Skip]: ${{ inputs.url }}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" descargas

@@ -1,0 +1,14 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE } from '../config';
+---
+<Page title="Aviso legal" description="Aviso legal e información del titular del sitio web.">
+  <h2>Titular</h2>
+  <p>En cumplimiento de la Ley 34/2002 (LSSI-CE), se informa de que el titular de {SITE.url} es <strong>{SITE.ownerName}</strong>{SITE.ownerNif && <>, con NIF <strong>{SITE.ownerNif}</strong></>}, y su correo de contacto es <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+  <h2>Propiedad intelectual</h2>
+  <p>Los textos, gráficos e imágenes originales de esta web pertenecen a su titular. Los datos y documentos oficiales citados pertenecen a sus organismos y se enlazan en cada artículo.</p>
+  <h2>Carácter informativo</h2>
+  <p>El contenido tiene carácter general e informativo y no constituye asesoramiento jurídico, fiscal ni financiero. Aunque revisamos cada dato, la información puede cambiar: consulta siempre la fuente oficial antes de tomar una decisión. El titular no se responsabiliza del uso que se haga de la información ni del contenido de las webs enlazadas.</p>
+  <h2>Publicidad</h2>
+  <p>Esta web se financia con publicidad. Los anuncios no influyen en lo que publicamos. Si algún día publicamos contenido patrocinado o enlaces de afiliado, se indicará claramente.</p>
+</Page>

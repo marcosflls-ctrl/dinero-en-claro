@@ -1,0 +1,14 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE } from '../config';
+import { getPublishedPosts, formatDate } from '../lib/posts';
+const lista = (await getPublishedPosts())
+  .flatMap((p) => p.data.correcciones.map((c: any) => ({ post: p, ...c })))
+  .sort((a, b) => b.fecha.getTime() - a.fecha.getTime());
+---
+<Page title="Correcciones" description={`Errores corregidos en ${SITE.name}.`}>
+  <p>Cuando corregimos un dato en un artículo, lo indicamos en el propio artículo y aquí. Si ves un error, escríbenos a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+  {lista.length ? (
+    <ul>{lista.map((c) => <li><strong>{formatDate(c.fecha)}</strong> · <a href={`/${c.post.data.category}/${c.post.id}/`}>{c.post.data.title}</a>: {c.texto}</li>)}</ul>
+  ) : <p class="muted">De momento no hemos tenido que corregir ningún artículo.</p>}
+</Page>

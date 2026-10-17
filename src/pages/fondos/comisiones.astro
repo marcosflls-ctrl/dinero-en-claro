@@ -1,0 +1,122 @@
+---
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import { SITE } from '../../config';
+
+const titulo = 'Cuánto te cuestan las comisiones de tu fondo o plan de pensiones';
+const descripcion = 'Calcula cuánto dinero se lleva la comisión de un fondo de inversión o de un plan de pensiones a lo largo de los años, y compáralo con una opción más barata.';
+const url = `${SITE.url}/fondos/comisiones/`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Fondos y ETF', item: `${SITE.url}/fondos/` },
+      { '@type': 'ListItem', position: 3, name: titulo, item: url },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de comisiones de fondos', url, applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: 'es-ES', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } },
+];
+---
+<Base title={titulo} description={descripcion} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/fondos/">Fondos y ETF</a></nav>
+  <article class="pagina">
+    <h1>{titulo}</h1>
+    <p class="lead">Una comisión del 1,5 % al año parece poca cosa, pero se cobra todos los años sobre todo tu dinero, y lo que se lleva deja de crecer. Compara dos productos con distinta comisión y mira la diferencia al cabo de los años.</p>
+
+    <div class="calc">
+      <form id="calc-ter" novalidate>
+        <label class="campo"><span>Dinero que tienes ahora</span><span class="u"><input name="inicial" type="number" min="0" step="500" value="10000" /><i>€</i></span></label>
+        <label class="campo"><span>Lo que aportas cada mes</span><span class="u"><input name="mensual" type="number" min="0" step="25" value="200" /><i>€</i></span></label>
+        <label class="campo"><span>Años</span><span class="u"><input name="anios" type="number" min="1" max="50" step="1" value="25" /><i>años</i></span></label>
+        <label class="campo"><span>Rentabilidad antes de comisiones</span><span class="u"><input name="bruta" type="number" step="0.5" value="6" /><i>% al año</i></span><small class="muted">Lo que ganaría la inversión si no cobrara nada. Ninguna rentabilidad está garantizada.</small></label>
+        <label class="campo"><span>Comisión del producto A</span><span class="u"><input name="terA" type="number" min="0" step="0.05" value="1.5" /><i>% al año</i></span><small class="muted">Por ejemplo, un fondo de gestión activa o un plan de pensiones de banco.</small></label>
+        <label class="campo"><span>Comisión del producto B</span><span class="u"><input name="terB" type="number" min="0" step="0.05" value="0.2" /><i>% al año</i></span><small class="muted">Por ejemplo, un fondo indexado.</small></label>
+      </form>
+      <section class="res" aria-live="polite">
+        <h2 class="etq">Diferencia al final</h2>
+        <p class="cifra" id="t-dif">—</p>
+        <table class="desglose">
+          <tbody>
+            <tr><th scope="row">Dinero que pones en total</th><td id="t-aport">—</td></tr>
+            <tr><th scope="row">Final con el producto A</th><td id="t-a">—</td></tr>
+            <tr><th scope="row">Final con el producto B</th><td id="t-b">—</td></tr>
+            <tr><th scope="row">Lo que se lleva la comisión de A</th><td id="t-costeA">—</td></tr>
+            <tr><th scope="row">Lo que se lleva la comisión de B</th><td id="t-costeB">—</td></tr>
+          </tbody>
+        </table>
+        <p class="muted small">«Lo que se lleva la comisión» es la diferencia con lo que tendrías si la inversión no cobrara nada: incluye lo que pagas y lo que ese dinero habría ganado.</p>
+      </section>
+    </div>
+
+    <Compartir title={titulo} url={url} />
+
+    <section class="prose">
+      <h2>Qué comisiones cobra un fondo</h2>
+      <p>Lo más útil es fijarse en los <strong>gastos corrientes</strong>, que en inglés se llaman TER. Suman la comisión de gestión, la de depósito y otros gastos del fondo. Aparecen en el documento de datos fundamentales que te tiene que dar la entidad antes de invertir. No se pagan con un cargo aparte: se descuentan cada día del valor del fondo, por eso pasan desapercibidas.</p>
+      <p>En los planes de pensiones, la ley fija un máximo para la comisión de gestión y la de depósito. Aun así, muchos planes de banco cobran bastante más que un fondo indexado.</p>
+      <h2>Cómo calculamos</h2>
+      <p>Restamos la comisión a la rentabilidad cada año y suponemos que reinviertes todo lo que ganas. No tenemos en cuenta los impuestos, que dependen del producto: los fondos tributan al reembolsarlos y los planes de pensiones, al rescatarlos. Tampoco tenemos en cuenta la inflación.</p>
+      <p class="muted small">Herramienta informativa: no es una recomendación de inversión. Las rentabilidades pasadas no garantizan las futuras.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+
+<script>
+  const form = document.getElementById('calc-ter') as HTMLFormElement;
+  const eur = (n: number) => Math.round(n).toLocaleString('es-ES', { useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  const $ = (id: string) => document.getElementById(id)!;
+  function finalCon(inicial: number, mensual: number, anios: number, anual: number) {
+    const r = Math.pow(1 + anual / 100, 1 / 12) - 1;
+    let v = inicial;
+    for (let m = 0; m < anios * 12; m++) v = v * (1 + r) + mensual;
+    return v;
+  }
+  function calcular() {
+    const d = new FormData(form);
+    const n = (k: string) => parseFloat(String(d.get(k) ?? '').replace(',', '.')) || 0;
+    const anios = Math.max(1, Math.min(50, Math.round(n('anios'))));
+    const sin = finalCon(n('inicial'), n('mensual'), anios, n('bruta'));
+    const a = finalCon(n('inicial'), n('mensual'), anios, n('bruta') - n('terA'));
+    const b = finalCon(n('inicial'), n('mensual'), anios, n('bruta') - n('terB'));
+    $('t-aport').textContent = eur(n('inicial') + n('mensual') * anios * 12);
+    $('t-a').textContent = eur(a);
+    $('t-b').textContent = eur(b);
+    $('t-costeA').textContent = eur(sin - a);
+    $('t-costeB').textContent = eur(sin - b);
+    const dif = b - a;
+    $('t-dif').textContent = Math.abs(dif) < 1 ? 'Ninguna' : `${eur(Math.abs(dif))} más con ${dif > 0 ? 'B' : 'A'}`;
+  }
+  form.addEventListener('input', calcular);
+  calcular();
+</script>
+
+<style>
+  .pagina { max-width: 900px; }
+  h1 { font-size: clamp(1.8rem, 4.4vw, 2.5rem); line-height: 1.15; margin: 4px 0 12px; }
+  .lead { font-size: 1.125rem; line-height: 1.55; margin: 0 0 24px; max-width: 720px; }
+  .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; border-top: 2px solid var(--ink); padding-top: 24px; align-items: start; }
+  form { display: flex; flex-direction: column; gap: 16px; }
+  .campo { display: flex; flex-direction: column; gap: 6px; }
+  .campo > span:first-child { font-weight: 600; font-size: .9375rem; }
+  .campo small { font-size: .8125rem; }
+  .u { position: relative; display: block; }
+  .u i { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-style: normal; color: var(--muted); font-size: .875rem; }
+  .u input { font: 400 1.0625rem var(--sans); padding: 9px 80px 9px 12px; border: 1px solid #b9c0c6; border-radius: 4px; width: 100%; color: var(--ink); background: var(--bg); font-variant-numeric: tabular-nums; }
+  .u input:focus { outline: 2px solid var(--brand); outline-offset: 0; }
+  .res { background: var(--surface); border-radius: 4px; padding: 24px; position: sticky; top: 16px; }
+  .etq { font: 600 .875rem var(--sans); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0; }
+  .cifra { font-family: var(--serif); font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 600; line-height: 1.15; margin: 6px 0 16px; color: var(--brand-dark); font-variant-numeric: tabular-nums; }
+  .desglose { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .desglose th, .desglose td { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: .9375rem; }
+  .desglose th { text-align: left; font-weight: 400; }
+  .desglose td { text-align: right; padding-left: 12px; white-space: nowrap; }
+  .small { font-size: .8125rem; }
+  .prose { margin-top: 36px; }
+  @media (max-width: 720px) {
+    .calc { grid-template-columns: 1fr; }
+    .res { position: static; padding: 20px 16px; }
+  }
+</style>

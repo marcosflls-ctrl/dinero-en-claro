@@ -1,0 +1,47 @@
+name: Datos de mercado
+
+# Descarga tipos del BCE, Letras, deuda e Ibex (BCE y Banco de España) y publica si han cambiado
+# (dato oficial, sin redacción). Varios turnos porque GitHub se salta a veces ejecuciones programadas.
+on:
+  schedule:
+    # GitHub se salta a menudo ejecuciones programadas: se reparten varias al día (solo publica si cambian los precios)
+    - cron: "27 7,10,14,17 * * 1-6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: datos
+  cancel-in-progress: false
+
+jobs:
+  mercados:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests
+      - run: python scripts/mercados.py
+      - name: Publicar si hay cambios
+        run: |
+          git config user.name "mercados-bot"
+          git config user.email "mercados-bot@users.noreply.github.com"
+          git add src/data/mercados.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Mercados: precios actualizados"
+            for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
+          fi
+      - name: Avisar del fallo por Telegram
+        if: failure()
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_AVISOS_CHAT_ID }}
+          URL_EJECUCION: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ] && exit 0
+          curl -s -o /dev/null -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_CHAT}" \
+            --data-urlencode "text=❌ Ha fallado el precio de los mercados de Dinero en Claro: ${URL_EJECUCION}"

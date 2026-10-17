@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import AdSlot from '../components/AdSlot.astro';
+import Siguenos from '../components/Siguenos.astro';
+import MercadosHoy from '../components/MercadosHoy.astro';
+import { HERRAMIENTAS } from '../data/herramientas';
+import { SITE, CATEGORIES } from '../config';
+import { getPublishedPosts } from '../lib/posts';
+
+const posts = await getPublishedPosts();
+const noticias = posts.filter((p) => !p.data.guia);
+const guias = posts.filter((p) => p.data.guia).sort((a, b) => a.data.orden - b.data.orden);
+const [first, ...rest] = noticias;
+const latest = rest.slice(0, 6);
+const shown = new Set([...(first ? [first] : []), ...latest].map((p) => p.id));
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, inLanguage: 'es', description: SITE.tagline,
+    potentialAction: { '@type': 'SearchAction', target: `${SITE.url}/buscar/?q={search_term_string}`, 'query-input': 'required name=search_term_string' },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url, logo: `${SITE.url}/icon-512.png`, email: SITE.email,
+    sameAs: [SITE.social.telegram && `https://t.me/${SITE.social.telegram}`, SITE.social.facebook && `https://www.facebook.com/${SITE.social.facebook}`,
+      SITE.social.x && `https://x.com/${SITE.social.x}`, SITE.social.whatsapp].filter(Boolean),
+  },
+];
+---
+<Base title={SITE.name} description="Depósitos, Letras del Tesoro, fondos, bolsa, planes de pensiones e impuestos del ahorro explicados con datos oficiales y sin recomendar productos." jsonLd={jsonLd}>
+  <h1 class="sr-only">{SITE.name}: ahorro, inversión y mercados</h1>
+
+  <div class="apertura">
+    <div class="principal">
+      {first ? <PostCard post={first} featured /> : (
+        <section class="presentacion">
+          <p class="lema">Cuánto rinde de verdad tu dinero, cuánto cuesta invertirlo y cuánto se lleva Hacienda.</p>
+          <p class="muted">Explicamos depósitos, Letras, fondos, bolsa y planes de pensiones con datos del Banco de España, el BCE, la CNMV y la Agencia Tributaria. No recomendamos productos concretos ni cobramos por hablar de ellos.</p>
+        </section>
+      )}
+    </div>
+    <MercadosHoy />
+  </div>
+
+  {latest.length > 0 && (
+    <section class="bloque" aria-labelledby="h-latest">
+      <h2 id="h-latest" class="titulo-bloque">Últimas noticias</h2>
+      <div class="lista-noticias">{latest.map((p) => <PostCard post={p} />)}</div>
+    </section>
+  )}
+
+  {guias.length > 0 && (
+    <section class="bloque" aria-labelledby="h-guias">
+      <h2 id="h-guias" class="titulo-bloque">Guías</h2>
+      <div class="lista-noticias">{guias.slice(0, 6).map((p) => <PostCard post={p} />)}</div>
+    </section>
+  )}
+
+  <section class="bloque" aria-labelledby="h-calc">
+    <h2 id="h-calc" class="titulo-bloque">Calculadoras</h2>
+    <ul class="herramientas">
+      {HERRAMIENTAS.slice(0, 6).map((h) => <li><a href={h.href}><strong>{h.titulo}</strong><span>{h.texto}</span></a></li>)}
+    </ul>
+    <p class="todas"><a href="/calculadoras/">Todas las calculadoras</a></p>
+  </section>
+
+  <AdSlot />
+
+  {Object.entries(CATEGORIES).map(([key, c]) => {
+    const list = noticias.filter((p) => p.data.category === key && !shown.has(p.id)).slice(0, 3);
+    return list.length > 0 && (
+      <section class="bloque">
+        <h2 class="titulo-bloque"><a href={`/${key}/`}>{c.label}</a></h2>
+        <div class="lista-noticias">{list.map((p) => <PostCard post={p} />)}</div>
+      </section>
+    );
+  })}
+
+  <Siguenos />
+</Base>
+<style>
+  .herramientas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 28px; }
+  .herramientas a { display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: var(--ink); height: 100%; }
+  .herramientas a:hover strong { color: var(--brand); text-decoration: underline; }
+  .herramientas strong { font-family: var(--serif); font-size: 1.125rem; }
+  .herramientas span { color: var(--muted); font-size: .875rem; line-height: 1.45; }
+  .todas { margin: 12px 0 0; font-size: .9375rem; font-weight: 600; }
+  @media (max-width: 860px) { .herramientas { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .herramientas { grid-template-columns: 1fr; } }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .apertura { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(260px, 1fr); gap: 40px; align-items: start; }
+  .principal { min-width: 0; }
+  .presentacion { border-top: 2px solid var(--ink); padding-top: 18px; }
+  .lema { font-family: var(--serif); font-weight: 500; font-size: clamp(1.75rem, 3.4vw, 2.4rem); line-height: 1.2; margin: 0 0 14px; max-width: 22ch; }
+  .bloque { margin-top: 48px; }
+  .titulo-bloque a { color: inherit; text-decoration: none; }
+  .titulo-bloque a:hover { color: var(--brand); }
+  @media (max-width: 900px) { .apertura { grid-template-columns: 1fr; gap: 28px; } }
+  .principal :global(.featured) { display: flex; flex-direction: column; }
+  .principal :global(.featured .titular) { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+</style>

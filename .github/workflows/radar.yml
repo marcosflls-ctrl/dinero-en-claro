@@ -1,0 +1,139 @@
+name: Radar de noticias
+
+on:
+  schedule:
+    - cron: "17 6-20/2 * * *"   # cada dos horas, de 8:17 a 22:17 de España
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Enlace de una noticia concreta para redactarla ya (vacío = revisar todas las fuentes)"
+        required: false
+        default: ""
+      prueba:
+        description: "Solo listar lo que encontraría, sin redactar nada"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write             # permite a GitHub demostrar a Claude que es este robot (sin claves)
+
+concurrency:
+  group: radar
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    # Conexión con Claude por federación de identidades (sin claves), en el espacio de trabajo
+    # «Dinero en Claro» de la consola de Claude. No son secretos: sin el token que firma GitHub
+    # para ESTE repositorio y la rama main no sirven de nada.
+    env:
+      # Se rellenan como variables del repositorio (Settings → Secrets and variables → Actions → Variables)
+      # al crear en la consola de Claude la regla de federación para ESTE repositorio.
+      ANTHROPIC_FEDERATION_RULE_ID: ${{ vars.ANTHROPIC_FEDERATION_RULE_ID }}
+      ANTHROPIC_ORGANIZATION_ID: ${{ vars.ANTHROPIC_ORGANIZATION_ID || 'fddb11bd-122a-4959-8c54-567a0a116498' }}
+      ANTHROPIC_SERVICE_ACCOUNT_ID: ${{ vars.ANTHROPIC_SERVICE_ACCOUNT_ID }}
+      ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}
+      ANTHROPIC_IDENTITY_TOKEN_FILE: /tmp/gha-jwt
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r scripts/requirements.txt
+
+      - name: Pedir identidad a GitHub
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const token = await core.getIDToken('https://api.anthropic.com');
+            core.setSecret(token);
+            fs.writeFileSync(process.env.ANTHROPIC_IDENTITY_TOKEN_FILE, token);
+
+      - name: Buscar noticias y redactar
+        id: radar
+        env:
+          MAX_PER_RUN: ${{ vars.MAX_PER_RUN || '2' }}
+          RADAR_URL: ${{ github.event.inputs.url }}
+        run: |
+          if [ "${{ github.event.inputs.prueba }}" = "true" ]; then python scripts/radar.py --dry-run; else python scripts/radar.py; fi
+
+      # Corrige enlaces internos que apunten a la sección equivocada
+      - name: Arreglar enlaces internos
+        if: steps.radar.outputs.count != '0' && steps.radar.outputs.count != ''
+        run: python scripts/arreglar_enlaces.py
+
+      # Comprueba que la web se construye con los borradores nuevos (un dato mal formado la rompería)
+      - uses: actions/setup-node@v4
+        if: steps.radar.outputs.count != '0' && steps.radar.outputs.count != ''
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - name: Comprobar que la web se construye
+        id: build
+        if: steps.radar.outputs.count != '0' && steps.radar.outputs.count != ''
+        continue-on-error: true
+        run: npm ci --no-audit --no-fund && npx astro build
+
+      # La memoria del robot (qué noticias ya ha visto) se guarda siempre en main
+      - name: Guardar memoria del robot
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add scripts/state
+          if ! git diff --cached --quiet; then
+            git commit -m "Radar: actualizar memoria [CF-Pages-Skip]"
+            for i in 1 2 3; do git pull --rebase --autostash origin main && git push && break; sleep 5; done
+          fi
+
+      # Cada ejecución con artículos abre una propuesta: la apruebas con "Merge" en la app de GitHub
+      - name: Proponer borradores para revisar
+        id: pr
+        if: steps.radar.outputs.count != '0' && steps.radar.outputs.count != ''
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: radar/borradores-${{ github.run_number }}
+          commit-message: "Radar: nuevos borradores"
+          title: "📰 Borradores nuevos (${{ steps.radar.outputs.count }})"
+          body: |
+            ${{ steps.build.outcome == 'failure' && '⚠️ **La web no se construye con estos borradores.** No los apruebes todavía: avisa a Claude para que lo revise.' || '✅ La web se construye bien con estos borradores.' }}
+
+            Revisa cada artículo (pestaña *Files changed*). Puedes editarlo ahí mismo con el lápiz.
+            Comprueba sobre todo las cifras y las fechas con la fuente oficial enlazada al final.
+            - Para publicar: **Merge pull request**.
+            - Para descartarlos: **Close pull request**.
+          labels: radar
+          delete-branch: true
+          reviewers: ${{ github.repository_owner }}
+          assignees: ${{ github.repository_owner }}
+
+      - name: Avisarte por Telegram de que hay borradores
+        if: steps.pr.outputs.pull-request-url != ''
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_AVISOS_CHAT_ID }}
+        run: |
+          [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ] && exit 0
+          curl -s -o /dev/null -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_CHAT}" \
+            --data-urlencode "text=📰 Dinero en Claro: ${{ steps.radar.outputs.count }} borrador(es) para revisar
+          ${{ steps.radar.outputs.titulos }}
+          👉 ${{ steps.pr.outputs.pull-request-url }}"
+
+      - name: Avisar del fallo por Telegram
+        if: failure()
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_AVISOS_CHAT_ID }}
+          URL_EJECUCION: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ] && exit 0
+          curl -s -o /dev/null -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_CHAT}" \
+            --data-urlencode "text=❌ Ha fallado el radar de Dinero en Claro: ${URL_EJECUCION}"

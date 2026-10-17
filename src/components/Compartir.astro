@@ -1,0 +1,46 @@
+---
+// Botones para compartir. Sin scripts de terceros: enlaces directos a cada red.
+interface Props { url: string; title: string; label?: string }
+const { url, title, label = 'Compártelo' } = Astro.props;
+const u = encodeURIComponent(url);
+const t = encodeURIComponent(title);
+const links = [
+  { name: 'WhatsApp', href: `https://wa.me/?text=${t}%20${u}`, cls: 'wa' },
+  { name: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${u}`, cls: 'fb' },
+  { name: 'Telegram', href: `https://t.me/share/url?url=${u}&text=${t}`, cls: 'tg' },
+  { name: 'X', href: `https://x.com/intent/post?text=${t}&url=${u}`, cls: 'x' },
+];
+---
+<div class="compartir" data-pagefind-ignore data-url={url} data-title={title}>
+  <span class="lbl">{label}</span>
+  <div class="btns">
+    {links.map((l) => (
+      <a class:list={['btn', l.cls]} href={l.href} target="_blank" rel="noopener nofollow" aria-label={`Compartir en ${l.name}`}>{l.name}</a>
+    ))}
+    <button class="btn copy" type="button">Copiar enlace</button>
+  </div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('.compartir').forEach((box) => {
+    const btn = box.querySelector<HTMLButtonElement>('.copy');
+    if (!btn) return;
+    const url = box.dataset.url!, title = box.dataset.title!;
+    if (navigator.share && matchMedia('(pointer: coarse)').matches) btn.textContent = 'Más opciones';
+    btn.addEventListener('click', async () => {
+      if (navigator.share && matchMedia('(pointer: coarse)').matches) {
+        try { await navigator.share({ title, url }); } catch { /* cancelado */ }
+        return;
+      }
+      try { await navigator.clipboard.writeText(url); btn.textContent = '¡Copiado!'; }
+      catch { btn.textContent = url; }
+      setTimeout(() => (btn.textContent = 'Copiar enlace'), 2000);
+    });
+  });
+</script>
+<style>
+  .compartir { margin: 28px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+  .lbl { font-weight: 600; font-size: .875rem; }
+  .btns { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .btn { display: inline-block; font: inherit; line-height: 1.4; font-size: .875rem; font-weight: 500; padding: 6px 12px; border-radius: 4px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); text-decoration: none; cursor: pointer; }
+  .btn:hover { border-color: var(--ink); }
+</style>

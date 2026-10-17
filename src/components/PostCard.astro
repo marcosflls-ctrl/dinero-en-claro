@@ -1,0 +1,62 @@
+---
+import { srcset } from '../lib/img';
+import { CATEGORIES } from '../config';
+import { formatDate } from '../lib/posts';
+interface Props { post: any; featured?: boolean; sinImagen?: boolean }
+const { post, featured = false, sinImagen = false } = Astro.props;
+const { title, description, date, updated, category, image, imageAlt, imageCredit, pendiente, guia } = post.data;
+const shown = guia ? (updated ?? date) : date;
+const href = `/${category}/${post.id}/`;
+const src = image ?? `/img/portadas/${category}.webp`;
+// Las portadas generadas llevan el titular escrito: en la miniatura pequeña del móvil se cortaría,
+// así que ahí se usa una miniatura con solo el nombre de la sección. Las fotos reales se mantienen.
+const Titular = featured ? 'h2' : 'h3';
+const miniMovil = !featured && !imageCredit ? `/img/miniaturas/${category}.webp` : null;
+---
+<article class:list={['pieza', { featured, 'sin-imagen': sinImagen }]}>
+  {!sinImagen && (
+    <a href={href} class="thumb" tabindex="-1" aria-hidden="true">
+      <picture>
+      {miniMovil && <source media="(max-width: 600px)" srcset={miniMovil} width="480" height="360" />}
+      <img src={src} srcset={srcset(src)} sizes={featured ? "(max-width: 760px) 100vw, 640px" : "(max-width: 600px) 120px, 360px"} alt={image ? (imageAlt ?? '') : ''} loading={featured ? 'eager' : 'lazy'} fetchpriority={featured ? 'high' : 'auto'} width="1600" height="900" />
+      </picture>
+    </a>
+  )}
+  <div class="texto">
+    <p class="arriba">
+      <a class="seccion-link" href={`/${category}/`}>{CATEGORIES[category as keyof typeof CATEGORIES].label}</a>
+      {guia && <span class="muted"> Guía actualizada</span>}
+      {pendiente && <span class="marca-estado"> Pendiente del BOE</span>}
+    </p>
+    <Titular class="titular"><a href={href}>{title}</a></Titular>
+    {(featured || !sinImagen) && <p class="entradilla">{description}</p>}
+    <p class="fecha-pieza"><time datetime={shown.toISOString()} data-rel>{formatDate(shown)}</time></p>
+  </div>
+</article>
+<style>
+  .pieza { display: flex; flex-direction: column; gap: 12px; }
+  .thumb { display: block; aspect-ratio: 16/9; overflow: hidden; background: var(--surface); }
+  .thumb picture { display: contents; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .texto { display: flex; flex-direction: column; gap: 6px; }
+  .arriba { margin: 0; display: flex; gap: 12px; flex-wrap: wrap; align-items: baseline; font-size: .875rem; }
+  .titular { margin: 0; font-size: 1.1875rem; line-height: 1.25; }
+  .titular a { color: var(--ink); text-decoration: none; }
+  .titular a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+  .entradilla { margin: 0; font-size: .9375rem; color: var(--muted); }
+  .fecha-pieza { margin: 0; font-size: .8125rem; color: var(--muted); }
+  .featured { grid-column: 1 / -1; }
+  @media (min-width: 761px) {
+    .featured { display: grid; grid-template-columns: 1.45fr 1fr; gap: 28px; align-items: center; }
+    .featured .titular { font-size: 2rem; line-height: 1.15; }
+    .featured .entradilla { font-size: 1.0625rem; }
+  }
+  @media (max-width: 600px) {
+    .pieza:not(.featured) { flex-direction: row-reverse; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+    .pieza:not(.featured) .thumb { width: 112px; flex: none; aspect-ratio: 4/3; align-self: flex-start; height: auto; }
+    .pieza:not(.featured) .entradilla { display: none; }
+    .pieza:not(.featured) .titular { font-size: 1.0625rem; }
+    .featured { padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+    .featured .titular { font-size: 1.5rem; }
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Buscar" description="Busca noticias y guías sobre ahorro, fondos, bolsa e impuestos." noindex>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › Buscar</nav>
+  <h1>Buscar</h1>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <div id="buscador"></div>
+  <p class="muted small sugerencias">Prueba con: <a href="?q=paga extra">paga extra</a>, <a href="?q=renta">renta</a>, <a href="?q=subsidio">subsidio</a>, <a href="?q=bono social">bono social</a></p>
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', function () {
+      if (!window.PagefindUI) { document.getElementById('buscador').textContent = 'El buscador no está disponible ahora mismo.'; return; }
+      var ui = new PagefindUI({
+        element: '#buscador', showSubResults: true, showImages: true, resetStyles: false,
+        translations: { placeholder: 'Busca Letras, fondos indexados, dividendos…', zero_results: 'No hay resultados para [SEARCH_TERM]', many_results: '[COUNT] resultados para [SEARCH_TERM]', one_result: '1 resultado para [SEARCH_TERM]', load_more: 'Ver más resultados', clear_search: 'Borrar' }
+      });
+      var q = new URLSearchParams(location.search).get('q');
+      if (q) ui.triggerSearch(q);
+      var input = document.querySelector('#buscador input'); if (input && !q) input.focus();
+    });
+  </script>
+</Base>
+<style is:global>
+  main h1 { font-size: clamp(2rem, 5vw, 2.6rem); margin: 8px 0 16px; }
+  .sugerencias { margin-top: 10px; }
+  #buscador {
+    --pagefind-ui-scale: 1; --pagefind-ui-primary: #1f4e79; --pagefind-ui-text: #1c2024; --pagefind-ui-background: #ffffff;
+    --pagefind-ui-border: #dfe3e6; --pagefind-ui-tag: #f3f5f6; --pagefind-ui-border-width: 1px; --pagefind-ui-border-radius: 4px;
+    --pagefind-ui-image-border-radius: 0; --pagefind-ui-image-box-ratio: 16 / 9; --pagefind-ui-font: 'IBM Plex Sans', system-ui, sans-serif;
+    max-width: 820px;
+  }
+  #buscador .pagefind-ui__result-link { color: var(--ink); }
+  #buscador .pagefind-ui__result-excerpt mark { background: #f3e2b8; color: var(--ink); }
+  #buscador .pagefind-ui__search-input { background: var(--surface); color: var(--ink); }
+</style>

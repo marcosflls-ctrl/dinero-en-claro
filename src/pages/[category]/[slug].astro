@@ -1,0 +1,132 @@
+---
+import fs from 'node:fs';
+import { srcset } from '../../lib/img';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import Compartir from '../../components/Compartir.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import { CATEGORIES, SITE } from '../../config';
+import { getPublishedPosts, formatDate, formatDateTime, relacionados } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { category: post.data.category, slug: post.id }, props: { post, all: posts } }));
+}
+const { post, all } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const cat = CATEGORIES[d.category];
+const url = `${SITE.url}/${d.category}/${post.id}/`;
+const related = relacionados(post, all, 3);
+const img = d.image ?? `/img/portadas/${d.category}.webp`;
+const autorUrl = `/autor/${SITE.author.slug}/`;
+// La portada en 16:9, 4:3 y 1:1 (si existen los recortes), como recomienda Google para Discover
+const imagenesSchema = [img, img.replace(/\.webp$/, '-4x3.webp'), img.replace(/\.webp$/, '-1x1.webp')]
+  .filter((s, i) => i === 0 || fs.existsSync(`public${s}`))
+  .map((s) => new URL(s, SITE.url).href);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': d.guia ? 'Article' : 'NewsArticle',
+    headline: d.title,
+    description: d.description,
+    datePublished: d.date.toISOString(),
+    dateModified: (d.updated ?? d.date).toISOString(),
+    inLanguage: 'es',
+    mainEntityOfPage: url,
+    image: imagenesSchema,
+    author: { '@type': 'Person', name: SITE.author.name, url: SITE.url + autorUrl },
+    publisher: {
+      '@type': 'Organization', name: SITE.name, url: SITE.url,
+      logo: { '@type': 'ImageObject', url: `${SITE.url}/icon-512.png`, width: 512, height: 512 },
+    },
+    isAccessibleForFree: true,
+    articleSection: cat.label,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name: cat.label, item: `${SITE.url}/${d.category}/` },
+      { '@type': 'ListItem', position: 3, name: d.title, item: url },
+    ],
+  },
+];
+const actualizado = d.updated && d.updated.getTime() - d.date.getTime() > 36e5;
+---
+<Base title={d.title} description={d.description} image={img} type="article" jsonLd={jsonLd} published={d.date} modified={d.updated ?? d.date} section={cat.label}>
+  <article class="post" data-pagefind-body>
+    <nav class="breadcrumbs" data-pagefind-ignore><a href="/">Inicio</a> › <a href={`/${d.category}/`}>{cat.label}</a></nav>
+    <header>
+      <p class="arriba"><a class="seccion-link" href={`/${d.category}/`}>{cat.label}</a>{d.guia && <span class="muted">Guía actualizada</span>}{d.pendiente && <span class="marca-estado">Pendiente del BOE</span>}</p>
+      <h1>{d.title}</h1>
+      <p class="lead">{d.description}</p>
+      <div class="firma">
+        <p class="autor">Por <a href={autorUrl} rel="author">{SITE.author.name}</a></p>
+        <p class="muted">
+          {d.guia
+            ? <>Actualizado el <time datetime={(d.updated ?? d.date).toISOString()}>{formatDate(d.updated ?? d.date)}</time></>
+            : <>
+                <time datetime={d.date.toISOString()}>{formatDateTime(d.date)}</time>
+                {actualizado && <><br />Actualizado el <time datetime={d.updated!.toISOString()}>{formatDate(d.updated!)}</time></>}
+              </>}
+        </p>
+      </div>
+    </header>
+    <figure class="hero">
+      <img data-pagefind-meta="image[src]" fetchpriority="high" decoding="async" src={img} srcset={srcset(img)} sizes="(max-width: 800px) 100vw, 760px" alt={d.image ? (d.imageAlt ?? '') : ''} width="1600" height="900" />
+      {d.image && d.imageCredit && <figcaption class="credit">Imagen: {d.imageCreditUrl ? <a href={d.imageCreditUrl} rel="nofollow noopener" target="_blank">{d.imageCredit}</a> : d.imageCredit}</figcaption>}
+    </figure>
+    {d.pendiente && (
+      <p class="pendiente-nota"><strong>Todavía no es oficial.</strong> Lo que cuenta este artículo está anunciado o en tramitación, pero aún no se ha publicado en el Boletín Oficial del Estado y puede cambiar. Lo actualizaremos cuando se apruebe.</p>
+    )}
+    <AdSlot />
+    <div class="prose"><Content /></div>
+
+    {d.sources.length > 0 && (
+      <aside class="sources">
+        <strong>{d.sources.length === 1 ? 'Fuente' : 'Fuentes'}</strong>
+        <ul>{d.sources.map((s: any) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.name}</a></li>)}</ul>
+      </aside>
+    )}
+    {d.correcciones.length > 0 && (
+      <aside class="correcciones">
+        <strong>Correcciones</strong>
+        <ul>{d.correcciones.map((c: any) => <li><time datetime={c.fecha.toISOString()}>{formatDate(c.fecha)}</time>: {c.texto}</li>)}</ul>
+      </aside>
+    )}
+    <p class="aviso-general muted small">Esta información es general y no tiene en cuenta tu situación personal. Ante cualquier duda, consulta la fuente oficial o el organismo correspondiente. ¿Has visto un error? <a href="/contacto/">Avísanos</a> y lo corregimos.</p>
+    <Compartir url={url} title={d.title} />
+    <Siguenos />
+    <AdSlot />
+  </article>
+
+  {related.length > 0 && (
+    <section class="related">
+      <h2 class="titulo-bloque">También te puede interesar</h2>
+      <div class="lista-noticias">{related.map((p: any) => <PostCard post={p} />)}</div>
+    </section>
+  )}
+</Base>
+<style>
+  .post { max-width: 720px; }
+  .arriba { margin: 0 0 8px; display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; font-size: .875rem; }
+  h1 { font-size: clamp(1.9rem, 4.6vw, 2.6rem); line-height: 1.15; margin: 0 0 14px; }
+  .lead { font-size: 1.1875rem; line-height: 1.5; color: #3d454c; margin: 0 0 18px; }
+  .firma { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 10px 0; font-size: .875rem; }
+  .firma p { margin: 0; }
+  .autor { font-weight: 500; }
+  .autor a { color: var(--ink); }
+  .hero { margin: 22px 0 0; }
+  .hero img { width: 100%; display: block; }
+  .credit { font-size: .8125rem; color: var(--muted); margin-top: 6px; }
+  .pendiente-nota { border-left: 3px solid var(--mid); padding: 4px 0 4px 14px; font-size: .9375rem; margin-top: 22px; }
+  .sources, .correcciones { margin-top: 32px; padding-top: 12px; border-top: 1px solid var(--ink); font-size: .9375rem; }
+  .sources ul, .correcciones ul { margin: 6px 0 0; padding-left: 18px; }
+  .aviso-general { margin-top: 20px; }
+  .related { margin-top: 56px; }
+</style>

@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+
+const titulo = 'Calculadora de interés compuesto';
+const descripcion = 'Calcula cuánto puede crecer tu dinero con el interés compuesto: lo que ahorras cada mes, la rentabilidad, los años y el efecto de la inflación y los impuestos.';
+const url = `${SITE.url}/ahorro/calculadora-interes-compuesto/`;
+const preguntas = [
+  { q: '¿Qué es el interés compuesto?', a: 'Es ganar intereses sobre los intereses. Si reinviertes lo que ganas, cada año la rentabilidad se aplica a una cantidad mayor, y el crecimiento se acelera con el tiempo. Por eso el factor más importante suele ser el número de años.' },
+  { q: '¿Qué rentabilidad debo poner?', a: 'Depende del producto. Un depósito o una Letra del Tesoro ofrecen un tipo conocido de antemano. Los fondos y la bolsa no garantizan nada: pueden ganar más a largo plazo, pero también perder, sobre todo en plazos cortos. Prueba varios escenarios en lugar de fiarte de uno solo.' },
+  { q: '¿Por qué importa la inflación?', a: 'Porque los precios suben. 10.000 € dentro de 20 años comprarán menos que hoy. La calculadora te muestra cuánto valdría tu dinero final en euros de hoy, descontando la inflación que indiques.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Ahorro', item: `${SITE.url}/ahorro/` },
+    { '@type': 'ListItem', position: 3, name: titulo, item: url } ] },
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: titulo, url, applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: 'es-ES', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: preguntas.map((p) => ({ '@type': 'Question', name: p.q, acceptedAnswer: { '@type': 'Answer', text: p.a } })) },
+];
+---
+<Base title={titulo} description={descripcion} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/ahorro/">Ahorro</a></nav>
+  <article class="pagina">
+    <h1>{titulo}</h1>
+    <p class="lead">Mira cuánto puede crecer lo que ahorras si reinviertes lo que ganas. Cambia los años, la aportación o la rentabilidad para ver qué pesa más.</p>
+    <div class="calc">
+      <form id="calc-ic" novalidate>
+        <label class="campo"><span>Dinero que tienes ahora</span><span class="u"><input name="inicial" type="number" min="0" step="500" value="5000" /><i>€</i></span></label>
+        <label class="campo"><span>Lo que ahorras cada mes</span><span class="u"><input name="mensual" type="number" min="0" step="25" value="200" /><i>€</i></span></label>
+        <label class="campo"><span>Años</span><span class="u"><input name="anios" type="number" min="1" max="60" value="20" /><i>años</i></span></label>
+        <label class="campo"><span>Rentabilidad anual esperada</span><span class="u"><input name="rent" type="number" step="0.25" value="5" /><i>% al año</i></span><small class="muted">Después de comisiones. Ninguna rentabilidad está garantizada salvo en productos como depósitos o Letras.</small></label>
+        <label class="campo"><span>Inflación anual</span><span class="u"><input name="infl" type="number" step="0.25" value="2" /><i>% al año</i></span><small class="muted">El objetivo del BCE es el 2 %.</small></label>
+        <label class="campo"><span>Impuestos al final</span>
+          <select name="imp"><option value="1">Sí: descontar el IRPF del ahorro al retirar</option><option value="0">No: ver el resultado antes de impuestos</option></select>
+        </label>
+      </form>
+      <section class="res" aria-live="polite">
+        <h2 class="etq">Tendrías al final</h2>
+        <p class="cifra" id="ic-final">—</p>
+        <p class="sub" id="ic-real"></p>
+        <table class="desglose"><tbody>
+          <tr><th scope="row">Dinero que pones</th><td id="ic-puesto">—</td></tr>
+          <tr><th scope="row">Lo que ganas</th><td id="ic-gana">—</td></tr>
+          <tr><th scope="row">Impuestos al retirar</th><td id="ic-imp">—</td></tr>
+          <tr class="total"><th scope="row">Final neto</th><td id="ic-neto">—</td></tr>
+        </tbody></table>
+        <svg id="ic-graf" viewBox="0 0 400 140" class="grafico" aria-hidden="true"></svg>
+        <p class="muted small"><span style="color:var(--brand)">■</span> lo que tendrías · <span style="color:#9aa4ad">■</span> lo que pones</p>
+      </section>
+    </div>
+    <p class="aviso-inv">Simulación orientativa con una rentabilidad constante, algo que no ocurre en la realidad: los mercados suben y bajan. No es una recomendación de inversión.</p>
+    <Compartir title={titulo} url={url} />
+    <section class="prose">
+      <h2>Cómo calculamos</h2>
+      <p>Aplicamos la rentabilidad cada mes sobre todo lo acumulado y sumamos la aportación mensual. Al final, si eliges descontar impuestos, aplicamos a lo ganado la escala del ahorro del IRPF de 2026 (del 19 % al 30 %), como ocurriría al vender un fondo o rescatar los intereses. Algunos productos tributan cada año (los depósitos) y otros solo al final (los fondos, gracias a los traspasos sin impuestos), y eso también cambia el resultado.</p>
+      <h2>Preguntas frecuentes</h2>
+      {preguntas.map((p) => (<><h3>{p.q}</h3><p>{p.a}</p></>))}
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+<script>
+  import { cuota, ESCALA_AHORRO } from '../../lib/fiscal';
+  const form = document.getElementById('calc-ic') as HTMLFormElement;
+  const $ = (id: string) => document.getElementById(id)!;
+  const eur = (n: number) => Math.round(n).toLocaleString('es-ES', { useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  function calcular() {
+    const d = new FormData(form);
+    const n = (k: string) => parseFloat(String(d.get(k) ?? '').replace(',', '.')) || 0;
+    const anios = Math.max(1, Math.min(60, Math.round(n('anios'))));
+    const r = Math.pow(1 + n('rent') / 100, 1 / 12) - 1;
+    let v = n('inicial'); const serie = [[n('inicial'), n('inicial')]];
+    for (let m = 1; m <= anios * 12; m++) { v = v * (1 + r) + n('mensual'); if (m % 12 === 0) serie.push([v, n('inicial') + n('mensual') * m]); }
+    const puesto = n('inicial') + n('mensual') * anios * 12, gana = v - puesto;
+    const imp = d.get('imp') === '1' && gana > 0 ? cuota(gana, ESCALA_AHORRO).total : 0;
+    const neto = v - imp, real = neto / Math.pow(1 + n('infl') / 100, anios);
+    $('ic-final').textContent = eur(neto);
+    $('ic-real').textContent = `Equivalen a ${eur(real)} de hoy con una inflación del ${n('infl').toLocaleString('es-ES')} % anual.`;
+    $('ic-puesto').textContent = eur(puesto); $('ic-gana').textContent = eur(gana);
+    $('ic-imp').textContent = imp ? '− ' + eur(imp) : '0 €'; $('ic-neto').textContent = eur(neto);
+    const max = Math.max(...serie.map((s) => s[0]), 1), w = 400 / serie.length;
+    $('ic-graf').innerHTML = serie.map((s, i) => `<rect x="${i * w + 1}" y="${140 - (s[0] / max) * 136}" width="${Math.max(1, w - 2)}" height="${(s[0] / max) * 136}" fill="var(--brand)"/><rect x="${i * w + 1}" y="${140 - (s[1] / max) * 136}" width="${Math.max(1, w - 2)}" height="${(s[1] / max) * 136}" fill="#9aa4ad"/>`).join('');
+  }
+  form.addEventListener('input', calcular); form.addEventListener('change', calcular); calcular();
+</script>

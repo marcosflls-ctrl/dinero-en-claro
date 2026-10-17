@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { datosMercados, pct } from '../../lib/mercados';
+const m = datosMercados();
+const titulo = 'Calculadora de depósitos y cuentas remuneradas';
+const descripcion = 'Calcula los intereses de un depósito a plazo fijo o de una cuenta remunerada: lo que te paga el banco, la retención de Hacienda y lo que te queda limpio.';
+const url = `${SITE.url}/ahorro/calculadora-depositos/`;
+const preguntas = [
+  { q: '¿Qué es la TAE?', a: 'La Tasa Anual Equivalente es la rentabilidad en un año teniendo en cuenta cada cuánto se pagan los intereses. Sirve para comparar productos entre sí. El TIN es el tipo nominal, sin ese efecto.' },
+  { q: '¿Cuánto me retiene Hacienda?', a: 'El banco retiene el 19 % de los intereses al pagártelos. En la declaración de la renta se ajusta según la escala del ahorro: un 19 % hasta 6.000 € de rendimientos del ahorro en el año, un 21 % de 6.000 a 50.000 € y más por encima.' },
+  { q: '¿Está garantizado mi dinero?', a: 'Los depósitos y las cuentas en bancos españoles están cubiertos por el Fondo de Garantía de Depósitos hasta 100.000 € por persona y entidad. Si el banco es extranjero, la garantía es la del fondo de su país.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Ahorro', item: `${SITE.url}/ahorro/` },
+    { '@type': 'ListItem', position: 3, name: titulo, item: url } ] },
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: titulo, url, applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: 'es-ES', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: preguntas.map((p) => ({ '@type': 'Question', name: p.q, acceptedAnswer: { '@type': 'Answer', text: p.a } })) },
+];
+---
+<Base title={titulo} description={descripcion} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/ahorro/">Ahorro</a></nav>
+  <article class="pagina">
+    <h1>{titulo}</h1>
+    <p class="lead">Escribe lo que vas a depositar, la TAE y el plazo, y verás los intereses que te paga el banco, lo que retiene Hacienda y lo que te queda.</p>
+    <div class="calc">
+      <form id="calc-dep" novalidate>
+        <label class="campo"><span>Dinero que depositas</span><span class="u"><input name="capital" type="number" min="0" step="1000" value="20000" /><i>€</i></span></label>
+        <label class="campo"><span>TAE</span><span class="u"><input name="tae" type="number" step="0.05" value="2.5" /><i>%</i></span>{m && <small class="muted">Como referencia, el tipo de depósito del BCE está en el {pct(m.bce.deposito.valor)}.</small>}</label>
+        <label class="campo"><span>Plazo</span><span class="u"><input name="meses" type="number" min="1" max="120" value="12" /><i>meses</i></span></label>
+        <label class="campo"><span>Tu tipo en la base del ahorro</span>
+          <select name="irpf"><option value="19">19 % (intereses del año hasta 6.000 €)</option><option value="21">21 % (de 6.000 a 50.000 €)</option><option value="23">23 % (de 50.000 a 200.000 €)</option></select>
+        </label>
+      </form>
+      <section class="res" aria-live="polite">
+        <h2 class="etq">Intereses netos</h2>
+        <p class="cifra" id="d-neto">—</p>
+        <p class="sub" id="d-sub"></p>
+        <table class="desglose"><tbody>
+          <tr><th scope="row">Intereses brutos</th><td id="d-bruto">—</td></tr>
+          <tr><th scope="row">Retención al cobrar (19 %)</th><td id="d-ret">—</td></tr>
+          <tr><th scope="row">Ajuste en la renta</th><td id="d-ajuste">—</td></tr>
+          <tr class="total"><th scope="row">Te quedas</th><td id="d-neto2">—</td></tr>
+        </tbody></table>
+        <p class="muted small" id="d-fgd"></p>
+      </section>
+    </div>
+    <p class="aviso-inv">Cálculo orientativo. No es una recomendación de ningún producto ni entidad. Comprueba en el documento del banco si hay condiciones (nómina, permanencia, comisiones) y si la TAE es solo promocional.</p>
+    <Compartir title={titulo} url={url} />
+    <section class="prose">
+      <h2>Depósito o cuenta remunerada</h2>
+      <p>En un <strong>depósito a plazo fijo</strong> dejas el dinero inmovilizado un tiempo a cambio de un tipo conocido; si lo sacas antes, suele haber penalización. En una <strong>cuenta remunerada</strong> el dinero está disponible, pero el banco puede cambiar el tipo cuando quiera y a menudo pone un límite de saldo o una duración promocional.</p>
+      <p>Otra opción con el tipo conocido de antemano son las <a href="/ahorro/letras-del-tesoro/">Letras del Tesoro</a>, que no tienen retención y están respaldadas por el Estado.</p>
+      <h2>Preguntas frecuentes</h2>
+      {preguntas.map((p) => (<><h3>{p.q}</h3><p>{p.a}</p></>))}
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+<script>
+  const form = document.getElementById('calc-dep') as HTMLFormElement;
+  const $ = (id: string) => document.getElementById(id)!;
+  const eur = (n: number) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  function calcular() {
+    const d = new FormData(form);
+    const n = (k: string) => parseFloat(String(d.get(k) ?? '').replace(',', '.')) || 0;
+    const capital = n('capital'), meses = Math.max(1, n('meses')), irpf = n('irpf') || 19;
+    const bruto = capital * (Math.pow(1 + n('tae') / 100, meses / 12) - 1);
+    const ret = bruto * 0.19, impuesto = bruto * irpf / 100, ajuste = impuesto - ret, neto = bruto - impuesto;
+    $('d-bruto').textContent = eur(bruto); $('d-ret').textContent = '− ' + eur(ret);
+    $('d-ajuste').textContent = ajuste > 0.005 ? '− ' + eur(ajuste) : '0,00 €';
+    $('d-neto').textContent = eur(neto); $('d-neto2').textContent = eur(neto);
+    $('d-sub').textContent = `En ${meses} ${meses === 1 ? 'mes' : 'meses'}: unos ${eur(neto / meses)} netos al mes.`;
+    $('d-fgd').textContent = capital > 100000 ? 'Ojo: el Fondo de Garantía de Depósitos cubre hasta 100.000 € por persona y entidad.' : 'Cubierto por el Fondo de Garantía de Depósitos (hasta 100.000 € por persona y entidad).';
+  }
+  form.addEventListener('input', calcular); form.addEventListener('change', calcular); calcular();
+</script>

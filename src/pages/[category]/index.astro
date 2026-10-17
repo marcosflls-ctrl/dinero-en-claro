@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import { CATEGORIES, SITE, type CategoryKey } from '../../config';
+import { getPublishedPosts } from '../../lib/posts';
+
+export function getStaticPaths() {
+  return Object.keys(CATEGORIES).map((category) => ({ params: { category } }));
+}
+const category = Astro.params.category as CategoryKey;
+const meta = CATEGORIES[category];
+const posts = (await getPublishedPosts()).filter((p) => p.data.category === category);
+const guias = posts.filter((p) => p.data.guia).sort((a, b) => a.data.orden - b.data.orden);
+const noticias = posts.filter((p) => !p.data.guia);
+
+const titulo = meta.titulo;
+const descripcion = meta.desc;
+
+// Herramientas y guías fijas de cada sección, que se enlazan arriba
+const destacados: Record<string, { href: string; texto: string }[]> = {
+  ahorro: [
+    { href: '/ahorro/letras-del-tesoro/', texto: 'Letras del Tesoro: rentabilidad de la última subasta y calculadora' },
+    { href: '/ahorro/calculadora-depositos/', texto: 'Calculadora de depósitos y cuentas remuneradas' },
+    { href: '/ahorro/calculadora-interes-compuesto/', texto: 'Calculadora de interés compuesto' },
+  ],
+  fondos: [{ href: '/fondos/comisiones/', texto: 'Cuánto te cuestan las comisiones de un fondo con los años' }],
+  bolsa: [
+    { href: '/bolsa/ibex-35-hoy/', texto: 'Ibex 35 hoy: cierre, evolución y rentabilidad del año' },
+    { href: '/bolsa/tipos-de-interes/', texto: 'Tipos de interés hoy: BCE, euríbor, Letras y bono a 10 años' },
+  ],
+  jubilacion: [{ href: '/jubilacion/calculadora-plan-de-pensiones/', texto: 'Calculadora del ahorro fiscal de un plan de pensiones' }],
+  impuestos: [{ href: '/impuestos/calculadora-impuestos-inversiones/', texto: 'Calculadora de impuestos de intereses, dividendos y ganancias' }],
+};
+const fijos = destacados[category] ?? [];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: meta.label, item: `${SITE.url}/${category}/` },
+  ],
+};
+---
+<Base title={titulo} description={descripcion.slice(0, 165)} jsonLd={jsonLd} image={`/img/portadas/${category}.webp`}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › {meta.label}</nav>
+  <h1>{titulo}</h1>
+  <p class="muted intro">{meta.desc}</p>
+  {fijos.length > 0 && (
+    <ul class="fijos">{fijos.map((f) => <li><a href={f.href}>{f.texto}</a></li>)}</ul>
+  )}
+
+
+  {guias.length > 0 && (
+    <section class="bloque">
+      <h2 class="titulo-bloque">Guías</h2>
+      <div class="lista-noticias">{guias.map((p) => <PostCard post={p} />)}</div>
+    </section>
+  )}
+
+  <section class="bloque">
+    {guias.length > 0 && <h2 class="titulo-bloque">Últimas noticias</h2>}
+    {noticias.length ? (
+      <div class="lista-noticias">
+        {noticias.map((p, i) => (
+          <>
+            <PostCard post={p} />
+            {i === 5 && <AdSlot />}
+          </>
+        ))}
+      </div>
+    ) : <p class="muted">Pronto publicaremos las primeras noticias de esta sección.</p>}
+  </section>
+</Base>
+<style>
+  h1 { font-size: clamp(2rem, 5vw, 2.75rem); margin: 4px 0 10px; max-width: 24ch; }
+  .intro { max-width: 68ch; margin: 0 0 32px; }
+  .bloque { margin-top: 44px; }
+  .aviso-manana { margin: 0 0 32px; }
+  .small.muted { max-width: 72ch; }
+  .fijos { list-style: none; padding: 0; margin: -12px 0 32px; border-top: 1px solid var(--rule); }
+  .fijos li { border-bottom: 1px solid var(--rule); padding: 10px 0; font-weight: 500; }
+  .otro-dato { font-weight: 500; margin: 0 0 12px; }
+</style>

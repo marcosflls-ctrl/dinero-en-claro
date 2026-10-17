@@ -1,0 +1,21 @@
+name: Banco de fotos (buscar candidatas)
+# Busca fotos con licencia libre en Wikimedia Commons y las sube a la rama «banco-candidatas» para revisarlas.
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  buscar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests pillow
+      - run: python scripts/banco_fotos.py buscar
+      - name: Subir candidatas a una rama aparte
+        run: |
+          cd banco_candidatas && git init -q -b banco-candidatas
+          git config user.name "banco-bot" && git config user.email "banco-bot@users.noreply.github.com"
+          git add . && git commit -qm "Candidatas [CF-Pages-Skip]"
+          git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" banco-candidatas

@@ -1,0 +1,101 @@
+---
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+const titulo = 'Calculadora del plan de pensiones: cuánto te ahorras en la renta';
+const descripcion = 'Calcula cuánto te devuelve Hacienda por aportar a un plan de pensiones en 2026, cuánto pagarás al rescatarlo y si te compensa según tu sueldo.';
+const url = `${SITE.url}/jubilacion/calculadora-plan-de-pensiones/`;
+const preguntas = [
+  { q: '¿Cuánto puedo aportar a un plan de pensiones en 2026?', a: 'Hasta 1.500 € al año a planes individuales. Con un plan de empleo de tu empresa, el límite conjunto sube hasta 10.000 €, aunque lo que puedes poner tú depende de lo que aporte la empresa. Si eres autónomo y tienes un plan de empleo simplificado, puedes aportar 4.250 € más, hasta 5.750 €. En todos los casos, lo que reduces no puede superar el 30 % de tus rendimientos netos del trabajo y de actividades económicas.' },
+  { q: '¿Cuánto me desgrava?', a: 'Lo que aportas se resta de tu base imponible general. El ahorro es aproximadamente lo aportado multiplicado por tu tipo marginal: con un sueldo medio, un 30 %; con sueldos altos, un 37 % o un 45 %.' },
+  { q: '¿Y al rescatarlo?', a: 'Lo que cobras del plan, tanto lo aportado como lo ganado, tributa como un sueldo en la base general del IRPF del año en que lo rescatas. Si lo cobras poco a poco cuando ya estás jubilado y tus ingresos son menores, pagarás a un tipo más bajo que el que te ahorraste. Las aportaciones anteriores a 2007 cobradas de una vez tienen una reducción del 40 %, con plazos.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Jubilación', item: `${SITE.url}/jubilacion/` },
+    { '@type': 'ListItem', position: 3, name: 'Calculadora del plan de pensiones', item: url } ] },
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora del plan de pensiones', url, applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: 'es-ES', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: preguntas.map((p) => ({ '@type': 'Question', name: p.q, acceptedAnswer: { '@type': 'Answer', text: p.a } })) },
+];
+---
+<Base title={titulo} description={descripcion} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/jubilacion/">Jubilación</a></nav>
+  <article class="pagina">
+    <h1>Plan de pensiones: cuánto te ahorras en la renta</h1>
+    <p class="lead">Aportar a un plan de pensiones reduce el IRPF de hoy, pero el dinero tributa al rescatarlo. Calcula las dos partes según tu sueldo y la pensión que esperas.</p>
+    <div class="calc">
+      <form id="calc-pp" novalidate>
+        <label class="campo"><span>Tu sueldo bruto anual</span><span class="u"><input name="bruto" type="number" min="0" step="1000" value="35000" /><i>€/año</i></span></label>
+        <label class="campo"><span>Lo que aportas al año</span><span class="u"><input name="aport" type="number" min="0" step="100" value="1500" /><i>€/año</i></span></label>
+        <fieldset class="campo">
+          <legend>Tipo de plan</legend>
+          <div class="segmentado">
+            <label><input type="radio" name="tipo" value="ind" checked /><span>Individual</span></label>
+            <label><input type="radio" name="tipo" value="emp" /><span>De empresa</span></label>
+            <label><input type="radio" name="tipo" value="aut" /><span>Autónomo</span></label>
+          </div>
+          <small class="muted">Individual: hasta 1.500 € al año. De empresa: hasta 10.000 € entre lo tuyo y lo de la empresa. Autónomo con plan simplificado: hasta 5.750 €.</small>
+        </fieldset>
+        <label class="campo"><span>Años aportando</span><span class="u"><input name="anios" type="number" min="1" max="45" value="20" /><i>años</i></span></label>
+        <label class="campo"><span>Pensión pública que esperas</span><span class="u"><input name="pension" type="number" min="0" step="1000" value="20000" /><i>€/año</i></span><small class="muted">Para estimar a qué tipo tributará el rescate, si lo cobras poco a poco ya jubilado.</small></label>
+      </form>
+      <section class="res" aria-live="polite">
+        <h2 class="etq">Ahorro en la renta cada año</h2>
+        <p class="cifra" id="p-ahorro">—</p>
+        <p class="sub" id="p-sub"></p>
+        <table class="desglose"><tbody>
+          <tr><th scope="row">Aportación que desgrava</th><td id="p-aport">—</td></tr>
+          <tr><th scope="row">Tu tipo marginal hoy</th><td id="p-marg">—</td></tr>
+          <tr><th scope="row">Ahorro total en {''}<span id="p-n">20</span> años</th><td id="p-total">—</td></tr>
+          <tr><th scope="row">Impuesto al rescatar lo aportado</th><td id="p-rescate">—</td></tr>
+          <tr class="total"><th scope="row">Ventaja fiscal neta</th><td id="p-neto">—</td></tr>
+        </tbody></table>
+        <p class="muted small">Sin contar la rentabilidad del plan, que también tributará al rescatarlo, ni sus comisiones.</p>
+      </section>
+    </div>
+    <p class="aviso-inv">Estimación con la escala general de referencia de 2026; la parte autonómica cambia algo en cada comunidad. No es asesoramiento fiscal ni una recomendación de contratar un plan.</p>
+    <Compartir title={titulo} url={url} />
+    <section class="prose">
+      <h2>Cuándo compensa</h2>
+      <p>El plan de pensiones sale a cuenta sobre todo si hoy tienes un tipo marginal alto y al jubilarte tendrás uno más bajo, y si rescatas el dinero poco a poco en lugar de todo de golpe. Si tu sueldo es bajo, el ahorro fiscal es pequeño y el dinero queda inmovilizado hasta la jubilación (salvo los supuestos de liquidez, como el paro de larga duración o, desde 2025, las aportaciones con más de diez años de antigüedad).</p>
+      <p>Mira también lo que se llevan las <a href="/fondos/comisiones/">comisiones de un plan</a> a lo largo de los años: pueden comerse buena parte de la ventaja fiscal.</p>
+      <h2>Preguntas frecuentes</h2>
+      {preguntas.map((p) => (<><h3>{p.q}</h3><p>{p.a}</p></>))}
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+<script>
+  import { cuota, marginal, ESCALA_GENERAL, LIMITE_PLAN_INDIVIDUAL, LIMITE_PLAN_EMPLEO, LIMITE_PLAN_AUTONOMO } from '../../lib/fiscal';
+  const form = document.getElementById('calc-pp') as HTMLFormElement;
+  const $ = (id: string) => document.getElementById(id)!;
+  const eur = (n: number) => Math.round(n).toLocaleString('es-ES', { useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  // Base general aproximada: bruto − Seguridad Social (6,5 %) − 2.000 € de gastos
+  const baseDe = (bruto: number) => Math.max(0, bruto * 0.935 - 2000);
+  function calcular() {
+    const d = new FormData(form);
+    const n = (k: string) => parseFloat(String(d.get(k) ?? '').replace(',', '.')) || 0;
+    const base = baseDe(n('bruto'));
+    const extra = d.get('tipo') === 'emp' ? LIMITE_PLAN_EMPLEO : d.get('tipo') === 'aut' ? LIMITE_PLAN_AUTONOMO : 0;
+    const limite = Math.min(LIMITE_PLAN_INDIVIDUAL + extra, n('bruto') * 0.3);
+    const aport = Math.min(n('aport'), limite);
+    const ahorro = cuota(base, ESCALA_GENERAL).total - cuota(base - aport, ESCALA_GENERAL).total;
+    const anios = Math.max(1, Math.round(n('anios')));
+    const totalAport = aport * anios;
+    // Rescate en 10 años como complemento de la pensión pública
+    const porAnio = totalAport / 10, bp = baseDe(n('pension'));
+    const rescate = 10 * (cuota(bp + porAnio, ESCALA_GENERAL).total - cuota(bp, ESCALA_GENERAL).total);
+    $('p-aport').textContent = eur(aport) + (n('aport') > limite ? ' (límite)' : '');
+    $('p-marg').textContent = marginal(base, ESCALA_GENERAL) + ' %';
+    $('p-ahorro').textContent = eur(ahorro);
+    $('p-sub').textContent = aport > 0 ? `Hacienda te devuelve o te deja de cobrar unos ${Math.round(ahorro / aport * 100)} céntimos por cada euro aportado.` : '';
+    $('p-n').textContent = String(anios);
+    $('p-total').textContent = eur(ahorro * anios);
+    $('p-rescate').textContent = '− ' + eur(rescate);
+    $('p-neto').textContent = eur(ahorro * anios - rescate);
+  }
+  form.addEventListener('input', calcular); form.addEventListener('change', calcular); calcular();
+</script>

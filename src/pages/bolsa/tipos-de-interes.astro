@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { datosMercados, fecha, pct } from '../../lib/mercados';
+import { datosEuribor } from '../../lib/euribor';
+import { lineas } from '../../lib/grafico';
+const m = datosMercados();
+const eb = datosEuribor();
+const titulo = 'Tipos de interés hoy: BCE, euríbor, Letras y bono a 10 años';
+const dep = m?.bce.deposito;
+const descripcion = m ? `El tipo de depósito del BCE está en el ${pct(dep!.valor)} desde el ${fecha(dep!.desde)}. Euríbor, Letras del Tesoro y bono español a 10 años, actualizados cada día.` : 'Los tipos de interés del BCE, el euríbor, las Letras del Tesoro y el bono a 10 años.';
+const url = `${SITE.url}/bolsa/tipos-de-interes/`;
+const s = m?.secundario;
+const svg = s ? lineas([
+  { nombre: 'Bono a 10 años', color: 'var(--brand)', puntos: s.bono_10a.historico },
+  { nombre: 'Letras a 1 año', color: '#c4881c', puntos: s.letra_1a.historico },
+], { dec: 1, sufijo: ' %' }) : '';
+const cambiosBce = m ? [...m.bce.deposito.cambios].reverse().slice(0, 8) : [];
+const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+  { '@type': 'ListItem', position: 2, name: 'Bolsa y mercados', item: `${SITE.url}/bolsa/` },
+  { '@type': 'ListItem', position: 3, name: 'Tipos de interés hoy', item: url } ] };
+---
+<Base title={titulo} description={descripcion.slice(0, 165)} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/bolsa/">Bolsa y mercados</a></nav>
+  <article class="pagina">
+    <h1>Tipos de interés hoy</h1>
+    {m && dep ? (
+      <>
+        <p class="lead">El Banco Central Europeo tiene el tipo de la facilidad de depósito en el <strong>{pct(dep.valor)}</strong> desde el {fecha(dep.desde)}. Es la referencia de lo que pagan los depósitos y las cuentas, y mueve el euríbor y la rentabilidad de las Letras del Tesoro.</p>
+        <div class="cifras">
+          <div><span class="k">BCE · depósito</span><span class="v">{pct(dep.valor)}</span><span class="d">desde el {fecha(dep.desde, false)}</span></div>
+          <div><span class="k">BCE · operaciones principales</span><span class="v">{pct(m.bce.principal.valor)}</span><span class="d">tipo oficial del dinero</span></div>
+          {eb && <div><span class="k">Euríbor a 12 meses</span><span class="v">{pct(eb.valor, 3)}</span><span class="d">{fecha(eb.fecha, false)}</span></div>}
+          <div><span class="k">Letras a 12 meses</span><span class="v">{pct(m.letras['12'].tipo, 3)}</span><span class="d">emisión del {fecha(m.letras['12'].fecha, false)}</span></div>
+          {s && <div><span class="k">Bono a 10 años</span><span class="v">{pct(s.bono_10a.valor, 3)}</span><span class="d">{fecha(s.bono_10a.fecha, false)}</span></div>}
+        </div>
+      </>
+    ) : <p class="lead">Los datos no están disponibles en este momento.</p>}
+
+    {svg && (
+      <>
+        <h2>La deuda española en el último año</h2>
+        <p>Rentabilidad en el mercado del bono a 10 años (<span style="color:var(--brand)">azul</span>) y de las Letras a 1 año (<span style="color:#c4881c">naranja</span>).</p>
+        <Fragment set:html={svg} />
+      </>
+    )}
+
+    {cambiosBce.length > 0 && (
+      <>
+        <h2>Últimos cambios del BCE</h2>
+        <div class="tabla-scroll"><table class="tabla">
+          <thead><tr><th scope="col">Desde</th><th scope="col">Facilidad de depósito</th></tr></thead>
+          <tbody>{cambiosBce.map((c) => <tr><th scope="row">{fecha(c.fecha)}</th><td>{pct(c.valor)}</td></tr>)}</tbody>
+        </table></div>
+      </>
+    )}
+    <p class="muted small">Fuentes: <a href="https://data.ecb.europa.eu/" rel="noopener" target="_blank">Banco Central Europeo</a> y <a href="https://www.bde.es/webbe/es/estadisticas/temas/tipos-interes.html" rel="noopener" target="_blank">Banco de España</a>. Se actualizan automáticamente cada día laborable.</p>
+    <Compartir title={titulo} url={url} />
+
+    <section class="prose">
+      <h2>Qué es cada tipo</h2>
+      <ul>
+        <li><strong>Facilidad de depósito del BCE:</strong> lo que el BCE paga a los bancos por dejarle dinero. Hoy es el tipo que más influye en lo que los bancos pagan por los depósitos.</li>
+        <li><strong>Operaciones principales de financiación:</strong> lo que cobra el BCE a los bancos por prestarles a una semana. Es el que se suele llamar «tipo oficial».</li>
+        <li><strong>Euríbor:</strong> el tipo al que se prestan los bancos entre sí. El euríbor a 12 meses es la referencia de la mayoría de las hipotecas variables.</li>
+        <li><strong>Letras del Tesoro:</strong> lo que paga el Estado por pedir prestado a corto plazo. Ver <a href="/ahorro/letras-del-tesoro/">la última subasta</a>.</li>
+        <li><strong>Bono a 10 años:</strong> lo que exige el mercado por prestar al Estado a largo plazo. La diferencia con el bono alemán es la «prima de riesgo».</li>
+      </ul>
+      <h2>Cómo te afectan</h2>
+      <p>Cuando el BCE sube los tipos, los depósitos y las Letras pagan más, pero las hipotecas variables y los préstamos se encarecen. Cuando los baja, ocurre lo contrario. Calcula lo que te daría hoy un <a href="/ahorro/calculadora-depositos/">depósito</a> o tu dinero a largo plazo con la <a href="/ahorro/calculadora-interes-compuesto/">calculadora de interés compuesto</a>.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>

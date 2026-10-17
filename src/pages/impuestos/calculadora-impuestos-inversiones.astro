@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { ESCALA_AHORRO } from '../../lib/fiscal';
+const titulo = 'Calculadora de impuestos de las inversiones 2026';
+const descripcion = 'Calcula cuánto pagas a Hacienda por intereses, dividendos y ganancias de fondos, acciones o ETF en 2026, cómo se compensan las pérdidas y cuánto te sale a pagar en la renta.';
+const url = `${SITE.url}/impuestos/calculadora-impuestos-inversiones/`;
+const eur = (n: number) => n === Infinity ? 'en adelante' : n.toLocaleString('es-ES', { useGrouping: 'always' } as any) + ' €';
+const preguntas = [
+  { q: '¿Cuánto se paga por las ganancias de la bolsa en 2026?', a: 'Las ganancias al vender acciones, fondos o ETF, los intereses y los dividendos forman la base del ahorro del IRPF. Se paga un 19 % por los primeros 6.000 €, un 21 % de 6.000 a 50.000 €, un 23 % de 50.000 a 200.000 €, un 27 % de 200.000 a 300.000 € y un 30 % por encima.' },
+  { q: '¿Se pueden compensar las pérdidas?', a: 'Sí. Las pérdidas al vender se restan primero de las ganancias del mismo año. Si sobran, pueden restarse de los intereses y dividendos hasta el 25 % de estos, y lo que quede se arrastra a los cuatro años siguientes. Pasa lo mismo al revés con los rendimientos negativos. Ojo con la regla de los dos meses: si recompras los mismos valores en ese plazo, la pérdida no se puede compensar todavía.' },
+  { q: '¿Qué es la retención?', a: 'Un adelanto del impuesto. Los bancos retienen el 19 % de los intereses y dividendos, y las gestoras el 19 % de la ganancia al reembolsar un fondo. Al vender acciones o ETF no hay retención. En la renta se calcula el impuesto definitivo y se descuenta lo ya retenido.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Impuestos', item: `${SITE.url}/impuestos/` },
+    { '@type': 'ListItem', position: 3, name: titulo, item: url } ] },
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: titulo, url, applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: 'es-ES', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: preguntas.map((p) => ({ '@type': 'Question', name: p.q, acceptedAnswer: { '@type': 'Answer', text: p.a } })) },
+];
+---
+<Base title={titulo} description={descripcion} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/impuestos/">Impuestos</a></nav>
+  <article class="pagina">
+    <h1>{titulo}</h1>
+    <p class="lead">Escribe lo que has ganado en el año con tus ahorros e inversiones. Te decimos cuánto impuesto corresponde, cuánto te han retenido ya y cuánto te saldrá a pagar o a devolver en la declaración.</p>
+    <div class="calc">
+      <form id="calc-imp" novalidate>
+        <label class="campo"><span>Intereses</span><span class="u"><input name="intereses" type="number" min="0" step="50" value="400" /><i>€</i></span><small class="muted">De cuentas, depósitos y Letras del Tesoro.</small></label>
+        <label class="campo"><span>Dividendos</span><span class="u"><input name="dividendos" type="number" min="0" step="50" value="300" /><i>€</i></span></label>
+        <label class="campo"><span>Ganancias al vender fondos</span><span class="u"><input name="gfondos" type="number" step="100" value="0" /><i>€</i></span><small class="muted">Si perdiste, ponlo en negativo. Los traspasos entre fondos no cuentan.</small></label>
+        <label class="campo"><span>Ganancias al vender acciones o ETF</span><span class="u"><input name="gacciones" type="number" step="100" value="2500" /><i>€</i></span><small class="muted">Si perdiste, ponlo en negativo.</small></label>
+        <label class="campo"><span>Letras del Tesoro vencidas</span><span class="u"><input name="letras" type="number" min="0" step="50" value="0" /><i>€</i></span><small class="muted">Lo ganado con Letras: no tiene retención.</small></label>
+      </form>
+      <section class="res" aria-live="polite">
+        <h2 class="etq" id="i-etq">En la renta</h2>
+        <p class="cifra" id="i-resultado">—</p>
+        <p class="sub" id="i-sub"></p>
+        <table class="desglose"><tbody>
+          <tr><th scope="row">Rendimientos del capital</th><td id="i-rcm">—</td></tr>
+          <tr><th scope="row">Ganancias y pérdidas</th><td id="i-gp">—</td></tr>
+          <tr><th scope="row">Base del ahorro</th><td id="i-base">—</td></tr>
+          <tr><th scope="row">Impuesto total</th><td id="i-cuota">—</td></tr>
+          <tr><th scope="row">Ya retenido</th><td id="i-ret">—</td></tr>
+        </tbody></table>
+        <p class="muted small" id="i-nota"></p>
+      </section>
+    </div>
+    <p class="aviso-inv">Cálculo orientativo para un año, sin pérdidas de años anteriores pendientes ni otros rendimientos del ahorro. No es asesoramiento fiscal.</p>
+    <Compartir title={titulo} url={url} />
+    <section class="prose">
+      <h2>La escala del ahorro en 2026</h2>
+      <div class="tabla-scroll"><table class="tabla">
+        <thead><tr><th scope="col">Base del ahorro</th><th scope="col">Tipo</th></tr></thead>
+        <tbody>{ESCALA_AHORRO.map(([hasta, tipo], i) => <tr><th scope="row">{i === 0 ? 'Hasta 6.000 €' : `De ${eur(ESCALA_AHORRO[i - 1][0])} a ${eur(hasta)}`}</th><td>{tipo} %</td></tr>)}</tbody>
+      </table></div>
+      <p>Es igual en todas las comunidades autónomas de régimen común. País Vasco y Navarra tienen sus propias escalas.</p>
+      <h2>Preguntas frecuentes</h2>
+      {preguntas.map((p) => (<><h3>{p.q}</h3><p>{p.a}</p></>))}
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+<script>
+  import { cuota, ESCALA_AHORRO } from '../../lib/fiscal';
+  const form = document.getElementById('calc-imp') as HTMLFormElement;
+  const $ = (id: string) => document.getElementById(id)!;
+  const eur = (n: number) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  function calcular() {
+    const d = new FormData(form);
+    const n = (k: string) => parseFloat(String(d.get(k) ?? '').replace(',', '.')) || 0;
+    let rcm = n('intereses') + n('dividendos') + n('letras');
+    let gp = n('gfondos') + n('gacciones');
+    // Compensación cruzada: un saldo negativo se resta del otro hasta el 25 % de este
+    let nota = '';
+    if (gp < 0 && rcm > 0) { const c = Math.min(-gp, rcm * 0.25); rcm -= c; gp += c; if (gp < 0) nota = `Te quedan ${eur(-gp)} de pérdidas para compensar en los cuatro años siguientes.`; else nota = 'Las pérdidas se han compensado con parte de los intereses y dividendos (hasta el 25 %).'; }
+    else if (gp < 0) nota = `Te quedan ${eur(-gp)} de pérdidas para compensar en los cuatro años siguientes.`;
+    const base = Math.max(0, rcm) + Math.max(0, gp);
+    const total = cuota(base, ESCALA_AHORRO).total;
+    const ret = 0.19 * (n('intereses') + n('dividendos') + Math.max(0, n('gfondos')));
+    const res = total - ret;
+    $('i-rcm').textContent = eur(rcm); $('i-gp').textContent = eur(gp); $('i-base').textContent = eur(base);
+    $('i-cuota').textContent = eur(total); $('i-ret').textContent = eur(ret);
+    $('i-etq').textContent = res >= 0 ? 'A pagar en la renta' : 'A devolver en la renta';
+    $('i-resultado').textContent = eur(Math.abs(res));
+    $('i-sub').textContent = base > 0 ? `Tipo medio sobre lo ganado: ${(total / base * 100).toLocaleString('es-ES', { maximumFractionDigits: 2 })} %.` : 'No hay base del ahorro que tribute.';
+    $('i-nota').textContent = nota;
+  }
+  form.addEventListener('input', calcular); calcular();
+</script>

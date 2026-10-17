@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../config';
+import { HERRAMIENTAS } from '../../data/herramientas';
+const titulo = 'Calculadoras de ahorro e inversión';
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: titulo, item: `${SITE.url}/calculadoras/` },
+  ],
+};
+---
+<Base title={titulo} description="Calculadoras gratuitas de ahorro e inversión: Letras del Tesoro, interés compuesto, depósitos, impuestos de las inversiones, planes de pensiones y comisiones de fondos." jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a></nav>
+  <h1>{titulo}</h1>
+  <p class="lead">Herramientas gratuitas, sin registro, con los datos oficiales y la fiscalidad de 2026. Son orientativas: no tienen en cuenta tu situación personal ni son una recomendación de inversión.</p>
+  <ul class="lista">
+    {HERRAMIENTAS.map((h) => (
+      <li><a href={h.href}><strong>{h.titulo}</strong><span>{h.texto}</span></a></li>
+    ))}
+  </ul>
+</Base>
+<style>
+  h1 { font-size: clamp(1.9rem, 4.6vw, 2.6rem); line-height: 1.15; margin: 4px 0 12px; }
+  .lead { font-size: 1.125rem; margin: 0 0 24px; }
+  .lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0 32px; border-top: 2px solid var(--ink); max-width: 960px; }
+  .lista a { display: flex; flex-direction: column; gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: var(--ink); }
+  .lista a:hover strong { color: var(--brand); text-decoration: underline; }
+  .lista strong { font-family: var(--serif); font-size: 1.1875rem; }
+  .lista span { color: var(--muted); font-size: .9375rem; }
+</style>

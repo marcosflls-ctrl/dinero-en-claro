@@ -1,0 +1,156 @@
+---
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { datosMercados, fecha, pct, num, letra, DIAS_PLAZO } from '../../lib/mercados';
+import { lineas } from '../../lib/grafico';
+
+const m = datosMercados();
+const L = m?.letras;
+const plazos = ['3', '6', '9', '12'] as const;
+const l12 = L?.['12'];
+const titulo = 'Letras del Tesoro: rentabilidad de la última subasta y calculadora';
+const descripcion = l12
+  ? `Las Letras del Tesoro a 12 meses emitidas el ${fecha(l12.fecha)} salieron al ${pct(l12.tipo, 3)}. Cuánto ganarías con tu dinero, cómo comprarlas y cómo tributan.`
+  : 'Rentabilidad de las Letras del Tesoro en la última subasta, calculadora de lo que ganarías y cómo comprarlas.';
+const url = `${SITE.url}/ahorro/letras-del-tesoro/`;
+const ej = l12 ? letra(l12.tipo, DIAS_PLAZO['12'], 10000) : null;
+const svg = L ? lineas(plazos.filter((p) => p === '12' || p === '6').map((p) => ({ nombre: `${p} meses`, color: p === '12' ? 'var(--brand)' : '#c4881c', puntos: L[p].historico.map((h) => [h.fecha, h.tipo] as [string, number]) })), { dec: 2, sufijo: ' %' }) : '';
+const datosCliente = L ? Object.fromEntries(plazos.map((p) => [p, L[p].tipo])) : {};
+
+const preguntas = [
+  { q: '¿Cuánto rentan las Letras del Tesoro ahora?', a: l12 ? `En la última subasta a 12 meses, con emisión el ${fecha(l12.fecha)}, el tipo marginal fue del ${pct(l12.tipo, 3)}. A 6 meses, del ${pct(L!['6'].tipo, 3)} (emisión del ${fecha(L!['6'].fecha)}). Es, aproximadamente, lo que se gana en un año comprándolas en la subasta y manteniéndolas hasta el vencimiento, antes de impuestos; quien pide sin fijar precio recibe el tipo medio, algo inferior.` : 'Consulta la tabla de esta página con la última subasta.' },
+  { q: '¿Las Letras del Tesoro pagan impuestos?', a: 'Sí. Lo que ganas (la diferencia entre lo que pagas y los 1.000 € que te devuelven) tributa en la base del ahorro del IRPF: un 19 % hasta 6.000 €, un 21 % hasta 50.000 € y más por encima. Las Letras no tienen retención, así que se declara y se paga en la renta del año en que vencen.' },
+  { q: '¿Cuál es la inversión mínima?', a: 'Cada Letra tiene un valor de 1.000 €, que es lo que te devuelven al vencimiento. Puedes pedir tantas como quieras, siempre en múltiplos de 1.000 €.' },
+  { q: '¿Dónde se compran?', a: 'Directamente al Tesoro, sin comisiones, con una Cuenta Directa en la web del Tesoro Público o en el Banco de España. También a través de un banco o un bróker, que pueden cobrar comisiones de compra y de custodia.' },
+  { q: '¿Qué pasa si necesito el dinero antes?', a: 'Puedes vender las Letras en el mercado secundario antes de que venzan, pero el precio depende de los tipos de ese momento: si han subido, puedes recuperar algo menos de lo invertido. Si las tienes en la Cuenta Directa, el Tesoro gestiona la venta con una comisión.' },
+  { q: '¿Son seguras?', a: 'Son deuda del Estado español a corto plazo, de los activos con menos riesgo que hay en España. No están cubiertas por el Fondo de Garantía de Depósitos porque no son un depósito: la garantía es el propio Estado.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Ahorro', item: `${SITE.url}/ahorro/` },
+    { '@type': 'ListItem', position: 3, name: 'Letras del Tesoro', item: url },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: preguntas.map((p) => ({ '@type': 'Question', name: p.q, acceptedAnswer: { '@type': 'Answer', text: p.a } })) },
+];
+---
+<Base title={titulo} description={descripcion.slice(0, 165)} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/ahorro/">Ahorro</a></nav>
+  <article class="pagina">
+    <h1>Letras del Tesoro: rentabilidad hoy</h1>
+    {l12 ? (
+      <p class="lead">En la última subasta, con emisión el {fecha(l12.fecha)}, el tipo marginal de las Letras a 12 meses fue del <strong>{pct(l12.tipo, 3)}</strong>{l12.anterior && <>, frente al {pct(l12.anterior.tipo, 3)} de la subasta anterior</>}. Con 10.000 € a ese tipo ganarías unos <strong>{num(ej!.ganancia, 0)} €</strong> en un año, antes de impuestos.</p>
+    ) : <p class="lead">Los datos de la última subasta no están disponibles en este momento.</p>}
+
+    {L && (
+      <div class="tabla-scroll">
+        <table class="tabla">
+          <thead><tr><th scope="col">Plazo</th><th scope="col">Tipo marginal</th><th scope="col">Emisión</th><th scope="col">Subasta anterior</th><th scope="col">Precio por Letra</th></tr></thead>
+          <tbody>
+            {plazos.map((p) => {
+              const x = L[p];
+              const precio = letra(x.tipo, DIAS_PLAZO[p]).precio;
+              return <tr><th scope="row">{p} meses</th><td><strong>{pct(x.tipo, 3)}</strong></td><td>{fecha(x.fecha)}</td><td>{x.anterior ? pct(x.anterior.tipo, 3) : '—'}</td><td>{num(precio, 2)} €</td></tr>;
+            })}
+          </tbody>
+        </table>
+      </div>
+    )}
+    <p class="muted small">Tipo marginal: el más alto aceptado en la subasta. Los particulares que piden sin fijar precio (petición no competitiva) reciben el tipo medio, que suele ser unas centésimas más bajo. Precio aproximado de una Letra de 1.000 € al tipo marginal. La fecha es la de emisión, unos días después de la subasta. Fuente: <a href="https://www.bde.es/webbe/es/estadisticas/temas/tipos-interes.html" rel="noopener" target="_blank">Banco de España</a>, con datos del Tesoro Público.</p>
+
+    <h2>Calcula lo que ganarías</h2>
+    <div class="calc">
+      <form id="calc-letras" novalidate>
+        <label class="campo"><span>Dinero que quieres invertir</span><span class="u"><input name="importe" type="number" min="1000" step="1000" value="10000" /><i>€</i></span><small class="muted">Se compran en Letras de 1.000 €: redondeamos a la baja.</small></label>
+        <fieldset class="campo">
+          <legend>Plazo</legend>
+          <div class="segmentado">
+            {plazos.map((p) => <label><input type="radio" name="plazo" value={p} checked={p === '12'} /><span>{p} meses</span></label>)}
+          </div>
+        </fieldset>
+        <label class="campo"><span>Tipo de interés</span><span class="u"><input name="tipo" type="number" step="0.001" value={l12 ? l12.tipo : 3} /><i>%</i></span><small class="muted">Se rellena con el tipo marginal de la última subasta del plazo elegido; el que te aplicarían suele ser unas centésimas menor. Puedes cambiarlo.</small></label>
+        <label class="campo"><span>Tu tipo en la base del ahorro</span>
+          <select name="irpf"><option value="19">19 % (ganancias del año hasta 6.000 €)</option><option value="21">21 % (de 6.000 a 50.000 €)</option><option value="23">23 % (de 50.000 a 200.000 €)</option></select>
+        </label>
+      </form>
+      <section class="res" aria-live="polite">
+        <h3 class="etq">Ganancia después de impuestos</h3>
+        <p class="cifra" id="l-neto">—</p>
+        <p class="sub" id="l-sub"></p>
+        <table class="desglose"><tbody>
+          <tr><th scope="row">Letras que compras</th><td id="l-num">—</td></tr>
+          <tr><th scope="row">Pagas hoy</th><td id="l-pagas">—</td></tr>
+          <tr><th scope="row">Te devuelven al vencimiento</th><td id="l-nominal">—</td></tr>
+          <tr><th scope="row">Ganancia antes de impuestos</th><td id="l-bruto">—</td></tr>
+          <tr><th scope="row">Impuesto en la renta</th><td id="l-irpf">—</td></tr>
+          <tr class="total"><th scope="row">Ganancia neta</th><td id="l-neto2">—</td></tr>
+        </tbody></table>
+      </section>
+    </div>
+    <p class="aviso-inv">Cálculo orientativo para Letras compradas en la subasta y mantenidas hasta su vencimiento, sin comisiones (como en la Cuenta Directa del Tesoro). No es una recomendación de inversión.</p>
+
+    {svg && (
+      <>
+        <h2>Cómo han ido las subastas</h2>
+        <p>Tipo marginal de las últimas subastas a 12 meses (<span style="color:var(--brand)">azul</span>) y a 6 meses (<span style="color:#c4881c">naranja</span>).</p>
+        <Fragment set:html={svg} />
+      </>
+    )}
+
+    <Compartir title={titulo} url={url} />
+
+    <section class="prose">
+      <h2>Qué son las Letras del Tesoro</h2>
+      <p>Son deuda que emite el Estado a corto plazo: a 3, 6, 9 o 12 meses. No pagan intereses cada cierto tiempo. Funcionan al descuento: pagas menos de 1.000 € por cada Letra y al vencimiento te devuelven 1.000 €. La diferencia es lo que ganas.</p>
+      <h2>Cómo se compran</h2>
+      <ul>
+        <li><strong>En la subasta, con la Cuenta Directa del Tesoro.</strong> Te das de alta en la web del Tesoro Público o en una sucursal del Banco de España y haces una petición antes de la subasta. No cobra comisiones por comprar ni por mantenerlas hasta el vencimiento.</li>
+        <li><strong>En la subasta, a través de un banco.</strong> El banco tramita tu petición, pero puede cobrar comisiones de compra y de custodia que se comen parte de la rentabilidad.</li>
+        <li><strong>En el mercado secundario.</strong> Un banco o un bróker te venden Letras ya emitidas, al precio de ese día.</li>
+      </ul>
+      <p>Los particulares suelen hacer peticiones <strong>no competitivas</strong>: no fijas un precio y se te adjudican al precio medio de la subasta. Las subastas se celebran cada mes: las de 3 y 9 meses un martes y las de 6 y 12 meses otro; el calendario lo publica el Tesoro a principios de año.</p>
+      <h2>Letras o depósito</h2>
+      <p>Un depósito está cubierto por el Fondo de Garantía de Depósitos hasta 100.000 € y te retienen el 19 % de los intereses al cobrarlos. Las Letras están respaldadas por el Estado, no tienen retención (pagas en la renta) y puedes venderlas antes de tiempo en el mercado. Compara con la <a href="/ahorro/calculadora-depositos/">calculadora de depósitos</a>.</p>
+
+      <h2>Preguntas frecuentes</h2>
+      {preguntas.map((p) => (<><h3>{p.q}</h3><p>{p.a}</p></>))}
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+
+<script is:inline type="application/json" id="datos-letras" set:html={JSON.stringify(datosCliente)}></script>
+<script>
+  const ultimos = JSON.parse(document.getElementById('datos-letras')!.textContent || '{}') as Record<string, number>;
+  const DIAS: Record<string, number> = { '3': 91, '6': 182, '9': 273, '12': 364 };
+  const form = document.getElementById('calc-letras') as HTMLFormElement;
+  const $ = (id: string) => document.getElementById(id)!;
+  const eur = (n: number, d = 2) => n.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  function calcular() {
+    const d = new FormData(form);
+    const plazo = String(d.get('plazo') || '12');
+    const tipo = parseFloat(String(d.get('tipo')).replace(',', '.')) || 0;
+    const n = Math.max(0, Math.floor((parseFloat(String(d.get('importe'))) || 0) / 1000));
+    const irpf = parseFloat(String(d.get('irpf'))) || 19;
+    const precio = 1000 / (1 + (tipo / 100) * DIAS[plazo] / 360);
+    const pagas = precio * n, nominal = 1000 * n, bruto = nominal - pagas, imp = bruto * irpf / 100, neto = bruto - imp;
+    $('l-num').textContent = String(n);
+    $('l-pagas').textContent = eur(pagas);
+    $('l-nominal').textContent = eur(nominal, 0);
+    $('l-bruto').textContent = eur(bruto);
+    $('l-irpf').textContent = '− ' + eur(imp);
+    $('l-neto').textContent = eur(neto);
+    $('l-neto2').textContent = eur(neto);
+    const meses = Number(plazo);
+    $('l-sub').textContent = n ? `En ${meses} meses. Rentabilidad neta equivalente a un ${((neto / pagas) * (365 / DIAS[plazo]) * 100).toLocaleString('es-ES', { maximumFractionDigits: 2 })} % anual.` : 'La inversión mínima es de 1.000 €.';
+  }
+  form.querySelectorAll<HTMLInputElement>('input[name=plazo]').forEach((r) => r.addEventListener('change', () => {
+    if (ultimos[r.value] != null) (form.elements.namedItem('tipo') as HTMLInputElement).value = String(ultimos[r.value]);
+  }));
+  form.addEventListener('input', calcular);
+  form.addEventListener('change', calcular);
+  calcular();
+</script>
