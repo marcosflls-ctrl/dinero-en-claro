@@ -26,6 +26,8 @@ concurrency:
 
 jobs:
   radar:
+    # No arranca hasta que exista la conexión con Claude (variable del repositorio)
+    if: vars.ANTHROPIC_FEDERATION_RULE_ID != ''
     runs-on: ubuntu-latest
     # Conexión con Claude por federación de identidades (sin claves), en el espacio de trabajo
     # «Dinero en Claro» de la consola de Claude. No son secretos: sin el token que firma GitHub
