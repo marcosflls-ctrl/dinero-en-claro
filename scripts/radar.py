@@ -252,6 +252,7 @@ informa del hecho (una nueva comisión, una sanción de la CNMV, un cambio de ti
 En neobancos y brókeres, di desde cuándo se aplica el cambio, a quién afecta y, si la fuente lo dice, qué fondo de \
 garantía protege el dinero (el español o el de otro país). Nunca digas cuál es «el mejor».
 - REDACCIÓN 100 % PROPIA: no copies frases ni la estructura del original.
+- APORTA ALGO PROPIO (obligatorio): además de explicar la noticia, añade al menos una de estas cosas, siempre sin inventar: (a) un ejemplo con cifras calculado a partir de los datos de la fuente (cuánto rinden 10.000 € a ese tipo, cuánto se lleva una comisión en 10 años), diciendo que es un ejemplo; (b) qué significa para quien ya tiene ese producto y qué puede revisar o vigilar, sin recomendar; (c) un enlace a la calculadora o guía nuestra que le deja calcular su caso. Si la noticia no permite aportar nada de esto, probablemente no le sirve al lector: descártala con {"skip": true, "reason": "sin valor propio: ..."}.
 - FUENTE OFICIAL: si la fuente es un medio y menciona un organismo o una norma (BCE, Banco de España, Tesoro, CNMV, \
 BOE, Agencia Tributaria, INE…), atribúyelo a ese organismo y enlázalo si tienes su enlace. Si no, "según publica X".
 - ANUNCIADO ≠ APROBADO: si es una propuesta o un cambio pendiente, dilo claramente y pon "pendiente": true.
