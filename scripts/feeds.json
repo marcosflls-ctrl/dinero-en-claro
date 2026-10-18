@@ -136,7 +136,27 @@
     {
       "name": "Estrategias de Inversión",
       "url": "https://www.estrategiasdeinversion.com/rss/rssnoticias.xml"
+    },
+    {
+      "name": "Funds People",
+      "url": "https://fundspeople.com/es/feed/",
+      "arranque": true
+    },
+    {
+      "name": "Expansión Fondos",
+      "url": "https://e00-expansion.uecdn.es/rss/mercados/fondos.xml",
+      "arranque": true
+    },
+    {
+      "name": "El Español Invertia Mercados",
+      "url": "https://www.elespanol.com/rss/invertia/mercados/",
+      "arranque": true
+    },
+    {
+      "name": "Finanzas.com",
+      "url": "https://www.finanzas.com/feed/",
+      "arranque": true
     }
   ],
-  "_nota_fuentes": "Adaptadas a ahorro e inversión el 17/10/2026. El 18/10/2026 se añaden Banco de España, HelpMyCash, Finantres y Estrategias de Inversión (neobancos, brókeres y ETF) y se quita El Confidencial Economía (su feed solo devolvía una entrada de enero). Todas probadas con el flujo «Probar fuentes»."
+  "_nota_fuentes": "Adaptadas a ahorro e inversión el 17/10/2026. El 18/10/2026 se añaden Banco de España, HelpMyCash, Finantres y Estrategias de Inversión (neobancos, brókeres y ETF) y se quita El Confidencial Economía (su feed solo devolvía una entrada de enero). Todas probadas con el flujo «Probar fuentes». El 18/10/2026 se añaden fuentes primarias y medios de mucho tráfico, probados con «Probar fuentes». «arranque»: la primera vez solo se apuntan sus entradas actuales, para no escribir sobre noticias antiguas."
 }
