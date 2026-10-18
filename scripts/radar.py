@@ -88,14 +88,20 @@ def save_state(state: dict) -> None:
 def existing_posts() -> list[dict]:
     """Títulos y direcciones de lo ya escrito, para evitar duplicados y sugerir enlaces internos."""
     out = []
-    for f in sorted(POSTS_DIR.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True):
+    for f in POSTS_DIR.glob("*.md"):
         txt = f.read_text(encoding="utf-8")
+        if re.search(r"^draft:\s*true", txt, re.M):
+            continue
         t = re.search(r'^title:\s*"?(.*?)"?\s*$', txt, re.M)
         c = re.search(r"^category:\s*(\w+)", txt, re.M)
         g = re.search(r"^guia:\s*true", txt, re.M)
+        d = re.search(r"^date:\s*(\S+)", txt, re.M)
         if t and c:
-            out.append({"title": t.group(1), "url": f"/{c.group(1)}/{f.stem}/", "guia": bool(g)})
-    return out
+            out.append({"title": t.group(1), "url": f"/{c.group(1)}/{f.stem}/", "guia": bool(g), "_fecha": d.group(1) if d else ""})
+    # lo más reciente primero: es lo que más se puede repetir (en GitHub todos los archivos tienen la misma fecha de
+    # modificación, así que se ordena por la fecha del artículo)
+    out.sort(key=lambda x: x["_fecha"], reverse=True)
+    return [{k: v for k, v in x.items() if k != "_fecha"} for x in out]
 
 
 def is_similar(title: str, known: list[str]) -> bool:
@@ -261,7 +267,10 @@ QUÉ SE DESCARTA ({"skip": true, "reason": "..."}):
 general, operaciones corporativas, movimientos de un día de un valor, macroeconomía sin efecto en el ahorro, otros \
 países (salvo el BCE o la Reserva Federal cuando mueven los tipos o los mercados).
 - Nombramientos, trámites internos, correcciones de errores menores.
-- Lo que trata de lo mismo que un artículo ya publicado, salvo que aporte un dato nuevo relevante.
+- Lo que trata de lo mismo que un artículo ya publicado, salvo que aporte un dato nuevo relevante. \
+  Cuenta como repetición aunque el título sea distinto: el mismo informe, entrevista o reportaje contado por \
+otro medio (por ejemplo, el mismo reportaje de Bloomberg o las mismas declaraciones de un directivo), o un \
+detalle secundario de una noticia ya publicada. Revisa sobre todo los primeros de la lista, que son los más recientes.
 - Opiniones, previsiones sin datos, rumores y contenido promocional de una entidad.
 
 LONGITUD: un dato, 250-400 palabras; un cambio con condiciones, 500-900. Nunca rellenes.
@@ -334,7 +343,7 @@ def get_client():
 def write_article(item: dict, source_text: str, oficiales: list[str], posts: list[dict]) -> dict | None:
     client = get_client()
     refresh_github_identity()
-    related = "\n".join(f"- {'[GUÍA] ' if p['guia'] else ''}{p['title']} → {p['url']}" for p in posts[:80]) or "(ninguno aún)"
+    related = "\n".join(f"- {'[GUÍA] ' if p['guia'] else ''}{p['title']} → {p['url']}" for p in posts[:150]) or "(ninguno aún)"
     hoy = datetime.now(MADRID).date().isoformat()
     user = (
         f"HOY ES: {hoy}\n"
@@ -434,6 +443,11 @@ def main() -> int:
     cfg = json.loads(FEEDS_FILE.read_text(encoding="utf-8"))
     state = load_state()
     posts = existing_posts()
+    # también los borradores de ejecuciones anteriores que aún esperan aprobación (no están publicados)
+    vistos_urls = {x["url"] for x in posts}
+    for e in reversed(state.get("escritos", [])):
+        if e["url"] not in vistos_urls:
+            posts.insert(0, e)
 
     print("Buscando novedades…")
     url_forzada = (args.url or os.environ.get("RADAR_URL", "")).strip()
@@ -486,7 +500,12 @@ def main() -> int:
         if data:
             p = save_post(data, item)
             written.append(p)
-            posts.insert(0, {"title": data["title"], "url": f"/{data['category']}/{p.stem}/", "guia": False})
+            nuevo = {"title": data["title"], "url": f"/{data['category']}/{p.stem}/", "guia": False}
+            posts.insert(0, nuevo)
+            # se recuerda en la memoria del robot, que se guarda en main, para que la próxima ejecución lo vea
+            # aunque el borrador aún no se haya aprobado
+            state.setdefault("escritos", []).append(nuevo)
+            state["escritos"] = state["escritos"][-80:]
             print(f"  ✓ {p.relative_to(ROOT)}")
 
     save_state(state)
