@@ -133,7 +133,17 @@
   "https://www.expansion.com/mercados/2026/10/18/6ad28dfce5fdea0d1d8b45a5.html",
   "https://www.expansion.com/ahorro/2026/10/18/6ad536c0468aebea578b4573.html",
   "https://www.expansion.com/ahorro/2026/10/18/6ad534ad468aebab728b4576.html",
-  "https://www.expansion.com/economia/2026/10/18/ceoe-pide-partidos-ahorro-costes-energeticos-25-000-millones.html"
+  "https://www.expansion.com/economia/2026/10/18/ceoe-pide-partidos-ahorro-costes-energeticos-25-000-millones.html",
+  "https://cincodias.elpais.com/mercados-financieros/2026-10-19/los-inversores-huyen-de-los-centros-de-datos-la-deuda-se-hunde-y-las-salidas-a-bolsa-se-cancelan.html",
+  "https://cincodias.elpais.com/companias/2026-10-19/del-bosque-frances-a-la-rioja-el-proceso-artesanal-de-bodegas-muga-para-fabricar-sus-propias-barricas-y-depositos.html",
+  "https://www.europapress.es/economia/bolsa-00348/noticia-ibex-35-ahonda-caida-media-sesion-acerca-19000-puntos-20261019122215.html",
+  "https://finantresnoticias.com/depositos/bluor-bank/",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21773",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21774",
+  "https://www.expansion.com/mercados/cronica-bolsa/2026/10/19/6ad5b041468aeb505d8b456f.html",
+  "https://www.expansion.com/mercados/2026/10/19/6ad5dafee5fdeaa7358b4593.html",
+  "https://www.expansion.com/mercados/2026/10/19/6ad5be36468aebdc3e8b457f.html",
+  "https://www.expansion.com/inversion/2026/10/19/6ad5e235e5fdea3b468b4583.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -152,7 +162,13 @@
   "los bajistas salen de la banca antes de los resultados",
   "en que fijarse para escoger el mejor producto",
   "do nde encontrar la oferta ma s completa de fondos de inversio n",
-  "ceoe pide a los partidos un ahorro en costes energe ticos de 25 000 millones"
+  "ceoe pide a los partidos un ahorro en costes energe ticos de 25 000 millones",
+  "resolucio n de 8 de octubre de 2026 de la direccio n general del tesoro y poli tica financiera por la que se publican los resultados de las subastas de letras del tesoro a seis y doce meses correspondientes a las emisiones de fecha 9 de octubre de 2026",
+  "resolucio n de 16 de octubre de 2026 de la direccio n general del tesoro y poli tica financiera de convocatoria de subasta de liquidez del tesoro pu blico operaciones de compraventa doble con vencimiento diario",
+  "el ibex tropieza y ve peligrar los 19 000 puntos",
+  "morgan stanley deja sin potencial a redeia por la presio n de la deuda",
+  "merlin acusa en el ibex el efecto coreweave",
+  "la cnmv multa con 1 05 millones a sapiens markets y a sus tres consejeros"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -164,6 +180,16 @@
   {
    "title": "Bono español a 10 años al 4,18 %: qué debe rendir una acción frente a él",
    "url": "/bolsa/bono-espanol-a-10-anos-al-4-18-que-debe-rendir-una-accion-frente-a-el/",
+   "guia": false
+  },
+  {
+   "title": "Subasta de Letras: el Tesoro adjudica a 2,769 % a 6 meses y 2,999 % a 12 meses",
+   "url": "/ahorro/subasta-de-letras-el-tesoro-adjudica-a-2-769-a-6-meses-y-2-999-a-12-meses/",
+   "guia": false
+  },
+  {
+   "title": "La CNMV multa con 1,05 millones a Sapiens Markets, la sociedad de Darwinex",
+   "url": "/bolsa/la-cnmv-multa-con-1-05-millones-a-sapiens-markets-la-sociedad-de-darwinex/",
    "guia": false
   }
  ]
