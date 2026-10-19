@@ -1,10 +1,12 @@
 ---
-title: "Caife: la nueva cuenta de inversión con 150.000 € de tope aún no se puede abrir"
+title: "Caife, la nueva cuenta de inversión: qué es, cómo tributa y cuándo se podrá abrir"
 description: "El Gobierno aprueba la Caife, una cuenta para invertir en empresas europeas y diferir impuestos. Límite de 150.000 €, pero aún no se puede contratar."
 date: 2026-10-19T19:58:18+00:00
 category: impuestos
 tags: ["caife", "cuenta-de-inversion", "irpf", "fiscalidad", "fondos-y-etf"]
 pendiente: true
+guia: true
+orden: 3
 image: /img/articulos/caife-la-nueva-cuenta-de-inversion-con-150-000-de-tope-aun-no-se-puede.webp
 imageAlt: "Portada: Caife: la nueva cuenta de inversión con 150.000 € de tope aún no se puede abrir"
 sources:
@@ -80,6 +82,8 @@ No hay nada que hacer todavía, pero conviene tener claras tres cosas:
 - Para repasar cómo tributan hoy intereses, dividendos y ganancias, tienes la guía sobre [cómo tributan tus ahorros e inversiones en 2026](/impuestos/como-tributan-ahorros-inversiones-2026/).
 
 Esta información no es una recomendación de inversión ni de contratar este producto.
+
+<!-- ACTUALIZAR: cuando se publique la orden ministerial (apertura de cuentas) y cuando la CNMV inscriba los primeros fondos y ETF elegibles. -->
 
 ## Qué conviene vigilar
 
