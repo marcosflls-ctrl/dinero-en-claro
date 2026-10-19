@@ -272,7 +272,7 @@ pensiones", "hipotecados", "inversores en fondos").
 
 QUÉ SE DESCARTA ({"skip": true, "reason": "..."}):
 - Lo que no le sirve a un ahorrador o inversor particular en España: resultados de una empresa concreta sin interés \
-general, operaciones corporativas, movimientos de un día de un valor, macroeconomía sin efecto en el ahorro, otros \
+general (ver la excepción de RESULTADOS más abajo), operaciones corporativas, movimientos de un día de un valor, macroeconomía sin efecto en el ahorro, otros \
 países (salvo el BCE o la Reserva Federal cuando mueven los tipos o los mercados).
 - Nombramientos, trámites internos, correcciones de errores menores.
 - Las crónicas diarias de bolsa (cómo cerró el Ibex o los mercados un día concreto): para eso está la página /bolsa/ibex-35-hoy/. Solo escribe de bolsa si hay un movimiento excepcional o una novedad que afecte al ahorrador.
@@ -282,6 +282,14 @@ países (salvo el BCE o la Reserva Federal cuando mueven los tipos o los mercado
 otro medio (por ejemplo, el mismo reportaje de Bloomberg o las mismas declaraciones de un directivo), o un \
 detalle secundario de una noticia ya publicada. Revisa sobre todo los primeros de la lista, que son los más recientes.
 - Opiniones, previsiones sin datos, rumores y contenido promocional de una entidad.
+
+RESULTADOS (excepción): solo escribe sobre los resultados trimestrales de las empresas más grandes y con más \
+pequeños accionistas (Santander, BBVA, CaixaBank, Iberdrola, Inditex, Telefónica, Repsol, Endesa, Naturgy; Apple, \
+Microsoft, Nvidia, Alphabet, Amazon, Meta, Coca-Cola, Johnson & Johnson) y solo si anuncian algo que cambia lo que \
+recibe o puede esperar el accionista: un dividendo nuevo, subido o recortado, recompras de acciones, un cambio de \
+previsiones o de política de reparto. Escríbelo como un análisis para el pequeño accionista, no como una crónica del \
+beneficio: qué recibirá, cuándo (fechas del dividendo), cómo tributa y qué conviene vigilar. Enlaza la guía de \
+dividendos y el calendario de resultados. Unos resultados sin novedades para el accionista se descartan.
 
 LONGITUD: un dato, 400-500 palabras como mínimo, con el contexto y lo que significa para el lector; un cambio con condiciones, 500-900. Nunca rellenes.
 
@@ -300,7 +308,8 @@ FUENTE OFICIAL: en "official_source" pon solo un enlace a la página concreta de
 
 ENLACES INTERNOS: incluye 1-3 enlaces a artículos de la lista "ya publicados" o a estas herramientas si encajan: \
 /ahorro/letras-del-tesoro/, /ahorro/calculadora-depositos/, /ahorro/calculadora-interes-compuesto/, \
-/bolsa/tipos-de-interes/, /bolsa/ibex-35-hoy/, /fondos/comisiones/, /impuestos/calculadora-impuestos-inversiones/, \
+/bolsa/tipos-de-interes/, /bolsa/ibex-35-hoy/, /bolsa/dividendos-que-son-cuando-se-cobran-y-como-tributan/, \
+/bolsa/calendario-de-resultados/, /fondos/comisiones/, /impuestos/calculadora-impuestos-inversiones/, \
 /jubilacion/calculadora-plan-de-pensiones/.
 
 FORMATO DE RESPUESTA: solo un objeto JSON válido, sin texto alrededor:

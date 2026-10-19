@@ -64,7 +64,9 @@
     "msci world",
     "s&p 500",
     "criptoactivos",
-    "banco de españa"
+    "banco de españa",
+    "recompra de acciones",
+    "dividendo a cuenta"
   ],
   "boe": {
     "_nota": "Sumario diario del BOE (datos abiertos). Solo se consideran las disposiciones de estos departamentos.",

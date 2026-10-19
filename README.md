@@ -120,6 +120,9 @@ están en `.github/workflows/publicar-bunny.yml`.
   ETF y fondos monetarios con fichas individuales y gráfico por años; la Caife pasa a guía viva.
   **Prevención AdSense** (tras el rechazo de Zona Leonida): el robot ya no escribe crónicas diarias de bolsa,
   hace noticias más completas y nunca pone «según X» en el título.
+- **20/10:** guía de dividendos (calendario de pagos del Ibex y de Wall Street, fiscalidad, doble retención y scrip) y
+  calendario de resultados (`calendario-de-resultados.md`, guía viva: **actualizar las fechas cada trimestre**).
+  El robot puede analizar los resultados de las grandes empresas, solo si cambian algo para el accionista.
 
 ## Probar en tu ordenador
 
