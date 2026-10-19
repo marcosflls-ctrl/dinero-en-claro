@@ -66,3 +66,11 @@ que solo acepta este repositorio y la rama `main`. Los identificadores están en
 | `TELEGRAM_AVISOS_CHAT_ID` | Secreto | Tu chat privado: avisos de borradores y fallos |
 | `TELEGRAM_CHAT` | Variable | El canal público, por ejemplo `@alfinaldemes` |
 | `MAX_PER_RUN` | Variable | Artículos máximos por pasada (2 por defecto) |
+
+## Novedades de octubre de 2026
+
+- **Fichas de fondos y ETF** (`/fondos/ficha/...`): 23 fichas (9 fondos indexados, 7 ETF y 7 monetarios) generadas desde `src/data/fondos.json` con la plantilla `src/pages/fondos/ficha/[slug].astro`. Las comparativas son tres guías: fondos indexados, ETF y fondos monetarios más populares. **Cada enero**: añadir el año cerrado a `rent` de cada fondo y a las tablas de las comparativas; revisar gastos y patrimonio cada trimestre.
+- **Guías nuevas**: ETF y su fiscalidad, tipos de fondos, documento de datos fundamentales y la Caife (actualizarla cuando salga la orden ministerial y se inscriban los primeros fondos elegibles).
+- **Robot**: noticias de 400-500 palabras como mínimo, sin «según X» en el título, sin crónicas diarias de bolsa y sin repetir lo que ya cubre una guía.
+- **AdSense**: revisión pedida el 18/10/2026.
+- Nunca recomendar productos: las comparativas explican cómo se eligieron los fondos y que no son un ranking.
