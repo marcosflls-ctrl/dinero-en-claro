@@ -52,6 +52,9 @@ Es un fondo de inversión que compra deuda a muy corto plazo de Estados y empres
 
 **No confundas** una cuenta remunerada con un fondo monetario. Algunas apps ofrecen las dos cosas en la misma pantalla y se parecen. Mira siempre si el producto es una «cuenta» o un «fondo».
 
+
+Si quieres ver cuánto han dado los más conocidos cada año y cuánto cobran, tienes la [comparativa de fondos monetarios](/fondos/fondos-monetarios-mas-populares-comparativa/).
+
 ## ¿Cuál encaja en cada caso?
 
 No hay una opción mejor para todos. Depende de para qué es el dinero:
