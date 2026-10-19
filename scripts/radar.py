@@ -275,13 +275,14 @@ QUÉ SE DESCARTA ({"skip": true, "reason": "..."}):
 general, operaciones corporativas, movimientos de un día de un valor, macroeconomía sin efecto en el ahorro, otros \
 países (salvo el BCE o la Reserva Federal cuando mueven los tipos o los mercados).
 - Nombramientos, trámites internos, correcciones de errores menores.
+- Lo que ya cubre una de nuestras guías sin aportar un dato nuevo importante: ese dato se añade a la guía, no se publica como noticia suelta. Google valora la web por su contenido propio, no por el número de noticias.
 - Lo que trata de lo mismo que un artículo ya publicado, salvo que aporte un dato nuevo relevante. \
   Cuenta como repetición aunque el título sea distinto: el mismo informe, entrevista o reportaje contado por \
 otro medio (por ejemplo, el mismo reportaje de Bloomberg o las mismas declaraciones de un directivo), o un \
 detalle secundario de una noticia ya publicada. Revisa sobre todo los primeros de la lista, que son los más recientes.
 - Opiniones, previsiones sin datos, rumores y contenido promocional de una entidad.
 
-LONGITUD: un dato, 250-400 palabras; un cambio con condiciones, 500-900. Nunca rellenes.
+LONGITUD: un dato, 400-500 palabras como mínimo, con el contexto y lo que significa para el lector; un cambio con condiciones, 500-900. Nunca rellenes.
 
 ESTRUCTURA: subtítulos ## con preguntas reales ("¿Cuánto rinden ahora?", "¿Cómo afecta a mi hipoteca?", "¿Cómo \
 tributa?"). Una tabla si hay cifras que comparar. Termina con lo siguiente que conviene vigilar (la próxima reunión del \
@@ -306,7 +307,7 @@ FORMATO DE RESPUESTA: solo un objeto JSON válido, sin texto alrededor:
   "skip": false,
   "category": "ahorro" | "fondos" | "bolsa" | "jubilacion" | "impuestos",
   "pendiente": true | false,
-  "title": "titular de 55-90 caracteres, concreto, con la cifra o fecha si existe",
+  "title": "titular de 55-90 caracteres, concreto, con la cifra o fecha si existe. Nunca pongas en el título el medio de origen ni «según X»: la atribución va en el texto",
   "card_title": "versión corta del titular para la imagen de portada, máximo 70 caracteres",
   "foto": "tema de la foto de portada que mejor encaja, de esta lista: {temas_foto}; o \"\" si ninguno encaja de verdad",
   "description": "entradilla de 130-160 caracteres que ya responde a la pregunta",
