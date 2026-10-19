@@ -17,6 +17,8 @@ sources:
     url: "https://www.justetf.com/it/asset-comparisons/etf-comparisons/IE00BK5BQT80-vanguard-ftse-all-world-acc-vs-IE00BFMXXD54-vanguard-sp500-acc"
   - name: "Red Inversora: VWCE, el ETF global más popular en España (actualizado el 11/09/2026)"
     url: "https://redinversora.com/blog/vwce-etf-espana"
+  - name: "Finect: los 5 ETF más comparados hasta agosto de 2026 (02/09/2026)"
+    url: "https://www.finect.com/usuario/eduardogarcia/articulos/los-5-etfs-mas-comparados-en-finect-hasta-agosto-de-2026"
   - name: "Finect: los 20 ETF más negociados del mundo, cuáles puedes comprar en España"
     url: "https://www.finect.com/usuario/eduardogarcia/articulos/los-20-etfs-mas-negociados-del-mundo-cuales-puedes-comprar-en-espana-y-cuales-no"
 image: /img/banco/monedas-euro-06.webp
@@ -100,6 +102,6 @@ Si usas un bróker extranjero, tendrás que declarar tú las ganancias y los div
 
 ## Cómo hemos elegido estos ETF
 
-Hemos incluido los ETF que más se citan en las guías españolas para invertir en índices (como el VWCE y el IWDA), los más grandes de Europa de cada índice y los que suelen aparecer en las listas de ETF más negociados disponibles en España. Ningún ETF ni gestora ha pagado por aparecer.
+Hemos incluido los ETF que más se citan en las guías españolas para invertir en índices (como el VWCE y el IWDA), los más grandes de Europa de cada índice y los que suelen aparecer en las listas de ETF más negociados disponibles en España. Como referencia, en el ranking de ETF más comparados de Finect entre enero y agosto de 2026 aparecían, además de dos ETC de oro, un ETF del MSCI ACWI y el ETF del S&P 500 de Vanguard en su versión de distribución (IE00B3XXRP09), que reparte dividendos en lugar de reinvertirlos. Ningún ETF ni gestora ha pagado por aparecer.
 
 *Información divulgativa, no una recomendación de inversión. Los datos pueden haber cambiado: compruébalos en el documento de datos fundamentales de cada ETF antes de invertir.*

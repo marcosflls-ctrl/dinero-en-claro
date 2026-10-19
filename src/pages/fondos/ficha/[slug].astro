@@ -14,12 +14,14 @@ export function getStaticPaths() {
 }
 const { f } = Astro.props as { f: Fondo };
 const esEtf = !!(f as any).etf;
+const esMon = !!(f as any).monetario;
 const ticker = (f as any).ticker as string | undefined, alias = (f as any).alias as string | null | undefined;
 const comparativa = esEtf
   ? { href: '/fondos/etf-mas-populares-comparativa/', nombre: 'Comparativa de ETF' }
+  : esMon ? { href: '/fondos/fondos-monetarios-mas-populares-comparativa/', nombre: 'Comparativa de fondos monetarios' }
   : { href: '/fondos/fondos-indexados-mas-populares-comparativa/', nombre: 'Comparativa de fondos indexados' };
-const fuenteRent = esEtf ? datos.fuenteEtf : datos.fuenteRent;
-const fuenteCostes = esEtf ? datos.fuenteEtf : datos.fuenteCostes;
+const fuenteRent = esEtf ? datos.fuenteEtf : esMon ? datos.fuenteMon : datos.fuenteRent;
+const fuenteCostes = esEtf ? datos.fuenteEtf : esMon ? datos.fuenteMon : datos.fuenteCostes;
 const idx = (datos.indices as Record<string, { nombre: string; texto: string; guia: string | null }>)[f.indice];
 const pct = (v: number, dec = 2) => v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + ' %';
 const signo = (v: number) => (v > 0 ? '+' : v < 0 ? '−' : '') + pct(Math.abs(v));
@@ -35,10 +37,10 @@ const peor = anios.reduce((a, b) => (b[1] < a[1] ? b : a));
 const svg = barras(anios, { ancho: 380, alto: 220 });
 const mismos = datos.fondos.filter((o) => o.indice === f.indice && o.slug !== f.slug);
 const otros = datos.fondos.filter((o) => o.indice !== f.indice);
-const otrosFondos = otros.filter((o) => !(o as any).etf), otrosEtf = otros.filter((o) => (o as any).etf);
+const otrosFondos = otros.filter((o) => !(o as any).etf && !(o as any).monetario), otrosEtf = otros.filter((o) => (o as any).etf), otrosMon = otros.filter((o) => (o as any).monetario);
 
-const titulo = `${f.corto}: comisiones, rentabilidad por años y datos clave`;
-const descripcion = `${esEtf ? `ETF ${ticker}` : f.nombre} (${f.isin}): qué índice copia, gastos del ${pct(f.ter)}, rentabilidad de cada año desde ${primero} y en qué se diferencia de ${esEtf ? 'otros ETF y fondos' : 'fondos parecidos'}.`;
+const titulo = esMon ? `${f.corto}: fondo monetario, rentabilidad por años y comisiones` : `${f.corto}: comisiones, rentabilidad por años y datos clave`;
+const descripcion = `${esEtf ? `ETF ${ticker}` : f.nombre} (${f.isin}): ${esMon ? 'fondo monetario, comisión' : 'qué índice copia, gastos'} del ${pct(f.ter)}, rentabilidad de cada año desde ${primero} y en qué se diferencia de ${esEtf ? 'otros ETF y fondos' : 'fondos parecidos'}.`;
 const url = `${SITE.url}/fondos/ficha/${f.slug}/`;
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -54,7 +56,7 @@ const jsonLd = {
   <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/fondos/">Fondos y ETF</a> › <a href={comparativa.href}>{comparativa.nombre}</a></nav>
   <article class="pagina">
     <h1>{f.corto}</h1>
-    <p class="lead">{f.nombre} es {esEtf ? 'un ETF' : 'un fondo indexado'} de {f.gestora} que copia el índice <strong>{idx.nombre}</strong>. Estos son sus datos principales y lo que ha hecho cada año, explicados sin recomendaciones: para que sepas qué es antes de comparar.</p>
+    <p class="lead">{esMon ? <>{f.nombre} es un <strong>fondo monetario</strong> de {f.gestora}: invierte en deuda en euros a muy corto plazo.</> : <>{f.nombre} es {esEtf ? 'un ETF' : 'un fondo indexado'} de {f.gestora} que copia el índice <strong>{idx.nombre}</strong>.</>} Estos son sus datos principales y lo que ha hecho cada año, explicados sin recomendaciones: para que sepas qué es antes de comparar.</p>
 
     <div class="cifras">
       <div><span class="k">{esEtf ? `Ticker · ISIN` : 'ISIN'}</span><span class="v isin">{esEtf ? ticker : f.isin}</span><span class="d">{esEtf ? f.isin : f.domicilio}</span></div>
@@ -90,11 +92,11 @@ const jsonLd = {
           {esEtf && <tr><th scope="row">Ticker</th><td>{ticker}{alias ? ` (Xetra). ${alias}` : ''}</td></tr>}
           <tr><th scope="row">Gestora</th><td>{f.gestora}</td></tr>
           <tr><th scope="row">Tipo</th><td>{f.tipo}</td></tr>
-          <tr><th scope="row">Índice</th><td>{idx.nombre}</td></tr>
+          <tr><th scope="row">{esMon ? 'Invierte en' : 'Índice'}</th><td>{idx.nombre}</td></tr>
           <tr><th scope="row">Domicilio</th><td>{f.domicilio}</td></tr>
           <tr><th scope="row">{f.terNota ? 'Comisión de gestión' : 'Gastos corrientes'}</th><td>{pct(f.ter)} al año</td></tr>
           {f.inicio && <tr><th scope="row">Inicio de esta clase</th><td>{fechaLarga(f.inicio)}</td></tr>}
-          <tr><th scope="row">Dividendos</th><td>Los reinvierte (clase de acumulación)</td></tr>
+          {!esMon && <tr><th scope="row">Dividendos</th><td>Los reinvierte (clase de acumulación)</td></tr>}
           <tr><th scope="row">Traspaso sin impuestos</th><td>{esEtf ? 'No: al ser un ETF, cambiarlo por otro obliga a vender y tributar' : 'Sí, como cualquier fondo de inversión'}</td></tr>
         </tbody>
       </table></div>
@@ -102,7 +104,7 @@ const jsonLd = {
 
       {mismos.length > 0 && (
         <>
-          <h2>Otros fondos y ETF que copian el mismo índice</h2>
+          <h2>{esMon ? 'Otros fondos monetarios' : 'Otros fondos y ETF que copian el mismo índice'}</h2>
           <div class="tabla-scroll"><table class="tabla">
             <thead><tr><th scope="col">Fondo</th><th scope="col">Gastos</th>{anios.map(([a]) => <th scope="col">{a}</th>)}</tr></thead>
             <tbody>
@@ -110,7 +112,7 @@ const jsonLd = {
               {mismos.map((o) => <tr><th scope="row"><a href={`/fondos/ficha/${o.slug}/`}>{o.corto}</a>{(o as any).etf ? ' · ETF' : ''}</th><td>{pct(o.ter)}</td>{anios.map(([a]) => <td>{(o.rent as any)[a] !== undefined ? signo((o.rent as any)[a]) : '—'}</td>)}</tr>)}
             </tbody>
           </table></div>
-          <p>Con el mismo índice dentro, las diferencias son de décimas al año y dependen sobre todo de los gastos. Cuánto suponen con el tiempo se ve en la <a href="/fondos/comisiones/">calculadora de comisiones</a>.</p>
+          <p>{esMon ? 'Los fondos monetarios invierten en activos muy parecidos, así que buena parte de la diferencia entre ellos la marcan las comisiones.' : 'Con el mismo índice dentro, las diferencias son de décimas al año y dependen sobre todo de los gastos.'} Cuánto suponen con el tiempo se ve en la <a href="/fondos/comisiones/">calculadora de comisiones</a>.</p>
         </>
       )}
 
@@ -130,11 +132,13 @@ const jsonLd = {
       </ul>
 
       <h2>Otras fichas</h2>
-      <h3>Fondos indexados</h3>
+      {otrosFondos.length > 0 && <h3>Fondos indexados</h3>}
       <ul>{otrosFondos.map((o) => <li><a href={`/fondos/ficha/${o.slug}/`}>{o.corto}</a> · {datos.indices[o.indice as keyof typeof datos.indices].nombre}</li>)}</ul>
-      <h3>ETF</h3>
+      {otrosMon.length > 0 && <h3>Fondos monetarios</h3>}
+      <ul>{otrosMon.map((o) => <li><a href={`/fondos/ficha/${o.slug}/`}>{o.corto}</a></li>)}</ul>
+      {otrosEtf.length > 0 && <h3>ETF</h3>}
       <ul>{otrosEtf.map((o) => <li><a href={`/fondos/ficha/${o.slug}/`}>{o.corto}</a> · {datos.indices[o.indice as keyof typeof datos.indices].nombre}</li>)}</ul>
-      <p>Todos juntos, en la <a href="/fondos/fondos-indexados-mas-populares-comparativa/">comparativa de fondos indexados</a> y en la <a href="/fondos/etf-mas-populares-comparativa/">comparativa de ETF</a>.</p>
+      <p>Todos juntos, en la <a href="/fondos/fondos-indexados-mas-populares-comparativa/">comparativa de fondos indexados</a>, en la <a href="/fondos/etf-mas-populares-comparativa/">de ETF</a> y en la <a href="/fondos/fondos-monetarios-mas-populares-comparativa/">de fondos monetarios</a>.</p>
 
       <p class="muted small">Información divulgativa, no una recomendación de inversión. Datos actualizados a {fechaLarga(datos.actualizado)}. Ninguna gestora ha pagado por aparecer.</p>
     </section>

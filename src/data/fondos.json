@@ -43,6 +43,11 @@
       "nombre": "MSCI Emerging Markets IMI",
       "texto": "Empresas grandes, medianas y también pequeñas de países emergentes como China, India, Taiwán, Corea del Sur o Brasil. Por incluir pequeñas empresas, tiene muchas más compañías que el MSCI Emerging Markets.",
       "guia": null
+    },
+    "monetario-eur": {
+      "nombre": "Mercado monetario en euros",
+      "texto": "No copia un índice: invierte en deuda a muy corto plazo en euros, como Letras del Tesoro, pagarés de empresas y depósitos, con vencimientos de pocos meses. Su rentabilidad sigue de cerca los tipos de interés del BCE.",
+      "guia": null
     }
   },
   "fondos": [
@@ -441,7 +446,176 @@
       "finect": null,
       "justetf": "https://www.justetf.com/es/asset-comparisons/etf-comparisons/IE00B53SZB19-ishares-nasdaq100-acc-vs-IE00BKM4GZ66-ishares-core-msci-em-imi-acc",
       "texto": "Es el ETF de emergentes más citado en España para completar un ETF del MSCI World, que no incluye estos países. Además de las grandes empresas, incluye pequeñas compañías. Gestiona unos 38.500 millones de euros y existe desde mayo de 2014."
+    },
+    {
+      "slug": "groupama-tresorerie",
+      "monetario": true,
+      "nombre": "Groupama Trésorerie IC",
+      "corto": "Groupama Trésorerie",
+      "isin": "FR0000989626",
+      "gestora": "Groupama Asset Management",
+      "indice": "monetario-eur",
+      "tipo": "Fondo monetario en euros",
+      "domicilio": "Francia",
+      "ter": 0.3,
+      "terNota": "Comisión de gestión según Quefondos. Los gastos corrientes totales pueden ser algo distintos: compruébalos en el documento de datos fundamentales.",
+      "patrimonio": 8251,
+      "inicio": null,
+      "rent": {
+        "2022": -0.04,
+        "2023": 3.39,
+        "2024": 3.98,
+        "2025": 2.39
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=FR0000989626",
+      "finect": null,
+      "texto": "Fue el fondo monetario más popular en Finect en el primer semestre de 2026 y aparece a menudo entre los fondos más comparados de la semana, sean del tipo que sean. Gestiona unos 8.250 millones de euros."
+    },
+    {
+      "slug": "axa-tresor-court-terme",
+      "monetario": true,
+      "nombre": "AXA Trésor Court Terme C",
+      "corto": "AXA Trésor Court Terme",
+      "isin": "FR0000447823",
+      "gestora": "BNP Paribas Asset Management Europe",
+      "indice": "monetario-eur",
+      "tipo": "Fondo monetario en euros",
+      "domicilio": "Francia",
+      "ter": 0.5,
+      "terNota": "Comisión de gestión según Quefondos. Los gastos corrientes totales pueden ser algo distintos: compruébalos en el documento de datos fundamentales.",
+      "patrimonio": 2121,
+      "inicio": null,
+      "rent": {
+        "2022": -0.04,
+        "2023": 3.39,
+        "2024": 3.9,
+        "2025": 2.39
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=FR0000447823",
+      "finect": null,
+      "texto": "Fue el segundo fondo monetario más popular en Finect en el primer semestre de 2026. Mantiene la marca AXA, pero según Finect lo gestiona ahora BNP Paribas Asset Management Europe. Es el más pequeño de esta comparativa, con unos 2.100 millones de euros."
+    },
+    {
+      "slug": "caixabank-monetario-rendimiento",
+      "monetario": true,
+      "nombre": "CaixaBank Monetario Rendimiento FI Estándar",
+      "corto": "CaixaBank Monetario Rendimiento",
+      "isin": "ES0138045002",
+      "gestora": "CaixaBank Asset Management",
+      "indice": "monetario-eur",
+      "tipo": "Fondo monetario en euros",
+      "domicilio": "España",
+      "ter": 0.95,
+      "terNota": "Comisión de gestión según Quefondos. Los gastos corrientes totales pueden ser algo distintos: compruébalos en el documento de datos fundamentales.",
+      "patrimonio": 19156,
+      "inicio": null,
+      "rent": {
+        "2022": -0.67,
+        "2023": 2.43,
+        "2024": 2.97,
+        "2025": 1.53
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=ES0138045002",
+      "finect": null,
+      "texto": "Es el mayor fondo monetario de esta comparativa, con unos 19.200 millones de euros, y el único español. Se puede contratar desde 6 € en la clase estándar. Su comisión de gestión, del 0,95 %, es la más alta de la comparativa, y por eso su rentabilidad de cada año queda por debajo de la del resto."
+    },
+    {
+      "slug": "la-francaise-tresorerie-isr",
+      "monetario": true,
+      "nombre": "La Française Trésorerie ISR R",
+      "corto": "La Française Trésorerie ISR",
+      "isin": "FR0000991390",
+      "gestora": "Crédit Mutuel Asset Management",
+      "indice": "monetario-eur",
+      "tipo": "Fondo monetario en euros",
+      "domicilio": "Francia",
+      "ter": 0.28,
+      "terNota": "Comisión de gestión según Quefondos. Los gastos corrientes totales pueden ser algo distintos: compruébalos en el documento de datos fundamentales.",
+      "patrimonio": 3478,
+      "inicio": null,
+      "rent": {
+        "2022": -0.17,
+        "2023": 3.33,
+        "2024": 3.82,
+        "2025": 2.26
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=FR0000991390",
+      "finect": null,
+      "texto": "Sigue criterios de inversión socialmente responsable (ISR), que es lo que indican las siglas de su nombre. Tiene la comisión de gestión más baja de esta comparativa, un 0,28 %, y gestiona unos 3.500 millones de euros."
+    },
+    {
+      "slug": "bnp-paribas-insticash-eur-3m",
+      "monetario": true,
+      "nombre": "BNP Paribas InstiCash EUR 3M Classic Cap",
+      "corto": "BNP Paribas InstiCash EUR 3M",
+      "isin": "LU0423950210",
+      "gestora": "BNP Paribas Asset Management",
+      "indice": "monetario-eur",
+      "tipo": "Fondo monetario en euros",
+      "domicilio": "Luxemburgo",
+      "ter": 0.35,
+      "terNota": "Comisión de gestión según Quefondos. Los gastos corrientes totales pueden ser algo distintos: compruébalos en el documento de datos fundamentales.",
+      "patrimonio": 15622,
+      "inicio": null,
+      "rent": {
+        "2022": -0.11,
+        "2023": 3.16,
+        "2024": 3.65,
+        "2025": 2.06
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=LU0423950210",
+      "finect": null,
+      "texto": "Es uno de los fondos monetarios más grandes de esta comparativa, con unos 15.600 millones de euros, y está domiciliado en Luxemburgo. Apareció entre los nueve fondos monetarios más populares de Finect en el primer semestre de 2026."
+    },
+    {
+      "slug": "axa-court-terme",
+      "monetario": true,
+      "nombre": "AXA Court Terme A",
+      "corto": "AXA Court Terme",
+      "isin": "FR0000288946",
+      "gestora": "BNP Paribas Asset Management Europe",
+      "indice": "monetario-eur",
+      "tipo": "Fondo monetario en euros",
+      "domicilio": "Francia",
+      "ter": 0.6,
+      "terNota": "Comisión de gestión según Quefondos. Los gastos corrientes totales pueden ser algo distintos: compruébalos en el documento de datos fundamentales.",
+      "patrimonio": 5228,
+      "inicio": null,
+      "rent": {
+        "2022": -0.03,
+        "2023": 3.35,
+        "2024": 3.83,
+        "2025": 2.31
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=FR0000288946",
+      "finect": null,
+      "texto": "Es el otro monetario de la marca AXA de esta comparativa, gestionado también por BNP Paribas Asset Management Europe según Finect. Gestiona unos 5.200 millones de euros."
+    },
+    {
+      "slug": "pictet-short-term-money-market-eur",
+      "monetario": true,
+      "nombre": "Pictet - Short-Term Money Market EUR P",
+      "corto": "Pictet Short-Term Money Market EUR",
+      "isin": "LU0128494191",
+      "gestora": "Pictet Asset Management",
+      "indice": "monetario-eur",
+      "tipo": "Fondo monetario en euros",
+      "domicilio": "Luxemburgo",
+      "ter": 0.3,
+      "terNota": "Comisión de gestión según Quefondos. Los gastos corrientes totales pueden ser algo distintos: compruébalos en el documento de datos fundamentales.",
+      "patrimonio": 13275,
+      "inicio": null,
+      "rent": {
+        "2022": -0.11,
+        "2023": 3.15,
+        "2024": 3.66,
+        "2025": 2.17
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=LU0128494191",
+      "finect": null,
+      "texto": "Lo gestiona la gestora suiza Pictet y está domiciliado en Luxemburgo. Con unos 13.300 millones de euros, es uno de los monetarios más grandes de esta comparativa."
     }
   ],
-  "fuenteEtf": "justETF, datos de octubre de 2026"
+  "fuenteEtf": "justETF, datos de octubre de 2026",
+  "fuenteMon": "Quefondos (VDOS), datos de julio a octubre de 2026; patrimonio, Finect (julio de 2026)"
 }
