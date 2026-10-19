@@ -88,6 +88,8 @@ Cuatro años son poco para un fondo de bolsa, y empezar justo antes de un mal a�
 
 Estos fondos se ofrecen en plataformas y bancos como MyInvestor, Openbank o Renta 4, según Red Inversora, con mínimos que dependen de cada plataforma (en algunas, desde 1 €). La lista de fondos y condiciones cambia, así que conviene comprobarla en cada una. Mencionarlas aquí no es una recomendación.
 
+Y si prefieres ETF, tienes la misma comparativa con los [ETF más populares](/fondos/etf-mas-populares-comparativa/).
+
 Antes de contratar cualquiera, lee su [documento de datos fundamentales](/fondos/documento-datos-fundamentales-fondo-como-leerlo/), donde están el riesgo y los costes oficiales. Y recuerda que puedes cambiar de un fondo a otro sin pagar impuestos con un [traspaso](/fondos/traspaso-de-fondos-sin-pagar-impuestos/).
 
 ## Cómo hemos elegido estos fondos

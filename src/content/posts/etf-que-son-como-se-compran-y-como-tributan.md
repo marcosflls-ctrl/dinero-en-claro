@@ -80,7 +80,7 @@ El nombre de un ETF parece un código, pero dice casi todo lo que hay que saber.
 - **USD:** la divisa en la que calcula su valor. No elimina el riesgo de cambio, que depende de las monedas de las empresas que tiene dentro.
 - **Acc:** de acumulación.
 
-Es solo un ejemplo para explicar el nombre, no una recomendación de ese producto.
+Es solo un ejemplo para explicar el nombre, no una recomendación de ese producto. Tienes sus datos y los de otros ETF conocidos en la [comparativa de los ETF más populares](/fondos/etf-mas-populares-comparativa/).
 
 ## Qué mirar antes de comprar uno
 
