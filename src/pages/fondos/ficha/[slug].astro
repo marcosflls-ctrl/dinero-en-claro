@@ -1,0 +1,133 @@
+---
+// Ficha de cada fondo indexado de la comparativa. Los datos están en src/data/fondos.json.
+import Base from '../../../layouts/Base.astro';
+import Siguenos from '../../../components/Siguenos.astro';
+import Compartir from '../../../components/Compartir.astro';
+import '../../../styles/calculadora.css';
+import { SITE } from '../../../config';
+import { barras } from '../../../lib/grafico';
+import datos from '../../../data/fondos.json';
+
+type Fondo = (typeof datos.fondos)[number];
+export function getStaticPaths() {
+  return datos.fondos.map((f) => ({ params: { slug: f.slug }, props: { f } }));
+}
+const { f } = Astro.props as { f: Fondo };
+const idx = (datos.indices as Record<string, { nombre: string; texto: string; guia: string | null }>)[f.indice];
+const pct = (v: number, dec = 2) => v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + ' %';
+const signo = (v: number) => (v > 0 ? '+' : v < 0 ? '−' : '') + pct(Math.abs(v));
+const euros = (v: number) => Math.round(v).toLocaleString('es-ES', { useGrouping: 'always' } as any) + ' €';
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const fechaLarga = (s: string) => { const [a, m, d] = s.split('-'); return `${+d} de ${MESES[+m - 1]} de ${a}`; };
+
+const anios = Object.entries(f.rent).sort(([a], [b]) => a.localeCompare(b)) as [string, number][];
+const primero = anios[0][0], ultimo = anios[anios.length - 1][0];
+const acumulado = anios.reduce((p, [, v]) => p * (1 + v / 100), 1);
+const mejor = anios.reduce((a, b) => (b[1] > a[1] ? b : a));
+const peor = anios.reduce((a, b) => (b[1] < a[1] ? b : a));
+const svg = barras(anios, { ancho: 380, alto: 220 });
+const mismos = datos.fondos.filter((o) => o.indice === f.indice && o.slug !== f.slug);
+const otros = datos.fondos.filter((o) => o.indice !== f.indice);
+
+const titulo = `${f.corto}: comisiones, rentabilidad por años y datos clave`;
+const descripcion = `${f.nombre} (${f.isin}): qué índice copia, gastos del ${pct(f.ter)}, rentabilidad de cada año desde ${primero} y en qué se diferencia de fondos parecidos.`;
+const url = `${SITE.url}/fondos/ficha/${f.slug}/`;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Fondos y ETF', item: `${SITE.url}/fondos/` },
+    { '@type': 'ListItem', position: 3, name: 'Comparativa de fondos indexados', item: `${SITE.url}/fondos/fondos-indexados-mas-populares-comparativa/` },
+    { '@type': 'ListItem', position: 4, name: f.corto, item: url },
+  ],
+};
+---
+<Base title={titulo} description={descripcion.slice(0, 168)} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/fondos/">Fondos y ETF</a> › <a href="/fondos/fondos-indexados-mas-populares-comparativa/">Comparativa de fondos indexados</a></nav>
+  <article class="pagina">
+    <h1>{f.corto}</h1>
+    <p class="lead">{f.nombre} es un fondo indexado de {f.gestora} que copia el índice <strong>{idx.nombre}</strong>. Estos son sus datos principales y lo que ha hecho cada año, explicados sin recomendaciones: para que sepas qué es antes de comparar.</p>
+
+    <div class="cifras">
+      <div><span class="k">ISIN</span><span class="v isin">{f.isin}</span><span class="d">{f.domicilio}</span></div>
+      <div><span class="k">{f.terNota ? 'Comisión de gestión' : 'Gastos corrientes'}</span><span class="v">{pct(f.ter)}</span><span class="d">al año</span></div>
+      {f.patrimonio && <div><span class="k">Patrimonio del fondo</span><span class="v">{f.patrimonio.toLocaleString('es-ES', { useGrouping: 'always' } as any)} M€</span><span class="d">todas las clases</span></div>}
+      <div><span class="k">{primero}-{ultimo}</span><span class="v">{signo((acumulado - 1) * 100)}</span><span class="d">acumulado</span></div>
+    </div>
+
+    <h2>Rentabilidad de cada año</h2>
+    <p>Rentabilidad en euros de cada año natural, después de gastos.</p>
+    <Fragment set:html={svg} />
+    <div class="tabla-scroll"><table class="tabla">
+      <thead><tr><th scope="col">Año</th><th scope="col">Rentabilidad</th><th scope="col">10.000 € a principios de {primero} serían…</th></tr></thead>
+      <tbody>{anios.map(([a, v], i) => {
+        const valor = anios.slice(0, i + 1).reduce((p, [, x]) => p * (1 + x / 100), 10000);
+        return <tr><th scope="row">{a}</th><td>{signo(v)}</td><td>{euros(valor)}</td></tr>;
+      })}</tbody>
+    </table></div>
+    <p class="muted small">Fuente: {datos.fuenteRent}. Cálculo de los 10.000 € de esta web, antes de impuestos. Su mejor año del periodo fue {mejor[0]} ({signo(mejor[1])}) y el peor, {peor[0]} ({signo(peor[1])}). Las rentabilidades pasadas no garantizan las futuras.</p>
+
+    <section class="prose">
+      <h2>Qué es este fondo</h2>
+      <p>{f.texto}</p>
+
+      <h2>En qué invierte</h2>
+      <p><strong>{idx.nombre}.</strong> {idx.texto} {idx.guia && <>Lo explicamos en <a href={idx.guia}>MSCI World y S&P 500: qué son</a>.</>}</p>
+
+      <h2>Datos clave</h2>
+      <div class="tabla-scroll"><table class="tabla datos">
+        <tbody>
+          <tr><th scope="row">Nombre completo</th><td>{f.nombre}</td></tr>
+          <tr><th scope="row">ISIN</th><td>{f.isin}</td></tr>
+          <tr><th scope="row">Gestora</th><td>{f.gestora}</td></tr>
+          <tr><th scope="row">Tipo</th><td>{f.tipo}</td></tr>
+          <tr><th scope="row">Índice</th><td>{idx.nombre}</td></tr>
+          <tr><th scope="row">Domicilio</th><td>{f.domicilio}</td></tr>
+          <tr><th scope="row">{f.terNota ? 'Comisión de gestión' : 'Gastos corrientes'}</th><td>{pct(f.ter)} al año</td></tr>
+          {f.inicio && <tr><th scope="row">Inicio de esta clase</th><td>{fechaLarga(f.inicio)}</td></tr>}
+          <tr><th scope="row">Dividendos</th><td>Los reinvierte (clase de acumulación)</td></tr>
+          <tr><th scope="row">Traspaso sin impuestos</th><td>Sí, como cualquier fondo de inversión</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted small">{f.terNota ? f.terNota + ' ' : ''}Gastos y patrimonio: {datos.fuenteCostes}. Comprueba los datos oficiales en el documento de datos fundamentales del fondo antes de invertir: te contamos <a href="/fondos/documento-datos-fundamentales-fondo-como-leerlo/">cómo leerlo</a>.</p>
+
+      {mismos.length > 0 && (
+        <>
+          <h2>Otros fondos que copian el mismo índice</h2>
+          <div class="tabla-scroll"><table class="tabla">
+            <thead><tr><th scope="col">Fondo</th><th scope="col">Gastos</th>{anios.map(([a]) => <th scope="col">{a}</th>)}</tr></thead>
+            <tbody>
+              <tr><th scope="row">{f.corto} (este)</th><td>{pct(f.ter)}</td>{anios.map(([a]) => <td>{signo((f.rent as any)[a])}</td>)}</tr>
+              {mismos.map((o) => <tr><th scope="row"><a href={`/fondos/ficha/${o.slug}/`}>{o.corto}</a></th><td>{pct(o.ter)}</td>{anios.map(([a]) => <td>{(o.rent as any)[a] !== undefined ? signo((o.rent as any)[a]) : '—'}</td>)}</tr>)}
+            </tbody>
+          </table></div>
+          <p>Con el mismo índice dentro, las diferencias son de décimas al año y dependen sobre todo de los gastos. Cuánto suponen con el tiempo se ve en la <a href="/fondos/comisiones/">calculadora de comisiones</a>.</p>
+        </>
+      )}
+
+      <h2>Cómo se contrata</h2>
+      <p>Se compra como cualquier fondo: en un banco o una plataforma de fondos que lo ofrezca, con el mínimo que fije cada una. Puedes cambiarlo por otro fondo sin pagar impuestos con un <a href="/fondos/traspaso-de-fondos-sin-pagar-impuestos/">traspaso</a>, y la ganancia tributa solo cuando reembolsas. Si dudas entre un fondo como este y un ETF, tienes las diferencias en <a href="/fondos/etf-que-son-como-se-compran-y-como-tributan/">ETF: qué son y cómo tributan</a>.</p>
+
+      <h2>Fuentes</h2>
+      <ul>
+        <li><a href={f.quefondos} rel="nofollow">Ficha en Quefondos (rentabilidad por años)</a></li>
+        {f.finect && <li><a href={f.finect} rel="nofollow">Ficha en Finect (gastos y patrimonio)</a></li>}
+        <li><a href="https://www.cnmv.es/portal/inversor/fondos-dfi" rel="nofollow">CNMV: el documento de datos fundamentales</a></li>
+      </ul>
+
+      <h2>Otras fichas</h2>
+      <ul>{otros.map((o) => <li><a href={`/fondos/ficha/${o.slug}/`}>{o.corto}</a> · {datos.indices[o.indice as keyof typeof datos.indices].nombre}</li>)}</ul>
+      <p>Todos juntos, en la <a href="/fondos/fondos-indexados-mas-populares-comparativa/">comparativa de los fondos indexados más populares</a>.</p>
+
+      <p class="muted small">Información divulgativa, no una recomendación de inversión. Datos actualizados a {fechaLarga(datos.actualizado)}. Ninguna gestora ha pagado por aparecer.</p>
+    </section>
+
+    <Compartir title={titulo} url={url} />
+    <Siguenos />
+  </article>
+</Base>
+
+<style>
+  .cifras .isin { font-size: 1.05rem; word-break: break-all; }
+  .datos td { white-space: normal; text-align: left; }
+</style>
