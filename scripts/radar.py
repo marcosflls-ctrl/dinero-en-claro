@@ -275,6 +275,7 @@ QUÉ SE DESCARTA ({"skip": true, "reason": "..."}):
 general, operaciones corporativas, movimientos de un día de un valor, macroeconomía sin efecto en el ahorro, otros \
 países (salvo el BCE o la Reserva Federal cuando mueven los tipos o los mercados).
 - Nombramientos, trámites internos, correcciones de errores menores.
+- Las crónicas diarias de bolsa (cómo cerró el Ibex o los mercados un día concreto): para eso está la página /bolsa/ibex-35-hoy/. Solo escribe de bolsa si hay un movimiento excepcional o una novedad que afecte al ahorrador.
 - Lo que ya cubre una de nuestras guías sin aportar un dato nuevo importante: ese dato se añade a la guía, no se publica como noticia suelta. Google valora la web por su contenido propio, no por el número de noticias.
 - Lo que trata de lo mismo que un artículo ya publicado, salvo que aporte un dato nuevo relevante. \
   Cuenta como repetición aunque el título sea distinto: el mismo informe, entrevista o reportaje contado por \
