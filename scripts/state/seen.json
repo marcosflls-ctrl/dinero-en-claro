@@ -143,7 +143,19 @@
   "https://www.expansion.com/mercados/cronica-bolsa/2026/10/19/6ad5b041468aeb505d8b456f.html",
   "https://www.expansion.com/mercados/2026/10/19/6ad5dafee5fdeaa7358b4593.html",
   "https://www.expansion.com/mercados/2026/10/19/6ad5be36468aebdc3e8b457f.html",
-  "https://www.expansion.com/inversion/2026/10/19/6ad5e235e5fdea3b468b4583.html"
+  "https://www.expansion.com/inversion/2026/10/19/6ad5e235e5fdea3b468b4583.html",
+  "https://cincodias.elpais.com/mercados-financieros/2026-10-19/la-cnmv-multa-con-un-millon-de-euros-a-la-sociedad-de-valores-del-exceo-del-banco-popular.html",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/el-ibex-35-cierra-en-los-19000-puntos-ante-la-n-961303",
+  "https://www.expansion.com/inversion/2026/10/19/6ad6540b468aebff388b459e.html",
+  "https://www.expansion.com/encuentros/kevin-koh-maier/2026/10/19/index.html",
+  "https://cincodias.elpais.com/mercados-financieros/2026-10-19/la-prima-de-riesgo-de-francia-repunta-tras-el-fin-de-semana-de-disturbios.html",
+  "https://cincodias.elpais.com/mercados-financieros/2026-10-19/la-bolsa-y-el-ibex-35.html",
+  "https://cincodias.elpais.com/companias/2026-10-19/la-minera-abenojar-tungsten-debutara-en-la-bolsa-britanica-valorada-en-hasta-730-millones.html",
+  "https://cincodias.elpais.com/companias/2026-10-19/el-principal-inquilino-de-merlin-la-tecnologica-coreweave-entra-en-riesgo-de-impago.html",
+  "https://cincodias.elpais.com/extras/construyendo-futuro-negocio-axa/2026-10-19/un-plan-de-pensiones-o-proteger-la-salud-el-mejor-regalo-de-navidad-de-las-pymes-para-sus-trabajadores.html",
+  "https://cincodias.elpais.com/fondos-y-planes/2026-10-19/pablo-gonzalez-proyecto-k-en-banca-privada-hay-muchas-comadrejas-que-viven-de-las-comisiones-del-cliente.html",
+  "https://www.europapress.es/economia/bolsa-00348/noticia-ibex-35-sostiene-19000-puntos-pese-caer-149-tensiones-francia-20261019180311.html",
+  "https://www.europapress.es/economia/finanzas-00340/noticia-cuenta-inversion-financia-europa-invertir-pagar-menos-impuestos-20261019181925.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -168,7 +180,17 @@
   "el ibex tropieza y ve peligrar los 19 000 puntos",
   "morgan stanley deja sin potencial a redeia por la presio n de la deuda",
   "merlin acusa en el ibex el efecto coreweave",
-  "la cnmv multa con 1 05 millones a sapiens markets y a sus tres consejeros"
+  "la cnmv multa con 1 05 millones a sapiens markets y a sus tres consejeros",
+  "inditex arrebata el trono a santander de mayor valor de la bolsa espan ola",
+  "que oportunidades y que riesgos supone la ia para los mercados",
+  "los disturbios inflaman la prima de riesgo de francia en ma ximos desde 2012",
+  "el ibex acelera las cai das y pierde un 1 49 ante la inestabilidad en francia",
+  "la minera abeno jar tungsten debutara en la bolsa brita nica valorada en hasta 730 millones",
+  "el principal inquilino de merlin la tecnolo gica coreweave entra en riesgo de impago",
+  "un plan de pensiones o proteger la salud el mejor regalo de navidad de las pymes para sus trabajadores",
+  "pablo gonza lez proyecto k en banca privada hay muchas comadrejas que viven de las comisiones del cliente",
+  "el ibex 35 sostiene los 19 000 puntos pese a caer un 1 49 por las tensiones en francia",
+  "cuenta de inversio n financia europa que es en que invertir y co mo pagar menos impuestos"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -190,6 +212,16 @@
   {
    "title": "La CNMV multa con 1,05 millones a Sapiens Markets, la sociedad de Darwinex",
    "url": "/bolsa/la-cnmv-multa-con-1-05-millones-a-sapiens-markets-la-sociedad-de-darwinex/",
+   "guia": false
+  },
+  {
+   "title": "El Ibex 35 cae un 1,49 % y cierra en 19.039 puntos por Francia",
+   "url": "/bolsa/el-ibex-35-cae-un-1-49-y-cierra-en-19-039-puntos-por-francia/",
+   "guia": false
+  },
+  {
+   "title": "Caife: la nueva cuenta de inversión con 150.000 € de tope aún no se puede abrir",
+   "url": "/impuestos/caife-la-nueva-cuenta-de-inversion-con-150-000-de-tope-aun-no-se-puede/",
    "guia": false
   }
  ]
