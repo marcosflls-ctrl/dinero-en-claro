@@ -91,6 +91,7 @@ const actualizado = d.updated && d.updated.getTime() - d.date.getTime() > 36e5;
       <aside class="sources">
         <strong>{d.sources.length === 1 ? 'Fuente' : 'Fuentes'}</strong>
         <ul>{d.sources.map((s: any) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.name}</a></li>)}</ul>
+        <p class="small muted">Cómo elegimos y comprobamos los datos: <a href="/metodologia/">metodología</a>.</p>
       </aside>
     )}
     {d.correcciones.length > 0 && (
