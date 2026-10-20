@@ -1,7 +1,8 @@
 ---
-title: "Bono español a 10 años al 4,18 %: qué debe rendir una acción frente a él"
+title: "Bono a 10 años al 4,18 % en subasta: qué debe rendir una acción"
 description: "El Tesoro colocó el 1 de octubre obligaciones a diez años al 4,176 %. Te explicamos qué prima de riesgo piden los inversores a una acción frente a ese bono."
 date: 2026-10-18T15:53:01+00:00
+updated: 2026-10-20T18:30:00+02:00
 category: bolsa
 tags: ["bonos", "bolsa", "prima-de-riesgo", "obligaciones-del-tesoro", "per"]
 pendiente: false
@@ -10,6 +11,8 @@ imageAlt: "Sede del Banco de España en Madrid"
 imageCredit: "Luis García / Wikimedia Commons (CC BY-SA 2.5)"
 imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Banco_de_Espa%C3%B1a_(Madrid)_02.jpg"
 sources:
+  - name: "BOE: resultados de las subastas de Obligaciones del Estado del 1 de octubre de 2026"
+    url: "https://www.boe.es/boe/dias/2026/10/14/pdfs/BOE-A-2026-21438.pdf"
   - name: "Estrategias de Inversión: Los bonos vuelven a competir con la Bolsa: ¿qué rentabilidad debe ofrecer ahora una acción para comp"
     url: "https://www.estrategiasdeinversion.com/analisis/bolsa-y-mercados/informes/los-bonos-vuelven-a-competir-con-la-bolsa-que-n-960413"
 ---
@@ -18,7 +21,7 @@ El bono español a diez años rinde alrededor del 4 % en octubre de 2026. Con es
 
 ## ¿A qué tipo se coloca ahora la deuda española a diez años?
 
-En la subasta del 1 de octubre de 2026, el Tesoro adjudicó 2.174,36 millones de euros en obligaciones a diez años. La rentabilidad media fue del 4,176 % y el tipo marginal, el del último tramo adjudicado, del 4,181 %. A mediados de octubre, el bono a diez años en el mercado secundario (donde se compran y venden los bonos ya emitidos) rendía en torno al 4 %.
+En la subasta del 1 de octubre de 2026, según la [resolución publicada en el BOE](https://www.boe.es/boe/dias/2026/10/14/pdfs/BOE-A-2026-21438.pdf), el Tesoro adjudicó 2.174,36 millones de euros en obligaciones a diez años. La rentabilidad media fue del 4,176 % y el tipo marginal, el del último tramo adjudicado, del 4,181 %. En el mercado secundario (donde se compran y venden los bonos ya emitidos), el bono a diez años rendía un 4,009 % el 16 de octubre, según el Banco de España. Lo actualizamos cada día en [tipos de interés hoy](/bolsa/tipos-de-interes/).
 
 Si lo mantienes hasta el vencimiento, la rentabilidad nominal es bastante previsible, siempre que el Estado cumpla sus pagos. Si vendes antes y los tipos de mercado han subido, el precio del bono habrá bajado y podrías perder dinero.
 
