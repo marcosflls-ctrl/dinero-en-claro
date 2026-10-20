@@ -13,10 +13,10 @@ sources:
     url: "https://www.cnmv.es/portal/inversor/fondos-dfi"
   - name: "CNMV: guía sobre fondos de inversión"
     url: "https://www.cnmv.es/portal/inversor/fondos-inversion"
-image: /img/banco/billetes-euro-01.webp
+image: /img/fotos/tipos-de-fondos-de-inversion.webp
 imageAlt: "Billetes de euro"
-imageCredit: "Friedrich Haag / Wikimedia Commons (CC BY-SA 4.0)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:One_stands_out_002_2025_01_01.jpg"
+imageCredit: "angelolucas / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/money-cash-bills-currency-496229/"
 ---
 
 **Un fondo de inversión junta el dinero de muchas personas y lo invierte según una política fijada de antemano.** Lo que tiene dentro decide casi todo: cuánto puede subir, cuánto puede caer y cuánto tiempo conviene dejar el dinero. La CNMV clasifica los fondos por su vocación inversora, y cada uno lleva un indicador de riesgo del 1 al 7 en su documento de datos fundamentales.

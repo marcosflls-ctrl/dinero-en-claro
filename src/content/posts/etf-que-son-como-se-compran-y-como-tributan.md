@@ -15,10 +15,10 @@ sources:
     url: "https://guiafiscal.es/inversiones/etf-fiscalidad-2026-guia/"
   - name: "CNMV: el documento de datos fundamentales para el inversor"
     url: "https://www.cnmv.es/portal/inversor/fondos-dfi"
-image: /img/banco/monedas-euro-05.webp
-imageAlt: "Monedas de euro sobre la bandera de la Unión Europea"
-imageCredit: "Lukasz Kobus - European Commission / Wikimedia Commons (CC BY 4.0)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Euro_coins_(07).jpg"
+image: /img/fotos/etf-que-son-como-se-compran-y-como-tributan.webp
+imageAlt: "Monedas de euro"
+imageCredit: "image4you / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/euro-coins-currency-cent-euro-cent-1353420/"
 ---
 
 **Un ETF es un fondo de inversión que cotiza en bolsa.** Por dentro funciona como un fondo, normalmente uno que copia un índice como el MSCI World o el S&P 500. Por fuera se compra y se vende como una acción, a través de un bróker y al precio de cada momento. Esa diferencia parece pequeña, pero cambia cómo se compra, qué cuesta y, sobre todo, cómo tributa en España.

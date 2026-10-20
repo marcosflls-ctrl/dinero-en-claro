@@ -6,10 +6,10 @@ category: bolsa
 guia: true
 orden: 3
 tags: [dividendos, ibex-35, acciones, scrip, doble-imposicion, sp-500]
-image: /img/banco/monedas-euro-06.webp
-imageAlt: "Monedas de euro sobre la bandera de la Unión Europea"
-imageCredit: "Lukasz Kobus - European Commission / Wikimedia Commons (CC BY 4.0)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Euro_coins_(02).jpg"
+image: /img/fotos/dividendos-que-son-cuando-se-cobran-y-como-tributan.webp
+imageAlt: "Monedas de euro"
+imageCredit: "stux / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/euro-coin-currency-europe-money-400287/"
 sources:
   - name: "BOE: Ley 35/2006 del IRPF (artículos 25, 46 y 66)"
     url: "https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764"

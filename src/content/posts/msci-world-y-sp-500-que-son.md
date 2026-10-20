@@ -6,10 +6,10 @@ category: bolsa
 guia: true
 orden: 2
 tags: [msci-world, sp-500, indices, fondos-indexados, etf]
-image: /img/banco/billetes-euro-07.webp
-imageAlt: "Billetes de 20 y 50 euros"
-imageCredit: "Markus Spiske from Forchheim, Bavaria Upper Franconia / Wikimedia Commons (CC BY 2.0)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:EURO_Cash_Money_Banknote_(49643807026).jpg"
+image: /img/fotos/msci-world-y-sp-500-que-son.webp
+imageAlt: "Billetes de euro"
+imageCredit: "fotoblend / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/banknotes-currency-finance-euro-7850299/"
 sources:
   - name: "MSCI: MSCI World Index"
     url: "https://www.msci.com/indexes/index/990100"

@@ -5,10 +5,10 @@ date: 2026-10-19T23:43:30+00:00
 category: ahorro
 tags: ["cuentas-remuneradas", "cajamar", "tae", "ahorro", "bizum"]
 pendiente: false
-image: /img/banco/monedas-euro-05.webp
-imageAlt: "Monedas de euro sobre la bandera de la Unión Europea"
-imageCredit: "Lukasz Kobus - European Commission / Wikimedia Commons (CC BY 4.0)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Euro_coins_(07).jpg"
+image: /img/fotos/cajamar-sube-al-2-27-tae-su-cuenta-online-para-nuevos-clientes.webp
+imageAlt: "Monedas de euro"
+imageCredit: "stux / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/euro-coin-currency-europe-money-400253/"
 sources:
   - name: "Expansión Ahorro: Cajamar mejora al 2,27% la retribución de su cuenta"
     url: "https://www.expansion.com/ahorro/2026/10/20/6ad69871e5fdea6e458b457b.html"

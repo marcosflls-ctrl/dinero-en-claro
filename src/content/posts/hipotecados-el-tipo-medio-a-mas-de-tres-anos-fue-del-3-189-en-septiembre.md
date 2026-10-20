@@ -5,10 +5,10 @@ date: 2026-10-20T11:37:31+00:00
 category: bolsa
 tags: ["hipotecas", "banco-de-espana", "tipos-de-interes", "boe", "hipotecados"]
 pendiente: false
-image: /img/banco/banco-de-espana-07.webp
-imageAlt: "Esquina de la sede del Banco de España en Madrid"
-imageCredit: "Sanva1959 / Wikimedia Commons (CC BY-SA 3.0 es)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Edificio_del_Banco_de_Espa%C3%B1a_1_Madrid.jpg"
+image: /img/fotos/hipotecados-el-tipo-medio-a-mas-de-tres-anos-fue-del-3-189-en-septiembre.webp
+imageAlt: "Fachada de un edificio bancario"
+imageCredit: "hslergr1 / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/national-bank-swiss-national-bank-371288/"
 sources:
   - name: "BOE: Resolución de 19 de octubre de 2026, del Banco de España, sobre tipos de interés oficiales de referencia del mercado hipotecario"
     url: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21866"
