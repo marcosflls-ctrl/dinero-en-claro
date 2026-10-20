@@ -1,5 +1,5 @@
 ---
-title: "Inflación al 3,8 % y dos subidas de tipos del BCE: qué cambia para ahorradores"
+title: "Inflación al 3,8 % y dos subidas del BCE: qué cambia para el ahorrador"
 description: "Lagarde recuerda que el BCE subió 0,25 puntos los tipos en junio y septiembre. La inflación de la eurozona fue del 3,8 % en septiembre."
 date: 2026-10-17T21:28:02+00:00
 category: bolsa

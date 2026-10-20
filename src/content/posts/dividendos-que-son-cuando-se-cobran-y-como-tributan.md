@@ -1,5 +1,5 @@
 ---
-title: "Dividendos: qué son, cuándo pagan las grandes empresas y cómo tributan en España"
+title: "Dividendos: qué son, cuándo se cobran y cómo tributan en España"
 description: "Cuándo reparten dividendo las grandes del Ibex y de Wall Street, qué fechas mirar para cobrarlo, cuánto se lleva Hacienda y cómo funciona el dividendo en acciones."
 date: 2026-10-20T00:10:00+02:00
 category: bolsa

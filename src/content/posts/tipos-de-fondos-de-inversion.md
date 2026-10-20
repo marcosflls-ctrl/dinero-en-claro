@@ -1,5 +1,5 @@
 ---
-title: "Tipos de fondos de inversión: monetarios, renta fija, mixtos y renta variable"
+title: "Tipos de fondos de inversión: monetarios, renta fija, mixtos y bolsa"
 description: "Qué tiene dentro cada tipo de fondo, cuánto riesgo suele tener y para qué plazo se piensa. Con la escala de riesgo del 1 al 7 que usa la CNMV."
 date: 2026-10-19T12:41:00+02:00
 category: fondos

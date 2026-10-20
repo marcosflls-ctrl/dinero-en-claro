@@ -1,5 +1,5 @@
 ---
-title: "Cómo leer el documento de datos fundamentales de un fondo antes de invertir"
+title: "Cómo leer el documento de datos fundamentales de un fondo"
 description: "El documento de datos fundamentales resume un fondo en tres páginas: riesgo, costes y escenarios. Qué mirar en cada apartado y cómo comprobar el fondo en la CNMV."
 date: 2026-10-19T12:42:00+02:00
 category: fondos

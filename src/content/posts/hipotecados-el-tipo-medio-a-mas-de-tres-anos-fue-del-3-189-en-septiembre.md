@@ -1,5 +1,5 @@
 ---
-title: "Hipotecados: el tipo medio a más de tres años fue del 3,189 % en septiembre"
+title: "Hipotecas: el tipo medio a más de tres años, 3,189 % en septiembre"
 description: "El Banco de España publica en el BOE los tipos hipotecarios de referencia: 3,189 % en España en septiembre y 3,600 % en la zona euro. Qué significan."
 date: 2026-10-20T11:37:31+00:00
 category: bolsa

@@ -1,5 +1,5 @@
 ---
-title: "Fondo de Garantía de Depósitos: qué te cubre, también en neobancos y brókeres"
+title: "Fondo de Garantía de Depósitos: qué cubre, también en neobancos"
 description: "El Fondo de Garantía cubre hasta 100.000 € por titular y entidad. Qué entra, qué no, y qué fondo te protege en un neobanco aunque tenga IBAN español."
 date: 2026-10-18T20:30:00+02:00
 category: ahorro

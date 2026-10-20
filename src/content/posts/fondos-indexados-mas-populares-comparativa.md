@@ -1,5 +1,5 @@
 ---
-title: "Fondos indexados más populares en España: comparativa de costes y rentabilidad año a año"
+title: "Fondos indexados más populares: costes y rentabilidad año a año"
 description: "Los fondos indexados que más se comparan y contratan en España, uno al lado del otro: índice, gastos, tamaño y lo que hicieron cada año de 2022 a 2025."
 date: 2026-10-19T13:00:00+02:00
 category: fondos

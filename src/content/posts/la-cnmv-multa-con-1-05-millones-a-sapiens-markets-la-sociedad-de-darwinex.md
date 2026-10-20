@@ -1,5 +1,5 @@
 ---
-title: "La CNMV multa con 1,05 millones a Sapiens Markets, la sociedad de Darwinex"
+title: "La CNMV multa con 1,05 millones a Sapiens Markets, de Darwinex"
 description: "La CNMV sanciona con 1,048 millones a Sapiens Markets (Darwinex) y a tres consejeros por tres infracciones muy graves, entre ellas la custodia del efectivo."
 date: 2026-10-19T13:17:00+00:00
 category: bolsa

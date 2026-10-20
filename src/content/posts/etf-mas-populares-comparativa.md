@@ -1,5 +1,5 @@
 ---
-title: "ETF más populares en España: comparativa de costes y rentabilidad año a año"
+title: "ETF más populares en España: costes y rentabilidad año a año"
 description: "VWCE, IWDA, CSPX y otros ETF de los que más se habla en España, uno al lado del otro: índice, gastos, tamaño, tickers y lo que hicieron cada año de 2022 a 2025."
 date: 2026-10-19T14:30:00+02:00
 category: fondos
