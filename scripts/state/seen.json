@@ -195,7 +195,21 @@
   "https://www.expansion.com/mercados/bitcoin/2026/10/20/6ad734a5e5fdea3b468b45ba.html",
   "https://www.expansion.com/empresas/seguros/2026/10/20/6ad73816e5fdea41568b4594.html",
   "https://cincodias.elpais.com/mercados-financieros/2026-10-20/la-prima-de-riesgo-francesa-rompe-la-barrera-de-los-150-puntos-tras-las-protestas.html",
-  "https://cincodias.elpais.com/fondos-y-planes/2026-10-20/la-cnmv-acelera-la-aprobacion-del-registro-de-fondos-para-la-cuenta-financia-europa.html"
+  "https://cincodias.elpais.com/fondos-y-planes/2026-10-20/la-cnmv-acelera-la-aprobacion-del-registro-de-fondos-para-la-cuenta-financia-europa.html",
+  "https://www.expansion.com/economia/2026/10/20/gobierno-aprobara-ano-subida-sueldo-funcionarios-5.html",
+  "https://elpais.com/economia/2026-10-20/revolut-sufre-una-caida-que-impide-a-sus-clientes-hacer-pagos-transferencias-y-acceder-a-sus-cuentas.html",
+  "https://cincodias.elpais.com/companias/2026-10-20/openai-acelera-su-ronda-antes-de-la-salida-a-bolsa-de-anthropic-y-en-plena-crisis-financiera-de-la-ia.html",
+  "https://cincodias.elpais.com/criptoactivos/2026-10-20/boerse-stuttgart-obtiene-la-licencia-para-operar-su-plataforma-de-activos-tokenizados.html",
+  "https://cincodias.elpais.com/companias/2026-10-20/tubos-reunidos-liquidara-la-sociedad-holding-que-cotiza-en-bolsa.html",
+  "https://cincodias.elpais.com/mercados-financieros/2026-10-20/arquia-relanza-su-deposito-a-12-meses-para-dinero-nuevo-con-una-rentabilidad-del-3-tae.html",
+  "https://elpais.com/economia/mis-derechos/2026-10-20/el-supremo-corrige-a-hacienda-los-padres-con-custodia-compartida-si-pueden-deducirse-el-irpf-de-la-pension-de-alimentos.html",
+  "https://www.europapress.es/economia/finanzas-00340/noticia-fallos-google-cloud-sacuden-pagos-app-revolut-lastran-otros-bancos-europeos-20261020124203.html",
+  "https://www.europapress.es/economia/finanzas-00340/noticia-prima-riesgo-francia-supera-150-puntos-basicos-interes-bono-10-anos-borde-20261020115323.html",
+  "https://www.europapress.es/economia/bolsa-00348/noticia-ibex-35-recupera-19000-remontar-028-alivio-crudo-rendimientos-bonos-20261020180653.html",
+  "https://www.europapress.es/economia/noticia-enagas-gana-204-millones-septiembre-avanza-objetivos-anuales-20261020082308.html",
+  "https://www.europapress.es/economia/fiscal-00347/noticia-supremo-permite-compatibilizar-minimo-hijos-beneficio-fiscal-alimentos-custodia-compartida-20261020140959.html",
+  "https://www.elmundo.es/economia/2026/10/20/6ad7866ce4d4d84f338b457f.html",
+  "https://www.elmundo.es/economia/dinero-inversion/2026/10/20/6ad737fcfc6c8327518b45b1.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -249,7 +263,21 @@
   "el precio del bitcoin hoy 20 de octubre el bitcoin asciende hasta los 81 707 39 do lares",
   "axa ofrece un 3 en su seguro de ahorro rentabiliza",
   "la prima de riesgo francesa rompe la barrera de los 150 puntos tras las protestas",
-  "la cnmv acelera la aprobacio n del registro de fondos para la cuenta financia europa"
+  "la cnmv acelera la aprobacio n del registro de fondos para la cuenta financia europa",
+  "el gobierno aprobara antes de fin de an o la subida de sueldo a los funcionarios del 5",
+  "revolut restablece sus servicios tras la cai da de google cloud que ha impedido a los clientes acceder a sus cuentas",
+  "openai acelera su ronda antes de la salida a bolsa de anthropic y en plena crisis financiera de la ia",
+  "boerse stuttgart obtiene la licencia para operar su plataforma de activos tokenizados",
+  "tubos reunidos liquidara la sociedad holding que cotiza en bolsa",
+  "arquia relanza su depo sito a 12 meses para dinero nuevo con una rentabilidad del 3 tae",
+  "el supremo corrige a hacienda los padres con custodia compartida si pueden deducirse el irpf de la pensio n de alimentos",
+  "los fallos de google cloud sacuden los pagos y la app de revolut y lastran a otros bancos europeos",
+  "la prima de riesgo de francia supera los 150 puntos ba sicos con el intere s del bono a 10 an os al borde del 5",
+  "el ibex 35 recupera los 19 000 tras remontar un 0 28 ante el alivio del crudo y los rendimientos de los bonos",
+  "enaga s gana 204 millones a septiembre y avanza hacia sus objetivos anuales",
+  "supremo permite compatibilizar el mi nimo por hijos y el beneficio fiscal por alimentos en custodia compartida",
+  "el milagro de un ceo venido de la inversio n co mo linkener paso de rozar la bancarrota a facturar ma s de cinco millones y levantar otros 7 5",
+  "google da por solucionado el fallo que ha provocado la cai da de los pagos de revolut durante seis horas y asegura que el neobanco se recuperara progresivamente"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -306,6 +334,11 @@
   {
    "title": "Financia Europa: solo 130 fondos españoles serían elegibles",
    "url": "/fondos/financia-europa-fondos-elegibles-cnmv-registro/",
+   "guia": false
+  },
+  {
+   "title": "Caída de Revolut por Google Cloud: qué revisar si eres cliente",
+   "url": "/ahorro/caida-revolut-google-cloud-que-revisar/",
    "guia": false
   }
  ]
