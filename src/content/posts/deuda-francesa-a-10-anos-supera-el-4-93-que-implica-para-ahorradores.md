@@ -36,7 +36,7 @@ La noticia añade que fuentes financieras no descartan compras de deuda sin anun
 
 Funcas calcula que el pago de intereses de la deuda española será un 50 % superior hasta 2030, cuando superaría los 60.000 millones de euros. Su experto Raymond Torres lo resume así: no anuncia por sí sola una crisis, pero hace concreto lo que antes parecía abstracto.
 
-Para quien ahorra, hay un efecto visible. Según la noticia, las tensiones en la deuda europea y la subida de tipos han llevado la rentabilidad de las Letras españolas a máximos de dos años. En las subastas del 6 al 13 de octubre, la Letra a doce meses quedó por encima del 3 %. Nosotros publicamos el resultado de una de ellas en [Subasta de Letras: el Tesoro adjudica a 2,769 % a 6 meses y 2,999 % a 12 meses](/ahorro/subasta-de-letras-el-tesoro-adjudica-a-2-769-a-6-meses-y-2-999-a-12-meses/).
+Para quien ahorra, hay un efecto visible. Según la noticia, las tensiones en la deuda europea y la subida de tipos han llevado la rentabilidad de las Letras españolas a máximos de dos años. En las subastas del 6 al 13 de octubre, la Letra a doce meses quedó por encima del 3 %. Nosotros publicamos el resultado de una de ellas en [Subasta de Letras: 2,769 % a 6 meses y 2,999 % a 12 meses](/ahorro/subasta-de-letras-el-tesoro-adjudica-a-2-769-a-6-meses-y-2-999-a-12-meses/).
 
 ## ¿Cuánto supone un 3 % en la práctica?
 

@@ -1,5 +1,5 @@
 ---
-title: "Cómo comprar Letras del Tesoro paso a paso: requisitos, comisiones e impuestos"
+title: "Cómo comprar Letras del Tesoro: paso a paso, comisiones e impuestos"
 description: "Qué son las Letras del Tesoro, cómo comprarlas sin comisiones en el Tesoro o en el banco, cómo tributan y dónde ver el tipo de la última subasta."
 date: 2026-10-17T11:30:00+00:00
 category: ahorro

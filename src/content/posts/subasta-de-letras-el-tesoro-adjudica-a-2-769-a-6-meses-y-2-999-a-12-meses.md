@@ -1,5 +1,5 @@
 ---
-title: "Subasta de Letras: el Tesoro adjudica a 2,769 % a 6 meses y 2,999 % a 12 meses"
+title: "Subasta de Letras: 2,769 % a 6 meses y 2,999 % a 12 meses"
 description: "El Tesoro adjudicó Letras a seis meses al 2,769 % y a doce meses al 2,999 % de tipo medio. Así queda lo que cobra un ahorrador por 10.000 € de nominal."
 date: 2026-10-19T13:16:19+00:00
 category: ahorro
