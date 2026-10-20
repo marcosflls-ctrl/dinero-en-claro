@@ -124,6 +124,17 @@ están en `.github/workflows/publicar-bunny.yml`.
   calendario de resultados (`calendario-de-resultados.md`, guía viva: **actualizar las fechas cada trimestre**).
   El robot puede analizar los resultados de las grandes empresas, solo si cambian algo para el accionista.
 
+## Tareas periódicas
+
+- **AdSense:** revisión pedida el 18/10/2026.
+- **Fichas de fondos y ETF** (`/fondos/ficha/...`): 23 fichas (9 fondos indexados, 7 ETF y 7 monetarios) generadas desde
+  `src/data/fondos.json` con la plantilla `src/pages/fondos/ficha/[slug].astro`. **Cada enero:** añadir el año cerrado
+  a `rent` de cada fondo y a las tablas de las tres comparativas. **Cada trimestre:** revisar gastos y patrimonio.
+- **Calendario de resultados:** actualizar las fechas cada trimestre (próxima vez: finales de enero).
+- **Caife:** actualizar la guía cuando salga la orden ministerial y se inscriban los primeros fondos.
+- **Enero:** revisar las reglas fiscales de las calculadoras en `src/lib/fiscal.ts`.
+- Nunca recomendar productos: las comparativas explican cómo se eligieron los fondos y que no son un ranking.
+
 ## Probar en tu ordenador
 
 ```bash
