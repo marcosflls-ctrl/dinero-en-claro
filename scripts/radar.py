@@ -304,6 +304,7 @@ SECCIÓN (category):
 - jubilacion: planes de pensiones individuales y de empleo, límites, rescates, ahorro a largo plazo, pensión pública y su complemento.
 - impuestos: fiscalidad de intereses, dividendos y ganancias, declaración de la renta del inversor, impuestos sobre el patrimonio.
 
+CIFRAS CON SU ORIGEN: di siempre de qué dato es cada cifra y de qué fecha (subasta o mercado secundario; tipo marginal o medio; dato diario o media mensual). Si la noticia es de un medio sobre un dato oficial (subasta del Tesoro, tipos del BCE, euríbor, IPC, CNMV), da la cifra oficial y enlaza la fuente primaria o nuestra página de datos; si el medio y el dato oficial no coinciden, explica por qué.
 FUENTE OFICIAL: en "official_source" pon solo un enlace a la página concreta del documento o dato oficial, nunca la portada de un organismo. Si no lo tienes, null.
 
 ENLACES INTERNOS: incluye 1-3 enlaces a artículos de la lista "ya publicados" o a estas herramientas si encajan: \
@@ -317,11 +318,12 @@ FORMATO DE RESPUESTA: solo un objeto JSON válido, sin texto alrededor:
   "skip": false,
   "category": "ahorro" | "fondos" | "bolsa" | "jubilacion" | "impuestos",
   "pendiente": true | false,
-  "title": "titular de 55-90 caracteres, concreto, con la cifra o fecha si existe. Nunca pongas en el título el medio de origen ni «según X»: la atribución va en el texto",
+  "title": "titular de 50-68 caracteres (Google corta los más largos), concreto, con la cifra o fecha si existe. Nunca pongas en el título el medio de origen ni «según X»: la atribución va en el texto",
   "card_title": "versión corta del titular para la imagen de portada, máximo 70 caracteres",
   "foto": "tema de la foto de portada que mejor encaja, de esta lista: {temas_foto}; o \"\" si ninguno encaja de verdad",
   "description": "entradilla de 130-160 caracteres que ya responde a la pregunta",
   "tags": ["3-5 etiquetas en minúsculas"],
+  "slug": "dirección corta: 4-8 palabras clave en minúsculas separadas por guiones, sin tildes, sin artículos ni preposiciones sueltas, máximo 60 caracteres y sin cortar palabras",
   "official_source": {"name": "nombre del documento u organismo oficial", "url": "enlace oficial"} | null,
   "body": "artículo en Markdown, sin el título como # al principio"
 }"""
@@ -359,6 +361,34 @@ def get_client():
     return _CLIENT
 
 
+def datos_oficiales() -> str:
+    """Resumen de los datos oficiales que ya descarga la web (Banco de España, BCE, Tesoro), con su fecha,
+    para que la IA cite la cifra oficial en lugar de la de un medio y diga de qué dato y fecha se trata."""
+    lineas = []
+    try:
+        m = json.loads((ROOT / "src" / "data" / "mercados.json").read_text(encoding="utf-8"))
+        b = m.get("bce", {})
+        if b.get("deposito"):
+            lineas.append(f"- BCE, facilidad de depósito: {b['deposito']['valor']} % desde el {b['deposito']['desde']}")
+        for plazo, l in sorted(m.get("letras", {}).items(), key=lambda x: int(x[0])):
+            lineas.append(f"- Letras a {plazo} meses, última subasta (emisión {l['fecha']}): tipo marginal {l['tipo']} % "
+                          f"(el tipo medio que reciben los particulares suele ser unas centésimas menor) → /ahorro/letras-del-tesoro/")
+        nombres = {"letra_1a": "Letra a 1 año", "bono_3a": "Bono a 3 años", "bono_5a": "Bono a 5 años", "bono_10a": "Bono a 10 años"}
+        for k, s in m.get("secundario", {}).items():
+            lineas.append(f"- {nombres.get(k, k)}, mercado secundario (no subasta), {s['fecha']}: {s['valor']} % → /bolsa/tipos-de-interes/")
+    except (OSError, ValueError, KeyError):
+        pass
+    try:
+        e = json.loads((ROOT / "src" / "data" / "euribor.json").read_text(encoding="utf-8"))
+        lineas.append(f"- Euríbor a 12 meses, dato diario del {e['fecha']}: {e['valor']} %; media de {e['mes']} hasta ahora: {e['media_mes']} % → /bolsa/tipos-de-interes/")
+    except (OSError, ValueError, KeyError):
+        pass
+    if not lineas:
+        return ""
+    return ("DATOS OFICIALES AL DÍA (Banco de España, con datos del Tesoro y del BCE; úsalos y cítalos si la noticia trata de "
+            "estos tipos, diciendo siempre de qué dato y de qué fecha es cada cifra):\n" + "\n".join(lineas) + "\n\n")
+
+
 def write_article(item: dict, source_text: str, oficiales: list[str], posts: list[dict]) -> dict | None:
     client = get_client()
     refresh_github_identity()
@@ -368,7 +398,8 @@ def write_article(item: dict, source_text: str, oficiales: list[str], posts: lis
         f"HOY ES: {hoy}\n"
         f"FUENTE: {item['source']}{' (oficial)' if item.get('oficial') else ''}\nTÍTULO ORIGINAL: {item['title']}\nURL: {item['url']}\n"
         + (f"ENLACES OFICIALES QUE CITA LA FUENTE:\n" + "\n".join(oficiales) + "\n" if oficiales else "")
-        + f"\nTEXTO FUENTE:\n\"\"\"\n{source_text[:30000]}\n\"\"\"\n\n"
+        + "\n" + datos_oficiales()
+        + f"TEXTO FUENTE:\n\"\"\"\n{source_text[:30000]}\n\"\"\"\n\n"
         f"ARTÍCULOS YA PUBLICADOS EN LA WEB:\n{related}"
     )
     msg = client.messages.create(model=MODEL, max_tokens=16000, system=SYSTEM,
@@ -394,7 +425,7 @@ def yaml_str(s: str) -> str:
 
 
 def save_post(data: dict, item: dict) -> Path:
-    slug = slugify(data["title"])
+    slug = slugify(data.get("slug") or data["title"], 60)
     path = POSTS_DIR / f"{slug}.md"
     i = 2
     while path.exists():
