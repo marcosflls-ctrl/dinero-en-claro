@@ -1,0 +1,56 @@
+name: Cambiar portadas repetidas
+
+# Se lanza a mano: Actions → «Cambiar portadas repetidas» → Run workflow.
+# Busca fotos libres nuevas para los artículos que repiten portada y propone el cambio en una pull request.
+on:
+  workflow_dispatch:
+    inputs:
+      maximo:
+        description: "Máximo de artículos a cambiar en esta pasada"
+        required: false
+        default: "40"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  cambiar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scripts/requirements.txt
+      - name: Buscar fotos nuevas
+        id: fotos
+        env:
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: python scripts/cambiar_repetidas.py "${{ github.event.inputs.maximo }}"
+      - uses: actions/setup-node@v4
+        if: steps.fotos.outputs.count != '0'
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - name: Comprobar que la web se construye
+        id: build
+        if: steps.fotos.outputs.count != '0'
+        continue-on-error: true
+        run: npm ci --no-audit --no-fund && npx astro build
+      - name: Proponer el cambio
+        if: steps.fotos.outputs.count != '0'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: fotos/portadas-repetidas-${{ github.run_number }}
+          commit-message: "Portadas: fotos libres nuevas en lugar de las repetidas"
+          title: "🖼️ Portadas nuevas para ${{ steps.fotos.outputs.count }} artículos que repetían foto"
+          body: |
+            ${{ steps.build.outcome == 'failure' && '⚠️ **La web no se construye con este cambio.** No lo apruebes todavía: avisa a Claude.' || '✅ La web se construye bien con este cambio.' }}
+
+            Cada artículo que repetía foto del banco tiene ahora una foto libre nueva (Pixabay u Openverse).
+            Míralas en la pestaña *Files changed*: las imágenes nuevas están en `public/img/fotos/`.
+            Si alguna no te gusta, bórrala del artículo con el lápiz o cierra la pull request.
+            - Para publicar: **Merge pull request**.
+          delete-branch: true
+          reviewers: ${{ github.repository_owner }}
