@@ -8,7 +8,7 @@ on:
     branches: [main]
     paths-ignore: ["scripts/state/**", ".github/**", "README.md"]
   workflow_run:
-    workflows: ["Radar de noticias", "Datos de mercado", "Euríbor"]
+    workflows: ["Radar de noticias", "Datos de mercado", "Euríbor", "Precio de las criptomonedas"]
     types: [completed]
   schedule:
     - cron: "7 5 * * *"

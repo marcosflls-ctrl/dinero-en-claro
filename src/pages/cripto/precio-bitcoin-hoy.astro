@@ -1,0 +1,90 @@
+---
+import fs from 'node:fs';
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { fecha, num, signo } from '../../lib/mercados';
+import { lineas } from '../../lib/grafico';
+
+interface Moneda {
+  id: string; simbolo: string; nombre: string; precio: number; capitalizacion: number | null; puesto: number | null;
+  var_24h: number | null; var_7d: number | null; var_30d: number | null; var_1a: number | null;
+  maximo: number | null; fecha_maximo: string; desde_maximo: number | null;
+}
+interface DatosCripto { fuente: string; actualizado: string; monedas: Moneda[]; series: Record<string, Record<string, number>> }
+let c: DatosCripto | null = null;
+try { c = JSON.parse(fs.readFileSync('src/data/cripto.json', 'utf8')); } catch { c = null; }
+
+const btc = c?.monedas.find((m) => m.id === 'bitcoin');
+const eth = c?.monedas.find((m) => m.id === 'ethereum');
+const hora = c ? new Date(c.actualizado).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' }) : '';
+const dia = c ? c.actualizado.slice(0, 10) : '';
+const titulo = 'Precio del bitcoin hoy en euros';
+const descripcion = btc
+  ? `El bitcoin cotiza a ${num(btc.precio, 0)} € (${signo(btc.var_24h ?? 0)} % en 24 horas). Precio de ether y otras criptomonedas en euros, evolución del último año y riesgos antes de invertir.`
+  : 'Precio del bitcoin, ether y otras criptomonedas hoy en euros, con su evolución del último año.';
+const url = `${SITE.url}/cripto/precio-bitcoin-hoy/`;
+const puntos = (id: string): [string, number][] => Object.entries(c?.series[id] ?? {});
+const svgBtc = btc ? lineas([{ nombre: 'Bitcoin', color: 'var(--brand)', puntos: puntos('bitcoin') }], { dec: 0, sufijo: ' €' }) : '';
+const svgEth = eth ? lineas([{ nombre: 'Ether', color: 'var(--brand)', puntos: puntos('ethereum') }], { dec: 0, sufijo: ' €' }) : '';
+const clase = (n: number | null) => (n == null ? '' : n >= 0 ? 'bien' : 'mal');
+const v = (n: number | null) => (n == null ? '—' : `${signo(n, 1)} %`);
+const precio = (n: number) => `${num(n, n >= 100 ? 0 : n >= 1 ? 2 : 4)} €`;
+const millones = (n: number | null) => (n == null ? '—' : n >= 1e12 ? `${num(n / 1e12, 2)} billones €` : `${num(n / 1e9, 0)} mil millones €`);
+const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+  { '@type': 'ListItem', position: 2, name: 'Calculadoras', item: `${SITE.url}/calculadoras/` },
+  { '@type': 'ListItem', position: 3, name: titulo, item: url } ] };
+---
+<Base title={titulo} description={descripcion.slice(0, 165)} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/calculadoras/">Calculadoras</a></nav>
+  <article class="pagina">
+    <h1>{titulo}</h1>
+    {c && btc ? (
+      <>
+        <p class="lead">Un bitcoin vale <strong>{precio(btc.precio)}</strong> a las {hora} del {fecha(dia)}: un {signo(btc.var_24h ?? 0)} % en las últimas 24 horas y un {signo(btc.var_1a ?? 0)} % en un año.{btc.desde_maximo != null && btc.desde_maximo < -1 && ` Está un ${num(Math.abs(btc.desde_maximo), 0)} % por debajo de su máximo histórico.`}</p>
+        <div class="cifras">
+          <div><span class="k">Bitcoin</span><span class="v">{precio(btc.precio)}</span><span class={`d ${clase(btc.var_24h)}`}>{v(btc.var_24h)} en 24 h</span></div>
+          <div><span class="k">En un mes</span><span class={`v ${clase(btc.var_30d)}`}>{v(btc.var_30d)}</span><span class="d">últimos 30 días</span></div>
+          <div><span class="k">En un año</span><span class={`v ${clase(btc.var_1a)}`}>{v(btc.var_1a)}</span><span class="d">últimos 12 meses</span></div>
+          {btc.maximo != null && <div><span class="k">Máximo histórico</span><span class="v">{precio(btc.maximo)}</span><span class="d">el {fecha(btc.fecha_maximo)}</span></div>}
+        </div>
+        {svgBtc && (<><h2>El bitcoin en el último año</h2><Fragment set:html={svgBtc} /></>)}
+
+        <h2>Precio de las principales criptomonedas</h2>
+        <div class="tabla-scroll">
+          <table class="tabla">
+            <thead><tr><th scope="col">Moneda</th><th scope="col">Precio</th><th scope="col">24 h</th><th scope="col">7 días</th><th scope="col">1 año</th><th scope="col">Desde su máximo</th><th scope="col">Capitalización</th></tr></thead>
+            <tbody>
+              {c.monedas.map((m) => (
+                <tr>
+                  <th scope="row">{m.nombre} <span class="muted">{m.simbolo}</span></th>
+                  <td>{precio(m.precio)}</td>
+                  <td class={clase(m.var_24h)}>{v(m.var_24h)}</td>
+                  <td class={clase(m.var_7d)}>{v(m.var_7d)}</td>
+                  <td class={clase(m.var_1a)}>{v(m.var_1a)}</td>
+                  <td class={clase(m.desde_maximo)}>{v(m.desde_maximo)}</td>
+                  <td>{millones(m.capitalizacion)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {svgEth && eth && (<><h2>Ether en el último año</h2><p>Ether, la moneda de la red Ethereum, vale {precio(eth.precio)} ({v(eth.var_24h)} en 24 horas y {v(eth.var_1a)} en un año).</p><Fragment set:html={svgEth} /></>)}
+      </>
+    ) : <p class="lead">Los datos no están disponibles en este momento. Vuelve en un rato.</p>}
+    <p class="muted small">Precios medios de varias plataformas de intercambio recogidos por <a href="https://www.coingecko.com/es" rel="noopener" target="_blank">CoinGecko</a>. Los actualizamos cuatro veces al día: no es una cotización en tiempo real y el precio de tu plataforma puede ser algo distinto. Las rentabilidades pasadas no garantizan las futuras. Esta página es informativa y no es una recomendación de inversión.</p>
+    <Compartir title={titulo} url={url} />
+    <section class="prose">
+      <h2>Antes de comprar criptomonedas</h2>
+      <p>Las criptomonedas son de las inversiones más volátiles que existen: el bitcoin ha caído más de un 70 % desde su máximo varias veces en su historia, y muchas monedas pequeñas han perdido casi todo su valor. Por eso, si inviertes, que sea solo una parte pequeña de tu dinero y nunca el que vayas a necesitar pronto ni tu colchón para imprevistos.</p>
+      <p>Compra solo en plataformas registradas: con el reglamento europeo MiCA, las empresas que ofrecen criptomonedas en la Unión Europea necesitan una autorización para operar, y la CNMV publica la lista de las autorizadas y advertencias sobre chiringuitos. Desconfía de cualquiera que te prometa rentabilidades fijas o te contacte por redes sociales.</p>
+      <h2>Cómo tributan</h2>
+      <p>Lo que ganas al vender criptomonedas, o al cambiarlas por otras, es una ganancia patrimonial que se declara en la renta y tributa en la base del ahorro, igual que las acciones. Puedes ver cuánto pagarías con la <a href="/impuestos/calculadora-impuestos-inversiones/">calculadora de impuestos de las inversiones</a>. Si tienes criptomonedas en plataformas extranjeras por encima de 50.000 €, además debes informar a Hacienda con el modelo 721.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>
