@@ -322,8 +322,8 @@ FORMATO DE RESPUESTA: solo un objeto JSON válido, sin texto alrededor:
   "title": "titular de 50-68 caracteres (Google corta los más largos), concreto, con la cifra o fecha si existe. Nunca pongas en el título el medio de origen ni «según X»: la atribución va en el texto",
   "card_title": "versión corta del titular para la imagen de portada, máximo 70 caracteres",
   "foto": "tema de la foto de portada que mejor encaja, de esta lista: {temas_foto}; o \"\" si ninguno encaja de verdad",
-  "foto_busqueda": "solo si \"foto\" es \"\": 2-4 palabras EN INGLÉS para buscar en un banco de fotos libres una foto real y genérica que encaje (ej. \"electricity bill\", \"retired couple walking\", \"stock market screen\"); sin marcas, logotipos, políticos ni personas concretas; \"\" si la noticia no admite una foto genérica",
-  "foto_alt": "si das foto_busqueda: descripción breve en español de esa escena genérica, para el texto alternativo (ej. \"Factura de la luz sobre una mesa\")",
+  "foto_busqueda": "siempre (se usa si las fotos del banco de ese tema ya están repetidas): 2-4 palabras EN INGLÉS para buscar en un banco de fotos libres una foto real y genérica que encaje (ej. \"electricity bill\", \"retired couple walking\", \"stock market screen\"); sin marcas, logotipos, políticos ni personas concretas; \"\" si la noticia no admite una foto genérica",
+  "foto_alt": "descripción breve en español de esa escena genérica, para el texto alternativo (ej. \"Factura de la luz sobre una mesa\")",
   "description": "entradilla de 130-160 caracteres que ya responde a la pregunta",
   "tags": ["3-5 etiquetas en minúsculas"],
   "slug": "dirección corta: 4-8 palabras clave en minúsculas separadas por guiones, sin tildes, sin artículos ni preposiciones sueltas, máximo 60 caracteres y sin cortar palabras",
@@ -441,7 +441,7 @@ def save_post(data: dict, item: dict) -> Path:
     img_lines = ""
     foto = None
     try:
-        foto = elegir_foto(data["title"], data["category"], data.get("foto") or "") if elegir_foto else None
+        foto = elegir_foto(data["title"], data["category"], data.get("foto") or "", repetir=False) if elegir_foto else None
     except Exception as e:  # noqa: BLE001
         print(f"  ! no se pudo elegir foto: {e}")
     if foto:
@@ -459,6 +459,16 @@ def save_post(data: dict, item: dict) -> Path:
                              f"imageCredit: {yaml_str(libre['credito'])}\nimageCreditUrl: {yaml_str(libre['pagina'])}\n")
         except Exception as e:  # noqa: BLE001
             print(f"  ! no se pudo buscar foto libre: {e}")
+    # Sin foto libre: una del banco aunque ya esté usada, antes que la portada con el titular
+    if not img_lines and elegir_foto:
+        try:
+            foto = elegir_foto(data["title"], data["category"], data.get("foto") or "", repetir=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! no se pudo elegir foto: {e}")
+            foto = None
+        if foto:
+            img_lines = (f"image: /img/banco/{foto['slug']}.webp\nimageAlt: {yaml_str(foto['alt'])}\n"
+                         f"imageCredit: {yaml_str(foto['credito'])}\nimageCreditUrl: {yaml_str(foto['pagina'])}\n")
     if not img_lines:
         try:
             sys.path.insert(0, str(Path(__file__).resolve().parent))

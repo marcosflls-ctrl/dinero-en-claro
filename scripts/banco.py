@@ -30,7 +30,8 @@ def _n(t: str) -> str:
     return unicodedata.normalize("NFKD", t.lower()).encode("ascii", "ignore").decode()
 
 
-def elegir(titulo: str, categoria: str, tema_ia: str = "") -> dict | None:
+def elegir(titulo: str, categoria: str, tema_ia: str = "", repetir: bool = True) -> dict | None:
+    """Con repetir=False devuelve None si todas las fotos del tema ya son portada de otro artículo."""
     if not BANCO:
         return None
     t = _n(titulo)
@@ -57,4 +58,6 @@ def elegir(titulo: str, categoria: str, tema_ia: str = "") -> dict | None:
     opciones = [b for b in BANCO if b["tema"] in temas_top]
     uso = usadas()
     opciones.sort(key=lambda b: (uso.get(b["slug"], 0), b["slug"]))
+    if not repetir and uso.get(opciones[0]["slug"], 0) > 0:
+        return None  # todas usadas: mejor una foto libre nueva que repetir
     return opciones[0]
