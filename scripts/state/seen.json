@@ -185,7 +185,17 @@
   "https://www.expansion.com/inversion/2026/10/20/6ad73b4ae5fdead13c8b459f.html",
   "https://www.expansion.com/mercados/2026/10/20/6ad601e8468aeba6138b4584.html",
   "https://www.expansion.com/mercados/2026/10/20/6ad70ec6e5fdea1a2c8b457c.html",
-  "https://www.expansion.com/economia/financial-times/2026/10/20/dudas-sobre-deuda-vinculada-ia-dispara-contratacion-seguros-impagos.html"
+  "https://www.expansion.com/economia/financial-times/2026/10/20/dudas-sobre-deuda-vinculada-ia-dispara-contratacion-seguros-impagos.html",
+  "https://finantresnoticias.com/bancos/revolut-sufre-caida-afecta-app-pagos-transferencias-deben-revisar-clientes/",
+  "https://finantresnoticias.com/tu-dinero/73-3-por-ciento-clientes-encuestados-por-myinvestor-preve-invertir-ahorros-en-fondos-indexados/",
+  "https://www.finanzas.com/ibex-35/crisis-politica-francia-sacude-ibex-35.html",
+  "https://www.bde.es/wbe/es/noticias-eventos/actualidad-banco-espana/notas-banco-espana/el-gobernador-del-banco-de-espana-visita-la-uclm-para-conocer-el-desarrollo-del-programa-pionero-de-educacion-financiera.html",
+  "https://www.expansion.com/mercados/criptomonedas/2026/10/20/6ad7522f468aebc16e8b45aa.html",
+  "https://www.expansion.com/mercados/euribor/2026/10/20/6ad73bab468aeb7d728b4582.html",
+  "https://www.expansion.com/mercados/bitcoin/2026/10/20/6ad734a5e5fdea3b468b45ba.html",
+  "https://www.expansion.com/empresas/seguros/2026/10/20/6ad73816e5fdea41568b4594.html",
+  "https://cincodias.elpais.com/mercados-financieros/2026-10-20/la-prima-de-riesgo-francesa-rompe-la-barrera-de-los-150-puntos-tras-las-protestas.html",
+  "https://cincodias.elpais.com/fondos-y-planes/2026-10-20/la-cnmv-acelera-la-aprobacion-del-registro-de-fondos-para-la-cuenta-financia-europa.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -232,7 +242,14 @@
   "es el desplome del mercado coreano el canario en la mina de la ia",
   "dax 40 con el soporte de largo plazo en el radar",
   "barclays otorga potenciales del 6 al 23 a los bancos del ibex",
-  "las dudas sobre la deuda vinculada a la ia dispara la contratacio n de seguros contra impagos"
+  "las dudas sobre la deuda vinculada a la ia dispara la contratacio n de seguros contra impagos",
+  "el gobernador del banco de espan a visita la uclm para conocer el desarrollo del programa pionero de educacio n financiera",
+  "jpmorgan el bitcoin subira ma s a largo plazo que wall street y el oro",
+  "euri bor hoy 20 de octubre el euri bor pone rumbo fijo al 3 3",
+  "el precio del bitcoin hoy 20 de octubre el bitcoin asciende hasta los 81 707 39 do lares",
+  "axa ofrece un 3 en su seguro de ahorro rentabiliza",
+  "la prima de riesgo francesa rompe la barrera de los 150 puntos tras las protestas",
+  "la cnmv acelera la aprobacio n del registro de fondos para la cuenta financia europa"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -279,6 +296,16 @@
   {
    "title": "Hipotecados: el tipo medio a más de tres años fue del 3,189 % en septiembre",
    "url": "/bolsa/hipotecados-el-tipo-medio-a-mas-de-tres-anos-fue-del-3-189-en-septiembre/",
+   "guia": false
+  },
+  {
+   "title": "JPMorgan estima un 10 % anual para el bitcoin a 10-15 años",
+   "url": "/bolsa/jpmorgan-bitcoin-rentabilidad-esperada-10-15-anos/",
+   "guia": false
+  },
+  {
+   "title": "Financia Europa: solo 130 fondos españoles serían elegibles",
+   "url": "/fondos/financia-europa-fondos-elegibles-cnmv-registro/",
    "guia": false
   }
  ]
