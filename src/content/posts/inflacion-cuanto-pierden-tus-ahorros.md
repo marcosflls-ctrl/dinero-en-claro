@@ -1,5 +1,5 @@
 ---
-title: "Inflación: cuánto pierden tus ahorros y cómo calcular la rentabilidad real"
+title: "Inflación: cuánto pierden tus ahorros y cómo calcular la rentabilidad"
 description: "Con el IPC al 4,9 %, 10.000 € parados pierden unos 467 € de poder de compra en un año. Cómo calcular la rentabilidad real de tu dinero, con ejemplos."
 date: 2026-10-18T20:52:00+02:00
 category: ahorro

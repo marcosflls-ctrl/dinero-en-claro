@@ -1,5 +1,5 @@
 ---
-title: "Cómo tributan tus ahorros e inversiones en 2026: intereses, dividendos y ganancias"
+title: "Cómo tributan tus ahorros e inversiones en 2026: intereses y ganancias"
 description: "Lo que pagas a Hacienda por intereses, dividendos y lo que ganas al vender fondos, acciones o ETF en 2026, cómo se compensan las pérdidas y cuándo hay retención."
 date: 2026-10-17T11:32:00+00:00
 category: impuestos

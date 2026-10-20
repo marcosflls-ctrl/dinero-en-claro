@@ -1,5 +1,5 @@
 ---
-title: "Calendario de resultados del tercer trimestre de 2026: Ibex 35 y grandes de Wall Street"
+title: "Calendario de resultados del 3T 2026: Ibex 35 y Wall Street"
 description: "Qué día presenta resultados cada empresa del Ibex 35 y las grandes de EE. UU. este otoño, qué mirar en ellos si eres accionista y cómo afectan al dividendo."
 date: 2026-10-20T00:12:00+02:00
 category: bolsa

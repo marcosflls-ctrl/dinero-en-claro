@@ -1,5 +1,5 @@
 ---
-title: "Planes de pensiones en 2026: cuánto puedes aportar, cuánto desgravan y cuándo se rescatan"
+title: "Planes de pensiones 2026: cuánto aportar, cuánto desgravan y rescate"
 description: "Los límites de aportación a planes de pensiones en 2026, el ahorro fiscal según tu sueldo, cómo tributa el rescate y cuándo puedes sacar el dinero antes de jubilarte."
 date: 2026-10-17T11:36:00+00:00
 category: jubilacion

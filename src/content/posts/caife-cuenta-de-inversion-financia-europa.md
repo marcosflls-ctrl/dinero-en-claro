@@ -1,5 +1,5 @@
 ---
-title: "Caife, la nueva cuenta de inversión: qué es, cómo tributa y cuándo se podrá abrir"
+title: "Caife, la nueva cuenta de inversión: qué es, cómo tributa y cuándo"
 description: "El Gobierno aprueba la Caife, una cuenta para invertir en empresas europeas y diferir impuestos. Límite de 150.000 €, pero aún no se puede contratar."
 date: 2026-10-19T19:58:18+00:00
 category: impuestos

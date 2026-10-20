@@ -1,5 +1,5 @@
 ---
-title: "Fondos monetarios más populares en España: comparativa de comisiones y rentabilidad año a año"
+title: "Fondos monetarios más populares: comisiones y rentabilidad por años"
 description: "Los fondos monetarios más buscados en España, uno al lado del otro: comisión, tamaño y lo que dieron cada año de 2022 a 2025. Y por qué la comisión pesa tanto en ellos."
 date: 2026-10-19T14:40:00+02:00
 category: fondos

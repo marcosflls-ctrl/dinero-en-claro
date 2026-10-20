@@ -1,5 +1,5 @@
 ---
-title: "Deuda francesa a 10 años supera el 4,93 %: qué implica para ahorradores"
+title: "La deuda francesa a 10 años supera el 4,93 %: qué implica al ahorrador"
 description: "El bono francés a 10 años ha pasado del 3,5 % al 4,93 % desde el verano. Los mercados se preguntan si el BCE actuará. Qué supone para tus ahorros."
 date: 2026-10-19T23:44:12+00:00
 category: bolsa

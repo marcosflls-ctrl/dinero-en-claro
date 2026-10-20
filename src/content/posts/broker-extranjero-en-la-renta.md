@@ -1,5 +1,5 @@
 ---
-title: "Cómo declarar en la renta un bróker extranjero: ventas, dividendos y modelo 720"
+title: "Bróker extranjero en la renta: ventas, dividendos y modelo 720"
 description: "Las ventas en un bróker extranjero no suelen salir en el borrador: hay que añadirlas a mano. Qué declarar, la doble imposición y cuándo toca el 720."
 date: 2026-10-18T20:50:00+02:00
 category: impuestos
