@@ -6,10 +6,10 @@ category: fondos
 guia: true
 orden: 2
 tags: [traspasos, fondos-de-inversion, impuestos, irpf, etf]
-image: /img/banco/billetes-euro-01.webp
+image: /img/fotos/traspaso-de-fondos-sin-pagar-impuestos.webp
 imageAlt: "Billetes de euro"
-imageCredit: "Friedrich Haag / Wikimedia Commons (CC BY-SA 4.0)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:One_stands_out_002_2025_01_01.jpg"
+imageCredit: "Alexas_Fotos / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/the-last-shirt-dollar-bill-20-euro-1510597/"
 sources:
   - name: "BOE: Ley 35/2006 del IRPF, artículo 94 (traspasos entre instituciones de inversión colectiva)"
     url: "https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764"

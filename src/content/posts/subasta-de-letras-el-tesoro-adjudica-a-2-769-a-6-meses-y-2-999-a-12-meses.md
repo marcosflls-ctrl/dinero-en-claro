@@ -5,10 +5,10 @@ date: 2026-10-19T13:16:19+00:00
 category: ahorro
 tags: ["letras-del-tesoro", "subasta", "tipos-de-interes", "ahorro", "tesoro-publico"]
 pendiente: false
-image: /img/banco/monedas-euro-05.webp
-imageAlt: "Monedas de euro sobre la bandera de la Unión Europea"
-imageCredit: "Lukasz Kobus - European Commission / Wikimedia Commons (CC BY 4.0)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Euro_coins_(07).jpg"
+image: /img/fotos/subasta-de-letras-el-tesoro-adjudica-a-2-769-a-6-meses-y-2-999-a-12-meses.webp
+imageAlt: "Monedas de euro"
+imageCredit: "geralt / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/hand-keep-finger-euro-coin-money-517114/"
 sources:
   - name: "BOE: Resolución de 8 de octubre de 2026 de la Dirección General del Tesoro y Política Financiera con los resultados de las subastas de Letras a seis y doce meses"
     url: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21773"

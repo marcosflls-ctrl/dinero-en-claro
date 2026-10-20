@@ -17,10 +17,10 @@ sources:
     url: "https://www.finect.com/usuario/eduardogarcia/articulos/el-fondo-indexado-al-sp-500-de-fidelity-desplaza-a-su-homologo-de-vanguard-en-los-mas-comparados"
   - name: "Red Inversora: fondos indexados en España, con ISIN y distribuidores"
     url: "https://redinversora.com/blog/mejores-fondos-indexados-espana-2026"
-image: /img/banco/billetes-euro-02.webp
-imageAlt: "Monedas y billetes de euro"
-imageCredit: "Avij / Wikimedia Commons (dominio público)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Euro_coins_and_banknotes_(cropped).jpg"
+image: /img/fotos/fondos-indexados-mas-populares-comparativa.webp
+imageAlt: "Billetes de euro"
+imageCredit: "Alexas_Fotos / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/cashbox-money-currency-cash-box-1642989/"
 ---
 
 <!-- ACTUALIZAR: cada trimestre, gastos corrientes y patrimonio (Finect). En enero de 2027, añadir la columna de 2026 con el año cerrado (Quefondos). -->
