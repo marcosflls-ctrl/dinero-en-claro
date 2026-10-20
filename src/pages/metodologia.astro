@@ -1,0 +1,50 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE } from '../config';
+---
+<Page title="Metodología: de dónde salen nuestros datos" description={`Qué fuentes usa ${SITE.name}, cada cuánto se actualizan los datos, cómo se calculan las cifras de las calculadoras y cómo se revisa y corrige cada artículo.`}>
+  <p>En {SITE.name} explicamos el ahorro y la inversión con datos que cualquiera puede comprobar. Esta página cuenta de dónde sale cada cifra, cada cuánto se actualiza, cómo hacemos los cálculos y cómo revisamos lo que publicamos.</p>
+
+  <h2>Los datos que se actualizan solos</h2>
+  <p>Estas cifras las descarga un programa automático de la fuente oficial y se publican tal cual, con su fecha. No las redacta nadie: si la fuente las corrige, nosotros también.</p>
+  <table>
+    <thead><tr><th scope="col">Dato</th><th scope="col">Fuente</th><th scope="col">Cada cuánto</th></tr></thead>
+    <tbody>
+      <tr><td>Tipos del BCE (facilidad de depósito, operaciones principales y facilidad marginal)</td><td>Banco Central Europeo, a través de su servicio de datos</td><td>Varias veces al día, de lunes a sábado</td></tr>
+      <tr><td>Letras del Tesoro: tipo marginal de cada subasta a 3, 6, 9 y 12 meses</td><td>Banco de España (tabla ti_1_4), con datos del Tesoro Público</td><td>Varias veces al día; cambia tras cada subasta</td></tr>
+      <tr><td>Letra a 1 año y bonos a 3, 5 y 10 años en el mercado secundario</td><td>Banco de España (tabla ti_1_3)</td><td>Varias veces al día; dato del último día hábil</td></tr>
+      <tr><td>Ibex 35 e Índice General de la Bolsa de Madrid, cierre diario</td><td>Banco de España (tabla ti_1_6), con datos de BME</td><td>Varias veces al día; puede tardar uno o dos días hábiles</td></tr>
+      <tr><td>Euríbor a 12 meses, dato diario y media del mes</td><td>Banco de España (tabla TI_1_7), con datos de EMMI</td><td>Varias veces al día, de lunes a sábado</td></tr>
+    </tbody>
+  </table>
+  <p>Distinguimos siempre <strong>el tipo de una subasta</strong> (lo que paga el Tesoro al emitir) del <strong>tipo en el mercado secundario</strong> (lo que rinde hoy un bono que ya circula), y en las subastas, <strong>el tipo marginal</strong> (el más alto aceptado) del <strong>tipo medio</strong> (el que reciben los particulares que piden sin fijar precio). Por eso puedes ver dos cifras distintas para el mismo plazo: las dos son correctas, pero miden cosas diferentes.</p>
+
+  <h2>Las calculadoras</h2>
+  <ul>
+    <li><strong>Impuestos:</strong> aplicamos la escala del ahorro del IRPF vigente (del 19 % al 30 %) y las retenciones del 19 %, según la Ley del IRPF. Las reglas de cada año se revisan en enero.</li>
+    <li><strong>Letras y depósitos:</strong> calculan lo que ganarías antes y después de impuestos con el tipo que indiques. La calculadora de Letras se rellena sola con el tipo marginal de la última subasta.</li>
+    <li><strong>Interés compuesto, comisiones y planes de pensiones:</strong> son simulaciones con los datos que tú introduces. No predicen rentabilidades futuras.</li>
+  </ul>
+  <p>Las calculadoras son orientativas: no tienen en cuenta todas las situaciones personales ni las normas de cada comunidad autónoma, y no sustituyen el consejo de un profesional.</p>
+
+  <h2>Los artículos</h2>
+  <ul>
+    <li><strong>Fuentes:</strong> cada artículo enlaza al final las fuentes que usa. Damos prioridad a la fuente primaria (BOE, Banco de España, BCE, Tesoro Público, CNMV, Agencia Tributaria, INE). Cuando partimos de un medio, lo citamos y buscamos el dato oficial que hay detrás.</li>
+    <li><strong>Cifras con su origen:</strong> decimos siempre de qué dato y de qué fecha es cada cifra.</li>
+    <li><strong>Ejemplos:</strong> cuando calculamos un ejemplo (cuánto rinden 10.000 €, cuánto se lleva una comisión), lo indicamos y lo hacemos antes de impuestos salvo que digamos lo contrario.</li>
+    <li><strong>Guías vivas:</strong> las guías marcadas como actualizadas se revisan en la misma dirección cuando cambia una norma o un dato, y muestran la fecha de la última revisión.</li>
+  </ul>
+
+  <h2>Cómo se escribe y se revisa</h2>
+  <p>Un programa vigila las fuentes oficiales y los principales medios económicos, y una inteligencia artificial prepara un borrador siguiendo nuestra <a href="/politica-editorial/">política editorial</a>. <strong>Ningún artículo se publica sin que una persona lo revise y lo apruebe</strong>, comprobando sobre todo las cifras, las fechas y las fuentes. Los artículos los firma la redacción, no una persona concreta.</p>
+
+  <h2>Lo que no hacemos</h2>
+  <ul>
+    <li>No recomendamos comprar, vender ni mantener ningún producto concreto.</li>
+    <li>No cobramos de bancos, brókeres ni gestoras, ni usamos enlaces de afiliación.</li>
+    <li>No prometemos rentabilidades: las rentabilidades pasadas no garantizan las futuras.</li>
+  </ul>
+
+  <h2>Errores y correcciones</h2>
+  <p>Si encuentras un error, escríbenos a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Lo corregimos en el artículo con una nota fechada y lo anotamos en la página de <a href="/correcciones/">correcciones</a>.</p>
+</Page>
