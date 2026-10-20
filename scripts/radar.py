@@ -322,6 +322,8 @@ FORMATO DE RESPUESTA: solo un objeto JSON válido, sin texto alrededor:
   "title": "titular de 50-68 caracteres (Google corta los más largos), concreto, con la cifra o fecha si existe. Nunca pongas en el título el medio de origen ni «según X»: la atribución va en el texto",
   "card_title": "versión corta del titular para la imagen de portada, máximo 70 caracteres",
   "foto": "tema de la foto de portada que mejor encaja, de esta lista: {temas_foto}; o \"\" si ninguno encaja de verdad",
+  "foto_busqueda": "solo si \"foto\" es \"\": 2-4 palabras EN INGLÉS para buscar en un banco de fotos libres una foto real y genérica que encaje (ej. \"electricity bill\", \"retired couple walking\", \"stock market screen\"); sin marcas, logotipos, políticos ni personas concretas; \"\" si la noticia no admite una foto genérica",
+  "foto_alt": "si das foto_busqueda: descripción breve en español de esa escena genérica, para el texto alternativo (ej. \"Factura de la luz sobre una mesa\")",
   "description": "entradilla de 130-160 caracteres que ya responde a la pregunta",
   "tags": ["3-5 etiquetas en minúsculas"],
   "slug": "dirección corta: 4-8 palabras clave en minúsculas separadas por guiones, sin tildes, sin artículos ni preposiciones sueltas, máximo 60 caracteres y sin cortar palabras",
@@ -445,7 +447,19 @@ def save_post(data: dict, item: dict) -> Path:
     if foto:
         img_lines = (f"image: /img/banco/{foto['slug']}.webp\nimageAlt: {yaml_str(foto['alt'])}\n"
                      f"imageCredit: {yaml_str(foto['credito'])}\nimageCreditUrl: {yaml_str(foto['pagina'])}\n")
-    else:
+    # Si ninguna foto del banco encaja: una foto libre de Pixabay u Openverse buscada con lo que propone la IA
+    if not foto and data.get("foto_busqueda"):
+        try:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from fotos_libres import buscar as buscar_foto_libre
+            libre = buscar_foto_libre(data["foto_busqueda"], slug)
+            if libre:
+                alt = (data.get("foto_alt") or data["title"])[:150]
+                img_lines = (f"image: {libre['ruta']}\nimageAlt: {yaml_str(alt)}\n"
+                             f"imageCredit: {yaml_str(libre['credito'])}\nimageCreditUrl: {yaml_str(libre['pagina'])}\n")
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! no se pudo buscar foto libre: {e}")
+    if not img_lines:
         try:
             sys.path.insert(0, str(Path(__file__).resolve().parent))
             from miniaturas import make_variants, make_crops
