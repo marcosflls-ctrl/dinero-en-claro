@@ -214,7 +214,11 @@ def main() -> int:
         r.update({k: a[k] for k in ("nombre", "moneda", "unidad", "proxy") if k in a})
         r["fuente"] = fuente
         activos[a["id"]] = r
-        print(f"✓ {a['nombre']}: {r['cierre']} ({r['fecha']}) · {fuente} · desde {serie[0][0]}")
+        linea = f"✓ {a['nombre']}: {r['cierre']} ({r['fecha']}) · {fuente} · desde {serie[0][0]} · 10 años: {r['anual']['10']} %"
+        if probar:
+            aviso("notice", linea)
+        else:
+            print(linea)
         time.sleep(1)
 
     if probar:
