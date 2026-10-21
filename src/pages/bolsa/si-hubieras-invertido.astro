@@ -1,0 +1,230 @@
+---
+// Calculadora «Si hubieras invertido»: cuánto tendrías hoy si hubieras metido dinero en un índice, de una vez o cada mes.
+// Usa los cierres de fin de mes en euros de src/data/indices.json (scripts/indices.py, unos 10 años).
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import { SITE } from '../../config';
+import { datosIndices } from '../../lib/indices';
+import { INFO } from '../../data/indices-info';
+
+const d = datosIndices();
+// El Brent no es una inversión que se suela mantener años: se deja fuera
+const IDS = ['msciworld', 'sp500', 'nasdaq100', 'eurostoxx50', 'ibex', 'dax', 'emergentes', 'oro'];
+const series: Record<string, { nombre: string; slug: string; enEuros: boolean; meses: [string, number][]; dividendos: boolean }> = {};
+for (const id of IDS) {
+  const a = d?.activos[id];
+  if (!a) continue;
+  const enEur = a.moneda === 'EUR' ? a.mensual : a.eur?.mensual;
+  const info = INFO.find((i) => i.id === id);
+  series[id] = {
+    nombre: info?.corto ?? a.nombre, slug: info?.slug ?? (id === 'ibex' ? 'ibex-35-hoy' : ''),
+    enEuros: !!enEur, meses: (enEur ?? a.mensual).map(([f, v]) => [f.slice(0, 7), v]),
+    dividendos: !!a.proxy, // los ETF de acumulación reinvierten los dividendos; los índices de precio, no
+  };
+}
+// el mes más antiguo que tienen todos: el máximo de los primeros meses de cada serie
+const desdeComun = Object.values(series).map((s) => s.meses[0]?.[0] ?? '').reduce((a, b) => (a > b ? a : b), '');
+const ultimo = Object.values(series).map((s) => s.meses.at(-1)?.[0] ?? '').reduce((a, b) => (a > b ? a : b), '');
+const anios: string[] = [];
+for (let y = +desdeComun.slice(0, 4); desdeComun && y <= +ultimo.slice(0, 4); y++) anios.push(String(y));
+const anioDefecto = String(+ultimo.slice(0, 4) - 10 > +desdeComun.slice(0, 4) ? +ultimo.slice(0, 4) - 10 : +desdeComun.slice(0, 4));
+
+const titulo = 'Si hubieras invertido… Calculadora de lo que tendrías hoy';
+const descripcion = '¿Y si hubieras puesto 100 € al mes en el S&P 500, el MSCI World o el Ibex? Calcula cuánto tendrías hoy, en euros, con los datos reales de los últimos diez años.';
+const url = `${SITE.url}/bolsa/si-hubieras-invertido/`;
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Bolsa', item: `${SITE.url}/bolsa/` },
+    { '@type': 'ListItem', position: 3, name: 'Si hubieras invertido', item: url } ] },
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: titulo, url, applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: 'es-ES', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } },
+];
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const algunoEnDolares = Object.values(series).some((s) => !s.enEuros);
+---
+<Base title={titulo} description={descripcion} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/bolsa/">Bolsa</a></nav>
+  <article class="pagina">
+    <h1>Si hubieras invertido…</h1>
+    <p class="lead">¿Cuánto tendrías hoy si hace unos años hubieras empezado a meter dinero en la bolsa? Elige un índice, cuánto y desde cuándo, y lo calculamos con lo que pasó de verdad, crisis incluidas.</p>
+
+    <div class="calc">
+      <form id="calc-inv" novalidate>
+        <label class="campo"><span>Dónde</span>
+          <select name="activo">{Object.entries(series).map(([id, s]) => <option value={id}>{s.nombre}</option>)}</select>
+        </label>
+        <label class="campo"><span>Cómo</span>
+          <select name="modo">
+            <option value="mensual">Una cantidad cada mes</option>
+            <option value="unica">Todo de una vez</option>
+          </select>
+        </label>
+        <label class="campo"><span>Cuánto</span>
+          <span class="u"><input name="cantidad" type="number" inputmode="decimal" min="0" step="10" value="100" /><i id="u-cant">€/mes</i></span>
+        </label>
+        <div class="dos-campos">
+          <label class="campo"><span>Desde</span>
+            <select name="mes">{MESES.map((m, i) => <option value={String(i + 1).padStart(2, '0')} selected={String(i + 1).padStart(2, '0') === desdeComun.slice(5, 7)}>{m}</option>)}</select>
+          </label>
+          <label class="campo"><span>Año</span>
+            <select name="anio">{anios.map((a) => <option value={a} selected={a === anioDefecto}>{a}</option>)}</select>
+          </label>
+        </div>
+      </form>
+      <section class="res" aria-live="polite">
+        <h2 class="etq">Hoy tendrías</h2>
+        <p class="cifra" id="r-final">—</p>
+        <p class="frase" id="r-frase"></p>
+        <table class="desglose"><tbody>
+          <tr><th scope="row">Dinero que habrías puesto</th><td id="r-puesto">—</td></tr>
+          <tr><th scope="row">Ganancia</th><td id="r-gana">—</td></tr>
+          <tr><th scope="row">El peor momento</th><td id="r-peor">—</td></tr>
+        </tbody></table>
+      </section>
+    </div>
+
+    <figure class="grafico">
+      <svg id="grafico" viewBox="0 0 720 220" role="img" aria-label="Lo que habrías puesto y lo que valdría mes a mes"></svg>
+      <figcaption><span class="ley valor"></span>Lo que valdría <span class="ley puesto"></span>Lo que habrías puesto</figcaption>
+    </figure>
+
+    <section class="comparar">
+      <h2>Con lo mismo, en cada índice</h2>
+      <table class="tabla"><thead><tr><th scope="col">Índice</th><th scope="col">Hoy tendrías</th><th scope="col">Ganancia</th></tr></thead><tbody id="r-tabla"></tbody></table>
+    </section>
+
+    <Compartir title={titulo} url={url} />
+
+    <section class="prose">
+      <h2>Lo que te enseña esta calculadora</h2>
+      <ul>
+        <li><strong>Invertir cada mes reduce el susto.</strong> Cuando la bolsa cae, tu aportación compra más barato. Mira la fila «el peor momento»: casi siempre hubo meses en los que ibas perdiendo.</li>
+        <li><strong>El punto de partida importa mucho</strong> cuando lo pones todo de una vez. Prueba a empezar justo antes de una caída, como en 2020 o 2022.</li>
+        <li><strong>El pasado no garantiza nada.</strong> Diez años buenos no dicen cómo serán los siguientes diez.</li>
+      </ul>
+
+      <h2>Cómo lo calculamos</h2>
+      <p>Usamos el cierre del último día de cada mes{algunoEnDolares ? '' : ', pasado a euros con el cambio del BCE en los índices que cotizan en dólares'}. Si inviertes cada mes, compramos al cierre de cada mes desde el que eliges. Comparamos con el último cierre mensual, el de {ultimo ? `${MESES[+ultimo.slice(5, 7) - 1]} de ${ultimo.slice(0, 4)}` : '—'}. Los datos se actualizan solos.</p>
+      <p><strong>Lo que no contamos:</strong> las comisiones, los impuestos al vender ni la inflación. El S&P 500, el Nasdaq, el Euro Stoxx, el Ibex y el oro son índices de precio, sin dividendos: un fondo indexado que los reinvierte habría ganado algo más, entre un 1 % y un 3 % al año. El MSCI World y los emergentes son el precio de un ETF que ya los reinvierte. El DAX ya incluye los dividendos.</p>
+      {algunoEnDolares && <p class="muted small">Ahora mismo algunos índices en dólares se muestran en su moneda: en unos días tendremos su serie en euros.</p>}
+      <p>Si quieres empezar, lee <a href="/fondos/">cómo funcionan los fondos indexados</a>, cuánto se lleva la <a href="/fondos/comisiones/">comisión de tu fondo</a> y cuánto <a href="/impuestos/calculadora-impuestos-inversiones/">pagarás a Hacienda</a> al vender. Los datos de cada índice, día a día, en <a href="/bolsa/indices-del-mundo/">índices del mundo</a>.</p>
+      <p class="muted small">Información con fines divulgativos, no es una recomendación de inversión. Datos: Yahoo Finance y Banco Central Europeo.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+
+<script type="application/json" id="datos-inv" set:html={JSON.stringify(series)} />
+<script>
+  type Serie = { nombre: string; slug: string; enEuros: boolean; meses: [string, number][] };
+  const S = JSON.parse(document.getElementById('datos-inv')!.textContent!) as Record<string, Serie>;
+  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const nombreMes = (m: string) => `${MESES[+m.slice(5, 7) - 1]} de ${m.slice(0, 4)}`;
+  const form = document.getElementById('calc-inv') as HTMLFormElement;
+  const $ = (id: string) => document.getElementById(id)!;
+  const eur = (n: number) => Math.round(n).toLocaleString('es-ES', { useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  const pc = (n: number) => `${n > 0 ? '+' : ''}${n.toLocaleString('es-ES', { maximumFractionDigits: 1 })} %`;
+
+  function simular(s: Serie, desde: string, cantidad: number, mensual: boolean) {
+    const meses = s.meses.filter(([m]) => m >= desde);
+    let participaciones = 0, puesto = 0, peor = 0, peorMes = '';
+    const puntos: { m: string; valor: number; puesto: number }[] = [];
+    meses.forEach(([m, precio], i) => {
+      if (mensual || i === 0) { participaciones += cantidad / precio; puesto += cantidad; }
+      const valor = participaciones * precio;
+      const perdida = valor - puesto;
+      if (perdida < peor) { peor = perdida; peorMes = m; }
+      puntos.push({ m, valor, puesto });
+    });
+    const fin = puntos.at(-1) ?? { m: desde, valor: 0, puesto: 0 };
+    return { final: fin.valor, puesto: fin.puesto, peor, peorMes, puntos, desdeReal: meses[0]?.[0] ?? desde };
+  }
+
+  function dibujar(p: { m: string; valor: number; puesto: number }[]) {
+    const svg = $('grafico');
+    if (p.length < 2) { svg.innerHTML = ''; return; }
+    const W = 720, H = 220, L = 64, R = 8, T = 10, B = 24;
+    const max = Math.max(...p.map((x) => Math.max(x.valor, x.puesto))) * 1.05;
+    const x = (i: number) => L + (i / (p.length - 1)) * (W - L - R);
+    const y = (v: number) => T + (1 - v / max) * (H - T - B);
+    const linea = (k: 'valor' | 'puesto') => p.map((q, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(q[k]).toFixed(1)}`).join('');
+    let g = '';
+    for (let k = 0; k <= 4; k++) {
+      const v = (max / 4) * k;
+      g += `<line class="rej" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v >= 1000 ? Math.round(v / 1000) + ' mil' : Math.round(v)}</text>`;
+    }
+    const salto = Math.max(1, Math.ceil(p.length / 60) * 12);
+    p.forEach((q, i) => { if (q.m.endsWith('-01') && i % salto < 12) g += `<text x="${x(i)}" y="${H - 6}" text-anchor="middle">${q.m.slice(0, 4)}</text>`; });
+    svg.innerHTML = g + `<path class="l-puesto" d="${linea('puesto')}"/><path class="l-valor" d="${linea('valor')}"/>`;
+  }
+
+  function calcular() {
+    const id = (form.activo as HTMLSelectElement).value;
+    const mensual = (form.modo as HTMLSelectElement).value === 'mensual';
+    const cantidad = Math.max(0, +(form.cantidad as HTMLInputElement).value || 0);
+    const desde = `${(form.anio as HTMLSelectElement).value}-${(form.mes as HTMLSelectElement).value}`;
+    $('u-cant').textContent = mensual ? '€/mes' : '€';
+    const r = simular(S[id], desde, cantidad, mensual);
+    const gana = r.final - r.puesto;
+    $('r-final').textContent = eur(r.final);
+    $('r-frase').textContent = `${mensual ? `Poniendo ${eur(cantidad)} cada mes` : `Poniendo ${eur(cantidad)} de una vez`} en el ${S[id].nombre} desde ${nombreMes(r.desdeReal)}.`;
+    $('r-puesto').textContent = eur(r.puesto);
+    $('r-gana').textContent = r.puesto ? `${eur(gana)} (${pc((gana / r.puesto) * 100)})` : '—';
+    $('r-peor').textContent = r.peor < 0 ? `${nombreMes(r.peorMes)}: perdías ${eur(-r.peor)}` : 'Nunca ibas perdiendo';
+    dibujar(r.puntos);
+    $('r-tabla').innerHTML = Object.entries(S)
+      .map(([k, s]) => ({ k, s, r: simular(s, desde, cantidad, mensual) }))
+      .sort((a, b) => b.r.final - a.r.final)
+      .map(({ k, s, r: q }) => `<tr${k === id ? ' class="sel"' : ''}><th scope="row">${s.slug ? `<a href="/bolsa/${s.slug}/">${s.nombre}</a>` : s.nombre}</th><td>${eur(q.final)}</td><td>${q.puesto ? pc(((q.final - q.puesto) / q.puesto) * 100) : '—'}</td></tr>`)
+      .join('');
+  }
+  form.addEventListener('input', calcular);
+  form.addEventListener('change', calcular);
+  calcular();
+</script>
+
+<style>
+  .pagina { max-width: 900px; }
+  h1 { font-size: clamp(1.9rem, 4.6vw, 2.6rem); line-height: 1.15; margin: 4px 0 12px; }
+  .lead { font-size: 1.125rem; line-height: 1.55; margin: 0 0 24px; max-width: 720px; }
+  .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; border-top: 2px solid var(--ink); padding-top: 24px; align-items: start; }
+  #calc-inv { display: flex; flex-direction: column; gap: 16px; }
+  .dos-campos { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px; }
+  .campo { display: flex; flex-direction: column; gap: 6px; }
+  .campo > span:first-child { font-weight: 600; font-size: .9375rem; }
+  .u { position: relative; display: block; }
+  .u i { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-style: normal; color: var(--muted); font-size: .875rem; }
+  .u input, select { font: 400 1.0625rem var(--sans); padding: 9px 12px; border: 1px solid #b9c0c6; border-radius: 4px; width: 100%; color: var(--ink); background: var(--bg); }
+  .u input { padding-right: 64px; font-variant-numeric: tabular-nums; }
+  .res { background: var(--surface); border-radius: 4px; padding: 24px; }
+  .etq { font: 600 .875rem var(--sans); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0; }
+  .cifra { font-family: var(--serif); font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 600; line-height: 1.15; margin: 6px 0 6px; color: var(--brand-dark); font-variant-numeric: tabular-nums; }
+  .frase { margin: 0 0 12px; font-size: .9375rem; }
+  .desglose { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .desglose th, .desglose td { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: .9375rem; }
+  .desglose th { text-align: left; font-weight: 400; }
+  .desglose td { text-align: right; padding-left: 12px; }
+  .grafico { margin: 24px 0 0; }
+  .grafico svg { width: 100%; height: auto; display: block; }
+  .grafico :global(text) { font: 400 15px var(--sans); fill: var(--muted); }
+  .grafico :global(.rej) { stroke: var(--rule); }
+  .grafico :global(.l-valor) { fill: none; stroke: var(--brand); stroke-width: 2.5; }
+  .grafico :global(.l-puesto) { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 4; }
+  figcaption { font-size: .8125rem; color: var(--muted); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .ley { display: inline-block; width: 18px; height: 0; border-top: 3px solid var(--brand); margin-left: 8px; }
+  .ley.puesto { border-top: 3px dashed var(--muted); }
+  .comparar { margin-top: 32px; }
+  .comparar h2 { font-size: 1.375rem; margin: 0 0 10px; }
+  .tabla { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .tabla :global(th), .tabla :global(td) { padding: 9px 8px; border-bottom: 1px solid var(--rule); text-align: right; }
+  .tabla :global(th:first-child) { text-align: left; }
+  .tabla thead th { font-size: .8125rem; color: var(--muted); font-weight: 600; }
+  .tabla :global(tr.sel) { background: var(--surface); font-weight: 600; }
+  .small { font-size: .8125rem; }
+  .prose { margin-top: 36px; }
+  @media (max-width: 760px) {
+    .calc { grid-template-columns: 1fr; gap: 20px; }
+    .res { padding: 18px 16px; }
+  }
+</style>
