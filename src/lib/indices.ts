@@ -6,7 +6,7 @@ export interface Activo {
   fecha: string; cierre: number; anterior: number; var_dia: number; var_anio: number | null; var_12m: number | null;
   max_12m: number; min_12m: number; anual: Rent; por_anio: Record<string, number>;
   historico: [string, number][]; mensual: [string, number][];
-  eur?: { cierre: number; var_anio: number | null; var_12m: number | null; anual: Rent; por_anio: Record<string, number> };
+  eur?: { cierre: number; var_anio: number | null; var_12m: number | null; anual: Rent; por_anio: Record<string, number>; mensual?: [string, number][] };
 }
 export interface DatosIndices { actualizado: string; eurusd: { fecha: string; valor: number }; activos: Record<string, Activo> }
 
