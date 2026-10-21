@@ -1,0 +1,136 @@
+---
+// Página «hoy» de un índice, el oro o el petróleo. Textos en src/data/indices-info.ts y datos en src/data/indices.json.
+import Base from '../layouts/Base.astro';
+import Siguenos from './Siguenos.astro';
+import Compartir from './Compartir.astro';
+import '../styles/calculadora.css';
+import { SITE } from '../config';
+import { fecha, num, signo } from '../lib/mercados';
+import { lineas, barras } from '../lib/grafico';
+import { datosIndices } from '../lib/indices';
+import { INFO } from '../data/indices-info';
+import fondosData from '../data/fondos.json';
+
+interface Props { id: string }
+const info = INFO.find((i) => i.id === Astro.props.id)!;
+const d = datosIndices();
+const a = d?.activos[info.id];
+const usd = a?.moneda === 'USD';
+const fx = d?.eurusd.valor ?? 1;
+const url = `${SITE.url}/bolsa/${info.slug}/`;
+const clase = (n: number | null | undefined) => (n == null ? '' : n >= 0 ? 'bien' : 'mal');
+const s = (n: number | null | undefined, dec = 2) => (n == null ? '—' : `${signo(n, dec)} %`);
+const unidad = (v: number) => info.id === 'oro' || info.id === 'brent' ? `${num(v, info.dec)} $` : info.unidad.startsWith('€') ? `${num(v, info.dec)} €` : num(v, info.dec);
+
+// Frase de entrada y meta descripción con el dato del día
+let lead = '', descripcion = info.titulo;
+if (a) {
+  const sube = (a.var_anio ?? 0) >= 0 ? 'sube' : 'baja';
+  if (info.id === 'oro') {
+    lead = `La onza de oro cerró el ${fecha(a.fecha)} en ${num(a.cierre, 2)} dólares, unos ${num(a.cierre / fx, 0)} euros (${num(a.cierre / fx / 31.1035, 2)} € por gramo). Es un ${signo(a.var_dia)} % respecto al día anterior y en lo que va de año ${sube} un ${num(Math.abs(a.var_anio ?? 0))} % en dólares.`;
+    descripcion = `El oro cerró el ${fecha(a.fecha)} en ${num(a.cierre, 0)} $ la onza (${num(a.cierre / fx, 0)} €, ${num(a.cierre / fx / 31.1035, 2)} €/gramo). Evolución, rentabilidad y cómo invertir.`;
+  } else if (info.id === 'brent') {
+    lead = `El barril de Brent cerró el ${fecha(a.fecha)} en ${num(a.cierre, 2)} dólares, unos ${num(a.cierre / fx, 2)} euros. Es un ${signo(a.var_dia)} % respecto al día anterior y en lo que va de año ${sube} un ${num(Math.abs(a.var_anio ?? 0))} %.`;
+    descripcion = `El Brent cerró el ${fecha(a.fecha)} en ${num(a.cierre, 2)} $ por barril (${num(a.cierre / fx, 2)} €). Evolución del último año y cómo afecta a la gasolina.`;
+  } else if (a.proxy) {
+    lead = `El ${info.corto} ${sube} un ${num(Math.abs(a.var_anio ?? 0))} % en euros en lo que va de año, según el ${a.proxy}, que cerró el ${fecha(a.fecha)} en ${num(a.cierre, 2)} € (${signo(a.var_dia)} % en el día).`;
+    descripcion = `El ${info.corto} en euros: ${signo(a.var_anio ?? 0)} % en el año y ${signo(a.anual['10'] ?? 0)} % anual a 10 años. Evolución, qué es y cómo invertir en él.`;
+  } else {
+    lead = `El ${info.corto} cerró el ${fecha(a.fecha)} en ${num(a.cierre, info.dec)} puntos, un ${signo(a.var_dia)} % respecto a la sesión anterior. En lo que va de año ${sube} un ${num(Math.abs(a.var_anio ?? 0))} %${usd && a.eur ? ` en dólares y un ${signo(a.eur.var_anio ?? 0)} % en euros` : ''}.`;
+    descripcion = `El ${info.corto} cerró el ${fecha(a.fecha)} en ${num(a.cierre, 0)} puntos (${signo(a.var_dia)} %). En el año: ${signo(a.var_anio ?? 0)} %${usd && a.eur ? ` (${signo(a.eur.var_anio ?? 0)} % en euros)` : ''}. Evolución y qué es.`;
+  }
+}
+const svg = a ? lineas([{ nombre: info.corto, color: 'var(--brand)', puntos: a.historico }], { dec: info.dec > 0 && a.cierre < 1000 ? 2 : 0 }) : '';
+const svg10 = a ? lineas([{ nombre: info.corto, color: 'var(--brand)', puntos: a.mensual }], { dec: a.cierre < 1000 ? 0 : 0 }) : '';
+const anios = a ? (Object.entries(usd && a.eur ? a.eur.por_anio : a.por_anio).sort(([x], [y]) => x.localeCompare(y)).slice(-10) as [string, number][]) : [];
+const svgAnios = anios.length ? barras(anios, { ancho: 720, alto: 240 }) : '';
+const fondos = info.fondos ? fondosData.fondos.filter((f) => f.indice === info.fondos) : [];
+const otros = INFO.filter((i) => i.id !== info.id);
+const notaDiv = info.dividendos === 'no' ? 'sin dividendos' : info.dividendos === 'si' ? 'con dividendos reinvertidos' : '';
+
+const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+  { '@type': 'ListItem', position: 2, name: 'Bolsa y mercados', item: `${SITE.url}/bolsa/` },
+  { '@type': 'ListItem', position: 3, name: info.h1, item: url } ] };
+---
+<Base title={info.titulo} description={descripcion.slice(0, 165)} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/bolsa/">Bolsa y mercados</a> › <a href="/bolsa/indices-del-mundo/">Índices del mundo</a></nav>
+  <article class="pagina">
+    <h1>{info.h1}</h1>
+    {a ? (
+      <>
+        <p class="lead">{lead}</p>
+        <div class="cifras">
+          <div><span class="k">Cierre</span><span class="v">{unidad(a.cierre)}</span><span class={`d ${clase(a.var_dia)}`}>{s(a.var_dia)} en el día</span></div>
+          <div><span class="k">En el año</span><span class={`v ${clase(a.var_anio)}`}>{s(a.var_anio)}</span><span class="d">{usd && a.eur ? `${s(a.eur.var_anio)} en euros` : 'desde el 31 de diciembre'}</span></div>
+          <div><span class="k">En 12 meses</span><span class={`v ${clase(a.var_12m)}`}>{s(a.var_12m)}</span><span class="d">{usd && a.eur ? `${s(a.eur.var_12m)} en euros` : notaDiv || 'en un año'}</span></div>
+          <div><span class="k">A 10 años</span><span class={`v ${clase(a.anual['10'])}`}>{s(a.anual['10'])}</span><span class="d">al año{usd && a.eur ? `; ${s(a.eur.anual['10'])} en euros` : ''}</span></div>
+        </div>
+        {info.id === 'oro' && (
+          <table class="desglose equiv">
+            <tbody>
+              <tr><th>Onza (31,1 g) en dólares</th><td>{num(a.cierre, 2)} $</td></tr>
+              <tr><th>Onza en euros</th><td>{num(a.cierre / fx, 2)} €</td></tr>
+              <tr><th>Gramo en euros</th><td>{num(a.cierre / fx / 31.1035, 2)} €</td></tr>
+              <tr><th>Kilo en euros</th><td>{num((a.cierre / fx / 31.1035) * 1000, 0)} €</td></tr>
+            </tbody>
+          </table>
+        )}
+        {info.id === 'brent' && (
+          <table class="desglose equiv">
+            <tbody>
+              <tr><th>Barril (159 litros) en dólares</th><td>{num(a.cierre, 2)} $</td></tr>
+              <tr><th>Barril en euros</th><td>{num(a.cierre / fx, 2)} €</td></tr>
+              <tr><th>Litro de crudo en euros</th><td>{num(a.cierre / fx / 158.987, 3)} €</td></tr>
+            </tbody>
+          </table>
+        )}
+        {svg && (<><h2>El último año</h2><Fragment set:html={svg} /></>)}
+        <p class="muted small">Máximo de los últimos 12 meses: {unidad(a.max_12m)}. Mínimo: {unidad(a.min_12m)}.</p>
+        {svgAnios && (<><h2>Rentabilidad de cada año{usd && a.eur ? ' en euros' : ''}</h2><Fragment set:html={svgAnios} /></>)}
+        <h2>Rentabilidad anual media</h2>
+        <table class="desglose">
+          <thead><tr><th></th><th scope="col">3 años</th><th scope="col">5 años</th><th scope="col">10 años</th></tr></thead>
+          <tbody>
+            <tr><th>{usd ? 'En dólares' : 'En euros'}</th><td>{s(a.anual['3'])}</td><td>{s(a.anual['5'])}</td><td>{s(a.anual['10'])}</td></tr>
+            {usd && a.eur && <tr><th>En euros</th><td>{s(a.eur.anual['3'])}</td><td>{s(a.eur.anual['5'])}</td><td>{s(a.eur.anual['10'])}</td></tr>}
+          </tbody>
+        </table>
+        <p class="muted small">Rentabilidad anualizada, {notaDiv || 'del precio'}{usd ? '. «En euros» incluye el efecto del tipo de cambio euro-dólar del BCE' : ''}. Compárala con otros en <a href="/bolsa/indices-del-mundo/">índices del mundo</a>.</p>
+        {svg10 && (<><h2>Los últimos diez años</h2><Fragment set:html={svg10} /></>)}
+      </>
+    ) : <p class="lead">Los datos no están disponibles en este momento.</p>}
+    <p class="muted small">Cierre diario{a ? ` del ${fecha(a.fecha)}` : ''}, con datos de {a?.fuente.startsWith('Yahoo') ? 'Yahoo Finance' : 'mercado'}{a?.proxy ? ` del ${a.proxy}` : ''}. No es una cotización en tiempo real. Las rentabilidades pasadas no garantizan las futuras.</p>
+    <Compartir title={info.titulo} url={url} />
+    <section class="prose">
+      <h2>Qué es {info.id === 'oro' ? 'el precio del oro' : info.id === 'brent' ? 'el Brent' : `el ${info.corto}`}</h2>
+      {info.que.map((p) => <p>{p}</p>)}
+      <h2>Lo que conviene saber</h2>
+      <ul>{info.claves.map((p) => <li>{p}</li>)}</ul>
+      <h2>Cómo invertir</h2>
+      {info.invertir.map((p) => <p>{p}</p>)}
+      {fondos.length > 0 && (
+        <>
+          <p>Estos son los que analizamos, con sus gastos y su rentabilidad de cada año:</p>
+          <ul>{fondos.map((f) => <li><a href={`/fondos/ficha/${f.slug}/`}>{f.corto}</a> · gastos del {num(f.ter, 2)} % al año</li>)}</ul>
+        </>
+      )}
+      {info.guia && <p>Más detalle en <a href={info.guia.href}>{info.guia.texto}</a>.</p>}
+      {info.id === 'brent' && <p>El precio de la gasolina y el diésel de hoy en tu provincia está en nuestra web hermana Al Final de Mes: <a href="https://alfinaldemes.com/gasolina/">gasolineras más baratas</a>.</p>}
+      <p>Lo que ganes al vender tributa en la base del ahorro del IRPF: lo explicamos en <a href="/impuestos/como-tributan-ahorros-inversiones-2026/">cómo tributan tus ahorros e inversiones</a>.</p>
+      <h2>Otros mercados</h2>
+      <ul class="otros">
+        <li><a href="/bolsa/ibex-35-hoy/">Ibex 35 hoy</a></li>
+        {otros.map((o) => <li><a href={`/bolsa/${o.slug}/`}>{o.h1}</a></li>)}
+        <li><a href="/cripto/precio-bitcoin-hoy/">Precio del bitcoin hoy</a></li>
+      </ul>
+      <p class="aviso-inv">Información divulgativa, no una recomendación de inversión.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+<style>
+  .equiv { max-width: 420px; margin: 0 0 24px; }
+  .otros { columns: 2; }
+  @media (max-width: 600px) { .otros { columns: 1; } }
+</style>

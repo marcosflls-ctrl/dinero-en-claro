@@ -21,7 +21,8 @@ Bunny.net              → «Publicar en Bunny» construye la web y la sube en u
 Lunes a sábado, varias veces al día:
   scripts/euribor.py   → euríbor a 12 meses del Banco de España (dato diario y media del mes)
   scripts/mercados.py  → tipos del BCE, subastas de Letras, bonos, Ibex 35 y Bolsa de Madrid
-                       → si cambian, se publican directamente (son datos oficiales, sin redacción)
+  scripts/indices.py   → S&P 500, Nasdaq 100, Euro Stoxx 50, DAX, MSCI World, emergentes, oro y Brent (Yahoo Finance)
+                       → si cambian, se publican directamente (son datos de mercado, sin redacción)
 ```
 
 ## Tareas automáticas (pestaña Actions)
@@ -31,6 +32,8 @@ Lunes a sábado, varias veces al día:
 | Radar de noticias | Cada 2 h, de 8 a 22 h | Busca noticias y propone borradores. Con «Run workflow» puedes pegar un enlace concreto o marcar «solo listar» |
 | Euríbor | L-S, 5 veces al día | Actualiza `src/data/euribor.json` |
 | Datos de mercado | L-S, 4 veces al día | Actualiza `src/data/mercados.json` |
+| Índices del mundo | L-S, 3 veces al día | Actualiza `src/data/indices.json` (páginas `/bolsa/...-hoy/` y comparador `/bolsa/indices-del-mundo/`) |
+| Probar fuentes de índices | Al cambiar `scripts/indices.py` en una propuesta, o a mano | Comprueba que Yahoo Finance responde |
 | Publicar en Bunny | Con cada cambio, tras los robots, cada mañana (7:07) y a mano | Construye y sube la web; publica los artículos programados |
 | Publicar en Telegram | Al publicar artículos nuevos, o a mano con nombres de archivo | Los anuncia en el canal |
 | Banco de fotos | A mano | Busca fotos con licencia libre en Wikimedia Commons para las portadas |
@@ -127,9 +130,10 @@ están en `.github/workflows/publicar-bunny.yml`.
 ## Tareas periódicas
 
 - **AdSense:** revisión pedida el 18/10/2026.
-- **Fichas de fondos y ETF** (`/fondos/ficha/...`): 23 fichas (9 fondos indexados, 7 ETF y 7 monetarios) generadas desde
+- **Fichas de fondos y ETF** (`/fondos/ficha/...`): 31 fichas (11 fondos indexados, 12 ETF, 1 ETC de oro y 7 monetarios) generadas desde
   `src/data/fondos.json` con la plantilla `src/pages/fondos/ficha/[slug].astro`. **Cada enero:** añadir el año cerrado
   a `rent` de cada fondo y a las tablas de las tres comparativas. **Cada trimestre:** revisar gastos y patrimonio.
+- **Índices del mundo:** los textos de cada página están en `src/data/indices-info.ts`. El MSCI World y los emergentes se siguen con el precio en euros de un ETF (el índice no se publica gratis).
 - **Calendario de resultados:** actualizar las fechas cada trimestre (próxima vez: finales de enero).
 - **Caife:** actualizar la guía cuando salga la orden ministerial y se inscriban los primeros fondos.
 - **Enero:** revisar las reglas fiscales de las calculadoras en `src/lib/fiscal.ts`.

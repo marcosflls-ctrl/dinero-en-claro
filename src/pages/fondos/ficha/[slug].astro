@@ -15,6 +15,7 @@ export function getStaticPaths() {
 const { f } = Astro.props as { f: Fondo };
 const esEtf = !!(f as any).etf;
 const esMon = !!(f as any).monetario;
+const esEtc = String(f.tipo).startsWith('ETC'); // ETC de materias primas (oro): no es un fondo ni copia un índice de bolsa
 const ticker = (f as any).ticker as string | undefined, alias = (f as any).alias as string | null | undefined;
 const comparativa = esEtf
   ? { href: '/fondos/etf-mas-populares-comparativa/', nombre: 'Comparativa de ETF' }
@@ -40,7 +41,7 @@ const otros = datos.fondos.filter((o) => o.indice !== f.indice);
 const otrosFondos = otros.filter((o) => !(o as any).etf && !(o as any).monetario), otrosEtf = otros.filter((o) => (o as any).etf), otrosMon = otros.filter((o) => (o as any).monetario);
 
 const titulo = esMon ? `${f.corto}: fondo monetario, rentabilidad por años y comisiones` : `${f.corto}: comisiones, rentabilidad por años y datos clave`;
-const descripcion = `${esEtf ? `ETF ${ticker}` : f.nombre} (${f.isin}): ${esMon ? 'fondo monetario, comisión' : 'qué índice copia, gastos'} del ${pct(f.ter)}, rentabilidad de cada año desde ${primero} y en qué se diferencia de ${esEtf ? 'otros ETF y fondos' : 'fondos parecidos'}.`;
+const descripcion = esEtc ? `${f.corto} (${f.isin}): ETC de ${idx.nombre.toLowerCase()} físico, gastos del ${pct(f.ter)}, rentabilidad de cada año desde ${primero} y en qué se diferencia de un fondo.` : `${esEtf ? `ETF ${ticker}` : f.nombre} (${f.isin}): ${esMon ? 'fondo monetario, comisión' : 'qué índice copia, gastos'} del ${pct(f.ter)}, rentabilidad de cada año desde ${primero} y en qué se diferencia de ${esEtf ? 'otros ETF y fondos' : 'fondos parecidos'}.`;
 const url = `${SITE.url}/fondos/ficha/${f.slug}/`;
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -56,7 +57,7 @@ const jsonLd = {
   <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/fondos/">Fondos y ETF</a> › <a href={comparativa.href}>{comparativa.nombre}</a></nav>
   <article class="pagina">
     <h1>{f.corto}</h1>
-    <p class="lead">{esMon ? <>{f.nombre} es un <strong>fondo monetario</strong> de {f.gestora}: invierte en deuda en euros a muy corto plazo.</> : <>{f.nombre} es {esEtf ? 'un ETF' : 'un fondo indexado'} de {f.gestora} que copia el índice <strong>{idx.nombre}</strong>.</>} Estos son sus datos principales y lo que ha hecho cada año, explicados sin recomendaciones: para que sepas qué es antes de comparar.</p>
+    <p class="lead">{esEtc ? <>{f.nombre} es un <strong>ETC</strong> de {f.gestora}: un título respaldado por {idx.nombre.toLowerCase()} físico que sigue su precio.</> : esMon ? <>{f.nombre} es un <strong>fondo monetario</strong> de {f.gestora}: invierte en deuda en euros a muy corto plazo.</> : <>{f.nombre} es {esEtf ? 'un ETF' : 'un fondo indexado'} de {f.gestora} que copia el índice <strong>{idx.nombre}</strong>.</>} Estos son sus datos principales y lo que ha hecho cada año, explicados sin recomendaciones: para que sepas qué es antes de comparar.</p>
 
     <div class="cifras">
       <div><span class="k">{esEtf ? `Ticker · ISIN` : 'ISIN'}</span><span class="v isin">{esEtf ? ticker : f.isin}</span><span class="d">{esEtf ? f.isin : f.domicilio}</span></div>
@@ -78,7 +79,7 @@ const jsonLd = {
     <p class="muted small">Fuente: {fuenteRent}. Cálculo de los 10.000 € de esta web, antes de impuestos. Su mejor año del periodo fue {mejor[0]} ({signo(mejor[1])}) y el peor, {peor[0]} ({signo(peor[1])}). Las rentabilidades pasadas no garantizan las futuras.</p>
 
     <section class="prose">
-      <h2>{esEtf ? 'Qué es este ETF' : 'Qué es este fondo'}</h2>
+      <h2>{esEtc ? 'Qué es este ETC' : esEtf ? 'Qué es este ETF' : 'Qué es este fondo'}</h2>
       <p>{f.texto}</p>
 
       <h2>En qué invierte</h2>
@@ -97,7 +98,7 @@ const jsonLd = {
           <tr><th scope="row">{f.terNota ? 'Comisión de gestión' : 'Gastos corrientes'}</th><td>{pct(f.ter)} al año</td></tr>
           {f.inicio && <tr><th scope="row">Inicio de esta clase</th><td>{fechaLarga(f.inicio)}</td></tr>}
           {!esMon && <tr><th scope="row">Dividendos</th><td>Los reinvierte (clase de acumulación)</td></tr>}
-          <tr><th scope="row">Traspaso sin impuestos</th><td>{esEtf ? 'No: al ser un ETF, cambiarlo por otro obliga a vender y tributar' : 'Sí, como cualquier fondo de inversión'}</td></tr>
+          <tr><th scope="row">Traspaso sin impuestos</th><td>{esEtf ? `No: al ser un ${esEtc ? 'ETC' : 'ETF'}, cambiarlo por otro obliga a vender y tributar` : 'Sí, como cualquier fondo de inversión'}</td></tr>
         </tbody>
       </table></div>
       <p class="muted small">{f.terNota ? f.terNota + ' ' : ''}Gastos y patrimonio: {fuenteCostes}. Comprueba los datos oficiales en el documento de datos fundamentales del fondo antes de invertir: te contamos <a href="/fondos/documento-datos-fundamentales-fondo-como-leerlo/">cómo leerlo</a>.</p>
