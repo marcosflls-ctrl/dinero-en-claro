@@ -180,6 +180,8 @@ def resumen(serie: list[tuple[str, float]], serie_eur: list[tuple[str, float]] |
             "var_12m": round((ve / ve_12m - 1) * 100, 2) if ve_12m else None,
             "anual": {str(n): anualizada(serie_eur, n) for n in (3, 5, 10)},
             "por_anio": por_anio(serie_eur),
+            # cierres de fin de mes en euros: para la calculadora «Si hubieras invertido»
+            "mensual": mensual(serie_eur),
         }
     return out
 

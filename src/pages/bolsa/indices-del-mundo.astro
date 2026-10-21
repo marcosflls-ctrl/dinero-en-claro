@@ -71,6 +71,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', it
             <Fragment set:html={svg} />
             <p class="leyenda">{enGrafico.map((f, i) => <span><i style={`background:${COLORES[i % COLORES.length]}`}></i>{f.corto}</span>)}</p>
             <p class="muted small">Evolución mensual en la moneda de cada índice, con el valor de hace diez años igual a 100.</p>
+            <p><strong>¿Y si hubieras puesto dinero cada mes?</strong> Calcúlalo en euros con <a href="/bolsa/si-hubieras-invertido/">si hubieras invertido…</a></p>
           </>
         )}
       </>
