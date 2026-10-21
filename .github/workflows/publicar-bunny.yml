@@ -42,6 +42,7 @@ jobs:
           BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
           BUNNY_PULLZONE_ID: "6821286"
           BUNNY_HOSTNAME: dineroenclaro.com,www.dineroenclaro.com,dineroenclaro.b-cdn.net
+          INDEXNOW_KEY: "aac79c840a06ef85f502fee17fec31a0"
         run: python scripts/publicar_bunny.py dist
       - name: Avisar del fallo por Telegram
         if: failure()
