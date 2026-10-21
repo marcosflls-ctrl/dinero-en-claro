@@ -2,6 +2,7 @@
 title: "ETF más populares en España: costes y rentabilidad año a año"
 description: "VWCE, IWDA, CSPX y otros ETF de los que más se habla en España, uno al lado del otro: índice, gastos, tamaño, tickers y lo que hicieron cada año de 2022 a 2025."
 date: 2026-10-19T14:30:00+02:00
+updated: 2026-10-21T13:00:00+02:00
 category: fondos
 guia: true
 orden: 3
@@ -51,6 +52,13 @@ imageCreditUrl: "https://pixabay.com/photos/money-coins-stack-stacked-coins-2180
 | [Vanguard S&P 500 (VUAA)](/fondos/ficha/vanguard-sp-500-vuaa/) | S&P 500 | 0,07 % | 33.217 M€ | −13,30 % | +21,55 % | +32,61 % | +3,96 % |
 | [iShares Nasdaq 100 (CNDX)](/fondos/ficha/ishares-nasdaq-100-cndx/) | Nasdaq-100 | 0,30 % | 25.356 M€ | −28,50 % | +49,07 % | +33,29 % | +6,58 % |
 | [iShares Core MSCI EM IMI (EMIM)](/fondos/ficha/ishares-core-msci-em-imi-emim/) | Emergentes | 0,18 % | 38.463 M€ | −14,16 % | +7,69 % | +14,04 % | +16,32 % |
+| [SPDR MSCI ACWI IMI (SPYI)](/fondos/ficha/spdr-msci-acwi-imi-spyi/) | MSCI ACWI IMI | 0,17 % | 8.239 M€ | −12,43 % | +17,03 % | +23,45 % | +8,08 % |
+| [iShares MSCI ACWI (IUSQ)](/fondos/ficha/ishares-msci-acwi-iusq/) | MSCI ACWI | 0,20 % | 31.789 M€ | −13,12 % | +18,11 % | +24,82 % | +8,22 % |
+| [Invesco S&P 500 (P500)](/fondos/ficha/invesco-sp-500-p500/) | S&P 500 (sintético) | 0,05 % | 39.180 M€ | −13,22 % | +21,92 % | +32,86 % | +4,12 % |
+| [iShares Core MSCI Europe (EUNK)](/fondos/ficha/ishares-core-msci-europe-eunk/) | MSCI Europe | 0,12 % | 16.029 M€ | −9,42 % | +16,15 % | +8,84 % | +20,07 % |
+| [iShares Core Euro Stoxx 50 (SXRT)](/fondos/ficha/ishares-core-euro-stoxx-50-sxrt/) | Euro Stoxx 50 | 0,10 % | 7.563 M€ | −9,20 % | +22,78 % | +11,54 % | +22,05 % |
+
+**Dos apuntes.** El Invesco S&P 500 es **sintético**: no compra las acciones, sino que firma un contrato con bancos que le pagan lo que hace el índice; es barato, pero añade el riesgo de esos bancos. Y si buscas **oro**, no hay ETF de oro en Europa, sino ETC respaldados por lingotes, como el [iShares Physical Gold](/fondos/ficha/ishares-physical-gold-ppfb/); lo explicamos en el [precio del oro hoy](/bolsa/precio-oro-hoy/).
 
 *Todos son de acumulación (reinvierten los dividendos), de réplica física y están domiciliados en Irlanda. Pulsa en el nombre para ver la ficha de cada uno.*
 
@@ -65,6 +73,11 @@ imageCreditUrl: "https://pixabay.com/photos/money-coins-stack-stacked-coins-2180
 | Vanguard S&P 500 | IE00BFMXXD54 | VUAA | VUAA |
 | iShares Nasdaq 100 | IE00B53SZB19 | SXRV | CNDX |
 | iShares Core MSCI EM IMI | IE00BKM4GZ66 | IS3N | EMIM |
+| SPDR MSCI ACWI IMI | IE00B3YLTY66 | SPYI | IMID (en dólares) |
+| iShares MSCI ACWI | IE00B6R52259 | IUSQ | SSAC |
+| Invesco S&P 500 | IE00B3YCGJ38 | P500 | SPXS |
+| iShares Core MSCI Europe | IE00B4K48X80 | EUNK | IMAE |
+| iShares Core Euro Stoxx 50 | IE00B53L3W79 | SXRT | CSX5 |
 
 En España se les suele llamar por su ticker más conocido, aunque se compren en otra bolsa. Al buscar uno en tu bróker, usa el ISIN para no equivocarte de producto.
 
@@ -72,12 +85,17 @@ En España se les suele llamar por su ticker más conocido, aunque se compren en
 
 | ETF | Valor a final de 2025 | Variación acumulada |
 |---|---|---|
+| iShares Core Euro Stoxx 50 | 15.177 € | +51,8 % |
 | iShares Nasdaq 100 | 15.142 € | +51,4 % |
+| Invesco S&P 500 | 14.636 € | +46,4 % |
 | iShares Core S&P 500 | 14.528 € | +45,3 % |
 | Vanguard S&P 500 | 14.528 € | +45,3 % |
 | iShares Core MSCI World | 14.071 € | +40,7 % |
 | Xtrackers MSCI World | 14.067 € | +40,7 % |
+| iShares MSCI ACWI | 13.861 € | +38,6 % |
 | Vanguard FTSE All-World | 13.839 € | +38,4 % |
+| iShares Core MSCI Europe | 13.749 € | +37,5 % |
+| SPDR MSCI ACWI IMI | 13.674 € | +36,7 % |
 | iShares Core MSCI EM IMI | 12.262 € | +22,6 % |
 
 *Cálculo de esta web encadenando las rentabilidades anuales. Antes de impuestos y de las comisiones del bróker.*

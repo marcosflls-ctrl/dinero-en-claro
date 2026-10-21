@@ -54,7 +54,7 @@ export const INFO: InfoActivo[] = [
   },
   {
     id: 'eurostoxx50', slug: 'euro-stoxx-50-hoy', h1: 'Euro Stoxx 50 hoy', corto: 'Euro Stoxx 50',
-    titulo: 'Euro Stoxx 50 hoy: cierre, rentabilidad del año y evolución', unidad: 'puntos', dec: 2, dividendos: 'no',
+    titulo: 'Euro Stoxx 50 hoy: cierre, rentabilidad del año y evolución', unidad: 'puntos', dec: 2, dividendos: 'no', fondos: 'euro-stoxx-50',
     que: [
       'El Euro Stoxx 50 reúne a 50 de las mayores empresas de los países del euro. Incluye varias españolas, como Iberdrola, Santander o Inditex, junto a grandes compañías francesas, alemanas, italianas y holandesas.',
       'Es un índice de precios: no incluye los dividendos, que en Europa son altos, en torno al 3 % anual.',
@@ -118,7 +118,7 @@ export const INFO: InfoActivo[] = [
   },
   {
     id: 'oro', slug: 'precio-oro-hoy', h1: 'Precio del oro hoy', corto: 'Oro',
-    titulo: 'Precio del oro hoy: onza en dólares y en euros, y gramo', unidad: '$ por onza', dec: 2, dividendos: 'na',
+    titulo: 'Precio del oro hoy: onza en dólares y en euros, y gramo', unidad: '$ por onza', dec: 2, dividendos: 'na', fondos: 'oro',
     que: [
       'El oro se cotiza en dólares por onza troy, que son 31,1 gramos. Mostramos el precio de referencia del contrato de futuros de oro de Nueva York, el más negociado del mundo, y su equivalencia en euros.',
       'El precio que pagas al comprar oro físico, en lingotes o monedas, es algo más alto: las tiendas y los bancos cobran un margen sobre este precio.',

@@ -1,6 +1,6 @@
 {
   "_nota": "Fichas de fondos indexados. Rentabilidades por año natural (Quefondos/VDOS) y gastos y patrimonio (Finect/Morningstar). Revisar cada trimestre; en enero, añadir el año cerrado a todos.",
-  "actualizado": "2026-10-16",
+  "actualizado": "2026-10-21",
   "fuenteRent": "Quefondos (VDOS), datos a 15/10/2026",
   "fuenteCostes": "Finect (datos de Morningstar), octubre de 2026",
   "indices": {
@@ -22,7 +22,7 @@
     "msci-em": {
       "nombre": "MSCI Emerging Markets",
       "texto": "Grandes y medianas empresas de países emergentes como China, India, Taiwán, Corea del Sur o Brasil. Suelen moverse más que las bolsas desarrolladas.",
-      "guia": null
+      "guia": "/bolsa/mercados-emergentes-hoy/"
     },
     "bonos-globales": {
       "nombre": "Bloomberg Global Aggregate (cubierto a euros)",
@@ -37,7 +37,7 @@
     "nasdaq-100": {
       "nombre": "Nasdaq-100",
       "texto": "Las 100 mayores empresas no financieras que cotizan en el Nasdaq de Estados Unidos. Está muy concentrado en tecnología, por lo que sube y baja bastante más que el S&P 500.",
-      "guia": null
+      "guia": "/bolsa/nasdaq-100-hoy/"
     },
     "msci-em-imi": {
       "nombre": "MSCI Emerging Markets IMI",
@@ -48,6 +48,31 @@
       "nombre": "Mercado monetario en euros",
       "texto": "No copia un índice: invierte en deuda a muy corto plazo en euros, como Letras del Tesoro, pagarés de empresas y depósitos, con vencimientos de pocos meses. Su rentabilidad sigue de cerca los tipos de interés del BCE.",
       "guia": null
+    },
+    "msci-world-small-cap": {
+      "nombre": "MSCI World Small Cap",
+      "texto": "Unas 4.000 empresas pequeñas de 23 países desarrollados. Suelen moverse más que las grandes y tienen menos peso de las tecnológicas estadounidenses.",
+      "guia": null
+    },
+    "msci-acwi": {
+      "nombre": "MSCI ACWI",
+      "texto": "Grandes y medianas empresas de 23 países desarrollados y 24 emergentes: es el MSCI World más los emergentes. Estados Unidos pesa en torno a dos tercios.",
+      "guia": null
+    },
+    "msci-acwi-imi": {
+      "nombre": "MSCI ACWI IMI",
+      "texto": "El índice más amplio de MSCI: empresas grandes, medianas y pequeñas de países desarrollados y emergentes, más de 9.000 en total.",
+      "guia": null
+    },
+    "euro-stoxx-50": {
+      "nombre": "Euro Stoxx 50",
+      "texto": "Las 50 mayores empresas de los países del euro, entre ellas Iberdrola, Santander o Inditex. Cotiza en euros, sin riesgo de divisa.",
+      "guia": "/bolsa/euro-stoxx-50-hoy/"
+    },
+    "oro": {
+      "nombre": "Oro",
+      "texto": "El precio del oro en dólares. El ETC está respaldado por lingotes guardados en una cámara acorazada, así que sigue su precio, pero no da intereses ni dividendos.",
+      "guia": "/bolsa/precio-oro-hoy/"
     }
   },
   "fondos": [
@@ -259,6 +284,52 @@
       "texto": "Es el único fondo de bonos de esta comparativa y el que más dinero gestiona: unos 26.500 millones de euros. Los fondos de bonos se suelen combinar con los de bolsa para reducir los altibajos de una cartera. Su caída de 2022, del 15 %, muestra que la renta fija también puede perder cuando suben los tipos de interés."
     },
     {
+      "slug": "ishares-developed-world-index",
+      "nombre": "iShares Developed World Index Fund (IE) D Acc EUR",
+      "corto": "iShares Developed World Index",
+      "isin": "IE00BD0NCM55",
+      "gestora": "iShares (BlackRock)",
+      "indice": "msci-world",
+      "tipo": "Renta variable global",
+      "domicilio": "Irlanda",
+      "ter": 0.12,
+      "terNota": null,
+      "patrimonio": 25664,
+      "inicio": "2017-05-12",
+      "rent": {
+        "2022": -12.84,
+        "2023": 18.82,
+        "2024": 26.93,
+        "2025": 7.22
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=IE00BD0NCM55",
+      "finect": "https://www.finect.com/fondos-inversion/IE00BD0NCM55-Ishares_dev_wld_idx_ie_d_acc_eur",
+      "texto": "Es el fondo del MSCI World de BlackRock, la mayor gestora del mundo. En conjunto gestiona unos 25.700 millones de euros; la clase en euros para particulares, la D, unos 770 millones. Sus gastos del 0,12 % están entre los más bajos de los fondos del MSCI World que se pueden traspasar en España."
+    },
+    {
+      "slug": "vanguard-global-small-cap-index",
+      "nombre": "Vanguard Global Small-Cap Index Fund EUR Acc",
+      "corto": "Vanguard Global Small-Cap Index",
+      "isin": "IE00B42W4L06",
+      "gestora": "Vanguard",
+      "indice": "msci-world-small-cap",
+      "tipo": "Renta variable global de pequeñas empresas",
+      "domicilio": "Irlanda",
+      "ter": 0.29,
+      "terNota": null,
+      "patrimonio": 6880,
+      "inicio": "2012-12-11",
+      "rent": {
+        "2022": -13.46,
+        "2023": 11.88,
+        "2024": 15.21,
+        "2025": 5.64
+      },
+      "quefondos": "https://www.quefondos.com/es/fondos/ficha/index.html?isin=IE00B42W4L06",
+      "finect": null,
+      "texto": "Invierte en unas 4.000 empresas pequeñas de países desarrollados. Hay quien lo usa como complemento de un fondo del MSCI World, que solo tiene empresas grandes y medianas. En los últimos años ha ganado menos que el MSCI World, porque las que más han subido son las grandes tecnológicas."
+    },
+    {
       "slug": "vanguard-ftse-all-world-vwce",
       "etf": true,
       "nombre": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
@@ -446,6 +517,168 @@
       "finect": null,
       "justetf": "https://www.justetf.com/es/asset-comparisons/etf-comparisons/IE00B53SZB19-ishares-nasdaq100-acc-vs-IE00BKM4GZ66-ishares-core-msci-em-imi-acc",
       "texto": "Es el ETF de emergentes más citado en España para completar un ETF del MSCI World, que no incluye estos países. Además de las grandes empresas, incluye pequeñas compañías. Gestiona unos 38.500 millones de euros y existe desde mayo de 2014."
+    },
+    {
+      "slug": "spdr-msci-acwi-imi-spyi",
+      "etf": true,
+      "nombre": "SPDR MSCI All Country World Investable Market UCITS ETF (Acc)",
+      "corto": "SPDR MSCI ACWI IMI (SPYI)",
+      "isin": "IE00B3YLTY66",
+      "ticker": "SPYI",
+      "alias": "En Euronext París y la Bolsa Italiana cotiza como IMIE.",
+      "gestora": "State Street (SPDR)",
+      "indice": "msci-acwi-imi",
+      "tipo": "ETF de renta variable global",
+      "domicilio": "Irlanda",
+      "ter": 0.17,
+      "terNota": null,
+      "patrimonio": 8239,
+      "inicio": "2011-05-13",
+      "rent": {
+        "2022": -12.43,
+        "2023": 17.03,
+        "2024": 23.45,
+        "2025": 8.08
+      },
+      "quefondos": null,
+      "finect": null,
+      "justetf": "https://www.justetf.com/es/etf-profile.html?isin=IE00B3YLTY66",
+      "texto": "Con un solo ETF invierte en más de 9.000 empresas de todo el mundo: grandes, medianas y pequeñas, de países desarrollados y emergentes. Es la alternativa de State Street al Vanguard FTSE All-World, con algo más de empresas pequeñas."
+    },
+    {
+      "slug": "ishares-msci-acwi-iusq",
+      "etf": true,
+      "nombre": "iShares MSCI ACWI UCITS ETF USD (Acc)",
+      "corto": "iShares MSCI ACWI (IUSQ)",
+      "isin": "IE00B6R52259",
+      "ticker": "IUSQ",
+      "alias": "En la Bolsa de Londres cotiza como SSAC.",
+      "gestora": "iShares (BlackRock)",
+      "indice": "msci-acwi",
+      "tipo": "ETF de renta variable global",
+      "domicilio": "Irlanda",
+      "ter": 0.2,
+      "terNota": null,
+      "patrimonio": 31789,
+      "inicio": "2011-10-21",
+      "rent": {
+        "2022": -13.12,
+        "2023": 18.11,
+        "2024": 24.82,
+        "2025": 8.22
+      },
+      "quefondos": null,
+      "finect": null,
+      "justetf": "https://www.justetf.com/es/etf-profile.html?isin=IE00B6R52259",
+      "texto": "Copia el MSCI ACWI, que es el MSCI World más los países emergentes, con unos 31.800 millones de euros de patrimonio. Es otra forma de invertir en todo el mundo con un solo producto."
+    },
+    {
+      "slug": "ishares-core-euro-stoxx-50-sxrt",
+      "etf": true,
+      "nombre": "iShares Core EURO STOXX 50 UCITS ETF EUR (Acc)",
+      "corto": "iShares Core Euro Stoxx 50 (SXRT)",
+      "isin": "IE00B53L3W79",
+      "ticker": "SXRT",
+      "alias": "En la Bolsa de Londres cotiza como CSX5.",
+      "gestora": "iShares (BlackRock)",
+      "indice": "euro-stoxx-50",
+      "tipo": "ETF de renta variable de la zona euro",
+      "domicilio": "Irlanda",
+      "ter": 0.1,
+      "terNota": null,
+      "patrimonio": 7563,
+      "inicio": "2010-01-26",
+      "rent": {
+        "2022": -9.2,
+        "2023": 22.78,
+        "2024": 11.54,
+        "2025": 22.05
+      },
+      "quefondos": null,
+      "finect": null,
+      "justetf": "https://www.justetf.com/es/etf-profile.html?isin=IE00B53L3W79",
+      "texto": "Copia el Euro Stoxx 50, las 50 mayores empresas de la zona euro, comprando todas sus acciones. Como invierte en euros, no tiene riesgo de divisa. Es de acumulación: reinvierte los dividendos."
+    },
+    {
+      "slug": "ishares-core-msci-europe-eunk",
+      "etf": true,
+      "nombre": "iShares Core MSCI Europe UCITS ETF EUR (Acc)",
+      "corto": "iShares Core MSCI Europe (EUNK)",
+      "isin": "IE00B4K48X80",
+      "ticker": "EUNK",
+      "alias": "En la Bolsa de Londres cotiza como IMAE.",
+      "gestora": "iShares (BlackRock)",
+      "indice": "msci-europe",
+      "tipo": "ETF de renta variable europea",
+      "domicilio": "Irlanda",
+      "ter": 0.12,
+      "terNota": null,
+      "patrimonio": 16029,
+      "inicio": "2009-09-25",
+      "rent": {
+        "2022": -9.42,
+        "2023": 16.15,
+        "2024": 8.84,
+        "2025": 20.07
+      },
+      "quefondos": null,
+      "finect": null,
+      "justetf": "https://www.justetf.com/es/etf-profile.html?isin=IE00B4K48X80",
+      "texto": "Invierte en unas 400 empresas grandes y medianas de toda Europa, incluidos el Reino Unido y Suiza. Es más amplio que el Euro Stoxx 50 y una de las formas más baratas de tener la bolsa europea en un solo ETF."
+    },
+    {
+      "slug": "invesco-sp-500-p500",
+      "etf": true,
+      "nombre": "Invesco S&P 500 UCITS ETF Acc",
+      "corto": "Invesco S&P 500 (P500)",
+      "isin": "IE00B3YCGJ38",
+      "ticker": "P500",
+      "alias": "En la Bolsa de Londres cotiza como SPXS.",
+      "gestora": "Invesco",
+      "indice": "sp-500",
+      "tipo": "ETF de renta variable de Estados Unidos",
+      "domicilio": "Irlanda",
+      "ter": 0.05,
+      "terNota": "Es sintético: no compra las acciones, sino que firma un contrato (swap) con bancos que le pagan lo que hace el índice.",
+      "patrimonio": 39180,
+      "inicio": "2010-05-20",
+      "rent": {
+        "2022": -13.22,
+        "2023": 21.92,
+        "2024": 32.86,
+        "2025": 4.12
+      },
+      "quefondos": null,
+      "finect": null,
+      "justetf": "https://www.justetf.com/es/etf-profile.html?isin=IE00B3YCGJ38",
+      "texto": "Es uno de los ETF del S&P 500 más baratos, con un 0,05 % de gastos. A diferencia de CSPX o VUAA, es sintético: replica el índice con un contrato con bancos en lugar de comprar las acciones. Por eso puede recuperar parte de la retención fiscal sobre los dividendos de Estados Unidos, aunque añade el riesgo de esos bancos."
+    },
+    {
+      "slug": "ishares-physical-gold-ppfb",
+      "etf": true,
+      "nombre": "iShares Physical Gold ETC",
+      "corto": "iShares Physical Gold (PPFB)",
+      "isin": "IE00B4ND3602",
+      "ticker": "PPFB",
+      "alias": "En la Bolsa de Londres cotiza como SGLN.",
+      "gestora": "iShares (BlackRock)",
+      "indice": "oro",
+      "tipo": "ETC de oro físico",
+      "domicilio": "Irlanda",
+      "ter": 0.12,
+      "terNota": "No es un fondo, sino un ETC: un título de deuda respaldado por oro físico.",
+      "patrimonio": 34342,
+      "inicio": "2011-04-08",
+      "rent": {
+        "2022": 5.62,
+        "2023": 9.73,
+        "2024": 34.47,
+        "2025": 45.72
+      },
+      "quefondos": null,
+      "finect": null,
+      "justetf": "https://www.justetf.com/es/etf-profile.html?isin=IE00B4ND3602",
+      "texto": "Sigue el precio del oro con lingotes guardados en una cámara acorazada. No es un fondo, sino un ETC, un título de deuda respaldado por el metal: no se puede traspasar como un fondo y lo que ganes tributa al venderlo. Es uno de los más grandes de Europa, con unos 34.300 millones de euros."
     },
     {
       "slug": "groupama-tresorerie",
