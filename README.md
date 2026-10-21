@@ -134,6 +134,7 @@ están en `.github/workflows/publicar-bunny.yml`.
   `src/data/fondos.json` con la plantilla `src/pages/fondos/ficha/[slug].astro`. **Cada enero:** añadir el año cerrado
   a `rent` de cada fondo y a las tablas de las tres comparativas. **Cada trimestre:** revisar gastos y patrimonio.
 - **Índices del mundo:** los textos de cada página están en `src/data/indices-info.ts`. El MSCI World y los emergentes se siguen con el precio en euros de un ETF (el índice no se publica gratis).
+- **Cuentas remuneradas y depósitos** (`/ahorro/cuentas-remuneradas-y-depositos/`, datos en `src/data/ahorro-bancos.json`): **revisar cada mes** las TAE en la web de cada banco y poner la fecha en «comprobado». Las ofertas con fecha «hasta» pasada desaparecen solas. Orden alfabético por defecto y sin enlaces de afiliado: no es un ranking.
 - **Calendario de resultados:** actualizar las fechas cada trimestre (próxima vez: finales de enero).
 - **Caife:** actualizar la guía cuando salga la orden ministerial y se inscriban los primeros fondos.
 - **Enero:** revisar las reglas fiscales de las calculadoras en `src/lib/fiscal.ts`.

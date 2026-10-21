@@ -1,0 +1,186 @@
+---
+// Comparativa neutral de cuentas remuneradas y depósitos. Datos en src/data/ahorro-bancos.json (revisar cada mes).
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { datosMercados, fecha, num } from '../../lib/mercados';
+import datos from '../../data/ahorro-bancos.json';
+
+type Cuenta = (typeof datos.cuentas)[number] & { taeNota?: string };
+type Deposito = (typeof datos.depositos)[number] & { taeNota?: string };
+const m = datosMercados();
+const bce = m?.bce.deposito.valor;
+const hoy = new Date().toISOString().slice(0, 10);
+// Las ofertas caducadas no se muestran: así la página nunca enseña algo que ya no se puede contratar
+const vigente = (x: { hasta: string | null }) => !x.hasta || x.hasta >= hoy;
+const porNombre = (a: { entidad: string; producto: string }, b: { entidad: string; producto: string }) => (a.entidad + a.producto).localeCompare(b.entidad + b.producto, 'es');
+const cuentas = (datos.cuentas as Cuenta[]).filter(vigente).sort(porNombre);
+const depositos = (datos.depositos as Deposito[]).filter(vigente).sort(porNombre);
+const p = (n: number | null | undefined, dec = 2) => (n == null ? '—' : `${num(n, dec)} %`);
+const eur = (n: number | null | undefined) => (n == null ? 'Sin límite' : `${num(n, 0)} €`);
+const meses = (n: number | null | undefined) => (n == null ? '—' : n === 12 ? '1 año' : n % 12 === 0 ? `${n / 12} años` : `${n} meses`);
+const fechaCorta = (s: string | null) => (s ? s.split('-').reverse().join('/') : '');
+
+const titulo = 'Cuentas remuneradas y depósitos: lo que paga cada banco';
+const descripcion = `Lo que pagan hoy las cuentas remuneradas y los depósitos de ${cuentas.length + depositos.length} productos de bancos y neobancos en España: TAE, límites, condiciones y garantía. Sin ranking ni publicidad.`;
+const url = `${SITE.url}/ahorro/cuentas-remuneradas-y-depositos/`;
+const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+  { '@type': 'ListItem', position: 2, name: 'Ahorro', item: `${SITE.url}/ahorro/` },
+  { '@type': 'ListItem', position: 3, name: titulo, item: url } ] };
+---
+<Base title={titulo} description={descripcion.slice(0, 165)} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/ahorro/">Ahorro</a></nav>
+  <article class="pagina ancha">
+    <h1>Cuentas remuneradas y depósitos: lo que paga cada banco</h1>
+    <p class="lead">Lo que pagan hoy los bancos y neobancos que operan en España por tener tu dinero, con sus límites, condiciones y garantía. <strong>No es un ranking ni una recomendación</strong>: no cobramos de ningún banco y no hay enlaces de afiliado. Están por orden alfabético; puedes ordenarlos por rentabilidad.</p>
+
+    <div class="cifras">
+      <div><span class="k">Productos</span><span class="v">{cuentas.length + depositos.length}</span><span class="d">{cuentas.length} cuentas y {depositos.length} depósitos</span></div>
+      {bce != null && <div><span class="k">Tipo del BCE</span><span class="v">{p(bce)}</span><span class="d">facilidad de depósito, la referencia de los bancos</span></div>}
+      <div><span class="k">Revisado</span><span class="v">{fechaCorta(datos.actualizado)}</span><span class="d">cada fila tiene su fuente y su fecha</span></div>
+    </div>
+
+    <form id="simula" class="simula" onsubmit="return false">
+      <label class="campo"><span>¿Cuánto quieres ahorrar?</span><span class="u"><input id="importe" type="number" inputmode="decimal" min="0" step="1000" value="10000" /><i>€</i></span></label>
+      <p class="muted small">Calculamos los intereses brutos (antes de la retención del 19 %) teniendo en cuenta el saldo máximo y lo que dura cada oferta.</p>
+    </form>
+
+    <h2 id="cuentas">Cuentas remuneradas</h2>
+    <p>El dinero está siempre disponible. La mayoría de las rentabilidades altas son <strong>promociones para nuevos clientes</strong> que duran unos meses: fíjate en la columna «Cuánto dura» y en lo que pagan después.</p>
+    <div class="orden"><span>Ordenar:</span> <button type="button" data-tabla="t-cuentas" data-orden="nombre" class="activo">Por nombre</button> <button type="button" data-tabla="t-cuentas" data-orden="tae">Por TAE</button></div>
+    <div class="tabla">
+      <table class="comp" id="t-cuentas">
+        <thead><tr><th scope="col">Banco</th><th scope="col">TAE</th><th scope="col">Saldo máximo</th><th scope="col">Cuánto dura</th><th scope="col">Intereses con tu importe</th><th scope="col">Condiciones y después</th><th scope="col">Garantía</th></tr></thead>
+        <tbody>
+          {cuentas.map((c) => (
+            <tr data-nombre={c.entidad + c.producto} data-tae={c.tae ?? c.tin ?? 0} data-max={c.maximo ?? ''} data-meses={c.meses ?? 12} data-tipo={c.tae ?? c.tin ?? 0}>
+              <th scope="row"><strong>{c.entidad}</strong><span class="prod">{c.producto}</span></th>
+              <td class="num" data-l="TAE"><strong>{c.tae != null ? p(c.tae) : `${p(c.tin)} TIN`}</strong>{c.taeNota && <span class="mini">{c.taeNota}</span>}</td>
+              <td class="num" data-l="Saldo máximo">{eur(c.maximo)}</td>
+              <td data-l="Cuánto dura">{meses(c.meses)}{c.hasta && <span class="mini">Contratar hasta el {fechaCorta(c.hasta)}</span>}</td>
+              <td class="num ganas" data-l="Intereses">—</td>
+              <td class="cond" data-l="Condiciones">{c.condiciones}{c.despues && <span class="mini"><strong>Después:</strong> {c.despues}</span>}<span class="fuente">Fuente: <a href={c.url} rel="nofollow noopener" target="_blank">{c.fuente}</a>, comprobado el {fechaCorta(c.comprobado)}</span></td>
+              <td data-l="Garantía">{c.garantia}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">«Intereses con tu importe»: lo que pagaría durante la oferta (o un año, si no tiene plazo), solo sobre la parte que no supera el saldo máximo. No incluye los regalos por domiciliar la nómina ni lo que pague después.</p>
+
+    <h2 id="depositos">Depósitos a plazo fijo</h2>
+    <p>El tipo está fijado durante todo el plazo, pero el dinero queda inmovilizado: si lo sacas antes, cobras menos o pagas una penalización.</p>
+    <div class="orden"><span>Ordenar:</span> <button type="button" data-tabla="t-depositos" data-orden="nombre" class="activo">Por nombre</button> <button type="button" data-tabla="t-depositos" data-orden="tae">Por TAE</button></div>
+    <div class="tabla">
+      <table class="comp" id="t-depositos">
+        <thead><tr><th scope="col">Banco</th><th scope="col">TAE</th><th scope="col">Plazo</th><th scope="col">Importe</th><th scope="col">Intereses con tu importe</th><th scope="col">Condiciones</th><th scope="col">Garantía</th></tr></thead>
+        <tbody>
+          {depositos.map((d) => (
+            <tr data-nombre={d.entidad + d.producto} data-tae={d.tae} data-min={d.minimo} data-max={d.maximo} data-plazo={d.plazo}>
+              <th scope="row"><strong>{d.entidad}</strong><span class="prod">{d.producto}</span></th>
+              <td class="num" data-l="TAE"><strong>{p(d.tae)}</strong>{d.taeNota && <span class="mini">{d.taeNota}</span>}</td>
+              <td data-l="Plazo">{meses(d.plazo)}</td>
+              <td class="num" data-l="Importe">{num(d.minimo, 0)} € a {num(d.maximo, 0)} €</td>
+              <td class="num ganas" data-l="Intereses">—</td>
+              <td class="cond" data-l="Condiciones">{d.condiciones}{d.hasta && <span class="mini">Oferta hasta el {fechaCorta(d.hasta)}</span>}<span class="fuente">Fuente: <a href={d.url} rel="nofollow noopener" target="_blank">{d.fuente}</a>, comprobado el {fechaCorta(d.comprobado)}</span></td>
+              <td data-l="Garantía">{d.garantia}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <Compartir title={titulo} url={url} />
+
+    <section class="prose">
+      <h2>Cómo hemos hecho esta comparativa</h2>
+      <ul>
+        <li><strong>Qué incluimos:</strong> cuentas remuneradas y depósitos que un particular residente en España puede contratar hoy por internet, de bancos con garantía de depósitos de un país de la Unión Europea o del Espacio Económico Europeo, y que publican su rentabilidad. Si echas en falta alguno, escríbenos.</li>
+        <li><strong>De dónde salen los datos:</strong> de la web o las condiciones de cada banco siempre que es posible. Cuando el banco no las publica de forma accesible, de un medio especializado, y lo indicamos en la fila.</li>
+        <li><strong>Sin ranking:</strong> el orden por defecto es alfabético. No cobramos de ningún banco, no usamos enlaces de afiliado y no recomendamos ninguno. Lo explicamos en nuestra <a href="/metodologia/">metodología</a>.</li>
+        <li><strong>Lo revisamos cada mes</strong> y en cuanto caduca una oferta. Las ofertas ya caducadas desaparecen solas de la tabla. Aun así, comprueba siempre las condiciones en la web del banco antes de contratar: pueden cambiar en cualquier momento.</li>
+      </ul>
+
+      <h2>Antes de elegir, mira cuatro cosas</h2>
+      <ol>
+        <li><strong>Cuánto dura la oferta.</strong> Un 3,5 % durante cuatro meses rinde menos que un 2,5 % todo el año. Haz la cuenta con tu importe en la tabla.</li>
+        <li><strong>Qué pasa después.</strong> Muchas cuentas bajan al 0,3 % o al 0,75 % cuando acaba la promoción. Si no quieres estar cambiando de banco, mira la columna «Después».</li>
+        <li><strong>El saldo máximo.</strong> Lo que pase de ese límite cobra mucho menos o nada.</li>
+        <li><strong>La garantía.</strong> Todos los bancos de la tabla tienen una garantía de hasta 100.000 € por persona y banco, pero los extranjeros la tienen en su país, no en el Fondo de Garantía de Depósitos español. Lo explicamos en <a href="/ahorro/fondo-de-garantia-de-depositos-que-cubre-neobancos/">qué cubre el Fondo de Garantía de Depósitos</a>.</li>
+      </ol>
+
+      <h2>Cómo tributan los intereses</h2>
+      <p>Los intereses de cuentas y depósitos tributan en la base del ahorro del IRPF, del 19 % al 30 %. El banco retiene el 19 % al pagártelos y en la renta se ajusta. Los bancos extranjeros sin sucursal en España no siempre retienen, pero tienes que declararlos igual. Calcula lo que te queda limpio con la <a href="/ahorro/calculadora-depositos/">calculadora de depósitos</a>.</p>
+
+      <h2>Otras opciones con poco riesgo</h2>
+      <p>Si buscas un tipo fijo sin depender de un banco, las <a href="/ahorro/letras-del-tesoro/">Letras del Tesoro</a> pagan lo que salga en cada subasta. Y los fondos monetarios siguen de cerca el tipo del BCE y se pueden traspasar sin pagar impuestos. Las diferencias entre las cuatro opciones están en <a href="/ahorro/cuenta-remunerada-deposito-letras-o-fondo-monetario/">cuenta remunerada, depósito, Letras o fondo monetario</a>.</p>
+      <p class="aviso-inv">Información divulgativa, no una recomendación. Dinero en Claro no tiene ninguna relación comercial con los bancos que aparecen en esta página.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+
+<script>
+  const input = document.getElementById('importe') as HTMLInputElement;
+  const fmt = (n: number) => Math.round(n).toLocaleString('es-ES', { useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  function calcular() {
+    const x = Math.max(0, parseFloat(input.value.replace(',', '.')) || 0);
+    document.querySelectorAll<HTMLTableRowElement>('#t-cuentas tbody tr').forEach((tr) => {
+      const max = tr.dataset.max ? +tr.dataset.max : Infinity;
+      const base = Math.min(x, max), tipo = +(tr.dataset.tipo || 0), m = +(tr.dataset.meses || 12);
+      const v = base * (Math.pow(1 + tipo / 100, m / 12) - 1);
+      tr.querySelector('.ganas')!.innerHTML = `${fmt(v)}<span class="mini">en ${m === 12 ? 'un año' : m + ' meses'}${x > max ? ` sobre ${fmt(max)}` : ''}</span>`;
+    });
+    document.querySelectorAll<HTMLTableRowElement>('#t-depositos tbody tr').forEach((tr) => {
+      const min = +(tr.dataset.min || 0), max = +(tr.dataset.max || Infinity), tae = +(tr.dataset.tae || 0), plazo = +(tr.dataset.plazo || 12);
+      const celda = tr.querySelector('.ganas')!;
+      if (x < min) { celda.innerHTML = `<span class="mini">Mínimo ${fmt(min)}</span>`; return; }
+      const base = Math.min(x, max);
+      const v = base * (Math.pow(1 + tae / 100, plazo / 12) - 1);
+      celda.innerHTML = `${fmt(v)}<span class="mini">en ${plazo === 12 ? 'un año' : plazo % 12 === 0 ? plazo / 12 + ' años' : plazo + ' meses'}</span>`;
+    });
+  }
+  input.addEventListener('input', calcular);
+  calcular();
+  document.querySelectorAll<HTMLButtonElement>('.orden button').forEach((b) => b.addEventListener('click', () => {
+    const tabla = document.getElementById(b.dataset.tabla!)!, cuerpo = tabla.querySelector('tbody')!;
+    const filas = [...cuerpo.querySelectorAll('tr')] as HTMLTableRowElement[];
+    filas.sort((a, c) => b.dataset.orden === 'tae' ? +(c.dataset.tae || 0) - +(a.dataset.tae || 0) : a.dataset.nombre!.localeCompare(c.dataset.nombre!, 'es'));
+    filas.forEach((f) => cuerpo.appendChild(f));
+    b.parentElement!.querySelectorAll('button').forEach((o) => o.classList.toggle('activo', o === b));
+  }));
+</script>
+
+<style>
+  .ancha { max-width: 1100px; }
+  .simula { margin: 0 0 8px; max-width: 360px; }
+  .orden { display: flex; gap: 6px; align-items: center; font-size: .875rem; margin: 0 0 8px; }
+  .orden button { font: inherit; padding: 5px 12px; border: 1px solid #b9c0c6; background: var(--bg); color: var(--ink); border-radius: 4px; cursor: pointer; }
+  .orden button.activo { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .tabla { overflow-x: auto; border-top: 2px solid var(--ink); margin-bottom: 8px; }
+  .comp { border-collapse: collapse; width: 100%; min-width: 900px; font-size: .875rem; }
+  .comp th, .comp td { padding: 10px 8px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+  .comp thead th { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+  .comp th[scope='row'] { min-width: 130px; }
+  .comp .prod { display: block; font-weight: 400; color: var(--muted); }
+  .comp .num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .comp .num strong { font-size: 1rem; }
+  .comp .cond { min-width: 260px; max-width: 360px; white-space: normal; line-height: 1.45; }
+  .comp :global(.mini) { display: block; font-size: .78rem; color: var(--muted); margin-top: 3px; white-space: normal; }
+  .comp .fuente { display: block; font-size: .75rem; color: var(--muted); margin-top: 6px; }
+  .small { font-size: .8125rem; }
+  @media (max-width: 720px) {
+    .tabla { overflow: visible; }
+    .comp, .comp tbody, .comp tr, .comp th, .comp td { display: block; min-width: 0; max-width: none; }
+    .comp { min-width: 0; }
+    .comp thead { display: none; }
+    .comp tr { border-bottom: 1px solid var(--ink); padding: 12px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+    .comp th[scope='row'] { grid-column: 1 / -1; border: 0; padding: 0; font-size: 1rem; }
+    .comp td { border: 0; padding: 0; white-space: normal; }
+    .comp td::before { content: attr(data-l); display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+    .comp td.cond { grid-column: 1 / -1; }
+  }
+</style>
