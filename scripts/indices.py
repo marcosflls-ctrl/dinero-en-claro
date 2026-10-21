@@ -35,6 +35,8 @@ ECB_USD = "https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?star
 
 # moneda: la de la cotización. «yahoo»: símbolos en Yahoo Finance (se prueban en este orden).
 ACTIVOS = [
+    # El Ibex 35 tiene su página con el dato del Banco de España; aquí solo para el comparador (historia larga)
+    {"id": "ibex", "nombre": "Ibex 35", "moneda": "EUR", "yahoo": ["^IBEX"]},
     {"id": "sp500", "nombre": "S&P 500", "moneda": "USD", "yahoo": ["^GSPC"]},
     {"id": "nasdaq100", "nombre": "Nasdaq 100", "moneda": "USD", "yahoo": ["^NDX"]},
     {"id": "eurostoxx50", "nombre": "Euro Stoxx 50", "moneda": "EUR", "yahoo": ["^STOXX50E"]},
