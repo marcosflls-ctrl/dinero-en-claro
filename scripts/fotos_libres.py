@@ -24,7 +24,21 @@ ANCHO, ALTO = 1280, 720
 UA = "Mozilla/5.0 (compatible; portadas-bot/1.0)"
 # palabras en las etiquetas que delatan marcas, logos, personas famosas o fotos poco serias
 EVITAR = re.compile(r"\b(logo|brand|trump|biden|celebrity|famous|sexy|bikini|lingerie|meme|cartoon|"
-                    r"illustration|3d|render|ai generated|text|letters|typography)\b", re.I)
+                    r"illustration|3d|render|ai generated|text|letters|typography|"
+                    # montajes de banco de imágenes con fondo blanco o conceptos (se ven anticuados)
+                    r"isolated|white background|concept|symbol|icon|clipart|vector|"
+                    # edificios, banderas y monedas de otros países: confunden en una noticia española
+                    r"germany|german|berlin|bonn|hamburg|munich|bundestag|federal|chancellery|london|england|"
+                    r"britain|british|scotland|edinburgh|usa|america|american|washington|capitol|iowa|"
+                    r"vienna|austria|switzerland|swiss|paris|france|french|italy|rome|dollar|dollars)\b", re.I)
+# Pixabay numera las fotos por orden de subida: por debajo de este número son de antes de 2020 y
+# suelen verse anticuadas (móviles viejos, montajes con texto). Solo se aceptan las más recientes.
+PIXABAY_ID_MINIMO = 5_000_000
+
+
+def pixabay_id(pagina: str) -> int:
+    m = re.search(r"-(\d+)/?$", pagina or "")
+    return int(m.group(1)) if m else 0
 
 
 def _usadas() -> set[str]:
@@ -43,12 +57,16 @@ def _pixabay(q: str, usadas: set[str]) -> list[dict]:
         return []
     r = requests.get("https://pixabay.com/api/", timeout=30, params={
         "key": key, "q": q[:100], "image_type": "photo", "orientation": "horizontal",
-        "min_width": ANCHO, "safesearch": "true", "per_page": 30, "lang": "en",
+        "min_width": ANCHO, "safesearch": "true", "per_page": 200, "lang": "en", "order": "popular",
     })
     r.raise_for_status()
     out = []
-    for h in r.json().get("hits", []):
-        if h.get("pageURL") in usadas or EVITAR.search(h.get("tags", "")):
+    # primero las que más gustan, entre las recientes
+    hits = sorted(r.json().get("hits", []), key=lambda h: h.get("likes", 0) + h.get("downloads", 0) / 100, reverse=True)
+    for h in hits:
+        if h.get("pageURL") in usadas or EVITAR.search(h.get("tags", "")) or EVITAR.search(h.get("pageURL", "")):
+            continue
+        if h.get("id", 0) < PIXABAY_ID_MINIMO:
             continue
         if h.get("imageWidth", 0) < ANCHO or not 1.3 <= h["imageWidth"] / max(h.get("imageHeight", 1), 1) <= 2.2:
             continue
