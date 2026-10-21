@@ -9,6 +9,12 @@ on:
         description: "Máximo de artículos a cambiar en esta pasada"
         required: false
         default: "40"
+      modo:
+        description: "Qué cambiar: repetidas (fotos del banco repetidas) o antiguas (fotos de Pixabay viejas o de otros países)"
+        required: false
+        default: "repetidas"
+        type: choice
+        options: [repetidas, antiguas]
 
 permissions:
   contents: write
@@ -27,7 +33,7 @@ jobs:
         id: fotos
         env:
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-        run: python scripts/cambiar_repetidas.py "${{ github.event.inputs.maximo }}"
+        run: python scripts/cambiar_repetidas.py "${{ github.event.inputs.maximo }}" "${{ github.event.inputs.modo }}"
       - uses: actions/setup-node@v4
         if: steps.fotos.outputs.count != '0'
         with:
@@ -42,9 +48,9 @@ jobs:
         if: steps.fotos.outputs.count != '0'
         uses: peter-evans/create-pull-request@v7
         with:
-          branch: fotos/portadas-repetidas-${{ github.run_number }}
+          branch: fotos/portadas-${{ github.event.inputs.modo }}-${{ github.run_number }}
           commit-message: "Portadas: fotos libres nuevas en lugar de las repetidas"
-          title: "🖼️ Portadas nuevas para ${{ steps.fotos.outputs.count }} artículos que repetían foto"
+          title: "🖼️ Portadas nuevas para ${{ steps.fotos.outputs.count }} artículos (${{ github.event.inputs.modo }})"
           body: |
             ${{ steps.build.outcome == 'failure' && '⚠️ **La web no se construye con este cambio.** No lo apruebes todavía: avisa a Claude.' || '✅ La web se construye bien con este cambio.' }}
 
