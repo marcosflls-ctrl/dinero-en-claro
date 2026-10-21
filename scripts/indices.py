@@ -2,7 +2,8 @@
 Cierres diarios de los grandes índices del mundo, el oro y el petróleo para Dinero en Claro
 (src/data/indices.json). El Ibex 35 sigue en mercados.py, con el dato oficial del Banco de España.
 
-Fuentes, en este orden: Stooq (CSV público) y, si falla, la API pública de gráficos de Yahoo Finance.
+Fuente: la API pública de gráficos de Yahoo Finance (Stooq, que se probó primero, no responde desde GitHub).
+Se descarta el cierre del día en curso hasta las 22:00 de Madrid, porque antes sería un precio a mitad de sesión.
 El cambio euro-dólar sale del BCE, para dar también la rentabilidad en euros de lo que cotiza en dólares.
 
 Para cada activo guarda: último cierre, variación del día, del año y de 12 meses, máximo y mínimo de
@@ -32,17 +33,17 @@ MADRID = ZoneInfo("Europe/Madrid")
 UA = "Mozilla/5.0 (compatible; DineroEnClaro/1.0; +https://dineroenclaro.com)"
 ECB_USD = "https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?startPeriod=2010-01-01&format=csvdata"
 
-# moneda: la de la cotización. «stooq» y «yahoo»: símbolos en cada fuente (se prueban en este orden).
+# moneda: la de la cotización. «yahoo»: símbolos en Yahoo Finance (se prueban en este orden).
 ACTIVOS = [
-    {"id": "sp500", "nombre": "S&P 500", "moneda": "USD", "stooq": ["^spx"], "yahoo": ["^GSPC"]},
-    {"id": "nasdaq100", "nombre": "Nasdaq 100", "moneda": "USD", "stooq": ["^ndx"], "yahoo": ["^NDX"]},
-    {"id": "eurostoxx50", "nombre": "Euro Stoxx 50", "moneda": "EUR", "stooq": ["^stx", "^sx5e"], "yahoo": ["^STOXX50E"]},
-    {"id": "dax", "nombre": "DAX 40", "moneda": "EUR", "stooq": ["^dax"], "yahoo": ["^GDAXI"]},
+    {"id": "sp500", "nombre": "S&P 500", "moneda": "USD", "yahoo": ["^GSPC"]},
+    {"id": "nasdaq100", "nombre": "Nasdaq 100", "moneda": "USD", "yahoo": ["^NDX"]},
+    {"id": "eurostoxx50", "nombre": "Euro Stoxx 50", "moneda": "EUR", "yahoo": ["^STOXX50E"]},
+    {"id": "dax", "nombre": "DAX 40", "moneda": "EUR", "yahoo": ["^GDAXI"]},
     # MSCI World y emergentes: el índice no se publica gratis; usamos el ETF más grande que lo replica, en euros
-    {"id": "msciworld", "nombre": "MSCI World", "moneda": "EUR", "proxy": "iShares Core MSCI World UCITS ETF (EUNL, Xetra)", "stooq": ["eunl.de"], "yahoo": ["EUNL.DE"]},
-    {"id": "emergentes", "nombre": "MSCI Emerging Markets", "moneda": "EUR", "proxy": "iShares Core MSCI EM IMI UCITS ETF (IS3N, Xetra)", "stooq": ["is3n.de"], "yahoo": ["IS3N.DE"]},
-    {"id": "oro", "nombre": "Oro", "moneda": "USD", "unidad": "onza", "stooq": ["xauusd"], "yahoo": ["GC=F"]},
-    {"id": "brent", "nombre": "Petróleo Brent", "moneda": "USD", "unidad": "barril", "stooq": ["cb.f"], "yahoo": ["BZ=F"]},
+    {"id": "msciworld", "nombre": "MSCI World", "moneda": "EUR", "proxy": "iShares Core MSCI World UCITS ETF (EUNL, Xetra)", "yahoo": ["EUNL.DE"]},
+    {"id": "emergentes", "nombre": "MSCI Emerging Markets", "moneda": "EUR", "proxy": "iShares Core MSCI EM IMI UCITS ETF (IS3N, Xetra)", "yahoo": ["IS3N.DE"]},
+    {"id": "oro", "nombre": "Oro", "moneda": "USD", "unidad": "onza", "yahoo": ["GC=F"]},
+    {"id": "brent", "nombre": "Petróleo Brent", "moneda": "USD", "unidad": "barril", "yahoo": ["BZ=F"]},
 ]
 
 
@@ -52,19 +53,14 @@ def aviso(tipo: str, texto: str) -> None:
         print(f"::{tipo} title=Índices::{texto}")
 
 
-def de_stooq(simbolo: str) -> list[tuple[str, float]]:
-    r = requests.get("https://stooq.com/q/d/l/", params={"s": simbolo, "i": "d"}, headers={"User-Agent": UA}, timeout=60)
-    r.raise_for_status()
-    filas = list(csv.DictReader(io.StringIO(r.text)))
-    serie = [(f["Date"], float(f["Close"])) for f in filas if f.get("Date") and f.get("Close") not in (None, "", "null")]
-    if len(serie) < 300:
-        raise ValueError(f"solo {len(serie)} filas ({r.text[:80]!r})")
-    return serie
-
-
 def de_yahoo(simbolo: str) -> list[tuple[str, float]]:
     url = f"https://query1.finance.yahoo.com/v8/finance/chart/{requests.utils.quote(simbolo)}"
-    r = requests.get(url, params={"range": "15y", "interval": "1d"}, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+    for intento in range(3):
+        r = requests.get(url, params={"range": "15y", "interval": "1d"}, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+        if r.status_code in (429, 500, 502, 503) and intento < 2:
+            time.sleep(20)
+            continue
+        break
     r.raise_for_status()
     res = r.json()["chart"]["result"][0]
     tz = res["meta"].get("exchangeTimezoneName") or "UTC"
@@ -80,15 +76,18 @@ def de_yahoo(simbolo: str) -> list[tuple[str, float]]:
 
 def descargar(a: dict) -> tuple[list[tuple[str, float]], str]:
     errores = []
-    for fuente, func in (("Stooq", de_stooq), ("Yahoo Finance", de_yahoo)):
+    hoy = datetime.now(MADRID)
+    for fuente, func in (("Yahoo Finance", de_yahoo),):
         for s in a.get(fuente.split()[0].lower(), []):
             try:
                 serie = func(s)
+                if hoy.hour < 22:
+                    serie = [x for x in serie if x[0] < hoy.date().isoformat()]
                 # quita días repetidos (se queda con el último) y ordena
                 return sorted(dict(serie).items()), f"{fuente} ({s})"
             except Exception as e:  # noqa: BLE001
                 errores.append(f"{fuente} {s}: {type(e).__name__} {str(e)[:120]}")
-            time.sleep(1)
+            time.sleep(5)
     raise RuntimeError(" · ".join(errores))
 
 
