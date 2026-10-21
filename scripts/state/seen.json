@@ -239,7 +239,25 @@
   "https://www.europapress.es/economia/bolsa-00348/noticia-ibex-35-repunta-065-media-sesion-recupera-19200-puntos-crudo-110-dolares-20261021120824.html",
   "https://www.europapress.es/economia/macroeconomia-00338/noticia-deuda-publica-modera-agosto-997-pib-importe-1750-billones-20261021102746.html",
   "https://www.elmundo.es/economia/2026/10/20/6ad742b2fdddff01188b459b.html",
-  "https://www.elmundo.es/economia/2026/10/21/6ad8943421efa0fb678b4575.html"
+  "https://www.elmundo.es/economia/2026/10/21/6ad8943421efa0fb678b4575.html",
+  "https://www.europapress.es/economia/bolsa-00348/noticia-ibex-35-sube-121-cierre-19323-puntos-20261021181306.html",
+  "https://www.europapress.es/economia/noticia-puig-alcanza-facturacion-3745-millones-septiembre-48-mas-20261021180010.html",
+  "https://www.elmundo.es/economia/empresas/2026/10/21/6ad86426e85ece8d098b4577.html",
+  "https://finantresnoticias.com/bancos/revolut-recupera-servicios-tras-caida-google-cloud-revisar-ahora/",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/el-ibex-35-baja-arrastrado-por-arcelormittal-y-n-961841",
+  "https://fundspeople.com/es/amundi-lanza-tres-etf-tematicos-sobre-el-espacio-los-metales-criticos-y-la-electrificacion/",
+  "https://www.finanzas.com/ibex-35/ibex-35-sacude-miedo-francia-rebota-hata-19-323-puntos.html",
+  "https://www.bde.es/wbe/es/noticias-eventos/eventos/conferencias/19th-research-workshop-banco-de-espana-cemfi.html",
+  "https://www.expansion.com/mercados/2026/10/21/6ad2503b468aeb857b8b457d.html",
+  "https://www.expansion.com/economia/2026/10/21/garamendi-blinda-nucleo-duro-ceoe-encarar-nuevo-ciclo-politico.html",
+  "https://cincodias.elpais.com/companias/2026-10-21/telefonica-remodela-sus-comisiones-del-consejo-tras-la-reestructuracion-operativa.html",
+  "https://cincodias.elpais.com/companias/2026-10-21/puig-facturo-3745-millones-hasta-septiembre-un-41-mas-y-prepara-su-nuevo-plan-estrategico.html",
+  "https://cincodias.elpais.com/economia/2026-10-21/los-espanoles-ahorran-una-semana-al-ano-cuando-hacen-sus-gestiones-de-forma-digital.html",
+  "https://www.europapress.es/economia/finanzas-00340/noticia-bono-frances-10-anos-toca-maximos-2002-prima-riesgo-roza-160-puntos-basicos-20261021120036.html",
+  "https://www.elmundo.es/economia/empresas/2026/10/21/6ad8c8a6e85ece692e8b4577.html",
+  "https://www.elmundo.es/economia/ahorro-y-consumo/2026/10/21/6ad2668b21efa0275c8b45a5.html",
+  "https://www.elmundo.es/economia/2026/10/21/6ad877dafdddffa5318b45ab.html",
+  "https://www.helpmycash.com/blog/8-de-cada-10-espanoles-estan-dispuestos-a-cambiar-de-banco/"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -323,7 +341,18 @@
   "el ibex 35 repunta un 0 65 en la media sesio n y recupera los 19 200 puntos con el crudo en 110 do lares",
   "la deuda pu blica se modera en agosto al 99 7 del pib con un importe de 1 750 billones",
   "euri bor hoy martes 20 de octubre nueva subida que frena la tendencia a la baja del mes",
-  "euri bor hoy mie rcoles 21 de octubre otro mi nimo repunte en su valor"
+  "euri bor hoy mie rcoles 21 de octubre otro mi nimo repunte en su valor",
+  "19th research workshop banco de espan a cemfi",
+  "reglas de oro para invertir bien en los activos con riesgo",
+  "garamendi blinda el nu cleo duro de ceoe para encarar el nuevo ciclo poli tico",
+  "telefo nica remodela sus comisiones del consejo tras la reestructuracio n operativa",
+  "puig facturo 3 745 millones hasta septiembre un 4 1 ma s y prepara su nuevo plan estrate gico",
+  "los espan oles ahorran una semana al an o cuando hacen sus gestiones de forma digital",
+  "el bono france s a 10 an os toca el 5 en ma ximos desde 2002 y la prima de riesgo roza los 160 puntos ba sicos",
+  "danone preve subir precios en 2027 y defiende la innovacio n frente a una marca blanca que copia al resto",
+  "recta final de 2026 las mejores opciones para rentabilizar tus ahorros",
+  "consumo limitara a 700 euros diarios los depo sitos en el juego online",
+  "8 de cada 10 espan oles esta n dispuestos a cambiar de banco"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -390,6 +419,11 @@
   {
    "title": "Arquia relanza un depósito al 3 % TAE a 12 meses: condiciones",
    "url": "/ahorro/arquia-deposito-bienvenida-3-tae-12-meses/",
+   "guia": false
+  },
+  {
+   "title": "El 80 % de clientes se plantea cambiar de banco en 2026",
+   "url": "/ahorro/clientes-dispuestos-cambiar-de-banco-2026/",
    "guia": false
   }
  ]
