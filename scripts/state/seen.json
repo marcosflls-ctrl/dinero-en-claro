@@ -257,7 +257,11 @@
   "https://www.elmundo.es/economia/empresas/2026/10/21/6ad8c8a6e85ece692e8b4577.html",
   "https://www.elmundo.es/economia/ahorro-y-consumo/2026/10/21/6ad2668b21efa0275c8b45a5.html",
   "https://www.elmundo.es/economia/2026/10/21/6ad877dafdddffa5318b45ab.html",
-  "https://www.helpmycash.com/blog/8-de-cada-10-espanoles-estan-dispuestos-a-cambiar-de-banco/"
+  "https://www.helpmycash.com/blog/8-de-cada-10-espanoles-estan-dispuestos-a-cambiar-de-banco/",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-eeuu/dow-jones-se-estanca-sp-500-y-nasdaq-suben-a-la-n-961999",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-eeuu/dow-jones-y-sp-500-suben-al-cierre-en-medio-de-n-961797",
+  "https://finantresnoticias.com/etfs/amundi-lanza-tres-etf-espacio-tierras-raras-electrificacion-como-encajan-en-cartera/",
+  "https://finantresnoticias.com/tu-dinero/38-5-por-ciento-clientes-encuestados-por-myinvestor-va-tarde-preparar-jubilacion/"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -352,7 +356,9 @@
   "danone preve subir precios en 2027 y defiende la innovacio n frente a una marca blanca que copia al resto",
   "recta final de 2026 las mejores opciones para rentabilizar tus ahorros",
   "consumo limitara a 700 euros diarios los depo sitos en el juego online",
-  "8 de cada 10 espan oles esta n dispuestos a cambiar de banco"
+  "8 de cada 10 espan oles esta n dispuestos a cambiar de banco",
+  "amundi lanza tres etf de espacio tierras raras y electrificacio n co mo encajan en cartera",
+  "el 38 5 de los clientes encuestados por myinvestor va tarde al preparar su jubilacio n"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -424,6 +430,16 @@
   {
    "title": "El 80 % de clientes se plantea cambiar de banco en 2026",
    "url": "/ahorro/clientes-dispuestos-cambiar-de-banco-2026/",
+   "guia": false
+  },
+  {
+   "title": "Amundi estrena tres ETF temáticos con gastos del 0,45-0,50 %",
+   "url": "/fondos/amundi-tres-etf-espacio-metales-electrificacion/",
+   "guia": false
+  },
+  {
+   "title": "Un 38,5 % de encuestados de MyInvestor va tarde con su jubilación",
+   "url": "/jubilacion/barometro-myinvestor-jubilacion-38-5-tarde/",
    "guia": false
   }
  ]
