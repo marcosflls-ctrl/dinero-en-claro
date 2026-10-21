@@ -1,0 +1,107 @@
+---
+// Comparador de índices: rentabilidad del año, 12 meses y anualizada a 3, 5 y 10 años, en euros.
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { fecha, num, signo } from '../../lib/mercados';
+import { lineas } from '../../lib/grafico';
+import { datosIndices, type Activo } from '../../lib/indices';
+import { INFO } from '../../data/indices-info';
+
+const d = datosIndices();
+const filas = [
+  { id: 'ibex', corto: 'Ibex 35', href: '/bolsa/ibex-35-hoy/', dividendos: 'no' as const, tipo: 'bolsa' },
+  ...INFO.map((i) => ({ id: i.id, corto: i.corto, href: `/bolsa/${i.slug}/`, dividendos: i.dividendos, tipo: i.id === 'oro' || i.id === 'brent' ? 'materia' : 'bolsa' })),
+].map((f) => ({ ...f, a: d?.activos[f.id] as Activo | undefined })).filter((f) => f.a);
+
+// En euros: para lo que cotiza en dólares usamos la serie convertida con el cambio del BCE
+const eur = (a: Activo) => (a.moneda === 'USD' && a.eur ? a.eur : a);
+const s = (n: number | null | undefined) => (n == null ? '—' : Math.abs(n) < 0.05 ? '0,0 %' : `${signo(n, 1)} %`);
+const clase = (n: number | null | undefined) => (n == null ? '' : n >= 0 ? 'bien' : 'mal');
+const ultima = d ? Object.values(d.activos).map((a) => a.fecha).sort().pop() : null;
+
+// Gráfico: cuánto serían hoy 100 € invertidos hace diez años (series mensuales, en la moneda de cotización)
+const COLORES = ['var(--brand)', '#c2410c', '#2563eb', '#7c3aed', '#0f766e', '#a16207', '#be123c', '#475569', '#15803d'];
+const base100 = (p: [string, number][]) => (p.length ? p.map(([f, v]) => [f, (v / p[0][1]) * 100] as [string, number]) : []);
+const enGrafico = filas.filter((f) => f.tipo === 'bolsa' && (f.a!.mensual?.length ?? 0) > 100);
+const svg = lineas(enGrafico.map((f, i) => ({ nombre: f.corto, color: COLORES[i % COLORES.length], puntos: base100(f.a!.mensual) })), { dec: 0 });
+
+const titulo = 'Índices del mundo: S&P 500, MSCI World, Ibex, Nasdaq y oro comparados';
+const descripcion = 'Cuánto ha ganado cada gran índice, el oro y el petróleo este año y de media a 3, 5 y 10 años, en euros. Comparativa actualizada cada día.';
+const url = `${SITE.url}/bolsa/indices-del-mundo/`;
+const jsonLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+  { '@type': 'ListItem', position: 2, name: 'Bolsa y mercados', item: `${SITE.url}/bolsa/` },
+  { '@type': 'ListItem', position: 3, name: 'Índices del mundo', item: url } ] };
+---
+<Base title={titulo} description={descripcion} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/bolsa/">Bolsa y mercados</a></nav>
+  <article class="pagina">
+    <h1>Índices del mundo comparados</h1>
+    <p class="lead">Cuánto han ganado las grandes bolsas del mundo, el oro y el petróleo, este año y de media en los últimos 3, 5 y 10 años. Todo <strong>en euros</strong>, que es lo que habría ganado un inversor español.</p>
+
+    {filas.length ? (
+      <>
+        <div class="tabla">
+          <table class="comp">
+            <thead>
+              <tr><th scope="col">Índice</th><th scope="col">En el año</th><th scope="col">12 meses</th><th scope="col">3 años</th><th scope="col">5 años</th><th scope="col">10 años</th></tr>
+            </thead>
+            <tbody>
+              {filas.map((f) => { const e = eur(f.a!); return (
+                <tr>
+                  <th scope="row"><a href={f.href}>{f.corto}</a>{f.dividendos === 'si' && <sup title="Incluye dividendos">*</sup>}</th>
+                  <td class={clase(e.var_anio)}>{s(e.var_anio)}</td>
+                  <td class={clase(e.var_12m)}>{s(e.var_12m)}</td>
+                  <td class={clase(e.anual['3'])}>{s(e.anual['3'])}</td>
+                  <td class={clase(e.anual['5'])}>{s(e.anual['5'])}</td>
+                  <td class={clase(e.anual['10'])}>{s(e.anual['10'])}</td>
+                </tr>
+              ); })}
+            </tbody>
+          </table>
+        </div>
+        <p class="muted small">Las columnas de 3, 5 y 10 años son la rentabilidad media anual. Datos al cierre del {ultima ? fecha(ultima) : '—'}. Los índices de Estados Unidos, el oro y el petróleo se pasan a euros con el cambio oficial del BCE. <strong>*</strong> El DAX y los ETF que usamos para el MSCI World y emergentes incluyen los dividendos reinvertidos; el resto de índices, no, así que su rentabilidad real para quien invierte es algo mayor (entre un 1 % y un 3 % al año).</p>
+
+        {svg && (
+          <>
+            <h2>100 euros invertidos hace diez años</h2>
+            <Fragment set:html={svg} />
+            <p class="leyenda">{enGrafico.map((f, i) => <span><i style={`background:${COLORES[i % COLORES.length]}`}></i>{f.corto}</span>)}</p>
+            <p class="muted small">Evolución mensual en la moneda de cada índice, con el valor de hace diez años igual a 100.</p>
+          </>
+        )}
+      </>
+    ) : <p class="lead">Los datos no están disponibles en este momento.</p>}
+
+    <Compartir title={titulo} url={url} />
+
+    <section class="prose">
+      <h2>Cómo leer esta comparativa</h2>
+      <ul>
+        <li><strong>No es un ranking para elegir.</strong> Lo que mejor ha ido en los últimos diez años no tiene por qué ser lo que mejor vaya en los próximos. El Nasdaq 100, por ejemplo, sube más que nadie en los años buenos y cae más en los malos.</li>
+        <li><strong>Mira el plazo largo.</strong> La rentabilidad de un año depende mucho del momento. A 10 años se ve mejor lo que ha dado cada mercado.</li>
+        <li><strong>El dólar importa.</strong> Si inviertes en euros en un índice de Estados Unidos, ganas o pierdes también por el tipo de cambio. Por eso lo damos todo en euros.</li>
+        <li><strong>Los dividendos también.</strong> La mayoría de índices no los incluyen. Un fondo indexado o un ETF de acumulación los reinvierte, así que gana algo más que el índice, menos sus gastos.</li>
+      </ul>
+      <h2>Cómo invertir en estos índices</h2>
+      <p>La forma más sencilla y barata es un fondo indexado o un ETF. Tienes los más conocidos, con sus gastos y su rentabilidad año a año, en la <a href="/fondos/fondos-indexados-mas-populares-comparativa/">comparativa de fondos indexados</a> y la <a href="/fondos/etf-mas-populares-comparativa/">comparativa de ETF</a>. Si dudas entre los dos grandes, lee <a href="/bolsa/msci-world-y-sp-500-que-son/">MSCI World y S&amp;P 500: qué son</a>. Y si te preocupa lo que hagan las bolsas con las elecciones, mira <a href="/bolsa/bolsa-y-elecciones-generales-que-hizo-el-ibex/">qué hizo el Ibex tras cada elección</a>.</p>
+      <p class="aviso-inv">Información divulgativa, no una recomendación de inversión. Las rentabilidades pasadas no garantizan las futuras.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+<style>
+  .tabla { overflow-x: auto; border-top: 2px solid var(--ink); }
+  .comp { border-collapse: collapse; width: 100%; min-width: 560px; font-variant-numeric: tabular-nums; font-size: .9375rem; }
+  .comp th, .comp td { padding: 10px 10px; border-bottom: 1px solid var(--rule); text-align: right; white-space: nowrap; }
+  .comp th[scope='row'], .comp thead th:first-child { text-align: left; }
+  .comp thead th { font-size: .8125rem; color: var(--muted); }
+  .comp td.bien { color: var(--good); }
+  .comp td.mal { color: var(--bad); }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .875rem; margin: 6px 0; }
+  .leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+  .leyenda i { width: 14px; height: 3px; display: inline-block; }
+</style>
