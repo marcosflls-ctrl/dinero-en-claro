@@ -20,8 +20,8 @@ sources:
     url: "https://redinversora.com/blog/mejores-fondos-indexados-espana-2026"
 image: /img/fotos/fondos-indexados-mas-populares-comparativa.webp
 imageAlt: "Billetes de euro"
-imageCredit: "Alexas_Fotos / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/cashbox-money-currency-cash-box-1642989/"
+imageCredit: "ds_30 / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/money-businesses-finances-5029288/"
 ---
 
 <!-- ACTUALIZAR: cada trimestre, gastos corrientes y patrimonio (Finect). En enero de 2027, añadir la columna de 2026 con el año cerrado (Quefondos). -->

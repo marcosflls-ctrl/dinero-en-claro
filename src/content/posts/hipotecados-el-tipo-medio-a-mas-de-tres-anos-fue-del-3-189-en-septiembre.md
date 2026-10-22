@@ -7,8 +7,8 @@ tags: ["hipotecas", "banco-de-espana", "tipos-de-interes", "boe", "hipotecados"]
 pendiente: false
 image: /img/fotos/hipotecados-el-tipo-medio-a-mas-de-tres-anos-fue-del-3-189-en-septiembre.webp
 imageAlt: "Fachada de un edificio bancario"
-imageCredit: "hslergr1 / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/national-bank-swiss-national-bank-371288/"
+imageCredit: "moshehar / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/window-building-home-house-shadow-6800397/"
 sources:
   - name: "BOE: Resolución de 19 de octubre de 2026, del Banco de España, sobre tipos de interés oficiales de referencia del mercado hipotecario"
     url: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21866"
