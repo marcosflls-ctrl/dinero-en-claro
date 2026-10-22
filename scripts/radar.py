@@ -476,7 +476,7 @@ def save_post(data: dict, item: dict) -> Path:
             img = crear_portada(data.get("card_title") or data["title"], data["category"], IMG_DIR / f"{slug}.webp")
             make_variants(img)
             make_crops(img)
-            img_lines = f"image: /img/articulos/{slug}.webp\nimageAlt: {yaml_str('Portada: ' + data['title'][:140])}\n"
+            img_lines = f"image: /img/articulos/{slug}.webp\nimageAlt: {yaml_str(data['title'][:140])}\n"
         except Exception as e:  # noqa: BLE001
             print(f"  ! no se pudo crear la portada: {e}")
 

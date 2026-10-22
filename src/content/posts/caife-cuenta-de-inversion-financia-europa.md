@@ -8,7 +8,7 @@ pendiente: true
 guia: true
 orden: 3
 image: /img/articulos/caife-la-nueva-cuenta-de-inversion-con-150-000-de-tope-aun-no-se-puede.webp
-imageAlt: "Portada: Caife: la nueva cuenta de inversión con 150.000 € de tope aún no se puede abrir"
+imageAlt: "Caife: la nueva cuenta de inversión con 150.000 € de tope aún no se puede abrir"
 sources:
   - name: "Europa Press Economía: Cuenta de inversión Financia Europa: qué es, en qué invertir y cómo pagar menos impuestos"
     url: "https://www.europapress.es/economia/finanzas-00340/noticia-cuenta-inversion-financia-europa-invertir-pagar-menos-impuestos-20261019181925.html"

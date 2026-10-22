@@ -6,7 +6,7 @@ category: bolsa
 tags: ["bitcoin", "jpmorgan", "s-p-500", "oro", "previsiones"]
 pendiente: false
 image: /img/articulos/jpmorgan-bitcoin-rentabilidad-esperada-10-15-anos.webp
-imageAlt: "Portada: JPMorgan estima un 10 % anual para el bitcoin a 10-15 años"
+imageAlt: "JPMorgan estima un 10 % anual para el bitcoin a 10-15 años"
 sources:
   - name: "Expansión Mercados: JPMorgan: el bitcoin subirá más a largo plazo que Wall Street y el oro"
     url: "https://www.expansion.com/mercados/criptomonedas/2026/10/20/6ad7522f468aebc16e8b45aa.html"
