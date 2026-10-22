@@ -31,6 +31,7 @@ from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from portada import crear as crear_portada  # noqa: E402
+from filtro import prefiltrar  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 FEEDS_FILE = ROOT / "scripts" / "feeds.json"
@@ -41,6 +42,9 @@ MADRID = ZoneInfo("Europe/Madrid")
 
 MAX_AGE_HOURS = 36            # lo más antiguo ya no es noticia
 MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "2"))
+# Ahorro: cuánto texto de la fuente lee el redactor y cuántos artículos recientes ve para enlazar y no repetir
+MAX_FUENTE = int(os.environ.get("MAX_FUENTE", "12000"))
+RECIENTES = int(os.environ.get("RECIENTES", "50"))
 MODEL = os.environ.get("MODEL", "claude-sonnet-5-5")
 MIN_SOURCE_CHARS = 500        # si no hay texto suficiente, no se escribe (evita inventar)
 SIMILARITY_SKIP = 0.6         # títulos muy parecidos = misma noticia ya cubierta
@@ -102,6 +106,12 @@ def existing_posts() -> list[dict]:
     # modificación, así que se ordena por la fecha del artículo)
     out.sort(key=lambda x: x["_fecha"], reverse=True)
     return [{k: v for k, v in x.items() if k != "_fecha"} for x in out]
+
+
+def _para_enlazar(posts: list[dict]) -> list[dict]:
+    """Los artículos más recientes y, además, todas las guías (para que los enlaces a guías no se pierdan)."""
+    recientes = posts[:RECIENTES]
+    return recientes + [p for p in posts[RECIENTES:] if p.get("guia")]
 
 
 def is_similar(title: str, known: list[str]) -> bool:
@@ -337,6 +347,16 @@ except Exception:  # noqa: BLE001
     _TEMAS_FOTO, elegir_foto = [], None
 SYSTEM = SYSTEM.replace("{temas_foto}", ", ".join(_TEMAS_FOTO) or "(ninguno)")
 
+
+# Caché de Claude: las instrucciones y la lista de artículos son iguales en todas las llamadas de una
+# ejecución, así que a partir de la segunda se cobran a una fracción del precio.
+SYSTEM_CACHE = [{"type": "text", "text": SYSTEM, "cache_control": {"type": "ephemeral"}}]
+
+
+def con_cache(contexto: str, resto: str) -> list[dict]:
+    return [{"type": "text", "text": contexto, "cache_control": {"type": "ephemeral"}},
+            {"type": "text", "text": resto}]
+
 _CLIENT = None
 
 
@@ -395,18 +415,17 @@ def datos_oficiales() -> str:
 def write_article(item: dict, source_text: str, oficiales: list[str], posts: list[dict]) -> dict | None:
     client = get_client()
     refresh_github_identity()
-    related = "\n".join(f"- {'[GUÍA] ' if p['guia'] else ''}{p['title']} → {p['url']}" for p in posts[:150]) or "(ninguno aún)"
+    related = "\n".join(f"- {'[GUÍA] ' if p['guia'] else ''}{p['title']} → {p['url']}" for p in _para_enlazar(posts)) or "(ninguno aún)"
     hoy = datetime.now(MADRID).date().isoformat()
+    contexto = f"ARTÍCULOS YA PUBLICADOS EN LA WEB:\n{related}"
     user = (
         f"HOY ES: {hoy}\n"
         f"FUENTE: {item['source']}{' (oficial)' if item.get('oficial') else ''}\nTÍTULO ORIGINAL: {item['title']}\nURL: {item['url']}\n"
         + (f"ENLACES OFICIALES QUE CITA LA FUENTE:\n" + "\n".join(oficiales) + "\n" if oficiales else "")
-        + "\n" + datos_oficiales()
-        + f"TEXTO FUENTE:\n\"\"\"\n{source_text[:30000]}\n\"\"\"\n\n"
-        f"ARTÍCULOS YA PUBLICADOS EN LA WEB:\n{related}"
+        + f"\nTEXTO FUENTE:\n\"\"\"\n{source_text[:MAX_FUENTE]}\n\"\"\""
     )
-    msg = client.messages.create(model=MODEL, max_tokens=16000, system=SYSTEM,
-                                 messages=[{"role": "user", "content": user}])
+    msg = client.messages.create(model=MODEL, max_tokens=16000, system=SYSTEM_CACHE,
+                                 messages=[{"role": "user", "content": con_cache(contexto, user)}])
     raw = "".join(b.text for b in msg.content if b.type == "text").strip()
     raw = re.sub(r"^```(?:json)?|```$", "", raw, flags=re.M).strip()
     try:
@@ -547,6 +566,12 @@ def main() -> int:
     if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_IDENTITY_TOKEN_FILE")):
         print("Faltan credenciales: ANTHROPIC_API_KEY o la federación de identidades (ANTHROPIC_IDENTITY_TOKEN_FILE)")
         return 1
+
+    if not url_forzada and len(candidates) > 1:
+        candidates, quitadas = prefiltrar(get_client(), candidates, posts, SYSTEM)
+        for c, motivo in quitadas:  # se recuerdan como vistas para no volver a revisarlas
+            state["urls"].append(c["url"])
+            state["titles"].append(norm_title(c["title"]))
 
     written, errors, intentos = [], 0, 0
     for item in candidates:
