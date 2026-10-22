@@ -24,8 +24,8 @@ sources:
     url: "https://www.finect.com/usuario/eduardogarcia/articulos/los-20-etfs-mas-negociados-del-mundo-cuales-puedes-comprar-en-espana-y-cuales-no"
 image: /img/fotos/etf-mas-populares-comparativa.webp
 imageAlt: "Monedas de euro"
-imageCredit: "kschneider2991 / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/money-coins-stack-stacked-coins-2180330/"
+imageCredit: "AlexBarcley / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/money-cash-coins-payment-debt-5885619/"
 ---
 
 <!-- ACTUALIZAR: cada trimestre, gastos y patrimonio (justETF). En enero de 2027, añadir 2026 en src/data/fondos.json y en estas tablas. -->

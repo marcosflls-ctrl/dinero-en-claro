@@ -6,9 +6,9 @@ category: ahorro
 tags: ["revolut", "neobancos", "google-cloud", "pagos", "fondo-de-garantia"]
 pendiente: false
 image: /img/fotos/caida-revolut-google-cloud-que-revisar.webp
-imageAlt: "Persona usando una aplicación bancaria en el móvil"
-imageCredit: "geralt / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/online-banking-banking-operations-4287684/"
+imageAlt: "Fachada de un edificio bancario"
+imageCredit: "MemoryCatcher / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/buildings-amsterdam-historic-6778915/"
 sources:
   - name: "El Mundo Economía: Google da por solucionado el fallo que ha provocado la caída de los pagos de Revolut durante seis ho"
     url: "https://www.elmundo.es/economia/dinero-inversion/2026/10/20/6ad737fcfc6c8327518b45b1.html"
