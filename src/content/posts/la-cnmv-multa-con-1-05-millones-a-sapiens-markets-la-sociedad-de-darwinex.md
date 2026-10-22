@@ -6,7 +6,7 @@ category: bolsa
 tags: ["cnmv", "sanciones", "brokeres", "proteccion-del-inversor", "darwinex"]
 pendiente: false
 image: /img/articulos/la-cnmv-multa-con-1-05-millones-a-sapiens-markets-la-sociedad-de-darwinex.webp
-imageAlt: "Portada: La CNMV multa con 1,05 millones a Sapiens Markets, la sociedad de Darwinex"
+imageAlt: "La CNMV multa con 1,05 millones a Sapiens Markets, la sociedad de Darwinex"
 sources:
   - name: "Expansión Mercados: La CNMV multa con 1,05 millones a Sapiens Markets y a sus tres consejeros"
     url: "https://www.expansion.com/inversion/2026/10/19/6ad5e235e5fdea3b468b4583.html"

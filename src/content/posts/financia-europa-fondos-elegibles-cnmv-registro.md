@@ -6,7 +6,7 @@ category: fondos
 tags: ["financia-europa", "cnmv", "fondos-de-inversion", "inverco", "cuenta-de-inversion"]
 pendiente: true
 image: /img/articulos/financia-europa-fondos-elegibles-cnmv-registro.webp
-imageAlt: "Portada: Financia Europa: solo 130 fondos españoles serían elegibles"
+imageAlt: "Financia Europa: solo 130 fondos españoles serían elegibles"
 sources:
   - name: "Cinco Días: La CNMV acelera la aprobación del registro de fondos para la cuenta Financia Europa"
     url: "https://cincodias.elpais.com/fondos-y-planes/2026-10-20/la-cnmv-acelera-la-aprobacion-del-registro-de-fondos-para-la-cuenta-financia-europa.html"
