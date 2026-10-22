@@ -261,7 +261,29 @@
   "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-eeuu/dow-jones-se-estanca-sp-500-y-nasdaq-suben-a-la-n-961999",
   "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-eeuu/dow-jones-y-sp-500-suben-al-cierre-en-medio-de-n-961797",
   "https://finantresnoticias.com/etfs/amundi-lanza-tres-etf-espacio-tierras-raras-electrificacion-como-encajan-en-cartera/",
-  "https://finantresnoticias.com/tu-dinero/38-5-por-ciento-clientes-encuestados-por-myinvestor-va-tarde-preparar-jubilacion/"
+  "https://finantresnoticias.com/tu-dinero/38-5-por-ciento-clientes-encuestados-por-myinvestor-va-tarde-preparar-jubilacion/",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22066",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22078",
+  "https://www.expansion.com/mercados/criptomonedas/2026/10/22/6ad25177468aebc0588b457b.html",
+  "https://cincodias.elpais.com/mercados-financieros/2026-10-22/la-bolsa-y-el-ibex-35.html",
+  "https://cincodias.elpais.com/companias/2026-10-22/carrefour-estudia-la-compra-de-condis-para-crecer-en-cataluna.html",
+  "https://www.europapress.es/economia/finanzas-00340/noticia-prima-riesgo-francia-sobrepasa-160-puntos-basicos-maximos-2011-20261022101810.html",
+  "https://www.elmundo.es/economia/2026/10/22/6ad9f37d21efa0e7508b4598.html",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/el-ibex-35-cae-por-debajo-de-los-19100-puntos-n-962249",
+  "https://www.estrategiasdeinversion.com/fondos/jp-morgan-proyecta-una-rentabilidad-del-70-anual-n-962389",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/bankinter-gana-901-millones-hasta-septiembre-un-n-962223",
+  "https://www.expansion.com/mercados/fondos/2026/10/22/6ad927eb468aeb89578b458e.html",
+  "https://www.elespanol.com/invertia/mercados/20261022/invertir-bolsa-hoy-valores-aprovechar-continuidad-reaccion-alcista/1003744430458_0.html",
+  "https://www.elespanol.com/invertia/mercados/cartera-acciones-eduardo-bolinches-sesion-hoy/1003744428803_0.html",
+  "https://www.elespanol.com/invertia/mercados/20261021/invertir-bolsa-hoy-valores-aprovechar-reaccion-alcista/1003744428752_0.html",
+  "https://www.finanzas.com/ibex-35/bankinter-gana-901me-septiembre-11.html",
+  "https://www.finanzas.com/ibex-35/santander-ganara-10-800me-septiembre-44.html",
+  "https://www.expansion.com/mercados/cronica-bolsa/2026/10/22/6ad9a54ae5fdea1b788b457d.html",
+  "https://www.expansion.com/mercados/criptomonedas/2026/10/22/6ad8b4f8e5fdea56378b458c.html",
+  "https://www.expansion.com/empresas/banca/2026/10/22/6abe5757468aebf24f8b45a1.html",
+  "https://www.expansion.com/inversion/2026/10/22/6ad8d8a3468aeb04478b4576.html",
+  "https://www.expansion.com/mercados/fondos/2026/10/22/6ad927eb468aeb89578b458e.html",
+  "https://www.expansion.com/inversion/2026/10/22/6ad90076e5fdea12568b4597.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -358,7 +380,13 @@
   "consumo limitara a 700 euros diarios los depo sitos en el juego online",
   "8 de cada 10 espan oles esta n dispuestos a cambiar de banco",
   "amundi lanza tres etf de espacio tierras raras y electrificacio n co mo encajan en cartera",
-  "el 38 5 de los clientes encuestados por myinvestor va tarde al preparar su jubilacio n"
+  "el 38 5 de los clientes encuestados por myinvestor va tarde al preparar su jubilacio n",
+  "el ibex corrige su optimismo con los resultados",
+  "podri a resistir el bitcoin un pinchazo en bolsa de las tecnolo gicas",
+  "quie nes son los duen os de los bonos de las empresas de estados unidos",
+  "re cord de dividendos a nivel mundial con extra de recompras",
+  "magallanes apuesta por los perdedores de la inteligencia artificial",
+  "la banca europea con colcho n para mejorar el dividendo"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -440,6 +468,16 @@
   {
    "title": "Un 38,5 % de encuestados de MyInvestor va tarde con su jubilación",
    "url": "/jubilacion/barometro-myinvestor-jubilacion-38-5-tarde/",
+   "guia": false
+  },
+  {
+   "title": "Dividendos récord: 827.300 millones de dólares en el 2T 2026",
+   "url": "/bolsa/dividendos-record-mundial-segundo-trimestre-2026/",
+   "guia": false
+  },
+  {
+   "title": "Accionistas de banca europea: 81.000 M en dividendos en 2025",
+   "url": "/bolsa/banca-europea-dividendos-record-81000-millones/",
    "guia": false
   }
  ]
