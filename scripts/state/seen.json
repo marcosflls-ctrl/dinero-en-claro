@@ -289,7 +289,11 @@
   "https://www.elespanol.com/invertia/mercados/20261022/meta-desploma-bolsa-presentar-resultados-condenada-pagar-multa-millones/1003744431561_0.html",
   "https://www.finanzas.com/mercados/prima-riesgo-francia-dispara-176-puntos-enciende-todas-alarmas.html",
   "https://www.finanzas.com/inmobiliario/euribor-hoy-tercer-repunte-consecutivo-deja-tasa-cerca-33.html",
-  "https://www.bde.es/wbe/es/noticias-eventos/actualidad-banco-espana/seminario-iberico2026.html"
+  "https://www.bde.es/wbe/es/noticias-eventos/actualidad-banco-espana/seminario-iberico2026.html",
+  "https://www.expansion.com/ahorro/pensiones/2026/10/22/6ad9eb43468aebba0f8b45b1.html",
+  "https://www.expansion.com/ahorro/2026/10/22/6ad9ccb0468aebc5648b4583.html",
+  "https://www.expansion.com/inversion/2026/10/22/6ad735f6e5fdea3c0b8b4594.html",
+  "https://www.expansion.com/ahorro/pensiones/2026/10/22/6ad9044a468aebd45d8b459a.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -393,7 +397,11 @@
   "re cord de dividendos a nivel mundial con extra de recompras",
   "magallanes apuesta por los perdedores de la inteligencia artificial",
   "la banca europea con colcho n para mejorar el dividendo",
-  "seminario conjunto banco de espan a banco de portugal sobre integracio n econo mica ibe rica"
+  "seminario conjunto banco de espan a banco de portugal sobre integracio n econo mica ibe rica",
+  "garralda mutua madrilen a critica el desequilibrio en las pensiones y defiende el auto enrolment",
+  "ebn banco sube los tipos de su depo sito combinado hasta el 3 50 tae",
+  "el gigante del ibex que encandila al mercado y tiene recorrido al alza",
+  "alternativas para el ahorro ma s conservador"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -485,6 +493,16 @@
   {
    "title": "Accionistas de banca europea: 81.000 M en dividendos en 2025",
    "url": "/bolsa/banca-europea-dividendos-record-81000-millones/",
+   "guia": false
+  },
+  {
+   "title": "EBN Banco: depósito al 3,50 % TAE, pero solo en la mitad del dinero",
+   "url": "/ahorro/ebn-banco-deposito-combinado-3-50-tae/",
+   "guia": false
+  },
+  {
+   "title": "Renta vitalicia a los 60: 266-310 € al mes por 100.000 €",
+   "url": "/jubilacion/renta-vitalicia-100000-euros-60-anos/",
    "guia": false
   }
  ]
