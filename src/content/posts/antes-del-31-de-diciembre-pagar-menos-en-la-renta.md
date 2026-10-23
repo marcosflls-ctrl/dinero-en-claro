@@ -6,10 +6,10 @@ category: impuestos
 guia: true
 orden: 5
 tags: [impuestos, irpf, renta-2026, planes-de-pensiones, deducciones, fin-de-ano]
-image: /img/banco/calculadora-06.webp
-imageAlt: "Calculadora de sobremesa"
-imageCredit: "Coyau / Wikimedia Commons (CC BY-SA 3.0)"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Aurora_electronic_calculator_DT210_02.jpg"
+image: /img/fotos/antes-del-31-de-diciembre-pagar-menos-en-la-renta.webp
+imageAlt: "Calculadora y cuentas domésticas"
+imageCredit: "Flyfin / Pixabay"
+imageCreditUrl: "https://pixabay.com/photos/finance-accounting-tax-7529921/"
 sources:
   - name: "BOE: Ley 35/2006 del IRPF (artículos 49, 51, 52 y disposiciones adicionales 50, 58 y 62)"
     url: "https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764"
