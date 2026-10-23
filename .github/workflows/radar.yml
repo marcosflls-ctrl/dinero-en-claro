@@ -109,6 +109,7 @@ jobs:
 
             Revisa cada artículo (pestaña *Files changed*). Puedes editarlo ahí mismo con el lápiz.
             Comprueba sobre todo las cifras y las fechas con la fuente oficial enlazada al final.
+            ${{ steps.radar.outputs.sin_oficial != '' && format('⚠️ **Sin fuente oficial** (solo citan al periódico, míralos con más cuidado): {0}', steps.radar.outputs.sin_oficial) || '' }}
             - Para publicar: **Merge pull request**.
             - Para descartarlos: **Close pull request**.
           labels: radar

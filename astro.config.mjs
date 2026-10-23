@@ -7,9 +7,10 @@ const lastmod = {};
 for (const f of fs.readdirSync('src/content/posts').filter((f) => f.endsWith('.md'))) {
   const head = fs.readFileSync(`src/content/posts/${f}`, 'utf8').split('\n---', 2)[0];
   const get = (k) => (head.match(new RegExp(`^${k}:\\s*["']?([^"'\\n]+)`, 'm')) || [])[1];
+  if (/^draft:\s*true/m.test(head)) continue; // los borradores no se publican
   const fecha = get('updated') || get('date');
   const cat = get('category');
-  if (fecha && cat && !Number.isNaN(Date.parse(fecha))) lastmod[`/${cat}/${f.replace(/\.md$/, '')}/`] = new Date(fecha).toISOString();
+  if (fecha && cat && !Number.isNaN(Date.parse(fecha)) && Date.parse(fecha) <= Date.now()) lastmod[`/${cat}/${f.replace(/\.md$/, '')}/`] = new Date(fecha).toISOString();
 }
 
 // Páginas de datos que se actualizan solas: su fecha es la del último dato descargado

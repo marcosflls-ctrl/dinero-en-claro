@@ -61,4 +61,4 @@ La renta variable, en cambio, no garantiza ninguna rentabilidad y puede dar pér
 
 ## ¿Qué conviene vigilar ahora?
 
-Tres pasos marcarán el calendario: la convalidación del real decreto-ley en la Diputación Permanente, la publicación de las dos órdenes ministeriales y la aprobación del registro de fondos por la CNMV. También conviene seguir si las gestoras modifican folletos o lanzan fondos nuevos. Ya cubrimos [por qué la cuenta aún no se puede abrir](/impuestos/caife-la-nueva-cuenta-de-inversion-con-150-000-de-tope-aun-no-se-puede/).
+Tres pasos marcarán el calendario: la convalidación del real decreto-ley en la Diputación Permanente, la publicación de las dos órdenes ministeriales y la aprobación del registro de fondos por la CNMV. También conviene seguir si las gestoras modifican folletos o lanzan fondos nuevos. Ya cubrimos [por qué la cuenta aún no se puede abrir](/impuestos/caife-cuenta-de-inversion-financia-europa/).
