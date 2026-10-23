@@ -293,7 +293,27 @@
   "https://www.expansion.com/ahorro/pensiones/2026/10/22/6ad9eb43468aebba0f8b45b1.html",
   "https://www.expansion.com/ahorro/2026/10/22/6ad9ccb0468aebc5648b4583.html",
   "https://www.expansion.com/inversion/2026/10/22/6ad735f6e5fdea3c0b8b4594.html",
-  "https://www.expansion.com/ahorro/pensiones/2026/10/22/6ad9044a468aebd45d8b459a.html"
+  "https://www.expansion.com/ahorro/pensiones/2026/10/22/6ad9044a468aebd45d8b459a.html",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22223",
+  "https://www.expansion.com/mercados/cronica-bolsa/2026/10/23/6adaf7cc468aebbd528b458e.html",
+  "https://www.expansion.com/mercados/euribor/2026/10/23/6adb302a468aeb62668b45a9.html",
+  "https://www.expansion.com/mercados/bitcoin/2026/10/23/6adb1937468aebeb088b4592.html",
+  "https://www.expansion.com/mercados/criptomonedas/2026/10/23/6ad2528be5fdea1c7a8b4591.html",
+  "https://elpais.com/economia/2026-10-23/las-palabras-de-feijoo-sobre-el-salario-minimo-agitan-la-campana-electoral.html",
+  "https://cincodias.elpais.com/opinion/2026-10-23/que-necesita-francia-para-no-terminar-como-grecia-crecer-y-politicos-creibles.html",
+  "https://cincodias.elpais.com/companias/2026-10-23/operacion-en-el-corazon-de-azca-monthisa-pone-a-la-venta-los-locales-de-uniqlo-y-nike-y-la-sede-de-revolut.html",
+  "https://www.europapress.es/economia/bolsa-00348/noticia-ibex-35-cede-04-media-sesion-pierde-18900-puntos-crudo-mas-114-dolares-20261023121401.html",
+  "https://www.elmundo.es/economia/2026/10/23/6adb3e1721efa0675c8b45c2.html",
+  "https://www.elconfidencial.com/mercados/2026-10-23/self-bank-deposito-bienvenida-rentabilidad-1hms_4451310/",
+  "https://www.elespanol.com/invertia/mercados/cartera-acciones-eduardo-bolinches-sesion-hoy/1003744430485_0.html",
+  "https://www.elespanol.com/invertia/mercados/20261022/invertir-bolsa-hoy-valores-aprovechar-reaccion-alcista/1003744430486_0.html",
+  "https://www.elespanol.com/invertia/mercados/20261022/ibex-bolsa-directo-hoy-cotizaciones-noticias-tiempo-real/1003744430465_10.html",
+  "https://www.bde.es/wbe/es/noticias-eventos/actualidad-bce/resultados-de-la-encuesta-del-bce-sobre-las-expectativas-de-los-consumidores--septiembre-de-2026.html",
+  "https://www.expansion.com/mercados/2026/10/23/6adb1c23468aebeb088b4599.html",
+  "https://www.expansion.com/empresas/banca/2026/10/23/6ad2161be5fdea54478b458e.html",
+  "https://www.expansion.com/mercados/criptomonedas/2026/10/23/6ad2528be5fdea1c7a8b4591.html",
+  "https://www.expansion.com/mercados/2026/10/23/6ada8512e5fdea29218b45b1.html",
+  "https://www.expansion.com/ahorro/2026/10/23/6ada273ae5fdead16a8b4581.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -401,7 +421,13 @@
   "garralda mutua madrilen a critica el desequilibrio en las pensiones y defiende el auto enrolment",
   "ebn banco sube los tipos de su depo sito combinado hasta el 3 50 tae",
   "el gigante del ibex que encandila al mercado y tiene recorrido al alza",
-  "alternativas para el ahorro ma s conservador"
+  "alternativas para el ahorro ma s conservador",
+  "resultados de la encuesta del bce sobre las expectativas de los consumidores septiembre de 2026",
+  "volvo cars se estrella en bolsa",
+  "la crisis de la deuda francesa tensa el coste de financiacio n de bancos y empresas",
+  "la institucionalizacio n de las criptos",
+  "el dividendo sostenible de enaga s convence en bolsa",
+  "self bank lanza un depo sito bienvenida al 3 05 a tres meses"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -503,6 +529,16 @@
   {
    "title": "Renta vitalicia a los 60: 266-310 € al mes por 100.000 €",
    "url": "/jubilacion/renta-vitalicia-100000-euros-60-anos/",
+   "guia": false
+  },
+  {
+   "title": "Criptos: cómo saber si tu plataforma tiene licencia MiCA",
+   "url": "/fondos/criptos-licencia-mica-plataformas-registro-esma/",
+   "guia": false
+  },
+  {
+   "title": "Self Bank: depósito a 3 meses al 3,05 % TAE para dinero nuevo",
+   "url": "/ahorro/self-bank-deposito-3-meses-3-05-tae/",
    "guia": false
   }
  ]
