@@ -313,7 +313,16 @@
   "https://www.expansion.com/empresas/banca/2026/10/23/6ad2161be5fdea54478b458e.html",
   "https://www.expansion.com/mercados/criptomonedas/2026/10/23/6ad2528be5fdea1c7a8b4591.html",
   "https://www.expansion.com/mercados/2026/10/23/6ada8512e5fdea29218b45b1.html",
-  "https://www.expansion.com/ahorro/2026/10/23/6ada273ae5fdead16a8b4581.html"
+  "https://www.expansion.com/ahorro/2026/10/23/6ada273ae5fdead16a8b4581.html",
+  "https://www.finanzas.com/ibex-35/ibex-35-cierra-caidas-174-semana-negra-marcada-crisis-francia.html",
+  "https://www.finanzas.com/hemeroteca/loreto-inversiones-mantiene-perspectivas-positivas-cierre-ano-ve-posible-senda-tipos-favorable-2027.html",
+  "https://www.finanzas.com/inmobiliario/euribor-hoy-caida-intrascendente-no-aleja-tasa-33.html",
+  "https://www.bde.es/wbe/es/noticias-eventos/actualidad-banco-espana/notas-banco-espana/el-banco-de-espana-y-el-banco-de-portugal-refuerzan-la-cooperacion-en-migracion-a-la-criptografia-cuantica-y-riesgos-de-ciberseguridad.html",
+  "https://www.bde.es/wbe/es/noticias-eventos/actualidad-banco-espana/notas-banco-espana/el-banco-de-espana-lanza-un-programa-piloto-de-intercambio-de-informacion-con-empresas-para-reforzar-su-sistema-de-evaluacion-crediticia.html",
+  "https://www.expansion.com/ahorro/pensiones/2026/10/23/6ad90643e5fdea38108b459d.html",
+  "https://www.expansion.com/ahorro/2026/10/23/6ad8e283e5fdea0a278b45a5.html",
+  "https://www.expansion.com/inversion/2026/10/23/6ada4f90e5fdea94288b4588.html",
+  "https://www.expansion.com/inversion/2026/10/23/6ada46e4468aeb9f228b457b.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -427,7 +436,13 @@
   "la crisis de la deuda francesa tensa el coste de financiacio n de bancos y empresas",
   "la institucionalizacio n de las criptos",
   "el dividendo sostenible de enaga s convence en bolsa",
-  "self bank lanza un depo sito bienvenida al 3 05 a tres meses"
+  "self bank lanza un depo sito bienvenida al 3 05 a tres meses",
+  "el banco de espan a y el banco de portugal refuerzan la cooperacio n en migracio n a la criptografi a cua ntica y riesgos de ciberseguridad",
+  "el banco de espan a lanza un programa piloto de intercambio de informacio n con empresas para reforzar su sistema de evaluacio n crediticia",
+  "la opcio n de los planes de pensiones",
+  "buenos tiempos para el ahorro",
+  "cinco riesgos que pueden sacudir el mercado",
+  "la mejora de objetivos de iberdrola le acercan a nextera li der del mundo"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -539,6 +554,16 @@
   {
    "title": "Self Bank: depósito a 3 meses al 3,05 % TAE para dinero nuevo",
    "url": "/ahorro/self-bank-deposito-3-meses-3-05-tae/",
+   "guia": false
+  },
+  {
+   "title": "Ahorradores: depósitos hasta el 3,5 % TAE y Letras al 2,45-2,83 %",
+   "url": "/ahorro/depositos-letras-cuentas-rentabilidad-ahorro/",
+   "guia": false
+  },
+  {
+   "title": "Accionistas de Iberdrola: dividendo a cuenta de 0,275 €, +8,7 %",
+   "url": "/bolsa/iberdrola-dividendo-a-cuenta-0-275-euros-objetivos-2030/",
    "guia": false
   }
  ]
