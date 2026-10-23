@@ -16,7 +16,7 @@ sources:
 
 La deuda pública de Francia se ha convertido en el centro de las dudas de los mercados europeos. Según publica El Mundo, el bono francés a diez años, la referencia que se vigila, ha subido desde el 3,5 % del verano hasta superar el 4,93 % en una jornada de fuertes ventas. Esa rentabilidad es lo que exigen los inversores para prestar dinero al Estado francés durante diez años.
 
-La tensión llega tras un fin de semana de protestas violentas, con toques de queda en algunas ciudades. Las bolsas europeas han caído y el Cac 40, el índice de referencia de París, perdía más de un 1,1 %. Si quieres ver cómo le ha afectado al mercado español, lo contamos en [El Ibex 35 cae un 1,49 % y cierra en 19.039 puntos por Francia](/bolsa/el-ibex-35-cae-un-1-49-y-cierra-en-19-039-puntos-por-francia/).
+La tensión llega tras un fin de semana de protestas violentas, con toques de queda en algunas ciudades. Las bolsas europeas han caído y el Cac 40, el índice de referencia de París, perdía más de un 1,1 %. Si quieres ver cómo le ha afectado al mercado español, mira cómo va el [Ibex 35 hoy](/bolsa/ibex-35-hoy/).
 
 ## ¿Por qué sube lo que paga la deuda francesa?
 
