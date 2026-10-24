@@ -334,7 +334,18 @@
   "https://www.europapress.es/economia/finanzas-00340/noticia-espanol-hernandez-cos-favorito-economistas-suceder-lagarde-bce-20261023121941.html",
   "https://www.europapress.es/economia/bolsa-00348/noticia-ibex-35-cede-174-semana-marcada-alza-petroleo-deuda-francesa-20261023180934.html",
   "https://www.europapress.es/economia/laboral-00346/noticia-feijoo-dice-no-solo-subira-smi-sueldo-medio-smi-estara-exento-irpf-ley-20261023104128.html",
-  "https://www.europapress.es/motor/sector-00644/noticia-volvo-cars-cae-27-bolsa-anunciar-2500-despidos-ahorrar-450-millones-costes-20261023115505.html"
+  "https://www.europapress.es/motor/sector-00644/noticia-volvo-cars-cae-27-bolsa-anunciar-2500-despidos-ahorrar-450-millones-costes-20261023115505.html",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22289",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22290",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22291",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22292",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22293",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22298",
+  "https://www.expansion.com/inversion/2026/10/24/6adb8e09468aeb3f6b8b4577.html",
+  "https://elpais.com/economia/2026-10-24/donde-viven-los-caseros-barrios-de-renta-alta-y-zonas-turisticas-concentran-a-quienes-declaran-ingresos-de-alquiler.html",
+  "https://cincodias.elpais.com/opinion/2026-10-24/los-inversores-franceses-afrontan-la-prueba-de-la-rana-hervida.html",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22288",
+  "https://www.expansion.com/inversion/2026/10/24/6adb8e09468aeb3f6b8b4577.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -465,7 +476,9 @@
   "el espan ol herna ndez de cos favorito entre los economistas para suceder a lagarde en el bce",
   "el ibex 35 cede un 1 74 en una semana marcada por el alza del petro leo y de la deuda francesa",
   "feijo o dice que no so lo subira el smi sino el sueldo medio y que el smi estara exento del irpf por ley",
-  "volvo cars cae un 24 en bolsa tras anunciar 2 500 despidos para ahorrar 450 millones en costes"
+  "volvo cars cae un 24 en bolsa tras anunciar 2 500 despidos para ahorrar 450 millones en costes",
+  "resolucio n de 19 de octubre de 2026 de la direccio n general del tesoro y poli tica financiera por la que se fija el coeficiente de indexacio n aplicable al pago del cupo n y el cupo n resultante que devengara n las obligaciones del estado a diez an os indexadas a la inflacio n vencimiento 30 de noviembre de 2027 durante el actual periodo de intere s",
+  "co mo cobrar ma s de 10 000 millones de euros en dividendos en la recta final del an o"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -587,6 +600,16 @@
   {
    "title": "Accionistas de Iberdrola: dividendo a cuenta de 0,275 €, +8,7 %",
    "url": "/bolsa/iberdrola-dividendo-a-cuenta-0-275-euros-objetivos-2030/",
+   "guia": false
+  },
+  {
+   "title": "Tenedores de Obligaciones indexadas: cupón del 0,8637 %",
+   "url": "/ahorro/obligaciones-indexadas-inflacion-cupon-2027/",
+   "guia": false
+  },
+  {
+   "title": "Accionistas: Inditex y Santander pagan el 2 de noviembre",
+   "url": "/bolsa/inditex-santander-dividendo-2-noviembre/",
    "guia": false
   }
  ]
