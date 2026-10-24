@@ -384,7 +384,18 @@
   "https://www.estrategiasdeinversion.com/actualidad/finanzas-personales/la-inversion-en-planes-de-pensiones-individuales-n-960989",
   "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/potencial-de-casi-el-70-para-una-accion-del-ibex-n-962551",
   "https://www.estrategiasdeinversion.com/actualidad/dividendos/no-te-duermas-3-acciones-del-ibex-35-en-momentos-n-962051",
-  "https://www.elespanol.com/invertia/mercados/20261023/ibex-cierra-semana-nivel-junio-caer-presion-crudo-dolares/1003744432718_0.html"
+  "https://www.elespanol.com/invertia/mercados/20261023/ibex-cierra-semana-nivel-junio-caer-presion-crudo-dolares/1003744432718_0.html",
+  "https://finantresnoticias.com/plataformas-de-inversion/degiro-amplia-promocion-hasta-100-euros-estas-son-nuevas-fechas/",
+  "https://finantresnoticias.com/negocios-y-autonomos/revolut-business-tiene-tres-ofertas-activas-hasta-final-ano-100-euros-200-euros-mes-gratis/",
+  "https://finantresnoticias.com/depositos/depositos-renault-bank/",
+  "https://www.elespanol.com/invertia/mercados/20261023/volvo-cars-desploma-bolsa-presentar-cuentas-anunciar-despidos-dar-perdido-mercado-chino/1003744432174_0.html",
+  "https://www.elespanol.com/invertia/mercados/20261023/repsol-logra-frenar-actual-fase-ajuste-consolidacion-soporte-euros/1003744431964_0.html",
+  "https://www.elespanol.com/invertia/mercados/cartera-acciones-eduardo-bolinches-sesion-hoy/1003744431933_0.html",
+  "https://www.finanzas.com/finanzas-personales/cuenta-ahorro-ofrece-351-tae-primeros-cuatro-meses.html",
+  "https://www.finanzas.com/inmobiliario/euribor-hoy-nuevo-repunte-finaliza-semana-cerca-33.html",
+  "https://www.finanzas.com/noticias/ibex-35-intenta-resistir-desplome-tecnologico-francia-subida-petroleo.html",
+  "https://finantresnoticias.com/cuentas-remuneradas/deutsche-bank-sube-2-02-por-ciento-tae-cuenta-ahorro-hasta-300000-euros/",
+  "https://finantresnoticias.com/etfs/nasdaq-cae-2-6-por-ciento-destapa-concentracion-algunos-etf-diversificados/"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -556,7 +567,18 @@
   "la inversio n en planes de pensiones individuales ha cai do un 65 durante la presidencia de sa nchez",
   "potencial de casi el 70 para una accio n del ibex 35 que ha iniciado un rebote en octubre",
   "no te duermas 3 acciones del ibex 35 en momentos distintos y dividendo en el horizonte",
-  "el ibex cierra la semana en su nivel ma s bajo desde junio al caer un 1 75 por la presio n de un crudo en 116 do lares"
+  "el ibex cierra la semana en su nivel ma s bajo desde junio al caer un 1 75 por la presio n de un crudo en 116 do lares",
+  "degiro ampli a su promocio n de hasta 100 euros estas son las nuevas fechas",
+  "revolut business tiene tres ofertas activas hasta final de an o 100 euros 200 euros o un mes gratis",
+  "renault bank prorroga hasta el 3 de noviembre sus depo sitos de hasta el 3 34 tae",
+  "volvo cars se desploma un 27 en bolsa tras presentar cuentas anunciar despidos y dar por perdido el mercado chino",
+  "repsol logra frenar su actual fase de ajuste y consolidacio n ante el soporte de los 28 35 euros",
+  "la cartera de acciones de eduardo bolinches para la sesio n de hoy",
+  "esta cuenta de ahorro ofrece un 3 51 tae durante los primeros cuatro meses",
+  "el euri bor hoy un nuevo repunte finaliza la semana muy cerca del 3 3",
+  "el ibex 35 se inclina por las pe rdidas tras los datos del pmi en europa",
+  "deutsche bank sube al 2 02 tae su cuenta de ahorro hasta 300 000 euros",
+  "el nasdaq cae un 2 6 y destapa la concentracio n de algunos etf diversificados"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -693,6 +715,16 @@
   {
    "title": "Inversores en fondos: premios de hasta el 2 % por traspasar",
    "url": "/fondos/bancos-bonificacion-traspaso-fondos-inversion/",
+   "guia": false
+  },
+  {
+   "title": "Ahorradores: Deutsche Bank sube a 2,02 % TAE su cuenta",
+   "url": "/ahorro/deutsche-bank-cuenta-ahorro-2-02-tae-300000/",
+   "guia": false
+  },
+  {
+   "title": "Inversores en ETF: Nasdaq cae un 2,6 % y pesa la tecnología",
+   "url": "/fondos/nasdaq-cae-2-6-concentracion-etf-tecnologia/",
    "guia": false
   }
  ]
