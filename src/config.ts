@@ -18,7 +18,8 @@ export const SITE = {
   // Contador de visitas GoatCounter (gratis, sin cookies). Es el nombre de tu cuenta en goatcounter.com.
   // Déjalo vacío para desactivarlo.
   goatcounterCode: 'dineroenclaro',
-  social: { telegram: '', whatsapp: '', facebook: '', x: '' },
+  // youtube, tiktok e instagram: el identificador sin la @ (por ejemplo 'dineroenclaro')
+  social: { telegram: '', whatsapp: '', facebook: '', x: '', youtube: 'dineroenclaro', tiktok: '', instagram: '' },
   // Webs hermanas, para enlazarlas en el pie
   hermanas: [{ nombre: 'Al Final de Mes', url: 'https://alfinaldemes.com/', texto: 'economía de casa: pensiones, paro, Hacienda y luz' }],
 };
