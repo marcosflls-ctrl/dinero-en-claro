@@ -15,7 +15,9 @@ export const SITE = {
   ownerNif: '48158108H',
   // AdSense: la misma cuenta que las otras webs. Se activa cuando Google apruebe este sitio.
   adsenseClient: 'ca-pub-2093028838178784',
-  cfAnalyticsToken: '',
+  // Contador de visitas GoatCounter (gratis, sin cookies). Es el nombre de tu cuenta en goatcounter.com.
+  // Déjalo vacío para desactivarlo.
+  goatcounterCode: 'dineroenclaro',
   social: { telegram: '', whatsapp: '', facebook: '', x: '' },
   // Webs hermanas, para enlazarlas en el pie
   hermanas: [{ nombre: 'Al Final de Mes', url: 'https://alfinaldemes.com/', texto: 'economía de casa: pensiones, paro, Hacienda y luz' }],
