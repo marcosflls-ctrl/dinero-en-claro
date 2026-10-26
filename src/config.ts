@@ -19,7 +19,7 @@ export const SITE = {
   // Déjalo vacío para desactivarlo.
   goatcounterCode: 'dineroenclaro',
   // youtube, tiktok e instagram: el identificador sin la @ (por ejemplo 'dineroenclaro')
-  social: { telegram: '', whatsapp: '', facebook: '', x: '', youtube: 'dineroenclaro', tiktok: '', instagram: '' },
+  social: { telegram: '', whatsapp: '', facebook: '', x: '', youtube: 'dineroen_claro', tiktok: '', instagram: '' },
   // Webs hermanas, para enlazarlas en el pie
   hermanas: [{ nombre: 'Al Final de Mes', url: 'https://alfinaldemes.com/', texto: 'economía de casa: pensiones, paro, Hacienda y luz' }],
 };
