@@ -467,7 +467,16 @@
   "https://www.expansion.com/empresas/2026/10/27/6ae05b73468aeb796d8b458a.html",
   "https://www.expansion.com/mercados/renta-fija/2026/10/27/6adfac48468aebc46e8b4597.html",
   "https://www.expansion.com/mercados/renta-fija/2026/10/27/6adfab67e5fdeae7238b4578.html",
-  "https://www.expansion.com/mercados/2026/10/27/6adf5d3c468aebeb6f8b4591.html"
+  "https://www.expansion.com/mercados/2026/10/27/6adf5d3c468aebeb6f8b4591.html",
+  "https://cincodias.elpais.com/mercados-financieros/2026-10-27/la-bolsa-y-el-ibex-35.html",
+  "https://www.elmundo.es/economia/2026/10/27/6ae08b44fdddff30688b458b.html",
+  "https://finantresnoticias.com/plataformas-de-inversion/revolut-prepara-2027-nueva-forma-invertir-en-tecnologicas-no-cotizadas/",
+  "https://www.finanzas.com/inmobiliario/euribor-hoy-otro-repunte-vuelve-poner-rumbo-33.html",
+  "https://www.expansion.com/inversion/2026/10/27/6ae0d427e5fdea222a8b457e.html",
+  "https://www.expansion.com/mercados/2026/10/27/6adfa0cbe5fdea070b8b4585.html",
+  "https://www.expansion.com/inversion/2026/10/27/6adf83ebe5fdea0f238b4575.html",
+  "https://www.expansion.com/ahorro/2026/10/27/6adfce20e5fdea50638b4582.html",
+  "https://www.expansion.com/ahorro/2026/10/27/6ad8e654468aeb60418b45b6.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -693,7 +702,12 @@
   "mina el moto capta 170 millones en su salto a la bolsa de londres",
   "columbia threadneedle cree que es un momento u nico para invertir en renta fija",
   "el bono france s respira tras mantener moody s el ra ting",
-  "hsbc da un vuelco y ve ahora ma s atractiva la deuda que la bolsa"
+  "hsbc da un vuelco y ve ahora ma s atractiva la deuda que la bolsa",
+  "deutsche bo rse permitira negociar las acciones del dax las 24 horas",
+  "la fed debate pausar tipos pese al avance de la inflacio n",
+  "hasta do nde puede llegar el castigo a las empresas espan olas con negocios en brasil",
+  "el precio de las hipotecas escala al 3 08 ma ximo desde enero de 2025",
+  "depo sitos cada vez ma s atractivos"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -845,6 +859,16 @@
   {
    "title": "Clientes de bunq: inversión solo en app desde el 1 nov",
    "url": "/fondos/bunq-acciones-cripto-solo-app-1-noviembre/",
+   "guia": false
+  },
+  {
+   "title": "La Fed decide mañana: se espera mantener tipos en 3,75-4 %",
+   "url": "/bolsa/fed-decide-mantener-tipos-3-75-4-octubre/",
+   "guia": false
+  },
+  {
+   "title": "Depósitos a 12 meses: del 3 % al 3,5 % TAE para ahorradores",
+   "url": "/ahorro/depositos-12-meses-tae-subida-bce/",
    "guia": false
   }
  ]
