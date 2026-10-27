@@ -12,7 +12,7 @@ Uso:
                                        # en tu PC puedes usar ANTHROPIC_API_KEY=...)
   python scripts/radar.py --dry-run    # solo lista lo que encontraría
   python scripts/radar.py --url URL    # redacta solo esa noticia
-Variables opcionales: MAX_PER_RUN (2), MODEL (claude-sonnet-5-5)
+Variables opcionales: MAX_PER_RUN (1), MAX_PER_DAY (2), MODEL (claude-sonnet-5-5)
 """
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ import re
 import sys
 import time
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -41,7 +41,9 @@ IMG_DIR = ROOT / "public" / "img" / "articulos"
 MADRID = ZoneInfo("Europe/Madrid")
 
 MAX_AGE_HOURS = 36            # lo más antiguo ya no es noticia
-MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "2"))
+MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "1"))
+# Tope de artículos al día: publicar mucho y rápido hace que Google desconfíe de una web nueva
+MAX_PER_DAY = int(os.environ.get("MAX_PER_DAY", "2"))
 # Ahorro: cuánto texto de la fuente lee el redactor y cuántos artículos recientes ve para enlazar y no repetir
 MAX_FUENTE = int(os.environ.get("MAX_FUENTE", "12000"))
 RECIENTES = int(os.environ.get("RECIENTES", "50"))
@@ -273,7 +275,7 @@ informa del hecho (una nueva comisión, una sanción de la CNMV, un cambio de ti
 En neobancos y brókeres, di desde cuándo se aplica el cambio, a quién afecta y, si la fuente lo dice, qué fondo de \
 garantía protege el dinero (el español o el de otro país). Nunca digas cuál es «el mejor».
 - REDACCIÓN 100 % PROPIA: no copies frases ni la estructura del original.
-- APORTA ALGO PROPIO (obligatorio): además de explicar la noticia, añade al menos una de estas cosas, siempre sin inventar: (a) un ejemplo con cifras calculado a partir de los datos de la fuente (cuánto rinden 10.000 € a ese tipo, cuánto se lleva una comisión en 10 años), diciendo que es un ejemplo; (b) qué significa para quien ya tiene ese producto y qué puede revisar o vigilar, sin recomendar; (c) un enlace a la calculadora o guía nuestra que le deja calcular su caso. Si la noticia no permite aportar nada de esto, probablemente no le sirve al lector: descártala con {"skip": true, "reason": "sin valor propio: ..."}.
+- APORTA ALGO PROPIO (obligatorio, y es lo primero que se mira): el artículo tiene que incluir (a) un ejemplo con cifras calculado a partir de los datos de la fuente o del documento oficial (cuánto rinden 10.000 € a ese tipo después de impuestos, cuánto se lleva una comisión en 10 años), diciendo que es un ejemplo, o (b) un dato concreto del documento oficial que el medio no da. Además, si encaja, explica qué significa para quien ya tiene ese producto, sin recomendar, y enlaza la calculadora o guía nuestra que le deja calcular su caso. Un enlace o un comentario general NO bastan. Si no puedes aportar (a) ni (b), o si la noticia solo repite lo que ya cuentan otros medios o lo que ya publicamos, descártala con {"skip": true, "reason": "sin valor propio: ..."}. Es mejor no publicar que publicar una noticia más.
 - FUENTE OFICIAL: si la fuente es un medio y menciona un organismo o una norma (BCE, Banco de España, Tesoro, CNMV, \
 BOE, Agencia Tributaria, INE…), atribúyelo a ese organismo y enlázalo si tienes su enlace. Si no, "según publica X".
 - ANUNCIADO ≠ APROBADO: si es una propuesta o un cambio pendiente, dilo claramente y pon "pendiente": true.
@@ -591,6 +593,17 @@ def main() -> int:
         print("Faltan credenciales: ANTHROPIC_API_KEY o la federación de identidades (ANTHROPIC_IDENTITY_TOKEN_FILE)")
         return 1
 
+    hoy_madrid = datetime.now(MADRID).date().isoformat()
+    por_dia = {d: n for d, n in state.get("por_dia", {}).items() if d >= (datetime.now(MADRID).date() - timedelta(days=10)).isoformat()}
+    state["por_dia"] = por_dia
+    if not url_forzada and por_dia.get(hoy_madrid, 0) >= MAX_PER_DAY:
+        print(f"Ya hay {por_dia[hoy_madrid]} artículos hoy (tope {MAX_PER_DAY}): no se escribe más hasta mañana")
+        if os.environ.get("GITHUB_ACTIONS"):
+            print(f"::notice title=Tope diario::Ya hay {por_dia[hoy_madrid]} artículos hoy (tope {MAX_PER_DAY})")
+        save_state(state)
+        return 0
+    restantes = MAX_PER_DAY - por_dia.get(hoy_madrid, 0) if not url_forzada else MAX_PER_RUN
+
     if not url_forzada and len(candidates) > 1:
         candidates, quitadas = prefiltrar(get_client(), candidates, posts, SYSTEM)
         for c, motivo in quitadas:  # se recuerdan como vistas para no volver a revisarlas
@@ -600,7 +613,7 @@ def main() -> int:
     written, errors, intentos = [], 0, 0
     for item in candidates:
         # cada candidata cuesta una consulta a la IA aunque se descarte: tope para no gastar de más
-        if len(written) >= MAX_PER_RUN or intentos >= MAX_PER_RUN * 4:
+        if len(written) >= min(MAX_PER_RUN, restantes) or intentos >= MAX_PER_RUN * 4:
             break
         print(f"→ [{item['source']}] {item['title']}")
         state["urls"].append(item["url"])
@@ -624,6 +637,7 @@ def main() -> int:
         if data:
             p = save_post(data, item)
             written.append(p)
+            por_dia[hoy_madrid] = por_dia.get(hoy_madrid, 0) + 1
             nuevo = {"title": data["title"], "url": f"/{data['category']}/{p.stem}/", "guia": False}
             posts.insert(0, nuevo)
             # se recuerda en la memoria del robot, que se guarda en main, para que la próxima ejecución lo vea
