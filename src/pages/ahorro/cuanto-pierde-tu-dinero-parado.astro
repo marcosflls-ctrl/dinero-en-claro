@@ -1,0 +1,108 @@
+---
+// «Cuánto pierde tu dinero parado»: poder de compra que se pierde con la inflación (IPC del INE, en mercados.json)
+// y cuánto se reduce esa pérdida con lo que pagan las cuentas de la comparativa (ahorro-bancos.json).
+import Base from '../../layouts/Base.astro';
+import Siguenos from '../../components/Siguenos.astro';
+import Compartir from '../../components/Compartir.astro';
+import '../../styles/calculadora.css';
+import { SITE } from '../../config';
+import { datosMercados } from '../../lib/mercados';
+import bancos from '../../data/ahorro-bancos.json';
+
+const m = datosMercados() as any;
+const ipc: { mes: string; anual: number } = m?.ipc ?? { mes: '', anual: 0 };
+const hoy = new Date().toISOString().slice(0, 10);
+// TAE mediana de las cuentas vigentes de la comparativa (sin contar las caducadas ni las que no publican TAE)
+const taes = (bancos.cuentas as any[]).filter((c) => typeof c.tae === 'number' && (!c.hasta || c.hasta >= hoy)).map((c) => c.tae).sort((a, b) => a - b);
+const mediana = taes.length ? (taes.length % 2 ? taes[(taes.length - 1) / 2] : (taes[taes.length / 2 - 1] + taes[taes.length / 2]) / 2) : 0;
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const mesTxt = ipc.mes ? `${MESES[+ipc.mes.slice(5, 7) - 1]} de ${ipc.mes.slice(0, 4)}` : '';
+const n = (x: number, d = 1) => x.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+const eur0 = (x: number) => Math.round(x).toLocaleString('es-ES', { useGrouping: 'always' } as Intl.NumberFormatOptions);
+const pierde10k = 10000 * (1 - 1 / (1 + ipc.anual / 100));
+
+const titulo = '¿Cuánto pierde tu dinero parado? Calculadora de inflación';
+const descripcion = `Con la inflación al ${n(ipc.anual)} %, 10.000 € parados en la cuenta pierden unos ${eur0(pierde10k)} € de poder de compra en un año. Calcula lo tuyo y cuánto lo reduce una cuenta remunerada.`;
+const url = `${SITE.url}/ahorro/cuanto-pierde-tu-dinero-parado/`;
+const preguntas = [
+  { q: '¿Por qué pierde valor el dinero en la cuenta?', a: `Porque los precios suben. Con la inflación al ${n(ipc.anual)} %, lo que hoy cuesta 100 € costará unos ${n(100 + ipc.anual, 0)} € dentro de un año. Si tu dinero no gana al menos eso, con la misma cantidad podrás comprar menos cosas.` },
+  { q: '¿Cuánto pierden 10.000 € en un año?', a: `Con el IPC de ${mesTxt}, unos ${eur0(pierde10k)} € de poder de compra si están en una cuenta que no paga nada. En euros sigues teniendo 10.000, pero compran lo mismo que ${eur0(10000 - pierde10k)} € de hoy.` },
+  { q: '¿Una cuenta remunerada evita la pérdida?', a: `La reduce. Las cuentas de nuestra comparativa pagan ahora una TAE mediana del ${n(mediana, 2)} %, antes de impuestos. Si la inflación está por encima de lo que te queda después de Hacienda, sigues perdiendo algo de poder de compra, pero mucho menos.` },
+  { q: '¿Cuánto dinero conviene tener en la cuenta corriente?', a: 'Lo que vas a gastar en los próximos meses y un colchón para imprevistos, que suele calcularse entre tres y seis meses de gastos. Ese colchón conviene que esté disponible, por ejemplo en una cuenta remunerada. Lo que no vas a necesitar en años es lo que más pierde si está parado.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Ahorro', item: `${SITE.url}/ahorro/` },
+    { '@type': 'ListItem', position: 3, name: '¿Cuánto pierde tu dinero parado?', item: url } ] },
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: titulo, url, applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: 'es-ES', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: preguntas.map((p) => ({ '@type': 'Question', name: p.q, acceptedAnswer: { '@type': 'Answer', text: p.a } })) },
+];
+---
+<Base title={titulo} description={descripcion} jsonLd={jsonLd}>
+  <nav class="breadcrumbs"><a href="/">Inicio</a> › <a href="/ahorro/">Ahorro</a></nav>
+  <article class="pagina">
+    <h1>¿Cuánto pierde tu dinero parado?</h1>
+    <p class="lead">Los precios suben un <strong>{n(ipc.anual)} % al año</strong> según el último IPC del INE ({mesTxt}). El dinero que tienes quieto en la cuenta sigue siendo el mismo, pero cada año compra menos. Pon cuánto tienes y te decimos cuánto pierdes y cuánto lo reducirías.</p>
+    <div class="calc">
+      <form id="calc-parado" novalidate>
+        <label class="campo"><span>Dinero que tienes parado</span><span class="u"><input name="capital" type="number" inputmode="decimal" min="0" step="1000" value="10000" /><i>€</i></span><small class="muted">En la cuenta corriente, en casa o en una cuenta que no paga.</small></label>
+        <label class="campo"><span>Lo que te paga ahora</span><span class="u"><input name="tae" type="number" inputmode="decimal" min="0" step="0.1" value="0" /><i>% TAE</i></span><small class="muted">La mayoría de las cuentas corrientes pagan un 0 %.</small></label>
+        <label class="campo"><span>Años</span><span class="u"><input name="anios" type="number" inputmode="numeric" min="1" max="30" step="1" value="5" /><i>años</i></span></label>
+        <label class="campo"><span>Inflación que supones</span><span class="u"><input name="ipc" type="number" inputmode="decimal" min="0" step="0.1" value={ipc.anual} /><i>% al año</i></span><small class="muted">La de ahora es del {n(ipc.anual)} %. El objetivo del BCE es el 2 %: prueba con los dos.</small></label>
+      </form>
+      <section class="res" aria-live="polite">
+        <h2 class="etq">Pierdes en poder de compra</h2>
+        <p class="cifra" id="r-pierde">—</p>
+        <p class="sub" id="r-sub"></p>
+        <table class="desglose"><tbody>
+          <tr><th scope="row">El primer año</th><td id="r-anio1">—</td></tr>
+          <tr><th scope="row">Lo que valdrá tu dinero en euros de hoy</th><td id="r-real">—</td></tr>
+          <tr><th scope="row">Valdría en una cuenta al {n(mediana, 2)} % (mediana de la comparativa)</th><td id="r-cuenta">—</td></tr>
+          <tr class="total"><th scope="row">Te ahorrarías de pérdida</th><td id="r-dif">—</td></tr>
+        </tbody></table>
+        <p class="muted small">La cuenta se calcula con la retención del 19 % sobre los intereses y suponiendo que mantiene el tipo, cosa que los bancos no garantizan.</p>
+      </section>
+    </div>
+    <p class="aviso-inv">Cálculo orientativo. No es una recomendación de ningún producto ni entidad.</p>
+    <Compartir title={titulo} url={url} />
+    <section class="prose">
+      <h2>Qué puedes hacer con el dinero que no usas</h2>
+      <ul>
+        <li><strong>Para el colchón de imprevistos</strong>, que tiene que estar disponible: una cuenta remunerada. Mira lo que paga cada banco en la <a href="/ahorro/cuentas-remuneradas-y-depositos/">comparativa de cuentas y depósitos</a>, con sus límites y condiciones.</li>
+        <li><strong>Si no lo vas a necesitar en unos meses:</strong> un depósito o las <a href="/ahorro/letras-del-tesoro/">Letras del Tesoro</a>, con el tipo conocido de antemano. Calcula los intereses netos en la <a href="/ahorro/calculadora-depositos/">calculadora de depósitos</a>.</li>
+        <li><strong>Si no lo vas a necesitar en muchos años:</strong> la inversión a largo plazo ha batido a la inflación en el pasado, aunque con altibajos y sin garantías. Mira <a href="/bolsa/si-hubieras-invertido/">qué habría pasado si hubieras invertido</a> y <a href="/ahorro/calculadora-interes-compuesto/">cómo crece el ahorro con los años</a>.</li>
+      </ul>
+      <h2>Preguntas frecuentes</h2>
+      {preguntas.map((p) => (<><h3>{p.q}</h3><p>{p.a}</p></>))}
+      <p class="muted small">Fuentes: IPC general, variación anual, del <a href="https://www.ine.es/dyngs/Prensa/IPC.htm" rel="noopener" target="_blank">INE</a> ({mesTxt}); TAE de las cuentas de nuestra <a href="/ahorro/cuentas-remuneradas-y-depositos/">comparativa</a>, actualizada el {bancos.actualizado.split('-').reverse().join('/')}. La inflación de los próximos años es una suposición: cambia el dato para ver otros escenarios.</p>
+    </section>
+    <Siguenos />
+  </article>
+</Base>
+<script define:vars={{ mediana }}>window.__mediana = mediana;</script>
+<script>
+  const mediana = (window as any).__mediana as number;
+  const form = document.getElementById('calc-parado') as HTMLFormElement;
+  const $ = (id: string) => document.getElementById(id)!;
+  const eur = (x: number) => Math.round(x).toLocaleString('es-ES', { useGrouping: 'always' } as Intl.NumberFormatOptions) + ' €';
+  // Valor real tras N años con un tipo neto r y una inflación p
+  const real = (c: number, r: number, p: number, n: number) => c * Math.pow((1 + r) / (1 + p), n);
+  function calcular() {
+    const d = new FormData(form);
+    const c = Math.max(0, +(d.get('capital') || 0));
+    const tae = Math.max(0, +(d.get('tae') || 0)) / 100 * 0.81; // neto tras la retención del 19 %
+    const anios = Math.max(1, Math.min(30, Math.round(+(d.get('anios') || 1))));
+    const p = Math.max(0, +(d.get('ipc') || 0)) / 100;
+    const ahora = real(c, tae, p, anios);
+    const cuenta = real(c, mediana / 100 * 0.81, p, anios);
+    $('r-pierde').textContent = eur(Math.max(0, c - ahora));
+    $('r-sub').textContent = `En ${anios} ${anios === 1 ? 'año' : 'años'}, con la inflación al ${(p * 100).toLocaleString('es-ES', { maximumFractionDigits: 1 })} % cada año.`;
+    $('r-anio1').textContent = eur(Math.max(0, c - real(c, tae, p, 1)));
+    $('r-real').textContent = eur(ahora);
+    $('r-cuenta').textContent = eur(cuenta);
+    $('r-dif').textContent = eur(Math.max(0, cuenta - ahora));
+  }
+  form.addEventListener('input', calcular);
+  calcular();
+</script>

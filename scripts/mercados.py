@@ -87,6 +87,26 @@ def valor_en(serie: list[tuple[str, float]], dia: str) -> float | None:
     return previos[-1] if previos else None
 
 
+INE_IPC = "https://servicios.ine.es/wstempus/js/ES/DATOS_TABLA/76125?nult=13"
+
+
+def ipc_ine(anterior: dict | None) -> dict | None:
+    """IPC general de España (variación anual del INE), para la calculadora «cuánto pierde tu dinero parado».
+    Si el INE falla, se conserva el dato anterior."""
+    try:
+        datos = requests.get(INE_IPC, headers={"User-Agent": UA}, timeout=120).json()
+        for s in datos:
+            partes = [p.strip() for p in s.get("Nombre", "").split(".") if p.strip()]
+            if len(partes) >= 3 and partes[0] in ("Nacional", "Total Nacional") and partes[1].lower().startswith("índice general") and partes[-1] == "Variación anual":
+                serie = sorted((f"{x['Anyo']}-{int(x['FK_Periodo']):02d}", x["Valor"]) for x in s.get("Data", [])
+                               if x.get("Valor") is not None and 1 <= int(x["FK_Periodo"]) <= 12)
+                if serie:
+                    return {"mes": serie[-1][0], "anual": serie[-1][1], "fuente": "INE"}
+    except Exception as e:  # noqa: BLE001
+        print(f"! IPC del INE: {type(e).__name__} {str(e)[:200]}")
+    return anterior
+
+
 def main() -> int:
     try:
         letras = tabla_bde("ti_1_4", LETRAS)
@@ -101,6 +121,13 @@ def main() -> int:
         return 1
 
     salida: dict = {"fuente": "Banco Central Europeo y Banco de España", "actualizado": datetime.now(MADRID).replace(microsecond=0).isoformat()}
+    try:
+        anterior_ipc = json.loads(OUT.read_text(encoding="utf-8")).get("ipc")
+    except (FileNotFoundError, ValueError):
+        anterior_ipc = None
+    ipc = ipc_ine(anterior_ipc)
+    if ipc:
+        salida["ipc"] = ipc
 
     salida["bce"] = {k: {"valor": s[-1][1], "desde": cambios(s)[-1]["fecha"], "cambios": cambios(s)[-12:]} for k, s in bce.items() if s}
 
@@ -138,7 +165,8 @@ def main() -> int:
     l12 = salida["letras"].get("12", {})
     ib = salida["bolsa"].get("ibex", {})
     resumen = (f"BCE depósito {salida['bce'].get('deposito', {}).get('valor')} % · Letras 12m {l12.get('tipo')} % ({l12.get('fecha')}) · "
-               f"Bono 10a {salida['secundario'].get('bono_10a', {}).get('valor')} % · Ibex {ib.get('cierre')} ({ib.get('fecha')})")
+               f"Bono 10a {salida['secundario'].get('bono_10a', {}).get('valor')} % · Ibex {ib.get('cierre')} ({ib.get('fecha')}) · "
+               f"IPC {salida.get('ipc', {}).get('anual')} % ({salida.get('ipc', {}).get('mes')})")
     print("✓", resumen)
     if os.environ.get("GITHUB_ACTIONS"):
         print(f"::notice title=Mercados::{resumen}")
