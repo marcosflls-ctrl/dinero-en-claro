@@ -3,6 +3,7 @@ export const HERRAMIENTAS = [
   { href: '/ahorro/letras-del-tesoro/', titulo: 'Letras del Tesoro', texto: 'La rentabilidad de la última subasta y cuánto ganarías con tu dinero, después de impuestos.' },
   { href: '/ahorro/calculadora-interes-compuesto/', titulo: 'Interés compuesto', texto: 'Cuánto puede crecer lo que ahorras cada mes con los años, con y sin inflación.' },
   { href: '/ahorro/cuentas-remuneradas-y-depositos/', titulo: 'Cuentas remuneradas y depósitos', texto: 'Lo que paga hoy cada banco y neobanco por tu dinero, con límites, condiciones y garantía. Sin ranking.' },
+  { href: '/ahorro/cuanto-pierde-tu-dinero-parado/', titulo: '¿Cuánto pierde tu dinero parado?', texto: 'Lo que pierde con la inflación el dinero que tienes quieto en la cuenta y cuánto lo reduce una cuenta remunerada.' },
   { href: '/ahorro/calculadora-depositos/', titulo: 'Intereses de un depósito', texto: 'Los intereses netos de un depósito o una cuenta remunerada, con la retención de Hacienda.' },
   { href: '/impuestos/calculadora-impuestos-inversiones/', titulo: 'Impuestos de las inversiones', texto: 'Cuánto pagas a Hacienda por intereses, dividendos y lo que ganas al vender.' },
   { href: '/jubilacion/calculadora-plan-de-pensiones/', titulo: 'Plan de pensiones', texto: 'Cuánto te ahorras en la renta por aportar a un plan y cuánto pagarás al rescatarlo.' },
