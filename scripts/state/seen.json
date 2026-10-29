@@ -526,7 +526,9 @@
   "https://www.expansion.com/economia/financial-times/2026/10/28/bce-necesita-transmision-fluida-transicion-ordenada.html",
   "https://www.expansion.com/mercados/criptomonedas/2026/10/28/6ae09ecce5fdeabe708b45ad.html",
   "https://www.expansion.com/inversion/2026/10/28/6ae0d5d9468aeb7c388b4592.html",
-  "https://www.expansion.com/economia/2026/10/28/santander-gana-12-405-millones-20-plusvalia-polonia.html"
+  "https://www.expansion.com/economia/2026/10/28/santander-gana-12-405-millones-20-plusvalia-polonia.html",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-eeuu/dow-jones-sp-500-y-nasdaq-suben-al-cierre-tras-n-964555",
+  "https://www.expansion.com/economia/2026/10/28/nuevos-jubilados-cobran-1-863-euros-mitad-asalariados.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -780,7 +782,8 @@
   "el bce necesita una transmisio n fluida y una transicio n ordenada",
   "tres factores que avivan la aversio n al riesgo en las criptos",
   "u ltimo di a para cobrar los dividendos de inditex y santander",
-  "santander gana 12 405 millones un 20 ma s por la plusvali a de polonia"
+  "santander gana 12 405 millones un 20 ma s por la plusvali a de polonia",
+  "los nuevos jubilados cobran 1 863 euros ma s que la mitad de los asalariados"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -948,7 +951,14 @@
    "title": "Ahorradores: el BCE mantendría los tipos el 29 de octubre",
    "url": "/bolsa/bce-mantendria-tipos-29-octubre-ahorradores/",
    "guia": false
+  },
+  {
+   "title": "Nuevos jubilados: pensión media de 1.863 € en septiembre",
+   "url": "/jubilacion/nuevos-jubilados-pension-media-1863-euros/",
+   "guia": false
   }
  ],
- "por_dia": {}
+ "por_dia": {
+  "2026-10-29": 1
+ }
 }
