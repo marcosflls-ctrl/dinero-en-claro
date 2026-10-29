@@ -528,7 +528,29 @@
   "https://www.expansion.com/inversion/2026/10/28/6ae0d5d9468aeb7c388b4592.html",
   "https://www.expansion.com/economia/2026/10/28/santander-gana-12-405-millones-20-plusvalia-polonia.html",
   "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-eeuu/dow-jones-sp-500-y-nasdaq-suben-al-cierre-tras-n-964555",
-  "https://www.expansion.com/economia/2026/10/28/nuevos-jubilados-cobran-1-863-euros-mitad-asalariados.html"
+  "https://www.expansion.com/economia/2026/10/28/nuevos-jubilados-cobran-1-863-euros-mitad-asalariados.html",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22696",
+  "https://www.expansion.com/mercados/2026/10/29/lagarde-anuncia-deja-presidencia-bce-7-febrero.html",
+  "https://elpais.com/economia/2026-10-29/christine-lagarde-dejara-la-presidencia-del-bce-el-7-de-febrero-y-abre-la-carrera-por-su-sucesion.html",
+  "https://cincodias.elpais.com/companias/2026-10-29/el-bce-eleva-en-4000-millones-los-requerimientos-de-capital-a-la-gran-banca-espanola-para-2027.html",
+  "https://www.europapress.es/economia/finanzas-00340/noticia-lagarde-dejara-presidencia-bce-febrero-2027-20261029111007.html",
+  "https://www.elmundo.es/economia/vivienda/2026/10/29/6ae3356be9cf4a094f8b4591.html",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/el-ibex-35-cae-por-debajo-de-los-18700-puntos-n-964643",
+  "https://www.estrategiasdeinversion.com/analisis/bolsa-y-mercados/informes/la-presidenta-del-bce-christine-lagarde-dejara-n-964747",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/faes-farma-gana-74-millones-hasta-septiembre-y-n-964715",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/natac-gana-113-millones-hasta-octubre-y-situa-n-964641",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/fcc-dispara-un-46-su-beneficio-neto-hasta-septiembre-n-964613",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/indra-dispara-un-22-su-beneficio-hasta-septiembre-n-964603",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/banco-sabadell-gana-1376-millones-hasta-septiembre-n-964593",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/bbva-eleva-un-136-su-beneficio-hasta-superar-los-n-964589",
+  "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-espana/cie-automotive-gana-un-32-mas-hasta-septiembre-n-964427",
+  "https://www.elespanol.com/invertia/mercados/cartera-acciones-eduardo-bolinches-sesion-hoy/1003744439084_0.html",
+  "https://www.elespanol.com/invertia/mercados/20261029/ibex-bolsa-directo-hoy-cotizaciones-noticias-tiempo-real/1003744439053_10.html",
+  "https://www.elespanol.com/invertia/mercados/20261028/invertir-bolsa-hoy-valores-aprovechar-reaccion-recientes-correcciones/1003744437513_0.html",
+  "https://www.finanzas.com/inmobiliario/euribor-hoy-nuevo-repunte-coloca-tasa-encima-33-espera-bce.html",
+  "https://www.finanzas.com/ibex-35/sabadell-gana-1-376-septiembre-1-anuncia-dividendo-325.html",
+  "https://www.finanzas.com/ibex-35/santander-multiplica-cinco-valor-generado-inteligencia-artificial.html",
+  "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261029~abbb6dc64b.en.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -783,7 +805,8 @@
   "tres factores que avivan la aversio n al riesgo en las criptos",
   "u ltimo di a para cobrar los dividendos de inditex y santander",
   "santander gana 12 405 millones un 20 ma s por la plusvali a de polonia",
-  "los nuevos jubilados cobran 1 863 euros ma s que la mitad de los asalariados"
+  "los nuevos jubilados cobran 1 863 euros ma s que la mitad de los asalariados",
+  "ecb president lagarde to step down on 7 february 2027"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -956,9 +979,14 @@
    "title": "Nuevos jubilados: pensión media de 1.863 € en septiembre",
    "url": "/jubilacion/nuevos-jubilados-pension-media-1863-euros/",
    "guia": false
+  },
+  {
+   "title": "Ahorradores: Lagarde deja el BCE el 7 de febrero de 2027",
+   "url": "/bolsa/lagarde-deja-bce-7-febrero-2027/",
+   "guia": false
   }
  ],
  "por_dia": {
-  "2026-10-29": 1
+  "2026-10-29": 2
  }
 }
