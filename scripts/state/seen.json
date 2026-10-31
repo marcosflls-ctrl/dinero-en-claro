@@ -612,7 +612,15 @@
   "https://www.elmundo.es/economia/empresas/2026/10/31/6ae48d7fe9cf4aa34e8b4588.html",
   "https://www.estrategiasdeinversion.com/actualidad/noticias/bolsa-eeuu/dow-jones-sp-500-y-nasdaq-caen-al-cierre-tras-n-965535",
   "https://www.expansion.com/inversion/2026/10/31/veinte-valores-fuertes-suben-contracorriente-octubre.html",
-  "https://www.expansion.com/ahorro/2026/10/30/banca-dispara-atractivo-depositos-3-6-meses.html"
+  "https://www.expansion.com/ahorro/2026/10/30/banca-dispara-atractivo-depositos-3-6-meses.html",
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22881",
+  "https://www.expansion.com/empresas/2026/10/31/mina-moto-planea-saltar-cotizar-bolsa-espanola.html",
+  "https://cincodias.elpais.com/opinion/2026-10-31/el-mercado-toma-partido-en-las-elecciones-y-no-nos-sorprende.html",
+  "https://cincodias.elpais.com/opinion/2026-10-31/europa-elige-bien-su-batalla-con-starlink-por-el-espectro.html",
+  "https://cincodias.elpais.com/opinion/2026-10-31/otra-sacudida-tecnologica-a-las-puertas-de-recibir-a-anthropic.html",
+  "https://www.finanzas.com/finanzas-personales/deposito-europeo-alcanza-342-tae-18-meses.html",
+  "https://www.expansion.com/inversion/2026/10/31/reaccionara-mercado-midterm.html",
+  "https://www.expansion.com/mercados/criptomonedas/2026/10/31/robo-binance-dispara-alarma-sobre-seguridad-cripto.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -894,7 +902,9 @@
   "de analizar estadi sticas y supervisar a los grandes bancos a aliviar el bolsillo de los ciudadanos para que sirve el bce",
   "el ipc se mantiene en el 4 9 en octubre pese al abaratamiento de las gasolinas",
   "veinte valores fuertes que suben a contracorriente en octubre",
-  "la banca dispara el atractivo de los depo sitos a 3 y 6 meses"
+  "la banca dispara el atractivo de los depo sitos a 3 y 6 meses",
+  "co mo reaccionara el mercado a las midterm",
+  "el robo a binance dispara la alarma sobre la seguridad cripto"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -1082,11 +1092,16 @@
    "title": "Ahorradores: depósitos a 6 meses al 2,9-3,2 % TAE",
    "url": "/ahorro/depositos-6-meses-tae-bce-mantiene-tipos/",
    "guia": false
+  },
+  {
+   "title": "Criptos: qué revisar tras el robo de 6.300 M$ a Binance",
+   "url": "/fondos/robo-binance-6300-millones-seguridad-criptos/",
+   "guia": false
   }
  ],
  "por_dia": {
   "2026-10-29": 2,
   "2026-10-30": 1,
-  "2026-10-31": 1
+  "2026-10-31": 2
  }
 }
