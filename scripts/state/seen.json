@@ -620,7 +620,8 @@
   "https://cincodias.elpais.com/opinion/2026-10-31/otra-sacudida-tecnologica-a-las-puertas-de-recibir-a-anthropic.html",
   "https://www.finanzas.com/finanzas-personales/deposito-europeo-alcanza-342-tae-18-meses.html",
   "https://www.expansion.com/inversion/2026/10/31/reaccionara-mercado-midterm.html",
-  "https://www.expansion.com/mercados/criptomonedas/2026/10/31/robo-binance-dispara-alarma-sobre-seguridad-cripto.html"
+  "https://www.expansion.com/mercados/criptomonedas/2026/10/31/robo-binance-dispara-alarma-sobre-seguridad-cripto.html",
+  "https://www.expansion.com/mercados/2026/10/31/asi-formula-exito-cuentas-inversion-europa.html"
  ],
  "titles": [
   "resolucio n de 16 de octubre de 2026 del banco de espan a por la que se publican los cambios del euro correspondientes al di a 16 de octubre de 2026 publicados por el banco central europeo que tendra n la consideracio n de cambios oficiales de acuerdo con lo dispuesto en el arti culo 36 de la ley 46 1998 de 17 de diciembre sobre la introduccio n del euro",
@@ -904,7 +905,8 @@
   "veinte valores fuertes que suben a contracorriente en octubre",
   "la banca dispara el atractivo de los depo sitos a 3 y 6 meses",
   "co mo reaccionara el mercado a las midterm",
-  "el robo a binance dispara la alarma sobre la seguridad cripto"
+  "el robo a binance dispara la alarma sobre la seguridad cripto",
+  "asi es la fo rmula de e xito de las cuentas de inversio n en europa"
  ],
  "feeds_iniciados": [
   "https://fundspeople.com/es/feed/",
@@ -1097,11 +1099,17 @@
    "title": "Criptos: qué revisar tras el robo de 6.300 M$ a Binance",
    "url": "/fondos/robo-binance-6300-millones-seguridad-criptos/",
    "guia": false
+  },
+  {
+   "title": "Ahorradores: qué cuentas de inversión triunfan en Europa",
+   "url": "/impuestos/cuentas-inversion-europa-suecia-francia-impuestos/",
+   "guia": false
   }
  ],
  "por_dia": {
   "2026-10-29": 2,
   "2026-10-30": 1,
-  "2026-10-31": 2
+  "2026-10-31": 2,
+  "2026-11-01": 1
  }
 }
