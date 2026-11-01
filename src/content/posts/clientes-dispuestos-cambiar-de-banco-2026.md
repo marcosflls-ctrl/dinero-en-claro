@@ -2,6 +2,7 @@
 title: "El 80 % de clientes se plantea cambiar de banco en 2026"
 description: "Un estudio de HelpMyCash con más de mil personas cifra en un 80 % los clientes dispuestos a cambiar de banco, frente al 62 % de 2023. Esto es lo que revisar."
 date: 2026-10-21T17:14:19+00:00
+noindex: true
 category: ahorro
 tags: ["ahorro", "cuentas-remuneradas", "cambiar-de-banco", "tipos-de-interes", "tae"]
 pendiente: false

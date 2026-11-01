@@ -2,6 +2,7 @@
 title: "Self Bank: depósito a 3 meses al 3,05 % TAE para dinero nuevo"
 description: "Self Bank ofrece un depósito a 3 meses al 3,05 % TAE para dinero nuevo, sin vinculación. 10.000 € darían unos 75 € brutos en ese plazo."
 date: 2026-10-23T11:41:30+00:00
+noindex: true
 category: ahorro
 tags: ["depositos", "tae", "self-bank", "ahorro", "dinero-nuevo"]
 pendiente: false

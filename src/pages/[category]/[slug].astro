@@ -58,7 +58,7 @@ const jsonLd = [
 ];
 const actualizado = d.updated && d.updated.getTime() - d.date.getTime() > 36e5;
 ---
-<Base title={d.title} description={d.description} image={img} type="article" jsonLd={jsonLd} published={d.date} modified={d.updated ?? d.date} section={cat.label}>
+<Base title={d.title} description={d.description} image={img} type="article" jsonLd={jsonLd} published={d.date} modified={d.updated ?? d.date} section={cat.label} noindex={d.noindex}>
   <article class="post" data-pagefind-body>
     <nav class="breadcrumbs" data-pagefind-ignore><a href="/">Inicio</a> › <a href={`/${d.category}/`}>{cat.label}</a></nav>
     <header>

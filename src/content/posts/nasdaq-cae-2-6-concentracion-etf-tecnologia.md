@@ -2,6 +2,7 @@
 title: "Inversores en ETF: Nasdaq cae un 2,6 % y pesa la tecnología"
 description: "El Nasdaq Composite cayó un 2,6 % el 22 de octubre y el Dow quedó plano. Qué peso tiene la tecnología en ETF del Nasdaq-100, S&P 500 y MSCI World."
 date: 2026-10-24T18:49:28+00:00
+noindex: true
 category: fondos
 tags: ["etf", "nasdaq", "diversificacion", "tecnologia", "msci-world"]
 pendiente: false

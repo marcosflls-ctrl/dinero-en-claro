@@ -2,6 +2,7 @@
 title: "El Ibex 35 sube un 1,54 % en la semana y cierra en 19.326 puntos"
 description: "El Ibex 35 cerró el viernes en 19.326,30 puntos (+0,77 %) y acumula un 1,54 % en la semana, con la deuda y la Fed marcando la sesión."
 date: 2026-10-17T21:28:22+00:00
+noindex: true
 category: bolsa
 tags: ["ibex-35", "bolsa", "reserva-federal", "deuda-publica", "tecnologicas"]
 pendiente: false

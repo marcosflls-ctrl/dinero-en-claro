@@ -2,6 +2,7 @@
 title: "La Fed decide mañana: se espera mantener tipos en 3,75-4 %"
 description: "La Reserva Federal decide el 28 de octubre. El mercado espera que mantenga los tipos en el 3,75-4 %, aunque el IPC de EE. UU. sube al 3,7 %. Qué cambia para tu ahorro."
 date: 2026-10-27T18:02:04+00:00
+noindex: true
 category: bolsa
 tags: ["reserva-federal", "tipos-de-interes", "inflacion", "bolsa", "bce"]
 pendiente: true

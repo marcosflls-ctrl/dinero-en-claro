@@ -2,6 +2,7 @@
 title: "JPMorgan estima un 10 % anual para el bitcoin a 10-15 años"
 description: "JPMorgan incluye por primera vez el bitcoin en sus previsiones a 10-15 años: un 10 % anual, frente al 7,5 % del S&P 500 y al 5,5 % del oro."
 date: 2026-10-20T17:13:18+00:00
+noindex: true
 category: bolsa
 tags: ["bitcoin", "jpmorgan", "s-p-500", "oro", "previsiones"]
 pendiente: false

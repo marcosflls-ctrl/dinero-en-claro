@@ -2,6 +2,7 @@
 title: "Ahorradores: Lagarde deja el BCE el 7 de febrero de 2027"
 description: "Christine Lagarde dejará la presidencia del BCE el 7 de febrero de 2027, antes de acabar su mandato en octubre. Su sucesor aún no está nombrado."
 date: 2026-10-29T13:02:07+00:00
+noindex: true
 category: bolsa
 tags: ["bce", "lagarde", "tipos-de-interes", "ahorradores", "politica-monetaria"]
 pendiente: true

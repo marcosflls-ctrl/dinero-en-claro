@@ -2,6 +2,7 @@
 title: "Caída de Revolut por Google Cloud: qué revisar si eres cliente"
 description: "Un fallo de Google Cloud dejó sin servicio parcial a Revolut este martes. La entidad lo dio por resuelto tras las 19:30 y asegura que el dinero está seguro."
 date: 2026-10-20T21:39:07+00:00
+noindex: true
 category: ahorro
 tags: ["revolut", "neobancos", "google-cloud", "pagos", "fondo-de-garantia"]
 pendiente: false

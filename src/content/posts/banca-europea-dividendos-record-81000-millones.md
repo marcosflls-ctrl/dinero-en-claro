@@ -2,6 +2,7 @@
 title: "Accionistas de banca europea: 81.000 M en dividendos en 2025"
 description: "Los bancos europeos pagaron 81.000 millones en dividendos con cargo a 2025. Morningstar DBRS prevé que sigan altos, pero que crezcan más despacio."
 date: 2026-10-22T11:54:40+00:00
+noindex: true
 category: bolsa
 tags: ["dividendos", "banca-europea", "recompras-de-acciones", "solvencia", "morningstar-dbrs"]
 pendiente: false
