@@ -2,6 +2,7 @@
 title: "Criptos: qué revisar tras el robo de 6.300 M$ a Binance"
 description: "Binance cifra en 6.300 millones de dólares el mayor robo cripto. Qué ha pasado, cuánto se ha bloqueado y qué protege MiCA a quien guarda criptos en Europa."
 date: 2026-10-31T12:30:48+00:00
+noindex: true
 category: fondos
 tags: ["criptomonedas", "binance", "mica", "cnmv", "seguridad"]
 pendiente: false

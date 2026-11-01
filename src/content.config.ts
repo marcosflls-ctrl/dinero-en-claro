@@ -23,6 +23,8 @@ const posts = defineCollection({
     // correcciones visibles al final del artículo
     correcciones: z.array(z.object({ fecha: z.coerce.date(), texto: z.string() })).default([]),
     draft: z.boolean().default(false),
+    // fuera de Google (noindex) pero visible en la web: noticias caducadas, repetidas o de poco valor propio
+    noindex: z.boolean().default(false),
   }),
 });
 

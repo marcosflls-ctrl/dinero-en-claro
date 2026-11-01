@@ -2,6 +2,7 @@
 title: "Ahorradores: el BCE mantendría los tipos el 29 de octubre"
 description: "La mayoría de analistas prevé que el BCE deje el tipo de depósito en el 2,5 % el jueves 29 y que suba en diciembre. Qué significa para tus ahorros."
 date: 2026-10-27T22:16:01+00:00
+noindex: true
 category: bolsa
 tags: ["bce", "tipos-de-interes", "inflacion", "depositos", "ahorro"]
 pendiente: true

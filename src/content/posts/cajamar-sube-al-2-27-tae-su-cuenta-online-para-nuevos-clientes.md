@@ -2,6 +2,7 @@
 title: "Cajamar sube al 2,27 % TAE su cuenta online para nuevos clientes"
 description: "Cajamar paga hasta el 2,27 % TAE en su cuenta online a nuevos clientes con Bizum, con tope de 50.000 € y hasta 1.125 € brutos el primer año."
 date: 2026-10-19T23:43:30+00:00
+noindex: true
 category: ahorro
 tags: ["cuentas-remuneradas", "cajamar", "tae", "ahorro", "bizum"]
 pendiente: false

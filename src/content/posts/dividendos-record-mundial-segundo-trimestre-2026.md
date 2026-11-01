@@ -2,6 +2,7 @@
 title: "Dividendos récord: 827.300 millones de dólares en el 2T 2026"
 description: "Las grandes empresas del mundo pagaron 827.300 millones de dólares en dividendos en el 2T 2026, un 7,9 % más, según Capital Group. Qué supone para ti."
 date: 2026-10-22T11:54:05+00:00
+noindex: true
 category: bolsa
 tags: ["dividendos", "bolsa", "recompra-de-acciones", "fiscalidad-del-ahorro", "renta-variable"]
 pendiente: false

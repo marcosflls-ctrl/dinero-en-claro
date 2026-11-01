@@ -2,6 +2,7 @@
 title: "Arquia relanza un depósito al 3 % TAE a 12 meses: condiciones"
 description: "Arquia ofrece un 3 % TAE a 12 meses por dinero procedente de otras entidades, entre 10.000 y 200.000 euros, hasta el 30 de octubre."
 date: 2026-10-21T11:50:40+00:00
+noindex: true
 category: ahorro
 tags: ["depositos", "tae", "ahorro", "fondo-de-garantia", "letras-del-tesoro"]
 pendiente: false

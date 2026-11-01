@@ -3,11 +3,14 @@ import sitemap from '@astrojs/sitemap';
 import fs from 'node:fs';
 
 // Fecha de última modificación de cada artículo (updated o date) para el mapa del sitio
+// Artículos con noindex: no van al mapa del sitio
+const sinIndexar = new Set();
 const lastmod = {};
 for (const f of fs.readdirSync('src/content/posts').filter((f) => f.endsWith('.md'))) {
   const head = fs.readFileSync(`src/content/posts/${f}`, 'utf8').split('\n---', 2)[0];
   const get = (k) => (head.match(new RegExp(`^${k}:\\s*["']?([^"'\\n]+)`, 'm')) || [])[1];
   if (/^draft:\s*true/m.test(head)) continue; // los borradores no se publican
+  if (/^noindex:\s*true/m.test(head)) { sinIndexar.add(`/${get('category')}/${f.replace(/\.md$/, '')}/`); continue; } // fuera de Google
   const fecha = get('updated') || get('date');
   const cat = get('category');
   if (fecha && cat && !Number.isNaN(Date.parse(fecha)) && Date.parse(fecha) <= Date.now()) lastmod[`/${cat}/${f.replace(/\.md$/, '')}/`] = new Date(fecha).toISOString();
@@ -30,7 +33,7 @@ export default defineConfig({
   site: 'https://dineroenclaro.com',
   trailingSlash: 'always',
   integrations: [sitemap({
-    filter: (page) => !page.includes('/buscar/'),
+    filter: (page) => !page.includes('/buscar/') && !sinIndexar.has(new URL(page).pathname),
     serialize: (item) => {
       const ruta = new URL(item.url).pathname;
       let m = lastmod[ruta] || paginasDeDatos[ruta];

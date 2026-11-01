@@ -8,7 +8,7 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, 
 export async function GET() {
   const limite = Date.now() - 2 * 24 * 3600 * 1000;
   const todas = await getPublishedPosts();
-  const esNoticia = (p) => !p.data.guia;
+  const esNoticia = (p) => !p.data.guia && !p.data.noindex;
   const recientes = todas.filter((p) => p.data.date.getTime() >= limite && esNoticia(p));
   // Google da error si el mapa no tiene ninguna página: si no hay noticias de los últimos 2 días,
   // se deja la más reciente (o, si no hay ninguna, el último artículo). Google ignora las antiguas sin dar error.

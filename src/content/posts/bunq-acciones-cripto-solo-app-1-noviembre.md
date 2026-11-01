@@ -2,6 +2,7 @@
 title: "Clientes de bunq: inversión solo en app desde el 1 nov"
 description: "bunq retira Acciones (acciones y ETF) y Cripto de su web el 1 de noviembre. Las carteras siguen intactas y solo se podrá operar desde la app móvil."
 date: 2026-10-24T22:29:33+00:00
+noindex: true
 category: fondos
 tags: ["bunq", "neobancos", "criptomonedas", "acciones", "comisiones"]
 pendiente: false

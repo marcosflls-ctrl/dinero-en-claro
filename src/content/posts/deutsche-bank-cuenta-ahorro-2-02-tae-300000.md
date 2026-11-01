@@ -2,6 +2,7 @@
 title: "Ahorradores: Deutsche Bank sube a 2,02 % TAE su cuenta"
 description: "La Cuenta Ahorro Más DB pasa del 1,50 % al 2,02 % TAE y remunera hasta 300.000 €, pero exige un saldo mínimo de 10.000 € y una cuenta nómina vinculada."
 date: 2026-10-24T18:48:55+00:00
+noindex: true
 category: ahorro
 tags: ["cuenta-de-ahorro", "deutsche-bank", "tae", "fondo-de-garantia-de-depositos", "intereses"]
 pendiente: false

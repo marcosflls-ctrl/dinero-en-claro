@@ -2,6 +2,7 @@
 title: "EBN Banco: depósito al 3,50 % TAE, pero solo en la mitad del dinero"
 description: "EBN Banco eleva del 3,20 % al 3,50 % TAE su depósito combinado a 12 meses, que obliga a invertir otro 50 % en fondos. Mínimo: 20.000 euros."
 date: 2026-10-22T21:37:40+00:00
+noindex: true
 category: ahorro
 tags: ["depositos", "tae", "deposito-combinado", "fondos-de-inversion", "ebn-banco"]
 pendiente: false

@@ -2,6 +2,7 @@
 title: "Un 38,5 % de encuestados de MyInvestor va tarde con su jubilación"
 description: "El Barómetro de MyInvestor, con unas 2.500 respuestas de sus clientes, recoge que el 38,5 % va con retraso o no planifica su retiro."
 date: 2026-10-21T21:44:43+00:00
+noindex: true
 category: jubilacion
 tags: ["jubilacion", "planificacion", "encuesta", "ahorro-a-largo-plazo", "inversores-minoristas"]
 pendiente: false
