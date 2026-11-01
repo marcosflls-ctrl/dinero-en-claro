@@ -6,10 +6,12 @@ export const SITE = {
   lang: 'es',
   locale: 'es_ES',
   email: 'contacto@dineroenclaro.com',
+  // Firma de los artículos. «Marcos León» es el nombre de firma del editor (el titular legal está en el aviso legal).
   author: {
-    name: 'Redacción Dinero en Claro',
-    slug: 'redaccion',
-    bio: 'El equipo de Dinero en Claro explica cómo funcionan los productos de ahorro e inversión, sus costes y sus impuestos, siempre con datos y fuentes oficiales y sin recomendar productos concretos.',
+    name: 'Marcos León',
+    slug: 'marcos-leon',
+    bio: 'Marcos León escribe y revisa Dinero en Claro. Explica cómo funcionan los depósitos, las Letras del Tesoro, los fondos y los planes de pensiones, cuánto cuestan y cómo tributan, con datos de la CNMV, el Tesoro, el Banco de España y las propias gestoras, y sin recomendar productos concretos.',
+    temas: 'Ahorro, fondos, Letras e impuestos de la inversión',
   },
   ownerName: 'Marcos Fernández León',
   ownerNif: '48158108H',

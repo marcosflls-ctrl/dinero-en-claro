@@ -3,25 +3,34 @@ import Base from '../../layouts/Base.astro';
 import PostCard from '../../components/PostCard.astro';
 import { SITE } from '../../config';
 import { getPublishedPosts } from '../../lib/posts';
-export function getStaticPaths() { return [{ params: { slug: SITE.author.slug } }]; }
+// La antigua firma «redacción» redirige a la nueva página de autor
+export function getStaticPaths() { return [{ params: { slug: SITE.author.slug } }, { params: { slug: 'redaccion' } }]; }
+const antigua = Astro.params.slug !== SITE.author.slug;
+const autorUrl = `${SITE.url}/autor/${SITE.author.slug}/`;
 const posts = (await getPublishedPosts()).slice(0, 12);
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'ProfilePage',
-  mainEntity: { '@type': 'Organization', name: SITE.author.name, url: `${SITE.url}/autor/${SITE.author.slug}/`, description: SITE.author.bio },
+  mainEntity: { '@type': 'Person', name: SITE.author.name, url: autorUrl, description: SITE.author.bio, knowsAbout: SITE.author.temas, worksFor: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
 };
 ---
+{antigua ? (
+  <html lang="es"><head><meta charset="utf-8" /><meta name="robots" content="noindex" /><link rel="canonical" href={autorUrl} /><meta http-equiv="refresh" content={`0; url=${autorUrl}`} /><title>{SITE.author.name}</title></head><body><a href={autorUrl}>{SITE.author.name}</a></body></html>
+) : (
 <Base title={SITE.author.name} description={`${SITE.author.bio}`.slice(0, 160)} jsonLd={jsonLd}>
   <nav class="breadcrumbs"><a href="/">Inicio</a> › Autor</nav>
   <header class="autor">
     <h1>{SITE.author.name}</h1>
     <p>{SITE.author.bio}</p>
-    <p class="muted small">Contacto: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    <p><strong>Temas:</strong> {SITE.author.temas}.</p>
+    <p><strong>Cómo trabaja:</strong> un programa vigila las fuentes oficiales y prepara borradores con ayuda de inteligencia artificial; Marcos los revisa, comprueba cifras, fechas y fuentes, y solo entonces se publican. Si hay un error, se corrige a la vista en la página de <a href="/correcciones/">correcciones</a>. Más detalles en la <a href="/politica-editorial/">política editorial</a>.</p>
+    <p class="muted small">«Marcos León» es el nombre de firma del editor de la web. Contacto: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
   </header>
   {posts.length > 0 && (<>
     <h2 class="titulo-bloque">Últimos artículos</h2>
     <div class="lista-noticias">{posts.map((p) => <PostCard post={p} />)}</div>
   </>)}
 </Base>
+)}
 <style>
   .autor { max-width: 720px; margin-bottom: 32px; }
   h1 { font-size: clamp(2rem, 5vw, 2.6rem); margin: 8px 0; }
