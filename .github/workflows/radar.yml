@@ -1,8 +1,10 @@
 name: Radar de noticias
 
 on:
-  schedule:
-    - cron: "17 6-20/2 * * *"   # cada dos horas, de 8:17 a 22:17 de España
+  # PAUSADO desde el 1 de noviembre de 2026 para mejorar la calidad antes de publicar más (Google y AdSense).
+  # Para reactivarlo, quita los # de las líneas siguientes. Mientras tanto se puede lanzar a mano desde Actions.
+  # schedule:
+  #   - cron: "17 6-20/2 * * *"   # cada dos horas, de 8:17 a 22:17 de España
   workflow_dispatch:
     inputs:
       url:
