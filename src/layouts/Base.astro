@@ -1,10 +1,11 @@
 ---
 import { SITE, CATEGORIES } from '../config';
-import '@fontsource/ibm-plex-sans/latin-400.css';
-import '@fontsource/ibm-plex-sans/latin-500.css';
-import '@fontsource/ibm-plex-sans/latin-600.css';
-import '@fontsource/ibm-plex-serif/latin-500.css';
-import '@fontsource/ibm-plex-serif/latin-600.css';
+// Tipografía propia de Dinero en Claro (distinta de Al Final de Mes): Inter para el texto y Source Serif 4 para los títulos
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import '@fontsource/source-serif-4/latin-600.css';
+import '@fontsource/source-serif-4/latin-700.css';
 import Logo from '../components/Logo.astro';
 import { HERRAMIENTAS } from '../data/herramientas';
 interface Props {
@@ -223,8 +224,10 @@ const hoy = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'nume
     --good: #2e7a4e;
     --mid: #c4881c;
     --bad: #b3432f;
-    --serif: 'IBM Plex Serif', Georgia, serif;
-    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --cabecera: #13304e;
+    --oro: #e2b54f;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -285,6 +288,28 @@ const hoy = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'nume
     .desplegable.activa .desplegable-btn { color: var(--brand); }
     .submenu { position: static; box-shadow: none; border: 0; padding: 0 0 6px 14px; min-width: 0; }
     .secciones .submenu a { padding: 10px 0; }
+  }
+
+  /* Cabecera oscura con acento dorado: identidad propia de Dinero en Claro */
+  .site-header { background: var(--cabecera); border-bottom: 3px solid var(--oro); }
+  .site-header .nombre { color: #fff; }
+  .site-header .mark rect:first-child { fill: var(--oro); }
+  .site-header .mark rect:not(:first-child) { fill: var(--cabecera); }
+  .fecha { color: #c6d3e0; }
+  .search-btn, .search-btn:hover { color: #fff; }
+  .menu-btn { color: #fff; border-color: rgba(255,255,255,.4); }
+  .secciones { border-top: 1px solid rgba(255,255,255,.15); }
+  .secciones > .wrap > a, .desplegable-btn { color: #fff; }
+  .secciones > .wrap > a:hover, .desplegable-btn:hover { color: var(--oro); }
+  .secciones a[aria-current], .desplegable.activa .desplegable-btn { border-bottom-color: var(--oro); }
+  .secciones .submenu a { color: var(--ink); }
+  .secciones .submenu a:hover, .secciones .submenu a[aria-current] { color: var(--brand); }
+  h1, h2, h3 { letter-spacing: -.01em; }
+  @media (max-width: 760px) {
+    .secciones a, .desplegable { border-bottom-color: rgba(255,255,255,.15); }
+    .secciones a[aria-current], .desplegable.activa .desplegable-btn { color: var(--oro); }
+    .submenu { background: transparent; }
+    .secciones .submenu a { color: #dfe7ef; }
   }
 
   main.wrap { min-height: 70vh; padding-top: 28px; padding-bottom: 56px; }
