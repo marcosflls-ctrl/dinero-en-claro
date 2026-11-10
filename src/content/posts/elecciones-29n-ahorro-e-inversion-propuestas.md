@@ -2,6 +2,7 @@
 title: "Elecciones del 29N: qué proponen los partidos para tus ahorros"
 description: "IRPF del ahorro, planes de pensiones, patrimonio y herencias: lo que han dicho PP, Vox, PSOE, Sumar y Podemos, y lo que todavía no ha propuesto nadie."
 date: 2026-10-20T23:00:00+02:00
+updated: 2026-11-10T16:00:00+01:00
 category: impuestos
 guia: true
 orden: 4
@@ -11,6 +12,8 @@ imageAlt: "Fachada del Ministerio de Hacienda en Madrid"
 imageCredit: "Zarateman / Wikimedia Commons (CC0)"
 imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Madrid_-_Real_Casa_de_la_Aduana_6.jpg"
 sources:
+  - name: "Demócrata: el programa del PP para el 29N, «La Reconstrucción Nacional» (10/11/2026)"
+    url: "https://www.democrata.es/elecciones-generales-espana/programa-electoral-pp-29n-propuestas/"
   - name: "Moncloa.com: las propuestas económicas de Vox y PP para el 29N (16/10/2026)"
     url: "https://www.moncloa.com/2026/10/16/propuestas-economicas-vox-pp-29n-3449552/"
   - name: "Forbes: las cinco batallas económicas del 29-N"
@@ -27,14 +30,14 @@ sources:
 
 Si tienes ahorros en depósitos, fondos, acciones o un plan de pensiones, lo que más puede cambiar según quién gobierne tras el **29 de noviembre** son los impuestos. Esta guía recoge lo que han dicho los partidos sobre el ahorro y la inversión, y lo que todavía no ha propuesto nadie. No es una recomendación de voto.
 
-**Aviso:** los partidos aún no han publicado sus programas. Recogemos planes y declaraciones con su fecha y actualizaremos la guía cuando salgan los programas.
+**Actualizado el 10 de noviembre:** el **PP** publicó ese día su programa, «La Reconstrucción Nacional». Según los resúmenes publicados, no cambia la fiscalidad del ahorro ni los planes de pensiones, pero sí incluye una cuenta de ahorro para comprar vivienda, la «Hucha Hogar Joven». Vox, PSOE, Sumar (Frente Amplio) y Podemos todavía no han publicado el suyo: de ellos recogemos planes y declaraciones con su fecha, y actualizaremos la guía cuando salgan.
 
 ## Lo esencial
 
 - **Nadie ha propuesto todavía cambiar la escala del ahorro**, la que grava intereses, dividendos y ganancias del 19 % al 30 %.
 - **PP y Vox** proponen bajar el IRPF; Vox presenta su reforma como un incentivo al ahorro, pero no ha explicado cómo trataría las rentas del ahorro.
 - **Sumar y Podemos** quieren que paguen más los grandes patrimonios y las grandes herencias. El PSOE habla de más progresividad, sin medidas concretas.
-- **Pensiones privadas:** Vox defiende un sistema mixto con capitalización. El PP dice que mantendrá el sistema público. Nadie ha propuesto cambios en los planes de pensiones.
+- **Pensiones privadas:** Vox defiende un sistema mixto con capitalización. El PP, en su programa, mantiene el sistema público y la subida con el IPC. Nadie ha propuesto cambios en los planes de pensiones.
 
 ## Cómo tributan hoy tus ahorros
 
@@ -54,7 +57,7 @@ El último tramo, el del 30 %, lo aprobó este Gobierno con sus socios a finales
 
 | | Rentas del ahorro (IRPF) | Patrimonio y herencias | Pensiones y planes |
 |---|---|---|---|
-| **PP** | Actualizar el IRPF con la inflación y duplicar el mínimo por hijos; sin propuesta para el ahorro | Sin propuesta recogida | Mantener el sistema público y subir las pensiones con el IPC |
+| **PP** | Actualizar el IRPF con la inflación; «Hucha Hogar Joven»: ahorrar hasta 2.000 € al año para la vivienda con una deducción del 20 %; sin cambios recogidos en la escala del ahorro | Sin propuesta recogida | Mantener el sistema público y subir las pensiones con el IPC |
 | **Vox** | IRPF con dos tipos, del 15 % y el 25 %, y mínimo exento de 22.000 €; lo presenta como incentivo al ahorro, sin detallar las rentas del ahorro | Eliminar o reducir «determinadas figuras tributarias», sin decir cuáles | Sistema mixto: el público más «instrumentos de capitalización» |
 | **PSOE** | Más progresividad, sin cifras | Más progresividad, sin medidas concretas | Subir las pensiones con el IPC; acusa a PP y Vox de querer recortarlas |
 | **Sumar** | Que paguen más las rentas altas | Que aporten más las grandes herencias y los grandes patrimonios | Defiende el sistema público |
