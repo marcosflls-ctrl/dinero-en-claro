@@ -2,7 +2,7 @@
 title: "Elecciones del 29N: qué proponen los partidos para tus ahorros"
 description: "IRPF del ahorro, planes de pensiones, patrimonio y herencias: lo que han dicho PP, Vox, PSOE, Sumar y Podemos, y lo que todavía no ha propuesto nadie."
 date: 2026-10-20T23:00:00+02:00
-updated: 2026-11-10T16:00:00+01:00
+updated: 2026-11-13T10:00:00+01:00
 category: impuestos
 guia: true
 orden: 4
@@ -12,6 +12,8 @@ imageAlt: "Fachada del Ministerio de Hacienda en Madrid"
 imageCredit: "Zarateman / Wikimedia Commons (CC0)"
 imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Madrid_-_Real_Casa_de_la_Aduana_6.jpg"
 sources:
+  - name: "Infobae: el programa de Vox para el 29N, «Es sentido común» (12/11/2026)"
+    url: "https://www.infobae.com/espana/2026/11/12/vox-lleva-al-29-n-un-programa-electoral-con-repatriaciones-y-deportaciones-de-migrantes-prioridad-nacional-y-derogacion-de-leyes-de-genero/"
   - name: "Demócrata: el programa del PP para el 29N, «La Reconstrucción Nacional» (10/11/2026)"
     url: "https://www.democrata.es/elecciones-generales-espana/programa-electoral-pp-29n-propuestas/"
   - name: "Moncloa.com: las propuestas económicas de Vox y PP para el 29N (16/10/2026)"
@@ -30,14 +32,14 @@ sources:
 
 Si tienes ahorros en depósitos, fondos, acciones o un plan de pensiones, lo que más puede cambiar según quién gobierne tras el **29 de noviembre** son los impuestos. Esta guía recoge lo que han dicho los partidos sobre el ahorro y la inversión, y lo que todavía no ha propuesto nadie. No es una recomendación de voto.
 
-**Actualizado el 10 de noviembre:** el **PP** publicó ese día su programa, «La Reconstrucción Nacional». Según los resúmenes publicados, no cambia la fiscalidad del ahorro ni los planes de pensiones, pero sí incluye una cuenta de ahorro para comprar vivienda, la «Hucha Hogar Joven». Vox, PSOE, Sumar (Frente Amplio) y Podemos todavía no han publicado el suyo: de ellos recogemos planes y declaraciones con su fecha, y actualizaremos la guía cuando salgan.
+**Actualizado el 13 de noviembre:** ya han publicado su programa el **PP** (10 de noviembre, «La Reconstrucción Nacional») y **Vox** (12 de noviembre, «Es sentido común»). Según los resúmenes publicados, ninguno de los dos cambia la fiscalidad del ahorro ni los planes de pensiones. El PP incluye una cuenta de ahorro para comprar vivienda, la «Hucha Hogar Joven», y Vox recupera la deducción por compra de vivienda habitual. PSOE, Sumar (Frente Amplio) y Podemos todavía no han publicado el suyo: de ellos recogemos planes y declaraciones con su fecha, y actualizaremos la guía cuando salgan.
 
 ## Lo esencial
 
 - **Nadie ha propuesto todavía cambiar la escala del ahorro**, la que grava intereses, dividendos y ganancias del 19 % al 30 %.
-- **PP y Vox** proponen bajar el IRPF; Vox presenta su reforma como un incentivo al ahorro, pero no ha explicado cómo trataría las rentas del ahorro.
+- **PP y Vox** proponen bajar el IRPF. Ninguno de los dos programas detalla cambios en las rentas del ahorro (intereses, dividendos o fondos).
 - **Sumar y Podemos** quieren que paguen más los grandes patrimonios y las grandes herencias. El PSOE habla de más progresividad, sin medidas concretas.
-- **Pensiones privadas:** Vox defiende un sistema mixto con capitalización. El PP, en su programa, mantiene el sistema público y la subida con el IPC. Nadie ha propuesto cambios en los planes de pensiones.
+- **Pensiones privadas:** el programa de Vox ya no incluye el sistema mixto con capitalización que defendía uno de sus diputados. El PP mantiene el sistema público y la subida con el IPC. Nadie ha propuesto cambios en los planes de pensiones.
 
 ## Cómo tributan hoy tus ahorros
 
@@ -58,7 +60,7 @@ El último tramo, el del 30 %, lo aprobó este Gobierno con sus socios a finales
 | | Rentas del ahorro (IRPF) | Patrimonio y herencias | Pensiones y planes |
 |---|---|---|---|
 | **PP** | Actualizar el IRPF con la inflación; «Hucha Hogar Joven»: ahorrar hasta 2.000 € al año para la vivienda con una deducción del 20 %; sin cambios recogidos en la escala del ahorro | Sin propuesta recogida | Mantener el sistema público y subir las pensiones con el IPC |
-| **Vox** | IRPF con dos tipos, del 15 % y el 25 %, y mínimo exento de 22.000 €; lo presenta como incentivo al ahorro, sin detallar las rentas del ahorro | Eliminar o reducir «determinadas figuras tributarias», sin decir cuáles | Sistema mixto: el público más «instrumentos de capitalización» |
+| **Vox** | Bajar y simplificar el IRPF, con rebaja por hijos, sin cifras (en octubre habló de dos tipos, 15 % y 25 %); recuperar la deducción por vivienda habitual; sin cambios recogidos en la escala del ahorro | Eliminar o reducir «determinadas figuras tributarias», sin decir cuáles | El programa no incluye el sistema mixto; promete sostener las pensiones con más empleo y natalidad |
 | **PSOE** | Más progresividad, sin cifras | Más progresividad, sin medidas concretas | Subir las pensiones con el IPC; acusa a PP y Vox de querer recortarlas |
 | **Sumar** | Que paguen más las rentas altas | Que aporten más las grandes herencias y los grandes patrimonios | Defiende el sistema público |
 | **Podemos** | Sin propuesta recogida | Que paguen más los grandes patrimonios | Sin propuesta recogida |
@@ -67,7 +69,7 @@ El último tramo, el del 30 %, lo aprobó este Gobierno con sus socios a finales
 
 - **Si alguien tocará la escala del ahorro.** Ningún partido ha dicho si la subiría, la bajaría o la dejaría igual.
 - **Qué pasaría con los planes de pensiones.** Ni el límite de 1.500 € ni los planes de empresa aparecen en las propuestas.
-- **Cómo funcionaría la capitalización de Vox.** No ha explicado si sería obligatoria, quién la gestionaría ni cómo tributaría.
+- **Qué pasa con la capitalización de Vox.** Uno de sus diputados la defendía, pero el programa no la recoge.
 - **Qué es «gran patrimonio».** Sumar y Podemos no han dado umbrales. Hoy el Impuesto sobre el Patrimonio lo gestionan las comunidades, con mínimos exentos y bonificaciones muy distintas.
 - **Cuánto costarían o recaudarían.** Ningún partido ha publicado una estimación.
 
