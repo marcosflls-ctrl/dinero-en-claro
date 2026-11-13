@@ -2,6 +2,7 @@
 title: "TAE y TIN: qué son, en qué se diferencian y cómo comparar ofertas"
 description: "El TIN es el interés que se pacta; la TAE, lo que de verdad rinde o cuesta en un año. Cómo se calculan, con ejemplos, y en qué fijarte al comparar."
 date: 2026-10-18T20:30:00+02:00
+updated: 2026-11-13T19:45:00+01:00
 category: ahorro
 guia: true
 orden: 4
@@ -11,6 +12,8 @@ imageAlt: "Teclado de una calculadora"
 imageCredit: "Coyau / Wikimedia Commons (CC BY-SA 3.0)"
 imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Aurora_electronic_calculator_DT210_05.jpg"
 sources:
+  - name: "Banco de España, Portal del Cliente Bancario: tipos de interés (TIN y TAE)"
+    url: "https://clientebancario.bde.es/pcb/es/menu-horizontal/productosservici/relacionados/tiposinteres/"
   - name: "BBVA: TIN y TAE, en qué se diferencian"
     url: "https://www.bbva.com/es/salud-financiera/tin-que-es-diferencias-tae/"
 ---
@@ -26,13 +29,13 @@ Cuando un banco anuncia un depósito o una cuenta remunerada, casi siempre da do
 
 ## Qué es el TIN
 
-El TIN es el tipo de interés que se pacta para un año. Si un depósito ofrece un 3 % TIN y metes 10.000 €, al cabo de un año genera 300 € de intereses, si te los pagan de una vez al final.
+El Banco de España lo define como «el precio que la entidad cobra por prestar o que paga por depositar». Es el tipo de interés que se pacta para un año. Si un depósito ofrece un 3 % TIN y metes 10.000 €, al cabo de un año genera 300 € de intereses, si te los pagan de una vez al final.
 
 El TIN no dice nada de cuándo te pagan esos intereses ni de las comisiones. Por eso no sirve, por sí solo, para comparar dos ofertas.
 
 ## Qué es la TAE
 
-La TAE traduce la oferta a una cifra comparable: lo que rendiría tu dinero en un año contando la frecuencia con la que se pagan los intereses. En los préstamos e hipotecas incluye además las comisiones y gastos obligatorios, y por eso suele ser mayor que el TIN. En España los bancos están obligados a informar de la TAE.
+La TAE traduce la oferta a una cifra comparable: lo que rendiría tu dinero en un año contando la frecuencia con la que se pagan los intereses. En los préstamos e hipotecas incluye además las comisiones y gastos obligatorios, y por eso suele ser mayor que el TIN. En palabras del Banco de España, la TAE incluye, «además del TIN, los gastos y comisiones asociados a los productos». En España los bancos están obligados a informar de la TAE.
 
 ## Cómo se calcula, con ejemplos
 
