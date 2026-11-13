@@ -549,7 +549,9 @@ def save_post(data: dict, item: dict) -> Path:
         f"sources:\n{src_yaml}"
         "---\n\n"
     )
-    path.write_text(fm + data["body"].strip() + "\n", encoding="utf-8")
+    # La búsqueda web deja a veces marcas de cita ((cite index="1-2">…</cite>) en el texto: fuera
+    cuerpo = re.sub(r'[(<]cite index="[^"]*">|</cite>', "", data["body"]).strip()
+    path.write_text(fm + cuerpo + "\n", encoding="utf-8")
     return path
 
 

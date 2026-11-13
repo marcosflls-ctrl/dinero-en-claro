@@ -20,7 +20,7 @@ Afecta a quien tenga esta emisión concreta. No es un cambio de tipos de mercado
 
 ## ¿Cómo se ha calculado el cupón?
 
-Esta emisión tiene un cupón base del 0,65 %. Ese porcentaje se multiplica por un coeficiente de indexación, que el Tesoro calcula según lo que fija la Orden EIC/369/2017. Según la resolución, <cite index="1-1">el coeficiente aplicable al 30 de noviembre de 2026 es el 1,32878</cite>.
+Esta emisión tiene un cupón base del 0,65 %. Ese porcentaje se multiplica por un coeficiente de indexación, que el Tesoro calcula según lo que fija la Orden EIC/369/2017. Según la resolución, el coeficiente aplicable al 30 de noviembre de 2026 es el 1,32878.
 
 El cálculo es sencillo: 0,65 × 1,32878 da un 0,8637 %, que coincide con la cifra oficial. La emisión está referenciada al índice de precios de consumo armonizado ex-tabaco de la zona euro. Es decir, el cupón sube cuando ese índice sube.
 
