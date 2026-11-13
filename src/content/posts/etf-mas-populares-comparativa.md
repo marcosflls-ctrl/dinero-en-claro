@@ -22,10 +22,8 @@ sources:
     url: "https://www.finect.com/usuario/eduardogarcia/articulos/los-5-etfs-mas-comparados-en-finect-hasta-agosto-de-2026"
   - name: "Finect: los 20 ETF más negociados del mundo, cuáles puedes comprar en España"
     url: "https://www.finect.com/usuario/eduardogarcia/articulos/los-20-etfs-mas-negociados-del-mundo-cuales-puedes-comprar-en-espana-y-cuales-no"
-image: /img/fotos/etf-mas-populares-comparativa.webp
-imageAlt: "Monedas de euro"
-imageCredit: "AlexBarcley / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/money-cash-coins-payment-debt-5885619/"
+image: /img/articulos/etf-mas-populares-comparativa.webp
+imageAlt: "ETF más populares en España: costes y rentabilidad año a año"
 ---
 
 <!-- ACTUALIZAR: cada trimestre, gastos y patrimonio (justETF). En enero de 2027, añadir 2026 en src/data/fondos.json y en estas tablas. -->

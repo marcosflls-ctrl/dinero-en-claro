@@ -18,10 +18,8 @@ sources:
     url: "https://www.finect.com/usuario/eduardogarcia/articulos/el-fondo-indexado-al-sp-500-de-fidelity-desplaza-a-su-homologo-de-vanguard-en-los-mas-comparados"
   - name: "Red Inversora: fondos indexados en España, con ISIN y distribuidores"
     url: "https://redinversora.com/blog/mejores-fondos-indexados-espana-2026"
-image: /img/fotos/fondos-indexados-mas-populares-comparativa.webp
-imageAlt: "Billetes de euro"
-imageCredit: "ds_30 / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/money-businesses-finances-5029288/"
+image: /img/articulos/fondos-indexados-mas-populares-comparativa.webp
+imageAlt: "Fondos indexados más populares: costes y rentabilidad año a año"
 ---
 
 <!-- ACTUALIZAR: cada trimestre, gastos corrientes y patrimonio (Finect). En enero de 2027, añadir la columna de 2026 con el año cerrado (Quefondos). -->

@@ -5,10 +5,8 @@ date: 2026-10-24T11:01:16+00:00
 category: ahorro
 tags: ["obligaciones-del-estado", "deuda-indexada", "inflacion", "tesoro", "cupon"]
 pendiente: false
-image: /img/fotos/obligaciones-indexadas-inflacion-cupon-2027.webp
-imageAlt: "Billetes y monedas de euro sobre una mesa"
-imageCredit: "Alexandra_Koch / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/inflation-euro-devaluation-money-7107103/"
+image: /img/datos/obligaciones-indexadas-inflacion-cupon-2027.webp
+imageAlt: "Tenedores de Obligaciones indexadas: cupón del 0,8637 %"
 sources:
   - name: "BOE: Resolución de 19 de octubre de 2026, de la Dirección General del Tesoro y Política Financiera (coeficiente de indexación y cupón)"
     url: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22288"
@@ -20,7 +18,7 @@ Afecta a quien tenga esta emisión concreta. No es un cambio de tipos de mercado
 
 ## ¿Cómo se ha calculado el cupón?
 
-Esta emisión tiene un cupón base del 0,65 %. Ese porcentaje se multiplica por un coeficiente de indexación, que el Tesoro calcula según lo que fija la Orden EIC/369/2017. Según la resolución, <cite index="1-1">el coeficiente aplicable al 30 de noviembre de 2026 es el 1,32878</cite>.
+Esta emisión tiene un cupón base del 0,65 %. Ese porcentaje se multiplica por un coeficiente de indexación, que el Tesoro calcula según lo que fija la Orden EIC/369/2017. Según la resolución, el coeficiente aplicable al 30 de noviembre de 2026 es el 1,32878.
 
 El cálculo es sencillo: 0,65 × 1,32878 da un 0,8637 %, que coincide con la cifra oficial. La emisión está referenciada al índice de precios de consumo armonizado ex-tabaco de la zona euro. Es decir, el cupón sube cuando ese índice sube.
 

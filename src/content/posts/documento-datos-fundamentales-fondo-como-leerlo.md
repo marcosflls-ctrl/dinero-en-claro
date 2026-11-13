@@ -15,10 +15,8 @@ sources:
     url: "https://cnmv.es/docportal/publicaciones/infografias/infografia_fondos_de_inversion.pdf"
   - name: "HelpMyCash: qué comisiones puede tener un fondo de inversión"
     url: "https://www.helpmycash.com/blog/que-comisiones-puede-tener-un-fondo-de-inversion/"
-image: /img/fotos/documento-datos-fundamentales-fondo-como-leerlo.webp
-imageAlt: "Calculadora y cuentas domésticas"
-imageCredit: "Flyfin / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/finance-accounting-tax-7529921/"
+image: /img/articulos/documento-datos-fundamentales-fondo-como-leerlo.webp
+imageAlt: "Cómo leer el documento de datos fundamentales de un fondo"
 ---
 
 **Antes de contratar un fondo, el banco o la plataforma tiene que darte su documento de datos fundamentales.** Es un resumen obligatorio, con el mismo formato en toda la Unión Europea, que cuenta en qué invierte el fondo, cuánto riesgo tiene y cuánto cuesta. Se conoce por sus siglas en inglés, **KID**, y antes se llamaba DFI. Leerlo bien lleva diez minutos y evita casi todas las sorpresas.

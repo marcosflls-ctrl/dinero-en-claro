@@ -5,10 +5,8 @@ date: 2026-10-24T16:03:04+00:00
 category: fondos
 tags: ["fondos-de-inversion", "traspasos", "bonificaciones", "comisiones", "bancos"]
 pendiente: false
-image: /img/fotos/bancos-bonificacion-traspaso-fondos-inversion.webp
-imageAlt: "Documentos financieros y billetes sobre una mesa de oficina"
-imageCredit: "JoshuaWoroniecki / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/merry-christmas-boarding-pass-travel-5219496/"
+image: /img/datos/bancos-bonificacion-traspaso-fondos-inversion.webp
+imageAlt: "Inversores en fondos: premios de hasta el 2 % por traspasar"
 sources:
   - name: "Expansión Mercados: La banca recupera las bonificaciones por traspasos de fondos de inversión"
     url: "https://www.expansion.com/mercados/2026/10/23/6adbd24a468aeb97768b456f.html"

@@ -6,10 +6,8 @@ noindex: true
 category: ahorro
 tags: ["ahorro", "cuentas-remuneradas", "cambiar-de-banco", "tipos-de-interes", "tae"]
 pendiente: false
-image: /img/fotos/clientes-dispuestos-cambiar-de-banco-2026.webp
-imageAlt: "Hucha con monedas y billetes sobre una mesa"
-imageCredit: "alandsmann / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/coins-money-poverty-homeless-8975531/"
+image: /img/datos/clientes-dispuestos-cambiar-de-banco-2026.webp
+imageAlt: "El 80 % de clientes se plantea cambiar de banco en 2026"
 sources:
   - name: "HelpMyCash: 8 de cada 10 españoles están dispuestos a cambiar de banco"
     url: "https://www.helpmycash.com/blog/8-de-cada-10-espanoles-estan-dispuestos-a-cambiar-de-banco/"

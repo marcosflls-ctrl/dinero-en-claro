@@ -13,10 +13,8 @@ sources:
     url: "https://www.cnmv.es/portal/inversor/fondos-dfi"
   - name: "CNMV: guía sobre fondos de inversión"
     url: "https://www.cnmv.es/portal/inversor/fondos-inversion"
-image: /img/fotos/tipos-de-fondos-de-inversion.webp
-imageAlt: "Billetes de euro"
-imageCredit: "HOerwin56 / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/money-suitcase-paper-money-5092062/"
+image: /img/articulos/tipos-de-fondos-de-inversion.webp
+imageAlt: "Tipos de fondos de inversión: monetarios, renta fija, mixtos y bolsa"
 ---
 
 **Un fondo de inversión junta el dinero de muchas personas y lo invierte según una política fijada de antemano.** Lo que tiene dentro decide casi todo: cuánto puede subir, cuánto puede caer y cuánto tiempo conviene dejar el dinero. La CNMV clasifica los fondos por su vocación inversora, y cada uno lleva un indicador de riesgo del 1 al 7 en su documento de datos fundamentales.

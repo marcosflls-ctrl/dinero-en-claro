@@ -5,10 +5,8 @@ date: 2026-10-23T17:09:15+00:00
 category: bolsa
 tags: ["iberdrola", "dividendos", "resultados", "accionistas", "bolsa"]
 pendiente: false
-image: /img/fotos/iberdrola-dividendo-a-cuenta-0-275-euros-objetivos-2030.webp
-imageAlt: "Aerogeneradores en un parque eólico"
-imageCredit: "ELG21 / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/wind-mills-energy-clouds-power-6928590/"
+image: /img/datos/iberdrola-dividendo-a-cuenta-0-275-euros-objetivos-2030.webp
+imageAlt: "Accionistas de Iberdrola: dividendo a cuenta de 0,275 €, +8,7 %"
 sources:
   - name: "Expansión Ahorro: La mejora de objetivos de Iberdrola le acercan a NextEra, líder del mundo"
     url: "https://www.expansion.com/inversion/2026/10/23/6ada46e4468aeb9f228b457b.html"

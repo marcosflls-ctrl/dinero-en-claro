@@ -5,10 +5,8 @@ date: 2026-10-27T18:03:00+00:00
 category: ahorro
 tags: ["depositos", "tae", "bce", "tipos-de-interes", "ahorro"]
 pendiente: false
-image: /img/fotos/depositos-12-meses-tae-subida-bce.webp
-imageAlt: "Hucha y monedas de euro sobre una mesa"
-imageCredit: "Alexas_Fotos / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/lucky-pig-happiness-lucky-charm-5089786/"
+image: /img/datos/depositos-12-meses-tae-subida-bce.webp
+imageAlt: "Depósitos a 12 meses: del 3 % al 3,5 % TAE para ahorradores"
 sources:
   - name: "BCE: decisiones de política monetaria, 10 de septiembre de 2026"
     url: "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html"

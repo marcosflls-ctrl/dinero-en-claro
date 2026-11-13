@@ -23,6 +23,7 @@ const related = relacionados(post, all, 3);
 const img = d.image ?? `/img/portadas/${d.category}.webp`;
 const autorUrl = `/autor/${SITE.author.slug}/`;
 // La portada en 16:9, 4:3 y 1:1 (si existen los recortes), como recomienda Google para Discover
+const propia = img.startsWith('/img/datos/') || img.startsWith('/img/articulos/') || img.startsWith('/img/portadas/');
 const imagenesSchema = [img, img.replace(/\.webp$/, '-4x3.webp'), img.replace(/\.webp$/, '-1x1.webp')]
   .filter((s, i) => i === 0 || fs.existsSync(`public${s}`))
   .map((s) => new URL(s, SITE.url).href);
@@ -77,10 +78,13 @@ const actualizado = d.updated && d.updated.getTime() - d.date.getTime() > 36e5;
         </p>
       </div>
     </header>
-    <figure class="hero">
+{/* Las portadas propias (cifra o titular) repiten lo que ya dice el titular: se guardan para compartir y para las tarjetas */}
+    {!propia && (
+        <figure class="hero">
       <img data-pagefind-meta="image[src]" fetchpriority="high" decoding="async" src={img} srcset={srcset(img)} sizes="(max-width: 800px) 100vw, 760px" alt={d.image ? (d.imageAlt ?? '') : ''} width="1600" height="900" />
       {d.image && d.imageCredit && <figcaption class="credit">Imagen: {d.imageCreditUrl ? <a href={d.imageCreditUrl} rel="nofollow noopener" target="_blank">{d.imageCredit}</a> : d.imageCredit}</figcaption>}
     </figure>
+    )}
     {d.pendiente && (
       <p class="pendiente-nota"><strong>Todavía no es oficial.</strong> Lo que cuenta este artículo está anunciado o en tramitación, pero aún no se ha publicado en el Boletín Oficial del Estado y puede cambiar. Lo actualizaremos cuando se apruebe.</p>
     )}

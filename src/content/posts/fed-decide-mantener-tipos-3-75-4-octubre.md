@@ -6,10 +6,8 @@ noindex: true
 category: bolsa
 tags: ["reserva-federal", "tipos-de-interes", "inflacion", "bolsa", "bce"]
 pendiente: true
-image: /img/fotos/fed-decide-mantener-tipos-3-75-4-octubre.webp
-imageAlt: "Fachada de un edificio de banco central con columnas"
-imageCredit: "Csillagvirág / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/river-stream-brook-creek-morning-7047522/"
+image: /img/datos/fed-decide-mantener-tipos-3-75-4-octubre.webp
+imageAlt: "La Fed decide mañana: se espera mantener tipos en 3,75-4 %"
 sources:
   - name: "Expansión Mercados: La Fed debate pausar tipos pese al avance de la inflación"
     url: "https://www.expansion.com/mercados/2026/10/27/6adfa0cbe5fdea070b8b4585.html"
@@ -19,7 +17,7 @@ La Reserva Federal de EE. UU. (Fed) decide este miércoles 28 de octubre qué ha
 
 ## ¿Dónde están los tipos de la Fed ahora?
 
-En la banda del 3,75 % al 4 %. Hasta julio estaban en el 3,50-3,75 %, según el [Boletín Económico del BCE](https://www.ecb.europa.eu/press/economic-bulletin/html/eb202606.en.html). <cite index="3-5">En su reunión de julio el FOMC mantuvo el rango sin cambios en el 3,50-3,75 %.</cite> En septiembre el comité de la Fed (FOMC) aprobó por unanimidad una subida de 25 puntos básicos, es decir, un 0,25 %. Según Expansión, fue la primera en más de tres años.
+En la banda del 3,75 % al 4 %. Hasta julio estaban en el 3,50-3,75 %, según el [Boletín Económico del BCE](https://www.ecb.europa.eu/press/economic-bulletin/html/eb202606.en.html). En su reunión de julio el FOMC mantuvo el rango sin cambios en el 3,50-3,75 %. En septiembre el comité de la Fed (FOMC) aprobó por unanimidad una subida de 25 puntos básicos, es decir, un 0,25 %. Según Expansión, fue la primera en más de tres años.
 
 ## ¿Por qué se plantea una pausa si los precios suben?
 

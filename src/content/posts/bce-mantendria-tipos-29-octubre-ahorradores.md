@@ -6,10 +6,8 @@ noindex: true
 category: bolsa
 tags: ["bce", "tipos-de-interes", "inflacion", "depositos", "ahorro"]
 pendiente: true
-image: /img/fotos/bce-mantendria-tipos-29-octubre-ahorradores.webp
-imageAlt: "Billetes de euro sobre una mesa"
-imageCredit: "AlexanderStein / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/electricity-save-electricity-7600360/"
+image: /img/articulos/bce-mantendria-tipos-29-octubre-ahorradores.webp
+imageAlt: "Ahorradores: el BCE mantendría los tipos el 29 de octubre"
 sources:
   - name: "BCE: decisiones de política monetaria del 10 de septiembre de 2026"
     url: "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html"
@@ -19,11 +17,11 @@ sources:
 
 La mayoría del mercado espera que el Banco Central Europeo (BCE) **mantenga los tipos de interés sin cambios este jueves 29 de octubre**, según recoge Europa Press. Si ocurre, el tipo de depósito seguirá en el 2,5 %. Los analistas consultados esperan, eso sí, una nueva subida en diciembre. Todo esto es una previsión: la decisión no se conoce hasta el jueves.
 
-<cite index="3-6">El BCE publicará su decisión a las 14:15 (hora de Fráncfort) y Christine Lagarde dará la rueda de prensa a las 14:45.</cite>
+El BCE publicará su decisión a las 14:15 (hora de Fráncfort) y Christine Lagarde dará la rueda de prensa a las 14:45.
 
 ## ¿Cuáles son los tipos del BCE ahora?
 
-<cite index="1-10">Los tres tipos oficiales se fijaron en 2,50 %, 2,65 % y 2,90 % tras la subida de 25 puntos básicos del 10 de septiembre. Se aplican desde el 16 de septiembre de 2026.</cite> Un punto básico es una centésima de punto porcentual, así que 25 puntos básicos equivalen a 0,25 puntos.
+Los tres tipos oficiales se fijaron en 2,50 %, 2,65 % y 2,90 % tras la subida de 25 puntos básicos del 10 de septiembre. Se aplican desde el 16 de septiembre de 2026. Un punto básico es una centésima de punto porcentual, así que 25 puntos básicos equivalen a 0,25 puntos.
 
 | Tipo oficial del BCE | Nivel actual |
 |---|---|
@@ -35,7 +33,7 @@ Fuente: [BCE](https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314
 
 ## ¿Por qué se espera una pausa?
 
-La inflación está alta. <cite index="14-4,14-5">Según los datos del BCE, la inflación general de la zona euro fue del 3,8 % en septiembre y la subyacente, del 2,5 %.</cite> La subyacente deja fuera la energía y los alimentos, entre otros, y sirve para ver si los precios suben de forma más amplia. Según Europa Press, la general subió seis décimas en un mes y está en máximos de tres años. La subyacente subió solo una décima.
+La inflación está alta. Según los datos del BCE, la inflación general de la zona euro fue del 3,8 % en septiembre y la subyacente, del 2,5 %. La subyacente deja fuera la energía y los alimentos, entre otros, y sirve para ver si los precios suben de forma más amplia. Según Europa Press, la general subió seis décimas en un mes y está en máximos de tres años. La subyacente subió solo una décima.
 
 Por eso los analistas ven margen para esperar. Los economistas de ING Think citados por la agencia consideran que una subida esta semana sería una gran sorpresa. El gestor de Pimco Konstantin Veit apunta que todavía no hay señales de que la inflación se esté asentando de forma duradera.
 
@@ -45,7 +43,7 @@ A esto se suma Francia. Según la agencia, su bono a diez años superó reciente
 
 El mercado descuenta una subida. Cristina Gavín, de Ibercaja Gestión, prevé una más que llevaría el tipo de depósito al 3 % a finales de 2026. Son previsiones de analistas atribuidas a la fuente y no una recomendación de esta web.
 
-El BCE no se ha comprometido a ello. <cite index="1-7,1-8">Dice que decide reunión a reunión según los datos y que no se compromete con una senda de tipos concreta.</cite>
+El BCE no se ha comprometido a ello. Dice que decide reunión a reunión según los datos y que no se compromete con una senda de tipos concreta.
 
 ## ¿Cómo afecta a tus ahorros?
 
@@ -61,4 +59,4 @@ Puedes calcular tu caso con la [calculadora de depósitos](/ahorro/calculadora-d
 
 El jueves, además del tipo, cuenta el tono de Lagarde. Según Natixis IM, citada en la fuente, que mencione Francia sería una señal de que el BCE toma en serio la volatilidad de la deuda. Crédit Mutuel AM cree que repetirá que los riesgos para la inflación siguen al alza y los del crecimiento, a la baja.
 
-<cite index="13-2">El siguiente dato clave es el adelantado de inflación de octubre, previsto para el 4 de noviembre.</cite> Después llega la reunión de diciembre, donde el mercado espera la subida.
+El siguiente dato clave es el adelantado de inflación de octubre, previsto para el 4 de noviembre. Después llega la reunión de diciembre, donde el mercado espera la subida.

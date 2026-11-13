@@ -80,6 +80,140 @@ def crear(titulo: str, categoria: str, salida: Path, ancho: int = 1600, alto: in
     return salida
 
 
+# ---------- Portadas «de dato»: la cifra del titular en grande, con un color por sección ----------
+# Sustituyen a las fotos de banco genéricas, que muchas veces no tenían nada que ver con la noticia.
+PALETAS = {  # sección → (fondo, forma decorativa, texto secundario)
+    "ahorro": ((19, 48, 78), (30, 66, 104), (184, 204, 224)),
+    "fondos": ((22, 78, 84), (34, 98, 104), (188, 222, 224)),
+    "bolsa": ((110, 40, 52), (134, 56, 68), (238, 200, 206)),
+    "jubilacion": ((36, 84, 60), (50, 104, 78), (196, 226, 208)),
+    "impuestos": ((64, 52, 98), (84, 70, 122), (214, 204, 232)),
+}
+_NUM = r"\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?"
+_RE_CIFRA = [
+    (__import__("re").compile(rf"(?:del\s+)?({_NUM})\s*(?:%|por ciento)?\s*(?:al|y el|-|–|a)\s*({_NUM})\s?%"), "rango%"),
+    (__import__("re").compile(rf"({_NUM})\s?(?:€|euros\b)", __import__("re").I), "€"),
+    (__import__("re").compile(rf"({_NUM})\s?%"), "%"),
+    (__import__("re").compile(rf"({_NUM})\s(millones|años|meses|días|horas|semanas|pagas|plazas|puntos)\b", __import__("re").I), "palabra"),
+]
+
+
+def cifra_de(titulo: str, descripcion: str = "") -> tuple[str, str] | None:
+    """La cifra más representativa del titular (o, si no hay, de la descripción): (número, unidad)."""
+    for texto in (titulo, descripcion):
+        mejor = None
+        for orden, (rx, tipo) in enumerate(_RE_CIFRA):
+            m = rx.search(texto or "")
+            if not m:
+                continue
+            if tipo == "rango%":
+                c = (f"{m.group(1)}–{m.group(2)}", "%")
+            elif tipo == "palabra":
+                if m.group(2).lower() == "años" and int(m.group(1).replace(".", "").split(",")[0]) > 1900:
+                    continue
+                c = (m.group(1), m.group(2).lower())
+            else:
+                c = (m.group(1), tipo)
+            # el dinero y los porcentajes mandan sobre «52 años»; a igualdad, lo que salga antes
+            clave = (0 if tipo in ("rango%", "€", "%") else 1, m.start())
+            if mejor is None or clave < mejor[0]:
+                mejor = (clave, c)
+        if mejor:
+            return mejor[1]
+    return None
+
+
+def crear_dato(titulo: str, categoria: str, salida: Path, descripcion: str = "", ancho: int = 1600, alto: int = 900) -> Path:
+    """Portada con la cifra del titular en grande. Si el titular no tiene cifra, va el titular en serif."""
+    e = ancho / 1600
+    fondo, forma, claro = PALETAS.get(categoria, PALETAS["ahorro"])
+    img = Image.new("RGB", (ancho, alto), fondo)
+    d = ImageDraw.Draw(img)
+    # formas decorativas: arcos concéntricos en la esquina inferior derecha
+    cx, cy = ancho - 80 * e, alto + 60 * e
+    for i, r in enumerate((760, 560, 360)):
+        d.ellipse([cx - r * e, cy - r * e, cx + r * e, cy + r * e], fill=forma if i % 2 == 0 else fondo)
+    m = round(100 * e)
+    d.line([m, m, m + 64 * e, m], fill=BLANCO, width=max(2, round(4 * e)))
+    d.text((m, m + 26 * e), ETIQUETAS.get(categoria, categoria.capitalize()), font=fuente("sans-500", round(34 * e)), fill=claro)
+    cifra = cifra_de(titulo, descripcion)
+    ancho_texto = ancho - 2 * m
+    if cifra:
+        num, unidad = cifra
+        pegada = unidad in ("%", "€")
+        for tam in (300, 260, 220, 190, 160):
+            fn = fuente("serif-600", round(tam * e))
+            fu = fuente("serif-600", round(tam * (0.62 if pegada else 0.34) * e))
+            total = d.textlength(num, font=fn) + 28 * e + d.textlength(unidad, font=fu)
+            if total <= ancho_texto * 0.86:
+                break
+        y = m + 120 * e
+        d.text((m, y), num, font=fn, fill=BLANCO)
+        caja = d.textbbox((m, y), num, font=fn)
+        d.text((caja[2] + 28 * e, caja[3]), unidad, font=fu, fill=BLANCO, anchor="ls")
+        y_pie_cifra = caja[3] + 48 * e
+        for tam in (46, 42, 38):
+            fc = fuente("sans-500", round(tam * e))
+            lineas = partir(d, titulo, fc, round(ancho_texto * 0.72))
+            if len(lineas) <= 3:
+                break
+        for k, linea in enumerate(lineas[:3]):
+            d.text((m, y_pie_cifra + k * round(tam * 1.3 * e)), linea, font=fc, fill=claro)
+    else:
+        y0, y1 = m + 120 * e, alto - 190 * e
+        for tam in (96, 86, 78, 70, 62):
+            ft = fuente("serif-600", round(tam * e))
+            lineas = partir(d, titulo, ft, round(ancho_texto * 0.8))
+            if len(lineas) <= 4 and len(lineas) * round(tam * 1.2 * e) <= y1 - y0:
+                break
+        for k, linea in enumerate(lineas[:4]):
+            d.text((m, y0 + k * round(tam * 1.2 * e)), linea, font=ft, fill=BLANCO)
+    yp = alto - m - 40 * e
+    marca(d, m - 6 * e, yp - 4 * e, 1.5 * e)
+    d.text((m + 52 * e, yp + 20 * e), "dineroenclaro.com", font=fuente("sans-500", round(32 * e)), fill=BLANCO, anchor="lm")
+    salida.parent.mkdir(parents=True, exist_ok=True)
+    img.save(salida, "WEBP", quality=88, method=6)
+    return salida
+
+
+def mini_dato(titulo: str, categoria: str, salida: Path, ancho: int = 480, alto: int = 360) -> Path | None:
+    """Miniatura para las listas del móvil: solo la cifra, todo lo grande que quepa."""
+    cifra = cifra_de(titulo)
+    if not cifra:
+        return None
+    num, unidad = cifra
+    fondo, forma, _ = PALETAS.get(categoria, PALETAS["ahorro"])
+    img = Image.new("RGB", (ancho, alto), fondo)
+    d = ImageDraw.Draw(img)
+    d.ellipse([ancho * 0.45, alto * 0.5, ancho * 1.35, alto * 1.7], fill=forma)
+    pegada = unidad in ("%", "€")
+    m = ancho * 0.08
+    for tam in range(190, 50, -6):
+        fn = fuente("serif-600", tam)
+        fu = fuente("serif-600", round(tam * (0.6 if pegada else 0.36)))
+        sep = tam * 0.08
+        if pegada:
+            total = d.textlength(num, font=fn) + sep + d.textlength(unidad, font=fu)
+        else:
+            total = max(d.textlength(num, font=fn), d.textlength(unidad, font=fu))
+        if total <= ancho - 2 * m:
+            break
+    caja = d.textbbox((0, 0), num, font=fn)
+    alto_num = caja[3] - caja[1]
+    if pegada:
+        y = (alto - alto_num) / 2 - caja[1]
+        d.text((m, y), num, font=fn, fill=BLANCO)
+        d.text((m + d.textlength(num, font=fn) + sep, y + caja[3]), unidad, font=fu, fill=BLANCO, anchor="ls")
+    else:
+        alto_u = round(tam * 0.36 * 1.1)
+        y = (alto - alto_num - alto_u - tam * 0.1) / 2 - caja[1]
+        d.text((m, y), num, font=fn, fill=BLANCO)
+        d.text((m, y + caja[3] + tam * 0.1 + alto_u * 0.8), unidad, font=fu, fill=BLANCO, anchor="ls")
+    salida.parent.mkdir(parents=True, exist_ok=True)
+    img.save(salida, "WEBP", quality=86, method=6)
+    return salida
+
+
 def icono(tam: int, salida: Path) -> None:
     img = Image.new("RGBA", (tam, tam), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
@@ -113,8 +247,10 @@ def fijas() -> None:
 
 def miniatura(categoria: str, salida: Path, ancho: int = 480, alto: int = 360) -> Path:
     """Miniatura sin titular para las tarjetas pequeñas del móvil: solo la marca y el nombre de la sección."""
-    img = Image.new("RGB", (ancho, alto), VERDE)
+    fondo, forma, _ = PALETAS.get(categoria, PALETAS["ahorro"])  # el mismo color de sección que las portadas
+    img = Image.new("RGB", (ancho, alto), fondo)
     d = ImageDraw.Draw(img)
+    d.ellipse([ancho * 0.45, -alto * 0.7, ancho * 1.35, alto * 0.5], fill=forma)
     etiqueta = ETIQUETAS.get(categoria, categoria)
     m = 36
     d.line([(m, m + 6), (m + 44, m + 6)], fill=CLARO, width=4)

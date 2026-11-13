@@ -5,10 +5,8 @@ date: 2026-10-31T23:25:20+00:00
 category: impuestos
 tags: ["cuentas-de-inversion", "europa", "fiscalidad", "caife", "ahorro"]
 pendiente: false
-image: /img/fotos/cuentas-inversion-europa-suecia-francia-impuestos.webp
-imageAlt: "Monedas de euro sobre una mesa junto a una libreta de ahorro"
-imageCredit: "Orlandow / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/money-plants-growth-coins-finance-6692564/"
+image: /img/articulos/cuentas-inversion-europa-suecia-francia-impuestos.webp
+imageAlt: "Ahorradores: qué cuentas de inversión triunfan en Europa"
 sources:
   - name: "Ley 35/2006 del IRPF (escala del ahorro), apéndice normativo del Manual de Renta 2025, Agencia Tributaria"
     url: "https://sede.agenciatributaria.gob.es/static_files/Sede/Biblioteca/Manual/Practicos/IRPF/IRPF-2025/Normativa-IRPF25/Ley-35-2006.pdf"

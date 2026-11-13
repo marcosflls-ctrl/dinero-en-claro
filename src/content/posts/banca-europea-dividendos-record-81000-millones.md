@@ -6,10 +6,8 @@ noindex: true
 category: bolsa
 tags: ["dividendos", "banca-europea", "recompras-de-acciones", "solvencia", "morningstar-dbrs"]
 pendiente: false
-image: /img/fotos/banca-europea-dividendos-record-81000-millones.webp
-imageAlt: "Fachada de un edificio bancario en una ciudad europea"
-imageCredit: "Tama66 / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/road-houses-city-village-old-town-6881040/"
+image: /img/articulos/banca-europea-dividendos-record-81000-millones.webp
+imageAlt: "Accionistas de banca europea: 81.000 M en dividendos en 2025"
 sources:
   - name: "Expansión Mercados: La banca europea, con colchón para mejorar el dividendo"
     url: "https://www.expansion.com/inversion/2026/10/22/6ad90076e5fdea12568b4597.html"

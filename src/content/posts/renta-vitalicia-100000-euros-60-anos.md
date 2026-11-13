@@ -5,10 +5,8 @@ date: 2026-10-22T21:38:41+00:00
 category: jubilacion
 tags: ["renta-vitalicia", "seguros-de-ahorro", "pias", "sialp", "jubilacion"]
 pendiente: false
-image: /img/fotos/renta-vitalicia-100000-euros-60-anos.webp
-imageAlt: "Pareja de jubilados paseando por un parque"
-imageCredit: "Nowaja / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/forest-trees-sunlight-the-path-7179046/"
+image: /img/datos/renta-vitalicia-100000-euros-60-anos.webp
+imageAlt: "Renta vitalicia a los 60: 266-310 € al mes por 100.000 €"
 sources:
   - name: "Expansión Ahorro: Alternativas para el ahorro más conservador"
     url: "https://www.expansion.com/ahorro/pensiones/2026/10/22/6ad9044a468aebd45d8b459a.html"

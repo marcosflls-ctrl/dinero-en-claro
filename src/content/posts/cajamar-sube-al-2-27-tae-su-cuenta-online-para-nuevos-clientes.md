@@ -6,10 +6,8 @@ noindex: true
 category: ahorro
 tags: ["cuentas-remuneradas", "cajamar", "tae", "ahorro", "bizum"]
 pendiente: false
-image: /img/fotos/cajamar-sube-al-2-27-tae-su-cuenta-online-para-nuevos-clientes.webp
-imageAlt: "Monedas de euro"
-imageCredit: "NickyPe / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/coins-money-euro-finance-currency-5790121/"
+image: /img/datos/cajamar-sube-al-2-27-tae-su-cuenta-online-para-nuevos-clientes.webp
+imageAlt: "Cajamar sube al 2,27 % TAE su cuenta online para nuevos clientes"
 sources:
   - name: "Expansión Ahorro: Cajamar mejora al 2,27% la retribución de su cuenta"
     url: "https://www.expansion.com/ahorro/2026/10/20/6ad69871e5fdea6e458b457b.html"

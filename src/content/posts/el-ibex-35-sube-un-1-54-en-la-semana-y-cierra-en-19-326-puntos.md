@@ -6,7 +6,7 @@ noindex: true
 category: bolsa
 tags: ["ibex-35", "bolsa", "reserva-federal", "deuda-publica", "tecnologicas"]
 pendiente: false
-image: /img/articulos/el-ibex-35-sube-un-1-54-en-la-semana-y-cierra-en-19-326-puntos.webp
+image: /img/datos/el-ibex-35-sube-un-1-54-en-la-semana-y-cierra-en-19-326-puntos.webp
 imageAlt: "El Ibex 35 sube un 1,54 % en la semana y cierra en 19.326 puntos"
 sources:
   - name: "Expansión Mercados: El Ibex supera los 19.300 puntos y aumenta la ganancia semanal al 1,5%"

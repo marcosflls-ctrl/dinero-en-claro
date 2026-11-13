@@ -6,10 +6,8 @@ noindex: true
 category: fondos
 tags: ["criptomonedas", "binance", "mica", "cnmv", "seguridad"]
 pendiente: false
-image: /img/fotos/robo-binance-6300-millones-seguridad-criptos.webp
-imageAlt: "Portátil con un candado digital en la pantalla"
-imageCredit: "Innovalabs / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/software-developer-web-developer-6521720/"
+image: /img/articulos/robo-binance-6300-millones-seguridad-criptos.webp
+imageAlt: "Criptos: qué revisar tras el robo de 6.300 M$ a Binance"
 sources:
   - name: "CNMV: MiCA, nueva regulación de criptoactivos"
     url: "https://www.cnmv.es/portal/mica/regulacion-criptoactivos"
@@ -47,9 +45,9 @@ Los expertos advierten de que bloquear no es recuperar. Localizar los fondos, id
 
 En Europa, el reglamento MiCA exige a los proveedores autorizados requisitos de organización, control interno, protección de activos y gestión de riesgos. El reglamento DORA les obliga además a probar sus planes de continuidad y a notificar los incidentes graves a su supervisor, según explican los expertos que cita Expansión.
 
-Expansión recuerda que Binance no puede operar en Europa desde el 1 de julio de este año, porque no cuenta con licencia MiCA. <cite index="11-4">La CNMV indica que desde el 1 de julio de 2026 solo pueden operar en España proveedores autorizados por ella o por otras autoridades europeas.</cite>
+Expansión recuerda que Binance no puede operar en Europa desde el 1 de julio de este año, porque no cuenta con licencia MiCA. La CNMV indica que desde el 1 de julio de 2026 solo pueden operar en España proveedores autorizados por ella o por otras autoridades europeas.
 
-En un comunicado de junio, la ESMA, el supervisor europeo de valores, recordó que <cite index="3-17">los clientes de proveedores no autorizados no se benefician de las protecciones de MiCA, incluidas las de los activos del cliente.</cite>
+En un comunicado de junio, la ESMA, el supervisor europeo de valores, recordó que los clientes de proveedores no autorizados no se benefician de las protecciones de MiCA, incluidas las de los activos del cliente.
 
 La licencia tampoco garantiza la seguridad. Según Leif Ferreira, CEO de Bit2Me, sí obliga al custodio a separar las criptos de los clientes de las suyas, incluso en caso de insolvencia. También le hace responsable de la pérdida por un incidente que le sea atribuible, hasta su valor de mercado.
 
@@ -57,8 +55,8 @@ La licencia tampoco garantiza la seguridad. Según Leif Ferreira, CEO de Bit2Me,
 
 Son pautas de organismos y expertos, no una recomendación de inversión de esta web.
 
-- **Autorización.** <cite index="11-7">La CNMV aconseja verificar en los registros de la ESMA y de la CNMV si tu proveedor tiene la autorización necesaria.</cite> Tienes una guía en [cómo saber si tu plataforma tiene licencia MiCA](/fondos/criptos-licencia-mica-plataformas-registro-esma/).
-- **Entidad concreta.** <cite index="11-8">Las protecciones de MiCA solo se aplican a la entidad jurídica autorizada en la UE, no a otras empresas del mismo grupo.</cite> Revisa tu contrato para saber cuál te presta el servicio.
+- **Autorización.** La CNMV aconseja verificar en los registros de la ESMA y de la CNMV si tu proveedor tiene la autorización necesaria. Tienes una guía en [cómo saber si tu plataforma tiene licencia MiCA](/fondos/criptos-licencia-mica-plataformas-registro-esma/).
+- **Entidad concreta.** Las protecciones de MiCA solo se aplican a la entidad jurídica autorizada en la UE, no a otras empresas del mismo grupo. Revisa tu contrato para saber cuál te presta el servicio.
 - **Custodia.** Mira cómo guarda la plataforma tus criptos, si las segrega y qué garantías ofrece. Ser de las mayores del mundo no la hace inmune, advierten los expertos.
 - **Cuenta.** Activa el doble factor de autenticación. Tras un robo grande suelen aumentar las estafas, así que desconfía de mensajes que se hagan pasar por otras plataformas.
 

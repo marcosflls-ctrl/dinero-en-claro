@@ -6,10 +6,8 @@ noindex: true
 category: bolsa
 tags: ["bce", "lagarde", "tipos-de-interes", "ahorradores", "politica-monetaria"]
 pendiente: true
-image: /img/fotos/lagarde-deja-bce-7-febrero-2027.webp
-imageAlt: "Fachada de un edificio de un banco central"
-imageCredit: "SEASON-V / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/child-girl-cute-kid-young-7317938/"
+image: /img/articulos/lagarde-deja-bce-7-febrero-2027.webp
+imageAlt: "Ahorradores: Lagarde deja el BCE el 7 de febrero de 2027"
 sources:
   - name: "BCE: nota de prensa «ECB President Lagarde to step down on 7 February 2027» (29 de octubre de 2026)"
     url: "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr261029~abbb6dc64b.en.html"
