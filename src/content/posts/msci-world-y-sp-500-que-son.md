@@ -6,10 +6,8 @@ category: bolsa
 guia: true
 orden: 2
 tags: [msci-world, sp-500, indices, fondos-indexados, etf]
-image: /img/fotos/msci-world-y-sp-500-que-son.webp
-imageAlt: "Billetes de euro"
-imageCredit: "fotoblend / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/banknotes-currency-finance-euro-7850299/"
+image: /img/articulos/msci-world-y-sp-500-que-son.webp
+imageAlt: "MSCI World y S&P 500: qué son y en qué se diferencian"
 sources:
   - name: "MSCI: MSCI World Index"
     url: "https://www.msci.com/indexes/index/990100"

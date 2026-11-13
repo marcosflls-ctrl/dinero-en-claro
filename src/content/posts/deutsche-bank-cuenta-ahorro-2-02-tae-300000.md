@@ -6,10 +6,8 @@ noindex: true
 category: ahorro
 tags: ["cuenta-de-ahorro", "deutsche-bank", "tae", "fondo-de-garantia-de-depositos", "intereses"]
 pendiente: false
-image: /img/fotos/deutsche-bank-cuenta-ahorro-2-02-tae-300000.webp
-imageAlt: "Billetes y monedas de euro sobre una mesa junto a una libreta"
-imageCredit: "vjkombajn / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/money-cash-czech-crowns-banknotes-8033100/"
+image: /img/datos/deutsche-bank-cuenta-ahorro-2-02-tae-300000.webp
+imageAlt: "Ahorradores: Deutsche Bank sube a 2,02 % TAE su cuenta"
 sources:
   - name: "Finantres: Deutsche Bank sube al 2,02% TAE su cuenta de ahorro hasta 300.000 euros"
     url: "https://finantresnoticias.com/cuentas-remuneradas/deutsche-bank-sube-2-02-por-ciento-tae-cuenta-ahorro-hasta-300000-euros/"

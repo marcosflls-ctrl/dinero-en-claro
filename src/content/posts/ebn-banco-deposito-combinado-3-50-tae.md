@@ -6,10 +6,8 @@ noindex: true
 category: ahorro
 tags: ["depositos", "tae", "deposito-combinado", "fondos-de-inversion", "ebn-banco"]
 pendiente: false
-image: /img/fotos/ebn-banco-deposito-combinado-3-50-tae.webp
-imageAlt: "Monedas de euro apiladas junto a una hucha"
-imageCredit: "Nennieinszweidrei / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/kombucha-fermented-drink-8478515/"
+image: /img/datos/ebn-banco-deposito-combinado-3-50-tae.webp
+imageAlt: "EBN Banco: depósito al 3,50 % TAE, pero solo en la mitad del dinero"
 sources:
   - name: "Expansión Ahorro: EBN Banco sube los tipos de su depósito combinado hasta el 3,50% TAE"
     url: "https://www.expansion.com/ahorro/2026/10/22/6ad9ccb0468aebc5648b4583.html"

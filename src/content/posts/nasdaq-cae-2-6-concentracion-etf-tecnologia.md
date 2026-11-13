@@ -6,10 +6,8 @@ noindex: true
 category: fondos
 tags: ["etf", "nasdaq", "diversificacion", "tecnologia", "msci-world"]
 pendiente: false
-image: /img/fotos/nasdaq-cae-2-6-concentracion-etf-tecnologia.webp
-imageAlt: "Pantalla con gráficos de cotizaciones bursátiles"
-imageCredit: "Leonhard_Niederwimmer / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/christmas-market-advent-market-fair-6849578/"
+image: /img/datos/nasdaq-cae-2-6-concentracion-etf-tecnologia.webp
+imageAlt: "Inversores en ETF: Nasdaq cae un 2,6 % y pesa la tecnología"
 sources:
   - name: "Finantres: El Nasdaq cae un 2,6% y destapa la concentración de algunos ETF diversificados"
     url: "https://finantresnoticias.com/etfs/nasdaq-cae-2-6-por-ciento-destapa-concentracion-algunos-etf-diversificados/"

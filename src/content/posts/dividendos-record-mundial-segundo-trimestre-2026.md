@@ -6,10 +6,8 @@ noindex: true
 category: bolsa
 tags: ["dividendos", "bolsa", "recompra-de-acciones", "fiscalidad-del-ahorro", "renta-variable"]
 pendiente: false
-image: /img/fotos/dividendos-record-mundial-segundo-trimestre-2026.webp
-imageAlt: "Monedas apiladas sobre una mesa"
-imageCredit: "PoldyChromos / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/stones-texture-rocks-material-6660734/"
+image: /img/datos/dividendos-record-mundial-segundo-trimestre-2026.webp
+imageAlt: "Dividendos récord: 827.300 millones de dólares en el 2T 2026"
 sources:
   - name: "Expansión Mercados: Récord de dividendos a nivel mundial con 'extra' de recompras"
     url: "https://www.expansion.com/inversion/2026/10/22/6ad8d8a3468aeb04478b4576.html"

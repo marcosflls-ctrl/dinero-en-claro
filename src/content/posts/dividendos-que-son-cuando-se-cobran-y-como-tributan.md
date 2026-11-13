@@ -6,10 +6,8 @@ category: bolsa
 guia: true
 orden: 3
 tags: [dividendos, ibex-35, acciones, scrip, doble-imposicion, sp-500]
-image: /img/fotos/dividendos-que-son-cuando-se-cobran-y-como-tributan.webp
-imageAlt: "Monedas de euro"
-imageCredit: "neelam279 / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/money-wallet-inflation-banknotes-7325645/"
+image: /img/articulos/dividendos-que-son-cuando-se-cobran-y-como-tributan.webp
+imageAlt: "Dividendos: qué son, cuándo se cobran y cómo tributan en España"
 sources:
   - name: "BOE: Ley 35/2006 del IRPF (artículos 25, 46 y 66)"
     url: "https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764"

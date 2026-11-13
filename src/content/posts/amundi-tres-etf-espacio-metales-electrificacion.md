@@ -5,10 +5,8 @@ date: 2026-10-21T21:44:16+00:00
 category: fondos
 tags: ["etf", "amundi", "comisiones", "fondos-tematicos", "fiscalidad-etf"]
 pendiente: false
-image: /img/fotos/amundi-tres-etf-espacio-metales-electrificacion.webp
-imageAlt: "Pantalla con gráficos de cotizaciones bursátiles"
-imageCredit: "JoshuaWoroniecki / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/laptop-digital-device-technology-5673901/"
+image: /img/datos/amundi-tres-etf-espacio-metales-electrificacion.webp
+imageAlt: "Amundi estrena tres ETF temáticos con gastos del 0,45-0,50 %"
 sources:
   - name: "Finantres: Amundi lanza tres ETF de espacio, tierras raras y electrificación: cómo encajan en cartera"
     url: "https://finantresnoticias.com/etfs/amundi-lanza-tres-etf-espacio-tierras-raras-electrificacion-como-encajan-en-cartera/"

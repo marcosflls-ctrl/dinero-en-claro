@@ -6,10 +6,8 @@ noindex: true
 category: jubilacion
 tags: ["jubilacion", "planificacion", "encuesta", "ahorro-a-largo-plazo", "inversores-minoristas"]
 pendiente: false
-image: /img/fotos/barometro-myinvestor-jubilacion-38-5-tarde.webp
-imageAlt: "Pareja de jubilados paseando por un parque"
-imageCredit: "jhenning / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/retiree-pensioners-elderly-couple-7390179/"
+image: /img/datos/barometro-myinvestor-jubilacion-38-5-tarde.webp
+imageAlt: "Un 38,5 % de encuestados de MyInvestor va tarde con su jubilación"
 sources:
   - name: "Finantres: El 38,5 % de los clientes encuestados por MyInvestor va tarde al preparar su jubilación"
     url: "https://finantresnoticias.com/tu-dinero/38-5-por-ciento-clientes-encuestados-por-myinvestor-va-tarde-preparar-jubilacion/"

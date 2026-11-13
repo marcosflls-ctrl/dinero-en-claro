@@ -5,10 +5,8 @@ date: 2026-10-23T11:40:53+00:00
 category: fondos
 tags: ["criptomonedas", "mica", "cnmv", "etn-bitcoin", "esma"]
 pendiente: false
-image: /img/fotos/criptos-licencia-mica-plataformas-registro-esma.webp
-imageAlt: "Moneda de bitcoin junto a un ordenador portátil"
-imageCredit: "RonaldCandonga / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/job-office-team-business-internet-5382501/"
+image: /img/articulos/criptos-licencia-mica-plataformas-registro-esma.webp
+imageAlt: "Criptos: cómo saber si tu plataforma tiene licencia MiCA"
 sources:
   - name: "Expansión Mercados: La institucionalización de las criptos"
     url: "https://www.expansion.com/mercados/criptomonedas/2026/10/23/6ad2528be5fdea1c7a8b4591.html"

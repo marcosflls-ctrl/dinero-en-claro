@@ -5,10 +5,8 @@ date: 2026-10-23T17:08:38+00:00
 category: ahorro
 tags: ["depositos", "letras-del-tesoro", "cuentas-remuneradas", "bce", "tipos-de-interes"]
 pendiente: false
-image: /img/fotos/depositos-letras-cuentas-rentabilidad-ahorro.webp
-imageAlt: "Monedas de euro apiladas junto a una hucha"
-imageCredit: "JoshuaWoroniecki / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/lights-fireflies-glow-glowworms-5310589/"
+image: /img/datos/depositos-letras-cuentas-rentabilidad-ahorro.webp
+imageAlt: "Ahorradores: depósitos hasta el 3,5 % TAE y Letras al 2,45-2,83 %"
 sources:
   - name: "Expansión Ahorro: Buenos tiempos para el ahorro"
     url: "https://www.expansion.com/ahorro/2026/10/23/6ad8e283e5fdea0a278b45a5.html"

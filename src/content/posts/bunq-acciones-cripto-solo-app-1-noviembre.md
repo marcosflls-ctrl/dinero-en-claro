@@ -6,10 +6,8 @@ noindex: true
 category: fondos
 tags: ["bunq", "neobancos", "criptomonedas", "acciones", "comisiones"]
 pendiente: false
-image: /img/fotos/bunq-acciones-cripto-solo-app-1-noviembre.webp
-imageAlt: "Persona consultando una aplicación de inversión en el móvil"
-imageCredit: "OleksandrPidvalnyi / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/telework-technology-laptop-6795505/"
+image: /img/articulos/bunq-acciones-cripto-solo-app-1-noviembre.webp
+imageAlt: "Clientes de bunq: inversión solo en app desde el 1 nov"
 sources:
   - name: "Finantres: bunq retira Acciones y Cripto de su web el 1 de noviembre: qué cambia"
     url: "https://finantresnoticias.com/bancos/bunq-retira-acciones-cripto-web-1-noviembre-cambia/"

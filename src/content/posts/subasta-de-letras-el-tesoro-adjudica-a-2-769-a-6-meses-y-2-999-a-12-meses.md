@@ -6,10 +6,8 @@ noindex: true
 category: ahorro
 tags: ["letras-del-tesoro", "subasta", "tipos-de-interes", "ahorro", "tesoro-publico"]
 pendiente: false
-image: /img/fotos/subasta-de-letras-el-tesoro-adjudica-a-2-769-a-6-meses-y-2-999-a-12-meses.webp
-imageAlt: "Monedas de euro"
-imageCredit: "AlexBarcley / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/money-cash-coins-payment-debt-5885626/"
+image: /img/datos/subasta-de-letras-el-tesoro-adjudica-a-2-769-a-6-meses-y-2-999-a-12-meses.webp
+imageAlt: "Subasta de Letras: 2,769 % a 6 meses y 2,999 % a 12 meses"
 sources:
   - name: "BOE: Resolución de 8 de octubre de 2026 de la Dirección General del Tesoro y Política Financiera con los resultados de las subastas de Letras a seis y doce meses"
     url: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21773"

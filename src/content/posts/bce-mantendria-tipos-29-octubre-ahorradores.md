@@ -6,10 +6,8 @@ noindex: true
 category: bolsa
 tags: ["bce", "tipos-de-interes", "inflacion", "depositos", "ahorro"]
 pendiente: true
-image: /img/fotos/bce-mantendria-tipos-29-octubre-ahorradores.webp
-imageAlt: "Billetes de euro sobre una mesa"
-imageCredit: "AlexanderStein / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/electricity-save-electricity-7600360/"
+image: /img/articulos/bce-mantendria-tipos-29-octubre-ahorradores.webp
+imageAlt: "Ahorradores: el BCE mantendría los tipos el 29 de octubre"
 sources:
   - name: "BCE: decisiones de política monetaria del 10 de septiembre de 2026"
     url: "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html"

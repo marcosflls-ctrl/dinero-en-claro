@@ -6,10 +6,8 @@ noindex: true
 category: fondos
 tags: ["criptomonedas", "binance", "mica", "cnmv", "seguridad"]
 pendiente: false
-image: /img/fotos/robo-binance-6300-millones-seguridad-criptos.webp
-imageAlt: "Portátil con un candado digital en la pantalla"
-imageCredit: "Innovalabs / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/software-developer-web-developer-6521720/"
+image: /img/articulos/robo-binance-6300-millones-seguridad-criptos.webp
+imageAlt: "Criptos: qué revisar tras el robo de 6.300 M$ a Binance"
 sources:
   - name: "CNMV: MiCA, nueva regulación de criptoactivos"
     url: "https://www.cnmv.es/portal/mica/regulacion-criptoactivos"

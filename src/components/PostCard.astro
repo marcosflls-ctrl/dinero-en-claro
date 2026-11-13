@@ -11,7 +11,12 @@ const src = image ?? `/img/portadas/${category}.webp`;
 // Las portadas generadas llevan el titular escrito: en la miniatura pequeña del móvil se cortaría,
 // así que ahí se usa una miniatura con solo el nombre de la sección. Las fotos reales se mantienen.
 const Titular = featured ? 'h2' : 'h3';
-const miniMovil = !featured && !imageCredit ? `/img/miniaturas/${category}.webp` : null;
+// Las portadas «de dato» (/img/datos/) son una cifra enorme que sí se lee en pequeño: se dejan.
+// «Pendiente del BOE» solo en guías: en las noticias de mercados (BCE, Fed, bolsa) la etiqueta no tenía sentido
+const pendienteVigente = pendiente && guia;
+const esDato = src.startsWith('/img/datos/');
+// …pero en su miniatura, que lleva solo la cifra.
+const miniMovil = featured ? null : esDato ? src.replace(/\.webp$/, '-mini.webp') : !imageCredit ? `/img/miniaturas/${category}.webp` : null;
 ---
 <article class:list={['pieza', { featured, 'sin-imagen': sinImagen }]}>
   {!sinImagen && (
@@ -26,7 +31,7 @@ const miniMovil = !featured && !imageCredit ? `/img/miniaturas/${category}.webp`
     <p class="arriba">
       <a class="seccion-link" href={`/${category}/`}>{CATEGORIES[category as keyof typeof CATEGORIES].label}</a>
       {guia && <span class="muted"> Guía actualizada</span>}
-      {pendiente && <span class="marca-estado"> Pendiente del BOE</span>}
+      {pendienteVigente && <span class="marca-estado"> Pendiente del BOE</span>}
     </p>
     <Titular class="titular"><a href={href}>{title}</a></Titular>
     {(featured || !sinImagen) && <p class="entradilla">{description}</p>}

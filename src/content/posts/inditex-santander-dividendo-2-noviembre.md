@@ -5,10 +5,8 @@ date: 2026-10-24T11:01:56+00:00
 category: bolsa
 tags: ["dividendos", "inditex", "santander", "ibex-35", "calendario"]
 pendiente: true
-image: /img/fotos/inditex-santander-dividendo-2-noviembre.webp
-imageAlt: "Billetes de euro sobre una mesa junto a un gráfico de bolsa"
-imageCredit: "Buffik / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/business-chart-graph-graphic-5475664/"
+image: /img/articulos/inditex-santander-dividendo-2-noviembre.webp
+imageAlt: "Accionistas: Inditex y Santander pagan el 2 de noviembre"
 sources:
   - name: "Expansión Mercados: Cómo cobrar más de 10.000 millones de euros en dividendos en la recta final del año"
     url: "https://www.expansion.com/inversion/2026/10/24/6adb8e09468aeb3f6b8b4577.html"

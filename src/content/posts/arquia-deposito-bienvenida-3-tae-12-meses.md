@@ -6,10 +6,8 @@ noindex: true
 category: ahorro
 tags: ["depositos", "tae", "ahorro", "fondo-de-garantia", "letras-del-tesoro"]
 pendiente: false
-image: /img/fotos/arquia-deposito-bienvenida-3-tae-12-meses.webp
-imageAlt: "Monedas de euro apiladas sobre una mesa"
-imageCredit: "NickyPe / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/coins-money-euro-finance-currency-5790121/"
+image: /img/datos/arquia-deposito-bienvenida-3-tae-12-meses.webp
+imageAlt: "Arquia relanza un depósito al 3 % TAE a 12 meses: condiciones"
 sources:
   - name: "Expansión Ahorro: Arquia se suma a la guerra de los depósitos y paga el 3%"
     url: "https://www.expansion.com/ahorro/2026/10/21/6ad7fc6ee5fdea43348b456f.html"

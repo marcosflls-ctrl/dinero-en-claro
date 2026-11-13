@@ -6,10 +6,8 @@ noindex: true
 category: bolsa
 tags: ["reserva-federal", "tipos-de-interes", "inflacion", "bolsa", "bce"]
 pendiente: true
-image: /img/fotos/fed-decide-mantener-tipos-3-75-4-octubre.webp
-imageAlt: "Fachada de un edificio de banco central con columnas"
-imageCredit: "Csillagvirág / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/river-stream-brook-creek-morning-7047522/"
+image: /img/datos/fed-decide-mantener-tipos-3-75-4-octubre.webp
+imageAlt: "La Fed decide mañana: se espera mantener tipos en 3,75-4 %"
 sources:
   - name: "Expansión Mercados: La Fed debate pausar tipos pese al avance de la inflación"
     url: "https://www.expansion.com/mercados/2026/10/27/6adfa0cbe5fdea070b8b4585.html"

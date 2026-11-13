@@ -490,36 +490,14 @@ def save_post(data: dict, item: dict) -> Path:
     if foto:
         img_lines = (f"image: /img/banco/{foto['slug']}.webp\nimageAlt: {yaml_str(foto['alt'])}\n"
                      f"imageCredit: {yaml_str(foto['credito'])}\nimageCreditUrl: {yaml_str(foto['pagina'])}\n")
-    # Si ninguna foto del banco encaja: una foto libre de Pixabay u Openverse buscada con lo que propone la IA
-    if not foto and data.get("foto_busqueda"):
-        try:
-            sys.path.insert(0, str(Path(__file__).resolve().parent))
-            from fotos_libres import buscar as buscar_foto_libre
-            libre = buscar_foto_libre(data["foto_busqueda"], slug)
-            if libre:
-                alt = (data.get("foto_alt") or data["title"])[:150]
-                img_lines = (f"image: {libre['ruta']}\nimageAlt: {yaml_str(alt)}\n"
-                             f"imageCredit: {yaml_str(libre['credito'])}\nimageCreditUrl: {yaml_str(libre['pagina'])}\n")
-        except Exception as e:  # noqa: BLE001
-            print(f"  ! no se pudo buscar foto libre: {e}")
-    # Sin foto libre: una del banco aunque ya esté usada, antes que la portada con el titular
-    if not img_lines and elegir_foto:
-        try:
-            foto = elegir_foto(data["title"], data["category"], data.get("foto") or "", repetir=True)
-        except Exception as e:  # noqa: BLE001
-            print(f"  ! no se pudo elegir foto: {e}")
-            foto = None
-        if foto:
-            img_lines = (f"image: /img/banco/{foto['slug']}.webp\nimageAlt: {yaml_str(foto['alt'])}\n"
-                         f"imageCredit: {yaml_str(foto['credito'])}\nimageCreditUrl: {yaml_str(foto['pagina'])}\n")
+    # Si ninguna foto del banco encaja: portada propia con la cifra del titular (o el titular) y el color
+    # de la sección. Ya no se buscan fotos libres: salían fotos que no tenían nada que ver con la noticia.
     if not img_lines:
         try:
             sys.path.insert(0, str(Path(__file__).resolve().parent))
-            from miniaturas import make_variants, make_crops
-            img = crear_portada(data.get("card_title") or data["title"], data["category"], IMG_DIR / f"{slug}.webp")
-            make_variants(img)
-            make_crops(img)
-            img_lines = f"image: /img/articulos/{slug}.webp\nimageAlt: {yaml_str(data['title'][:140])}\n"
+            from portadas_dato import generar as generar_portada
+            ruta = generar_portada(slug, data["title"], data["category"])
+            img_lines = f"image: {ruta}\nimageAlt: {yaml_str(data['title'][:140])}\n"
         except Exception as e:  # noqa: BLE001
             print(f"  ! no se pudo crear la portada: {e}")
 

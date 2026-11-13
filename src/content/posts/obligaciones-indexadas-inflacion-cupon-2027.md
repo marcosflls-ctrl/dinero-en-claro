@@ -5,10 +5,8 @@ date: 2026-10-24T11:01:16+00:00
 category: ahorro
 tags: ["obligaciones-del-estado", "deuda-indexada", "inflacion", "tesoro", "cupon"]
 pendiente: false
-image: /img/fotos/obligaciones-indexadas-inflacion-cupon-2027.webp
-imageAlt: "Billetes y monedas de euro sobre una mesa"
-imageCredit: "Alexandra_Koch / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/inflation-euro-devaluation-money-7107103/"
+image: /img/datos/obligaciones-indexadas-inflacion-cupon-2027.webp
+imageAlt: "Tenedores de Obligaciones indexadas: cupón del 0,8637 %"
 sources:
   - name: "BOE: Resolución de 19 de octubre de 2026, de la Dirección General del Tesoro y Política Financiera (coeficiente de indexación y cupón)"
     url: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22288"

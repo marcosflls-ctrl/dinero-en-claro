@@ -6,10 +6,8 @@ noindex: true
 category: ahorro
 tags: ["depositos", "tae", "self-bank", "ahorro", "dinero-nuevo"]
 pendiente: false
-image: /img/fotos/self-bank-deposito-3-meses-3-05-tae.webp
-imageAlt: "Monedas de euro apiladas junto a una hucha"
-imageCredit: "RitaE / Pixabay"
-imageCreditUrl: "https://pixabay.com/photos/apple-pomegranate-fruit-vitamins-5846664/"
+image: /img/datos/self-bank-deposito-3-meses-3-05-tae.webp
+imageAlt: "Self Bank: depósito a 3 meses al 3,05 % TAE para dinero nuevo"
 sources:
   - name: "Expansión Ahorro: Self Bank lanza un depósito bienvenida al 3,05% a tres meses"
     url: "https://www.expansion.com/ahorro/2026/10/23/6ada273ae5fdead16a8b4581.html"
