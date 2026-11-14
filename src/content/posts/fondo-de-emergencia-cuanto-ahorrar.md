@@ -2,6 +2,7 @@
 title: "Fondo de emergencia: cuánto dinero tener a mano y dónde guardarlo"
 description: "Las guías de educación financiera hablan de 3 a 6 meses de gastos fijos. Cómo calcular el tuyo, dónde guardarlo para tenerlo disponible y qué no hacer."
 date: 2026-10-18T20:56:00+02:00
+updated: 2026-11-13T19:45:00+01:00
 category: ahorro
 guia: true
 orden: 8
@@ -11,6 +12,8 @@ imageAlt: "Monedas de euro sobre la bandera de la Unión Europea"
 imageCredit: "Lukasz Kobus - European Commission / Wikimedia Commons (CC BY 4.0)"
 imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Euro_coins_(02).jpg"
 sources:
+  - name: "Banco de España: «Aprendemos a planificar nuestras finanzas personales» (guía de educación financiera)"
+    url: "https://clientebancario.bde.es/f/webcb/RCL/ActualidadEducacionFinanciera/Iniciativas/Gestiondelasfinanzaspersonales.pdf"
   - name: "Maldita: el Banco de España no ha recomendado tener 12 meses de gastos en efectivo (13/12/2023)"
     url: "https://maldita.es/malditobulo/20231213/banco-de-espana-dinero-efectivo-doce-meses/"
   - name: "BBVA: cómo calcular y dónde guardar un fondo de emergencia"
@@ -21,10 +24,10 @@ Un **fondo de emergencia** es el dinero que guardas para imprevistos: una averí
 
 ## Lo esencial
 
-- **Cuánto:** el programa de educación financiera del Banco de España y la CNMV (Finanzas para Todos) habla de **entre 3 y 6 meses de gastos fijos**. El Banco de España lo resume en al menos tres meses.
+- **Cuánto:** la guía de educación financiera del Banco de España habla de **«entre tres y seis meses de gastos fijos»**, y añade que no hay una cuantía fija porque «depende de las circunstancias personales de cada uno».
 - **De gastos, no de sueldo:** cuenta lo que necesitas para vivir (alquiler o hipoteca, comida, recibos, transporte), no lo que ganas.
 - **Dónde:** en un sitio con **disponibilidad inmediata y sin riesgo**, como una cuenta. Mejor si da algún interés.
-- **No en casa:** el Banco de España aclara que un fondo de emergencia «no es lo mismo que guardar dinero en casa».
+- **No en casa:** un fondo de emergencia «no es lo mismo que guardar dinero en casa», según la aclaración del Banco de España que recogió Maldita cuando circuló el bulo de los doce meses en efectivo.
 
 ## Cómo calcular el tuyo
 

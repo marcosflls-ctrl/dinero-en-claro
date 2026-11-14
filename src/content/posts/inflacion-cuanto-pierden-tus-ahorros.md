@@ -2,6 +2,7 @@
 title: "Inflación: cuánto pierden tus ahorros y cómo calcular la rentabilidad"
 description: "Con el IPC al 4,9 %, 10.000 € parados pierden unos 467 € de poder de compra en un año. Cómo calcular la rentabilidad real de tu dinero, con ejemplos."
 date: 2026-10-18T20:52:00+02:00
+updated: 2026-11-13T19:45:00+01:00
 category: ahorro
 guia: true
 orden: 7
@@ -11,11 +12,11 @@ imageAlt: "Carro de la compra en un supermercado"
 imageCredit: "safaritravelplus / Wikimedia Commons (CC0)"
 imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Shopping_Cart_Supermarket.jpg"
 sources:
-  - name: "Instituto BBVA de Pensiones: IPC de diciembre de 2025 a septiembre de 2026 (30/09/2026)"
-    url: "https://www.bbvamijubilacion.es/blog/el-ipc-de-septiembre-49-incrementa-hasta-el-35-la-estimacion-de-revalorizacion-de-las-pensiones-para-2027/"
+  - name: "INE: Índice de Precios de Consumo, variación anual del índice general (datos hasta octubre de 2026)"
+    url: "https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176802&menu=ultiDatos&idp=1254735976607"
 ---
 
-La inflación es la subida de los precios. Cuando sube, el mismo dinero compra menos cosas. Por eso, **dejar los ahorros parados no es neutral**: aunque el número de tu cuenta no cambie, su valor real baja. En septiembre de 2026, el IPC adelantado del INE marcó un **4,9 %**.
+La inflación es la subida de los precios. Cuando sube, el mismo dinero compra menos cosas. Por eso, **dejar los ahorros parados no es neutral**: aunque el número de tu cuenta no cambie, su valor real baja. En octubre de 2026, el IPC del INE se situó en el **4,9 %** interanual, igual que en septiembre.
 
 ## Lo esencial
 
@@ -57,9 +58,10 @@ Con una inflación del 4,9 % y la retención del 19 % sobre los intereses. Son c
 | Junio | 3,2 % |
 | Julio | 3,6 % |
 | Agosto | 4,3 % |
-| Septiembre (adelantado) | 4,9 % |
+| Septiembre | 4,9 % |
+| Octubre | 4,9 % |
 
-*Datos del INE recogidos por el Instituto BBVA de Pensiones.*
+*Datos del INE.*
 
 Este dato también decide cuánto suben las pensiones: te lo contamos en Al Final de Mes, en [subida de las pensiones en 2027](https://alfinaldemes.com/pensiones/subida-pensiones-2027/). Y cuánto ha subido cada producto de la cesta de la compra está en su [página del IPC](https://alfinaldemes.com/ipc/).
 
