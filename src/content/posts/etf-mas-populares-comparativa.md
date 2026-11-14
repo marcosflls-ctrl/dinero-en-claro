@@ -2,12 +2,22 @@
 title: "ETF más populares en España: costes y rentabilidad año a año"
 description: "VWCE, IWDA, CSPX y otros ETF de los que más se habla en España, uno al lado del otro: índice, gastos, tamaño, tickers y lo que hicieron cada año de 2022 a 2025."
 date: 2026-10-19T14:30:00+02:00
-updated: 2026-10-21T13:00:00+02:00
+updated: 2026-11-14T11:55:00+01:00
 category: fondos
 guia: true
 orden: 3
 tags: [etf, comparativa, vwce, iwda, sp-500]
 sources:
+  - name: "Vanguard: costes y gastos de sus fondos y ETF en Europa (gastos corrientes del FTSE All-World y del S&P 500, datos a 08/10/2026)"
+    url: "https://fund-docs.vanguard.com/vanguard-funds-cost-charges-information-eu.pdf"
+  - name: "Vanguard: ficha del FTSE All-World UCITS ETF, clase de acumulación (30/09/2026)"
+    url: "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_EN.pdf"
+  - name: "iShares (BlackRock): ficha del iShares Core MSCI World UCITS ETF"
+    url: "https://www.blackrock.com/lu/individual/en/products/251882/ishares-msci-world-ucits-etf-acc-fund"
+  - name: "iShares (BlackRock): ficha del iShares Core S&P 500 UCITS ETF"
+    url: "https://www.blackrock.com/lu/individual/en/products/253743/ishares-sp-500-b-ucits-etf-acc-fund"
+  - name: "iShares (BlackRock): ficha del iShares NASDAQ 100 UCITS ETF"
+    url: "https://www.blackrock.com/lu/individual/en/products/253741/ishares-nasdaq-100-ucits-etf"
   - name: "justETF: comparativa iShares Core MSCI World frente a iShares Core S&P 500"
     url: "https://www.justetf.com/es/asset-comparisons/etf-comparisons/IE00B4L5Y983-ishares-core-msci-world-acc-vs-IE00B5BMR087-ishares-core-sp500-acc"
   - name: "justETF: comparativa iShares Nasdaq 100 frente a iShares Core MSCI EM IMI"
@@ -30,7 +40,7 @@ imageAlt: "ETF más populares en España: costes y rentabilidad año a año"
 
 **Estos son los ETF de los que más se habla entre los inversores españoles, puestos uno al lado del otro con los mismos datos.** Casi todos copian los mismos índices que los fondos indexados más populares, pero se compran en bolsa y tributan de otra forma. No es una recomendación ni una lista de «los mejores»: es una forma de ver en qué se diferencian.
 
-*Rentabilidad en euros de cada año natural, gastos y patrimonio según justETF, octubre de 2026.*
+*Rentabilidad en euros de cada año natural, gastos y patrimonio según justETF, octubre de 2026. Los gastos de los cinco ETF más grandes de la tabla (los de Vanguard y los tres de iShares sobre el MSCI World, el S&P 500 y el Nasdaq-100) están comprobados además en las fichas de sus gestoras, en noviembre de 2026. Las gestoras publican la rentabilidad en dólares; aquí se usa la conversión a euros de justETF, que es la que nota un inversor español.*
 
 ## Lo esencial
 
