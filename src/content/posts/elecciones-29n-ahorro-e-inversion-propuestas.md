@@ -49,7 +49,7 @@ El **13 de noviembre** ya habían publicado su programa el **PP** (10 de noviemb
 ## Lo esencial
 
 - **El PSOE propone subir el último tramo de la escala del ahorro**, el de más de 300.000 €, del 30 % al **35 %**. A quien gane menos con sus intereses, dividendos o fondos no le cambiaría nada, según los resúmenes del programa.
-- **Frente Amplio y Podemos** van más allá: que las rentas del capital tributen de forma parecida (Frente Amplio) o igual (Podemos) que las del trabajo, cuya escala llega al 47 % o más según la comunidad. Ninguno ha publicado la nueva escala.
+- **Frente Amplio y Podemos** van más allá: que las rentas del capital tributen de forma parecida (Frente Amplio) o igual (Podemos) que las del trabajo, cuyo tipo máximo va del 45 % al 54 % según la comunidad. Ninguno ha publicado la nueva escala.
 - **PP y Vox** proponen bajar el IRPF. Ninguno de los dos programas detalla cambios en las rentas del ahorro (intereses, dividendos o fondos).
 - **Patrimonio y herencias:** el Frente Amplio propone un impuesto a las grandes fortunas, calcular el de patrimonio sin las bonificaciones de las comunidades y que nadie herede más de 10 millones. El PSOE propone duplicar la tasa a las transacciones financieras, que pagan quienes compran acciones de grandes empresas españolas.
 - **Pensiones privadas:** el programa de Vox ya no incluye el sistema mixto con capitalización que defendía uno de sus diputados. El PP mantiene el sistema público y la subida con el IPC. Nadie ha propuesto cambios en los planes de pensiones. El PSOE plantea ingresar **1.000 € al nacer** en una cuenta pública que se podría usar a los 18 años.
